@@ -4,6 +4,9 @@ name: harvest-drive
 # (prayers + Dr. Myles Munroe teachings) and commits it back. No secrets needed.
 
 on:
+  push:
+    paths:
+      - '.github/workflows/harvest-drive.yml'
   workflow_dispatch:
     inputs:
       collections:
