@@ -32,8 +32,13 @@ export function App() {
   const [activeSection, setActiveSection] = useState<ActiveSection>('compendium');
   const [selectedReaderVideoId, setSelectedReaderVideoId] = useState<string>(VIDEOS_DATA[0].id);
   const [uiLang, setUiLang] = useState<UILang>('en');
-  const [languageMode, setLanguageMode] = useState<LanguageMode>('both');
+  const [languageMode, setLanguageMode] = useState<LanguageMode>('en');
   const [darkMode, setDarkMode] = useState<boolean>(false);
+
+  const handleSelectLanguage = (lang: UILang) => {
+    setUiLang(lang);
+    setLanguageMode(lang);
+  };
 
   const [savedBookmarks, setSavedBookmarks] = useState<SavedBookmarkItem[]>(() => {
     try {
@@ -193,40 +198,36 @@ export function App() {
             })}
           </nav>
 
-          {/* Right Controls: UI Language, Theme & Direct DOCX Download CTA */}
+          {/* Right Controls: Reading Language Picker (EN or FR), Theme & Direct DOCX Download CTA */}
           <div className="flex items-center gap-2">
-            {/* UI Language Toggle EN / FR */}
+            {/* Reading Language Toggle: Choose EN or FR */}
             <div
-              className={`inline-flex items-center rounded-xl p-0.5 border ${
-                darkMode ? 'bg-[#171F2C] border-[#263246]' : 'bg-[#F3EDE2] border-[#B48327]/25'
+              className={`inline-flex items-center rounded-xl p-1 border ${
+                darkMode ? 'bg-[#171F2C] border-[#263246]' : 'bg-[#F3EDE2] border-[#B48327]/30'
               }`}
-              title="Switch Interface & Reader Language"
+              title="Choose Reading Language: English (EN) or Français (FR)"
             >
               <button
                 type="button"
-                onClick={() => {
-                  setUiLang('en');
-                }}
-                className={`px-2.5 py-1 rounded-lg text-xs font-bold transition ${
+                onClick={() => handleSelectLanguage('en')}
+                className={`px-3 py-1 rounded-lg text-xs font-bold transition ${
                   uiLang === 'en'
-                    ? 'bg-[#B48327] text-white'
-                    : 'text-[#57534E] dark:text-[#A8A29E]'
+                    ? 'bg-[#B48327] text-white shadow-sm'
+                    : 'text-[#57534E] dark:text-[#A8A29E] hover:text-[#B48327]'
                 }`}
               >
-                EN
+                English (EN)
               </button>
               <button
                 type="button"
-                onClick={() => {
-                  setUiLang('fr');
-                }}
-                className={`px-2.5 py-1 rounded-lg text-xs font-bold transition ${
+                onClick={() => handleSelectLanguage('fr')}
+                className={`px-3 py-1 rounded-lg text-xs font-bold transition ${
                   uiLang === 'fr'
-                    ? 'bg-[#B48327] text-white'
-                    : 'text-[#57534E] dark:text-[#A8A29E]'
+                    ? 'bg-[#B48327] text-white shadow-sm'
+                    : 'text-[#57534E] dark:text-[#A8A29E] hover:text-[#B48327]'
                 }`}
               >
-                FR
+                Français (FR)
               </button>
             </div>
 
@@ -347,6 +348,49 @@ export function App() {
                   : 'Explore the complete, unabridged English (EN) and French (FR) transcriptions of the three foundational sessions of morning warfare, contemplative devotion, and apostolic declarations with Apostle Joshua Selman and Grace Enclave—complete with an interactive prayer altar, bilingual Scripture concordance, and downloadable Microsoft Word (.docx) packages.'}
               </p>
 
+              {/* Prominent Language Choice Bar in Hero */}
+              <div className="pt-1">
+                <div
+                  className={`inline-flex flex-wrap items-center gap-2 p-2 rounded-2xl border ${
+                    darkMode
+                      ? 'bg-[#171F2C]/95 border-[#263246]'
+                      : 'bg-[#F3EDE2] border-[#B48327]/30'
+                  }`}
+                >
+                  <span className="text-xs font-bold uppercase tracking-wider px-2 text-[#B48327]">
+                    {uiLang === 'fr'
+                      ? 'Choisir la Langue de Lecture :'
+                      : 'Choose Reading Language:'}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => handleSelectLanguage('en')}
+                    className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition ${
+                      uiLang === 'en'
+                        ? 'bg-[#B48327] text-white shadow-sm'
+                        : darkMode
+                        ? 'text-[#A8A29E] hover:bg-[#1E293B]'
+                        : 'text-[#57534E] hover:bg-[#EAE1D3]'
+                    }`}
+                  >
+                    🇬🇧 Read in English (EN)
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleSelectLanguage('fr')}
+                    className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition ${
+                      uiLang === 'fr'
+                        ? 'bg-[#B48327] text-white shadow-sm'
+                        : darkMode
+                        ? 'text-[#A8A29E] hover:bg-[#1E293B]'
+                        : 'text-[#57534E] hover:bg-[#EAE1D3]'
+                    }`}
+                  >
+                    🇫🇷 Lire en Français (FR)
+                  </button>
+                </div>
+              </div>
+
               {/* Hero CTAs */}
               <div className="flex flex-wrap items-center gap-3 pt-2">
                 <button
@@ -461,6 +505,7 @@ export function App() {
           <MasterCompendiumView
             uiLang={uiLang}
             languageMode={languageMode}
+            onSelectLanguage={handleSelectLanguage}
             darkMode={darkMode}
             onOpenVideoInReader={handleOpenVideoInReader}
             onNavigateTab={(tab) => {
@@ -474,7 +519,13 @@ export function App() {
           <TranscriptionsView
             uiLang={uiLang}
             languageMode={languageMode}
-            setLanguageMode={setLanguageMode}
+            setLanguageMode={(mode) => {
+              if (mode === 'en' || mode === 'fr') {
+                handleSelectLanguage(mode);
+              } else {
+                setLanguageMode(mode);
+              }
+            }}
             darkMode={darkMode}
             bookmarkedIds={savedBookmarks.map((b) => b.id)}
             onToggleBookmark={handleToggleBookmark}

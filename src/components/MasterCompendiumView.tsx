@@ -30,6 +30,7 @@ import { RAW_TRANSCRIPTS } from '../data/rawTranscripts';
 interface MasterCompendiumViewProps {
   uiLang: UILang;
   languageMode: LanguageMode;
+  onSelectLanguage: (lang: UILang) => void;
   darkMode: boolean;
   onOpenVideoInReader: (videoId: string) => void;
   onNavigateTab: (tab: 'transcriptions' | 'prayers' | 'devotionals' | 'downloads') => void;
@@ -38,6 +39,7 @@ interface MasterCompendiumViewProps {
 export const MasterCompendiumView: React.FC<MasterCompendiumViewProps> = ({
   uiLang,
   languageMode,
+  onSelectLanguage,
   darkMode,
   onOpenVideoInReader,
   onNavigateTab,
@@ -108,6 +110,36 @@ export const MasterCompendiumView: React.FC<MasterCompendiumViewProps> = ({
           </div>
 
           <div className="flex flex-wrap items-center gap-2.5">
+            {/* Language Choice Pill (EN vs FR) */}
+            <div
+              className={`inline-flex items-center rounded-xl p-1 border ${
+                darkMode ? 'bg-[#171F2C] border-[#263246]' : 'bg-[#F3EDE2] border-[#B48327]/30'
+              }`}
+            >
+              <button
+                type="button"
+                onClick={() => onSelectLanguage('en')}
+                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition ${
+                  uiLang === 'en'
+                    ? 'bg-[#B48327] text-white shadow-sm'
+                    : 'text-[#57534E] dark:text-[#A8A29E] hover:text-[#B48327]'
+                }`}
+              >
+                🇬🇧 English (EN)
+              </button>
+              <button
+                type="button"
+                onClick={() => onSelectLanguage('fr')}
+                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition ${
+                  uiLang === 'fr'
+                    ? 'bg-[#B48327] text-white shadow-sm'
+                    : 'text-[#57534E] dark:text-[#A8A29E] hover:text-[#B48327]'
+                }`}
+              >
+                🇫🇷 Français (FR)
+              </button>
+            </div>
+
             <button
               onClick={expandAllVideos}
               className="px-4 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider bg-[#B48327] text-white hover:bg-[#9A6E1E] transition shadow-sm"
@@ -442,8 +474,8 @@ export const MasterCompendiumView: React.FC<MasterCompendiumViewProps> = ({
                 {/* Expanded Video Contents */}
                 {isExpanded && (
                   <div className="p-5 sm:p-6 space-y-6">
-                    {/* Bilingual Overview */}
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                    {/* Overview in Selected Language */}
+                    <div className={`grid grid-cols-1 ${showEn && showFr ? 'lg:grid-cols-2' : ''} gap-4`}>
                       {showEn && (
                         <div className={`rounded-xl border p-4 ${cardSurface}`}>
                           <p className="text-[11px] font-bold uppercase tracking-wider text-[#B48327] mb-1">
@@ -481,8 +513,8 @@ export const MasterCompendiumView: React.FC<MasterCompendiumViewProps> = ({
                     <div className="space-y-4">
                       <h5 className="font-display font-bold text-lg border-b border-[#B48327]/20 pb-2">
                         {uiLang === 'fr'
-                          ? `Tous les Chapitres & Déclarations (${video.chapters.length} Mouvements — EN & FR)`
-                          : `All Chapters & Prophetic Declarations (${video.chapters.length} Movements — EN & FR)`}
+                          ? `Tous les Chapitres & Déclarations (${video.chapters.length} Mouvements — Français)`
+                          : `All Chapters & Prophetic Declarations (${video.chapters.length} Movements — English)`}
                       </h5>
 
                       <div className="space-y-4">
@@ -509,11 +541,11 @@ export const MasterCompendiumView: React.FC<MasterCompendiumViewProps> = ({
                               </div>
                             </div>
 
-                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-3">
+                            <div className={`grid grid-cols-1 ${showEn && showFr ? 'lg:grid-cols-2' : ''} gap-4 mt-3`}>
                               {showEn && (
                                 <div className="space-y-2">
                                   <h6 className="font-display font-bold text-base text-[#B48327]">
-                                    [EN] {ch.title_en}
+                                    {ch.title_en}
                                   </h6>
                                   <p className="font-serif-body text-sm sm:text-[15px] leading-relaxed">
                                     {ch.en_text}
@@ -530,7 +562,7 @@ export const MasterCompendiumView: React.FC<MasterCompendiumViewProps> = ({
                               {showFr && (
                                 <div className="space-y-2">
                                   <h6 className="font-display font-bold text-base text-[#B48327]">
-                                    [FR] {ch.title_fr}
+                                    {ch.title_fr}
                                   </h6>
                                   <p className="font-serif-body text-sm sm:text-[15px] leading-relaxed">
                                     {ch.fr_text}
@@ -560,33 +592,37 @@ export const MasterCompendiumView: React.FC<MasterCompendiumViewProps> = ({
                             <ScrollText className="w-4 h-4" />
                             {showRaw
                               ? uiLang === 'fr'
-                                ? 'Masquer la Transcription Intégrale Mot-à-Mot (EN & FR)'
-                                : 'Hide Full Verbatim Word-for-Word Transcript (EN & FR)'
+                                ? 'Masquer la Transcription Intégrale Mot-à-Mot'
+                                : 'Hide Full Verbatim Word-for-Word Transcript'
                               : uiLang === 'fr'
-                              ? `Afficher la Transcription Intégrale Mot-à-Mot (${raw.en_paragraphs.length} Paragraphes EN & ${raw.fr_paragraphs.length} FR)`
-                              : `Display Full Unabridged Verbatim Transcript (${raw.en_paragraphs.length} EN & ${raw.fr_paragraphs.length} FR Paragraphs)`}
+                              ? `Afficher la Transcription Intégrale en Français (${raw.fr_paragraphs.length} Paragraphes)`
+                              : `Display Full Verbatim English Transcript (${raw.en_paragraphs.length} Paragraphs)`}
                           </button>
 
                           <div className="flex items-center gap-2">
-                            <button
-                              onClick={() => handleCopy(`${video.id}-en`, raw.en_raw)}
-                              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold border border-[#B48327]/30 text-[#B48327] hover:bg-[#B48327]/10 transition"
-                            >
-                              {copiedId === `${video.id}-en` ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
-                              {uiLang === 'fr' ? 'Copier Tout (EN)' : 'Copy Full EN'}
-                            </button>
-                            <button
-                              onClick={() => handleCopy(`${video.id}-fr`, raw.fr_raw)}
-                              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold border border-[#B48327]/30 text-[#B48327] hover:bg-[#B48327]/10 transition"
-                            >
-                              {copiedId === `${video.id}-fr` ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
-                              {uiLang === 'fr' ? 'Copier Tout (FR)' : 'Copy Full FR'}
-                            </button>
+                            {showEn && (
+                              <button
+                                onClick={() => handleCopy(`${video.id}-en`, raw.en_raw)}
+                                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold border border-[#B48327]/30 text-[#B48327] hover:bg-[#B48327]/10 transition"
+                              >
+                                {copiedId === `${video.id}-en` ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
+                                Copy Full English (EN)
+                              </button>
+                            )}
+                            {showFr && (
+                              <button
+                                onClick={() => handleCopy(`${video.id}-fr`, raw.fr_raw)}
+                                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold border border-[#B48327]/30 text-[#B48327] hover:bg-[#B48327]/10 transition"
+                              >
+                                {copiedId === `${video.id}-fr` ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
+                                Copier Tout en Français (FR)
+                              </button>
+                            )}
                           </div>
                         </div>
 
                         {showRaw && (
-                          <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mt-4">
+                          <div className={`grid grid-cols-1 ${showEn && showFr ? 'lg:grid-cols-2' : ''} gap-5 mt-4`}>
                             {showEn && (
                               <div className={`rounded-xl border p-4 sm:p-5 max-h-[600px] overflow-y-auto ${cardSurface}`}>
                                 <h6 className="font-display font-bold text-base text-[#B48327] mb-3 sticky top-0 py-1 bg-inherit">

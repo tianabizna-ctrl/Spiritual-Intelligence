@@ -476,9 +476,8 @@ export const TranscriptionsView: React.FC<TranscriptionsViewProps> = ({
             >
               {(
                 [
-                  { id: 'both', label_en: 'EN + FR Parallel', label_fr: 'Bilingue EN + FR' },
-                  { id: 'en', label_en: 'English Only (EN)', label_fr: 'Anglais (EN)' },
-                  { id: 'fr', label_en: 'Français Only (FR)', label_fr: 'Français (FR)' },
+                  { id: 'en', label_en: '🇬🇧 English (EN)', label_fr: '🇬🇧 Anglais (EN)' },
+                  { id: 'fr', label_en: '🇫🇷 Français (FR)', label_fr: '🇫🇷 Français (FR)' },
                 ] as const
               ).map((tab) => (
                 <button
@@ -888,7 +887,7 @@ export const TranscriptionsView: React.FC<TranscriptionsViewProps> = ({
                   {showEn && (
                     <button
                       type="button"
-                      onClick={() => handleCopy('verbatim-en', rawTranscript.en_full)}
+                      onClick={() => handleCopy('verbatim-en', rawTranscript.en_raw)}
                       className={`inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold border transition ${
                         darkMode
                           ? 'border-[#263246] bg-[#171F2C] hover:border-[#D4AF37]'
@@ -912,7 +911,7 @@ export const TranscriptionsView: React.FC<TranscriptionsViewProps> = ({
                   {showFr && (
                     <button
                       type="button"
-                      onClick={() => handleCopy('verbatim-fr', rawTranscript.fr_full)}
+                      onClick={() => handleCopy('verbatim-fr', rawTranscript.fr_raw)}
                       className={`inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold border transition ${
                         darkMode
                           ? 'border-[#263246] bg-[#171F2C] hover:border-[#D4AF37]'
