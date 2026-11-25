@@ -11,63 +11,21 @@ permissions:
 jobs:
   probe:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-
-      - name: Probe YouTube reachability and a real transcript
-        run: |
-          set -o pipefail
-          {
-            echo "youtube_http=$(curl -sS --max-time 20 -o /dev/null -w '%{http_code}' https://www.youtube.com/ || echo FAIL)"
-            echo "googlevideo_http=$(curl -sS --max-time 20 -o /dev/null -w '%{http_code}' https://www.youtube.com/feeds/videos.xml?channel_id=UCmpTViEwhN4kdklHpFY9KTQ || echo FAIL)"
-          } > probe_env.txt
-          python3 -m pip install --quiet yt-dlp youtube-transcript-api || echo "pip_failed=1" >> probe_env.txt
-
-          python3 - > probe_python.txt 2>&1 <<'PY' || true
-import json, traceback
-out = {}
-try:
-    import yt_dlp
-    out["yt_dlp_version"] = yt_dlp.version.__version__
-    with yt_dlp.YoutubeDL({"quiet": True, "extract_flat": "in_playlist", "skip_download": True}) as ydl:
-        info = ydl.extract_info(
-            "https://www.youtube.com/playlist?list=PL-7eNLWzLZIDACNgNtZWapz_j-TBF4bqs",
-            download=False,
-        )
-    entries = [e for e in (info.get("entries") or []) if e]
-    out["playlist_entries"] = len(entries)
-    out["first_three"] = [e.get("id") for e in entries[:3]]
-except Exception:
-    out["yt_dlp_error"] = traceback.format_exc()[-600:]
-
-try:
-    from youtube_transcript_api import YouTubeTranscriptApi
-    listing = YouTubeTranscriptApi().list("5SHUzMacfkY")
-    tr = next(iter(listing))
-    fetched = tr.fetch()
-    text = " ".join(s.text for s in fetched)
-    out["transcript_lang"] = tr.language_code
-    out["transcript_segments"] = len(fetched)
-    out["transcript_words"] = len(text.split())
-    out["transcript_head"] = text[:180]
-except Exception:
-    out["transcript_error"] = traceback.format_exc()[-600:]
-
-print(json.dumps(out, indent=2, ensure_ascii=False))
-PY
-
-          mkdir -p data/catalog
-          mv probe_env.txt probe_python.txt data/catalog/ 2>/dev/null || true
-          echo "--- probe_env ---"; cat data/catalog/probe_env.txt || true
-          echo "--- probe_python ---"; cat data/catalog/probe_python.txt || true
-
-      - name: Commit probe results back to the branch
+      - name: Install harvest dependencies
+        run: python3 -m pip install --quiet yt-dlp youtube-transcript-api
+      - name: Run connectivity probe
+        run: python3 scripts/probe_runner.py || true
+      - name: Commit probe report
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -f data/catalog/probe_env.txt data/catalog/probe_python.txt 2>/dev/null || true
-          git commit -m "chore(probe): runner connectivity results [skip ci]" || echo "nothing to commit"
-          git push || echo "push failed"
+          git add -f data/catalog/probe_report.json
+          git commit -m "chore(probe): runner connectivity report [skip ci]" || echo "nothing to commit"
+          git pull --rebase --autostash || true
+          git push
