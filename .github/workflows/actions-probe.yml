@@ -8,7 +8,32 @@ jobs:
   probe:
     runs-on: ubuntu-latest
     steps:
-      - name: Can the runner reach YouTube?
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Can the runner reach YouTube and pull a real transcript?
         run: |
-          echo "runner up: $(date -u)"
-          curl -sS -o /dev/null -w "youtube.com -> %{http_code}\n" https://www.youtube.com/ || true
+          python3 -m pip install --quiet yt-dlp youtube-transcript-api
+          {
+            echo "## Runner connectivity"
+            echo ""
+            echo "- youtube.com HTTP: $(curl -sS -o /dev/null -w '%{http_code}' https://www.youtube.com/ || echo FAIL)"
+            echo "- yt-dlp: $(yt-dlp --version)"
+            echo ""
+            echo "## Playlist enumeration (42-video playlist)"
+            yt-dlp --flat-playlist --print "%(id)s|%(title)s" \
+              "https://www.youtube.com/playlist?list=PL-7eNLWzLZIDACNgNtZWapz_j-TBF4bqs" 2>/dev/null | wc -l | sed 's/^/count: /'
+            echo ""
+            echo "## Real transcript fetch test"
+            python3 - <<'PY'
+          from youtube_transcript_api import YouTubeTranscriptApi
+          api = YouTubeTranscriptApi()
+          listing = api.list('5SHUzMacfkY')
+          tr = next(iter(listing))
+          fetched = tr.fetch()
+          text = " ".join(s.text for s in fetched)
+          print(f"lang={tr.language_code} segments={len(fetched)} words={len(text.split())}")
+          print("first 200 chars:", text[:200])
+          PY
+          } | tee -a "$GITHUB_STEP_SUMMARY"
