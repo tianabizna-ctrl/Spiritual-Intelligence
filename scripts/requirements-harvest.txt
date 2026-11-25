@@ -1,0 +1,4 @@
+# Dependencies for the full-library transcript harvest
+#   python3 -m pip install -r scripts/requirements-harvest.txt
+yt-dlp>=2026.11.23
+youtube-transcript-api>=1.2.5

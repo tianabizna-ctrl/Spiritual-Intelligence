@@ -47,9 +47,10 @@ jobs:
         with:
           python-version: '3.11'
           cache: pip
+          cache-dependency-path: scripts/requirements-harvest.txt
 
       - name: Install harvest dependencies
-        run: python3 -m pip install --quiet yt-dlp youtube-transcript-api
+        run: python3 -m pip install --quiet -r scripts/requirements-harvest.txt
 
       - name: Restore YouTube cookies from secret
         env:
