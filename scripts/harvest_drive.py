@@ -171,7 +171,7 @@ def harvest(collection_key: str, limit: int, sleep: float, force: bool) -> dict:
             "collection": collection_key,
             "channel": info.get("channel") or "",
             "playlistId": info.get("playlist") or "",
-            "duration": info.get("duration") or "",
+            "duration": str(info.get("duration") or ""),
             "order": info.get("order", 0),
             "language": payload.get("lang", "en"),
             "wordCount": len(text.split()),
@@ -220,7 +220,7 @@ def build_ts():
                     "collection": collection_key,
                     "channel": data.get("channel", ""),
                     "playlistId": data.get("playlistId") or None,
-                    "duration": data.get("duration", ""),
+                    "duration": str(data.get("duration") or ""),
                     "wordCount": data.get("wordCount", len(text.split())),
                     "excerpt": " ".join(text.split()[:40]),
                 }

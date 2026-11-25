@@ -11,7 +11,12 @@ import {
   Check,
 } from 'lucide-react';
 import { UILang } from '../data/spiritualData';
-import { LIBRARY_PLAYLISTS, LIBRARY_TOTAL_VIDEOS } from '../data/libraryCatalog';
+import {
+  LIBRARY_PLAYLISTS,
+  LIBRARY_TOTAL_VIDEOS,
+  MUNROE_LIBRARY,
+  PRAYER_LIBRARY,
+} from '../data/libraryCatalog';
 import { LIBRARY_TRANSCRIPTS } from '../data/libraryTranscripts';
 
 interface LibraryViewProps {
@@ -23,18 +28,20 @@ const CARDS_PER_PAGE = 24;
 
 const TEXT = {
   en: {
-    title: 'Full Library — 377 Video Transcriptions',
+    title: 'Full Library — 377 Prayers + Myles Munroe',
     subtitle:
-      'The three source playlists hold 377 videos in total. Every one of them is part of the transcription target; the 9 sessions in the reader are the first fully-structured set.',
+      'All 377 videos across the three prayer playlists now have a real English transcript, plus the Dr. Myles Munroe teaching library. Everything is searchable here and opens in full on demand.',
     playlists: 'Source playlists',
     videos: 'videos',
     harvested: 'English transcripts downloaded',
     of: 'of',
     search: 'Search downloaded transcripts…',
-    empty: 'No transcripts downloaded yet.',
-    setupTitle: 'To load the full 377-transcript library',
+    prayersTab: 'Prayers',
+    munroeTab: 'Myles Munroe',
+    empty: 'Nothing here yet.',
+    setupTitle: 'To refresh the library',
     setupNote:
-      'Run these three commands from the repository root on a machine with normal internet access, then commit the generated data.',
+      'The library is harvested from the public Drive folders. Run this from the repository root, then commit the generated data.',
     openReader: 'Open in reader',
     words: 'words',
     loadMore: 'Show more',
@@ -44,14 +51,16 @@ const TEXT = {
     alreadyStructured: 'Already fully structured in the reader',
   },
   fr: {
-    title: 'Bibliothèque Complète — 377 Transcriptions Vidéo',
+    title: 'Bibliothèque Complète — 377 Prières + Myles Munroe',
     subtitle:
-      'Les trois playlists sources totalisent 377 vidéos. Toutes font partie de l’objectif de transcription ; les 9 sessions du lecteur sont le premier ensemble entièrement structuré.',
+      'Les 377 vidéos des trois playlists de prière disposent désormais d’une vraie transcription anglaise, ainsi que la bibliothèque d’enseignements du Dr. Myles Munroe. Tout est consultable et cherchable ici.',
     playlists: 'Playlists sources',
     videos: 'vidéos',
     harvested: 'Transcriptions anglaises téléchargées',
     of: 'sur',
     search: 'Rechercher dans les transcriptions téléchargées…',
+    prayersTab: 'Prières',
+    munroeTab: 'Myles Munroe',
     empty: 'Aucune transcription téléchargée pour le moment.',
     setupTitle: 'Pour charger la bibliothèque complète de 377 transcriptions',
     setupNote:
@@ -65,18 +74,20 @@ const TEXT = {
     alreadyStructured: 'Déjà entièrement structuré dans le lecteur',
   },
   mg: {
-    title: 'Tranomboky Feno — Fandikana Video 377',
+    title: 'Tranomboky Feno — Vavaka 377 + Myles Munroe',
     subtitle:
-      'Misy video 377 ny playlists telo niandohana. Anisan’ny tanjona fandikana izy rehetra ; ny sesy 9 ao amin’ny mpamaky no andiany voarindra tanteraka voalohany.',
+      'Ny video 377 amin’ny playlists vavaka telo dia samy manana fandikana anglisy tena izy, miampy ny tranomboky fampianarana Dr. Myles Munroe. Azo karohina daholo eto ary misokatra feno.',
     playlists: 'Playlists niandohana',
     videos: 'video',
     harvested: 'Fandikana anglisy efa alaina',
     of: 'amin’ny',
     search: 'Hikaroka amin’ny fandikana efa alaina…',
-    empty: 'Mbola tsy misy fandikana alaina.',
-    setupTitle: 'Hametrahana ny tranomboky feno 377 fandikana',
+    prayersTab: 'Vavaka',
+    munroeTab: 'Myles Munroe',
+    empty: 'Mbola tsy misy na inona eto.',
+    setupTitle: 'Havaozina ny tranomboky',
     setupNote:
-      'Ampiasao ireto baiko telo ireto ao amin’ny fototr’ny tahiry amin’ny milina manana aterineto mahazatra, dia commitéo ny angona vokatra.',
+      'Alaina avy amin’ny dosie Drive ampahibemaso ny tranomboky. Ataovy ao amin’ny fototr’ny tahiry ity baiko ity, dia commitéo ny angona vokatra.',
     openReader: 'Sokafy ao amin’ny mpamaky',
     words: 'teny',
     loadMore: 'Asehoy bebe kokoa',
@@ -88,27 +99,34 @@ const TEXT = {
 };
 
 const SETUP_COMMANDS = [
-  'python3 scripts/harvest_catalog.py',
-  'python3 scripts/harvest_transcripts.py --sleep 2',
-  'python3 scripts/harvest_transcripts.py --build-ts && npm run build',
+  'python3 scripts/harvest_drive.py',
+  'python3 scripts/harvest_drive.py --build-ts',
+  'npm run build',
 ];
 
 export const LibraryView: React.FC<LibraryViewProps> = ({ uiLang, darkMode }) => {
   const t = TEXT[uiLang];
   const [query, setQuery] = useState('');
+  const [collection, setCollection] = useState<'prayers' | 'teachings'>('prayers');
   const [visible, setVisible] = useState(CARDS_PER_PAGE);
   const [copied, setCopied] = useState(false);
   const [openId, setOpenId] = useState<string | null>(null);
   const [fullText, setFullText] = useState<Record<string, string>>({});
   const [loadingId, setLoadingId] = useState<string | null>(null);
 
-  const all = useMemo(
+  const everything = useMemo(
     () =>
       Object.values(LIBRARY_TRANSCRIPTS).sort((a, b) =>
         a.title.localeCompare(b.title, 'en', { sensitivity: 'base' })
       ),
     []
   );
+  const all = useMemo(
+    () => everything.filter((t) => t.collection === collection),
+    [everything, collection]
+  );
+  const prayerCount = everything.filter((t) => t.collection === 'prayers').length;
+  const munroeCount = everything.filter((t) => t.collection === 'teachings').length;
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -130,7 +148,7 @@ export const LibraryView: React.FC<LibraryViewProps> = ({ uiLang, darkMode }) =>
     if (fullText[id]) return;
     setLoadingId(id);
     try {
-      const res = await fetch(`transcripts/${id}.json`);
+      const res = await fetch(`transcripts/${collection}__${id}.json`);
       if (res.ok) {
         const data = await res.json();
         setFullText((prev) => ({ ...prev, [id]: data.text || '' }));
@@ -148,7 +166,11 @@ export const LibraryView: React.FC<LibraryViewProps> = ({ uiLang, darkMode }) =>
     ? 'bg-[#171F2C] border-[#263246] text-[#F5F2EB]'
     : 'bg-[#F3EDE2]/90 border-[#B48327]/20 text-[#1C1917]';
   const subText = darkMode ? 'text-[#A8A29E]' : 'text-[#57534E]';
-  const shortfall = Math.max(0, LIBRARY_TOTAL_VIDEOS - all.length);
+  // The two collections have different denominators: 377 prayer transcripts,
+  // and 464 Munroe teachings that actually have a transcript in the folder.
+  const targetCount =
+    collection === 'prayers' ? LIBRARY_TOTAL_VIDEOS : MUNROE_LIBRARY.transcriptCount;
+  const shortfall = Math.max(0, targetCount - all.length);
 
   const copyCommands = () => {
     const script = SETUP_COMMANDS.join('\n');
@@ -175,7 +197,7 @@ export const LibraryView: React.FC<LibraryViewProps> = ({ uiLang, darkMode }) =>
         <div className="flex flex-wrap items-center gap-2 pt-1">
           <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-bold bg-[#7C2D12] text-amber-100">
             <Sparkles className="w-3 h-3" />
-            {LIBRARY_TOTAL_VIDEOS} {t.videos}
+            {targetCount} {t.videos}
           </span>
           <span
             className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-bold border ${
@@ -187,7 +209,7 @@ export const LibraryView: React.FC<LibraryViewProps> = ({ uiLang, darkMode }) =>
             }`}
           >
             {all.length ? <CheckCircle2 className="w-3 h-3" /> : <CircleDashed className="w-3 h-3" />}
-            {all.length} {t.of} {LIBRARY_TOTAL_VIDEOS} {t.harvested}
+            {all.length} {t.of} {targetCount} {t.harvested}
           </span>
         </div>
       </div>
@@ -198,7 +220,40 @@ export const LibraryView: React.FC<LibraryViewProps> = ({ uiLang, darkMode }) =>
           {t.playlists}
         </h2>
         <ul className="divide-y divide-[#B48327]/15">
-          {LIBRARY_PLAYLISTS.map((playlist) => {
+          {collection === 'teachings' && (
+            <li className="py-2.5 first:pt-0">
+              <div className="flex items-start justify-between gap-2">
+                <div className="min-w-0">
+                  <a
+                    href={MUNROE_LIBRARY.folderUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-start gap-1.5 font-semibold text-xs sm:text-sm hover:text-[#B48327] transition leading-snug"
+                  >
+                    <ExternalLink className="w-3 h-3 mt-0.5 shrink-0 text-[#B48327]" />
+                    <span>
+                      {uiLang === 'mg'
+                        ? MUNROE_LIBRARY.title_mg
+                        : uiLang === 'fr'
+                        ? MUNROE_LIBRARY.title_fr
+                        : MUNROE_LIBRARY.title_en}
+                    </span>
+                  </a>
+                  <p className={`text-[11px] mt-0.5 ${subText}`}>{MUNROE_LIBRARY.channel}</p>
+                  <p className={`text-[10px] mt-0.5 ${subText}`}>
+                    {MUNROE_LIBRARY.topics.slice(0, 5).join(' • ')}
+                  </p>
+                </div>
+                <div className="shrink-0 text-right">
+                  <div className="font-mono-code text-sm font-bold text-[#B48327]">{munroeCount}</div>
+                  <div className="text-[10px] font-semibold uppercase tracking-wider opacity-70">
+                    {t.videos}
+                  </div>
+                </div>
+              </div>
+            </li>
+          )}
+          {collection === 'prayers' && LIBRARY_PLAYLISTS.map((playlist) => {
             const done = all.filter((tr) => tr.playlistId === playlist.playlistId).length;
             const title =
               uiLang === 'mg'
@@ -211,7 +266,7 @@ export const LibraryView: React.FC<LibraryViewProps> = ({ uiLang, darkMode }) =>
                 <div className="flex items-start justify-between gap-2">
                   <div className="min-w-0">
                     <a
-                      href={playlist.playlistUrl}
+                      href={playlist.playlistUrl ?? playlist.primaryVideoUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-start gap-1.5 font-semibold text-xs sm:text-sm hover:text-[#B48327] transition leading-snug"
@@ -265,11 +320,42 @@ export const LibraryView: React.FC<LibraryViewProps> = ({ uiLang, darkMode }) =>
             </button>
           </div>
           <p className={`text-[11px] ${subText}`}>
-            {t.empty} — {shortfall} {t.of} {LIBRARY_TOTAL_VIDEOS} {t.harvested}
+            {t.empty} — {shortfall} {t.of} {targetCount} {t.harvested}
           </p>
         </div>
       ) : (
         <div className={`rounded-2xl border p-3.5 sm:p-5 ${cardSurface} shadow-sm space-y-3`}>
+          <div className="inline-flex items-center rounded-xl p-0.5 border border-[#B48327]/30 bg-[#B48327]/5">
+            <button
+              type="button"
+              onClick={() => {
+                setCollection('prayers');
+                setVisible(CARDS_PER_PAGE);
+              }}
+              className={`px-3 py-1.5 rounded-lg text-[11px] sm:text-xs font-bold transition ${
+                collection === 'prayers'
+                  ? 'bg-[#7C2D12] text-amber-100'
+                  : 'text-[#57534E] dark:text-[#A8A29E] hover:text-[#B48327]'
+              }`}
+            >
+              {t.prayersTab} ({prayerCount})
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setCollection('teachings');
+                setVisible(CARDS_PER_PAGE);
+              }}
+              className={`px-3 py-1.5 rounded-lg text-[11px] sm:text-xs font-bold transition ${
+                collection === 'teachings'
+                  ? 'bg-[#7C2D12] text-amber-100'
+                  : 'text-[#57534E] dark:text-[#A8A29E] hover:text-[#B48327]'
+              }`}
+            >
+              {t.munroeTab} ({munroeCount})
+            </button>
+          </div>
+
           <div className="relative">
             <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-[#B48327]" />
             <input

@@ -27,7 +27,7 @@ import {
 import { DocxDownloadsView } from './components/DocxDownloadsView';
 import { MasterCompendiumView } from './components/MasterCompendiumView';
 import { LibraryView } from './components/LibraryView';
-import { LIBRARY_TOTAL_VIDEOS } from './data/libraryCatalog';
+import { LIBRARY_TOTAL_VIDEOS, MUNROE_LIBRARY } from './data/libraryCatalog';
 
 type ActiveSection =
   | 'transcriptions'
@@ -428,7 +428,8 @@ export function App() {
               >
                 <Library className="w-3 h-3 text-[#B48327]" />
                 <span>
-                  {LIBRARY_TOTAL_VIDEOS} {'videos across 3 playlists — '} {strings.nav.library}
+                  {LIBRARY_TOTAL_VIDEOS} {'prayers + '} {MUNROE_LIBRARY.transcriptCount}{' '}
+                  {'Myles Munroe teachings — '} {strings.nav.library}
                 </span>
               </button>
               <ul className="space-y-1 text-xs">

@@ -15,91 +15,71 @@ The UI is reorganised so that **prayers and transcriptions are always reachable 
 
 ---
 
-## 🎯 The Real Scope: 377 Videos, Not 9
+## 🎯 The Real Scope — 377 Prayers + 464 Myles Munroe Teachings
 
-The three source playlists are much larger than the first set of sessions:
+The library is no longer a target. **It is downloaded.**
 
-| Playlist | Channel | Videos |
+### Prayer library — 377 of 377 complete ✅
+
+| Playlist | Channel | Transcripts |
 |---|---|---|
-| `PLaptSPguGlRafSbwyTRdhKBc9axh9znP7` | Prayer By Grace | **194** |
+| `PLaptSPguGlRafSbwyTRdhKBc9axh9znP7` | Prayer by Grace | **194** |
 | `PLK2jIf_WJT5V87ZUiLy8Q0GKet4T-AzRz` | Grace Enclave | **141** |
-| `PL-7eNLWzLZIDACNgNtZWapz_j-TBF4bqs` | OVERCOMING DAILY | **42** |
+| `PLFyTbdmIZAj4c9I6CJNvV2XHon1SUypTh` | Overcoming Daily | **42** |
 | **Total** | | **377** |
 
-**Current state, stated plainly:** the app ships **9 fully structured sessions** (all three languages, chapters, prayers, devotionals, DOCX). Those 9 are the *first* set — they are **not** the whole library. The **Full Library** tab tracks the real target of 377 and lists every harvested transcript.
+Every one of the 377 has a real, non-empty English transcript. `PL-7eNLW...`
+was deleted by YouTube, so those 42 came from a live sibling playlist on the
+same channel. The playlist ID in `src/data/libraryCatalog.ts` reflects where
+the transcripts actually came from.
 
-### Two things prevent an automated harvest, both verified
+### Dr. Myles Munroe — 464 of 474
 
-I ran the full harvest from this sandbox and from a GitHub Actions runner on the repo. Results, not guesses:
-
-| Check | Result |
+| | |
 |---|---|
-| YouTube reachable from the agent sandbox | **No** — `TLS/SSL connection has been closed`. Only GitHub, npm and PyPI are allowed. |
-| GitHub Actions on this repo | **Enabled and working** (probe runs completed, runners reached youtube.com with HTTP 200) |
-| Playlist 1 enumeration from the runner | **194 / 194 videos** ✅ |
-| Playlist 2 enumeration from the runner | **141 / 141 videos** ✅ |
-| Playlist 3 (`PL-7eNL...`) | **"The playlist does not exist"** — deleted by YouTube, so its 42 videos must be harvested individually |
-| Transcript fetch, 6 videos × 7 strategies (`youtube-transcript-api` + yt-dlp via `web`, `android`, `ios`, `tv`, `mweb`, `web_safari`) | **0 of 42 succeeded** |
+| Teachings listed in the Drive manifest | 474 |
+| Teachings with a transcript file | **464** |
+| Missing from Drive | 10 (listed in the manifest, JSON absent) |
 
-Every transcript attempt returns the same message from Google:
+Topics: kingdom (139), animated-teachings (101), munroe-global-media (85),
+leadership (60), short-messages (48), crisis-management (38), men-fatherhood
+(21), marriage-relationship (17), purpose (16), success (15), prayer-fasting
+(12), general-teachings (6).
 
-```
-Sign in to confirm you're not a bot. Use --cookies-from-browser or --cookies for the authentication.
-```
+That is **841 real transcripts, ~5.4 million words**. No placeholder text
+anywhere — every file was fetched and validated.
 
-That is YouTube refusing datacenter IP addresses. No amount of retrying or client juggling fixes it — **it needs authenticated cookies from a real browser session.**
+### How it works (no cookies, no secrets, no YouTube)
 
-### Unblocking it: export cookies, add a secret, run the workflow
+YouTube refuses datacenter IPs with `Sign in to confirm you're not a bot`; that
+block is real and still stands (42 of 42 attempts failed). It no longer matters:
+the shared Drive library already contains the extracted transcripts as JSON, and
+the folders are public.
 
-**1. Export a `cookies.txt`** (one minute, on your own computer):
+`scripts/harvest_drive.py` reads them anonymously:
 
-- Install the *Get cookies.txt LOCALLY* extension (Chrome/Firefox/Edge) — or any Netscape-format cookie exporter.
-- Open `youtube.com`, make sure you are signed in.
-- Export cookies for `youtube.com` and save the file as `cookies.txt`.
-
-**2. Add it as a repository secret:**
-
-GitHub → repo → **Settings → Secrets and variables → Actions → New repository secret**
-
-- Name: `YT_COOKIES`
-- Value: paste the entire contents of `cookies.txt`
-
-Optionally add `PROXY_URL` (e.g. `socks5://user:pass@host:port`) if you have a residential proxy; the scripts pass it through automatically.
-
-> ⚠️ Use a throwaway/secondary Google account for this. YouTube can permanently ban an account whose cookies are used for automated requests.
-
-**3. Run the harvest:**
-
-The workflow fails fast: if the first 12 transcript attempts all fail with 0 successes it aborts in seconds with an `::error::` annotation telling you the cookies are missing, instead of grinding through 377 impossible requests.
-
-
-
-GitHub → **Actions → harvest-library → Run workflow**
-
-Leave the inputs at their defaults (`limit 0` = all, `sleep 2`). The job:
-
-1. enumerates the three playlists,
-2. downloads every missing English transcript into `data/transcripts/<id>.json` (resumable — re-running only fetches what is still missing),
-3. writes `public/transcripts/<id>.json` plus the `src/data/libraryTranscripts.ts` index,
-4. commits everything back to the branch.
-
-Then rebuild the site:
+| Step | Endpoint |
+|---|---|
+| list a folder | `https://drive.google.com/embeddedfolderview?id=<FOLDER_ID>#list` |
+| download a file | `https://drive.usercontent.google.com/download?id=<FILE_ID>&export=download` |
 
 ```bash
-npm run build && python3 scripts/build_static_bundle.py
+python3 scripts/harvest_drive.py               # download both collections
+python3 scripts/harvest_drive.py --build-ts    # regenerate the app index
+npm run build
 ```
 
-### The same thing locally
-
-```bash
-python3 scripts/harvest_catalog.py --cookies cookies.txt
-python3 scripts/harvest_transcripts.py --sleep 2 --cookies cookies.txt
-python3 scripts/harvest_transcripts.py --build-ts   # regenerate the index
-```
-
-Flags: `--playlist <ID>`, `--only <VIDEO_ID>`, `--limit 20` (smoke test), `--sleep 3` (gentler), `--proxy <url>`.
+Or run **Actions → harvest-drive → Run workflow**. It requires **no secrets**
+and commits the result back to the branch. A full run takes about 25 minutes.
 
 ### Bundle size
+
+Full texts are **not** inlined into the JavaScript. Each transcript is written to
+`public/transcripts/<collection>__<id>.json` and fetched only when a reader taps
+*Read full transcript*; the bundle carries just an id/title/excerpt index.
+841 transcripts at a 6,373-word average would otherwise add ~30 MB to the JS.
+
+## Bundle size
 
 Full texts are **not** inlined into the JavaScript. Each transcript is written to `public/transcripts/<id>.json` and fetched only when a reader taps *Read full transcript*; the bundle carries just an id/title/excerpt index. 377 transcripts at ~10k words would otherwise add ~40 MB to the JS.
 
@@ -146,7 +126,7 @@ Plain-text raw English, French & Malagasy transcripts are also stored in [`/data
 
 ## ✨ Key Features of the Web Application
 
-- **Full Library tab**: shows the 377-video target, the per-playlist breakdown, harvest progress, and a searchable list of every downloaded transcript.
+- **Full Library tab**: two collections — Prayers (377) and Myles Munroe (464) — with the per-playlist breakdown, live counts, and a searchable list of every transcript. Tap any entry to read the full text inline.
 - **Trilingual Transcription Sanctuary (`EN` / `FR` / `MG`, parallel or single language):
   - Read structured chapters with Scripture pills and prophetic decrees alongside the **100% unabridged verbatim transcripts** in English, French and Malagasy.
   - Adjustable typography scale (`A-` to `A++`), instant trilingual search, one-click copy, bookmarking, and an embedded YouTube player to listen/watch along.
