@@ -7,7 +7,8 @@ import {
   Paragraph,
   TextRun,
 } from 'docx';
-import { VIDEOS_DATA, SCRIPTURE_TREASURY, LanguageMode } from '../data/spiritualData';
+import { SCRIPTURE_TREASURY, LanguageMode } from '../data/spiritualData';
+import { ALL_VIDEOS_DATA } from '../data/compendiumData';
 import { RAW_TRANSCRIPTS } from '../data/rawTranscripts';
 
 export interface CustomDocxOptions {
@@ -30,7 +31,7 @@ export async function generateCustomDocxBlob(options: CustomDocxOptions): Promis
   const includeEn = languageMode === 'both' || languageMode === 'en';
   const includeFr = languageMode === 'both' || languageMode === 'fr';
 
-  const selectedVideos = VIDEOS_DATA.filter((v) => selectedVideoIds.includes(v.id));
+  const selectedVideos = ALL_VIDEOS_DATA.filter((v) => selectedVideoIds.includes(v.id));
   const children: Paragraph[] = [];
 
   // Title Header

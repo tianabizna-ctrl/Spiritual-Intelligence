@@ -23,6 +23,7 @@ import {
   UILang,
   VideoResource,
 } from '../data/spiritualData';
+import { ALL_VIDEOS_DATA, COMPANION_VIDEOS_DATA } from '../data/compendiumData';
 import { RAW_TRANSCRIPTS } from '../data/rawTranscripts';
 
 interface TranscriptionsViewProps {
@@ -32,6 +33,8 @@ interface TranscriptionsViewProps {
   darkMode: boolean;
   bookmarkedIds: string[];
   onToggleBookmark: (id: string, title: string, textEn: string, textFr: string, ref: string) => void;
+  externalSelectedVideoId?: string;
+  onSelectVideoId?: (id: string) => void;
 }
 
 type ReaderScope = 'all' | 'structured' | 'verbatim';
@@ -44,8 +47,16 @@ export const TranscriptionsView: React.FC<TranscriptionsViewProps> = ({
   darkMode,
   bookmarkedIds,
   onToggleBookmark,
+  externalSelectedVideoId,
+  onSelectVideoId,
 }) => {
-  const [selectedVideoId, setSelectedVideoId] = useState<string>(VIDEOS_DATA[0].id);
+  const [internalVideoId, setInternalVideoId] = useState<string>(VIDEOS_DATA[0].id);
+  const selectedVideoId = externalSelectedVideoId || internalVideoId;
+  const setSelectedVideoId = (id: string) => {
+    setInternalVideoId(id);
+    if (onSelectVideoId) onSelectVideoId(id);
+  };
+  const [showCompanionVideos, setShowCompanionVideos] = useState<boolean>(true);
   const [readerScope, setReaderScope] = useState<ReaderScope>('all');
   const [fontScale, setFontScale] = useState<FontScale>('md');
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -53,7 +64,7 @@ export const TranscriptionsView: React.FC<TranscriptionsViewProps> = ({
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
 
   const activeVideo: VideoResource = useMemo(
-    () => VIDEOS_DATA.find((v) => v.id === selectedVideoId) || VIDEOS_DATA[0],
+    () => ALL_VIDEOS_DATA.find((v) => v.id === selectedVideoId) || ALL_VIDEOS_DATA[0],
     [selectedVideoId]
   );
 
@@ -273,6 +284,95 @@ export const TranscriptionsView: React.FC<TranscriptionsViewProps> = ({
               </div>
             );
           })}
+        </div>
+
+        {/* Companion Playlist Sessions (Videos 4 to 9) */}
+        <div className={`rounded-2xl border p-4 ${cardSurface}`}>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+            <div>
+              <span className="text-[11px] font-bold uppercase tracking-wider text-[#B48327]">
+                {uiLang === 'fr'
+                  ? '✦ 6 Sessions Compagnons Supplémentaires Issues des 3 Playlists (Vidéos 4 à 9 — EN & FR)'
+                  : '✦ 6 Additional Companion Sessions from the 3 Playlists (Videos 4 to 9 — EN & FR)'}
+              </span>
+              <p className={`text-xs ${subText}`}>
+                {uiLang === 'fr'
+                  ? 'Cliquez sur n’importe quel titre ci-dessous pour ouvrir sa transcription complète en anglais et en français.'
+                  : 'Click any title below to open its complete English & French transcription and chapters.'}
+              </p>
+            </div>
+            <button
+              onClick={() => setShowCompanionVideos(!showCompanionVideos)}
+              className="px-3 py-1.5 rounded-lg text-xs font-semibold border border-[#B48327]/30 text-[#B48327] hover:bg-[#B48327]/10 transition self-start sm:self-auto"
+            >
+              {showCompanionVideos
+                ? uiLang === 'fr'
+                  ? 'Réduire les 6 Sessions Compagnons'
+                  : 'Collapse 6 Companion Sessions'
+                : uiLang === 'fr'
+                ? 'Afficher les 6 Sessions Compagnons'
+                : 'Show 6 Companion Sessions'}
+            </button>
+          </div>
+
+          {showCompanionVideos && (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+              {COMPANION_VIDEOS_DATA.map((video) => {
+                const isSelected = video.id === selectedVideoId;
+                return (
+                  <div
+                    key={video.id}
+                    onClick={() => setSelectedVideoId(video.id)}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') setSelectedVideoId(video.id);
+                    }}
+                    className={`cursor-pointer rounded-xl border p-3 transition flex flex-col justify-between ${
+                      isSelected
+                        ? darkMode
+                          ? 'bg-[#1C2636] border-[#D4AF37] ring-2 ring-[#D4AF37]/30'
+                          : 'bg-[#FBF8F3] border-[#B48327] ring-2 ring-[#B48327]/30'
+                        : darkMode
+                        ? 'bg-[#121822]/80 border-[#263246] hover:border-[#D4AF37]/40'
+                        : 'bg-[#FBF8F3]/80 border-[#B48327]/20 hover:border-[#B48327]/50'
+                    }`}
+                  >
+                    <div>
+                      <div className="flex items-center justify-between gap-2 mb-1.5">
+                        <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-[#B48327]/20 text-[#B48327]">
+                          {uiLang === 'fr' ? `Vidéo ${video.videoNumber}` : `Video ${video.videoNumber}`} • EN/FR
+                        </span>
+                        <span className="text-[11px] font-mono-code font-semibold text-[#B48327]">
+                          {video.duration}
+                        </span>
+                      </div>
+                      <h4 className="font-display font-bold text-sm leading-snug line-clamp-2 mb-1">
+                        {uiLang === 'fr' ? video.title_fr : video.title_en}
+                      </h4>
+                      <p className={`text-[11px] ${subText} line-clamp-2`}>
+                        {uiLang === 'fr' ? video.tagline_fr : video.tagline_en}
+                      </p>
+                    </div>
+                    <div className="mt-2 pt-2 border-t border-[#B48327]/10 flex items-center justify-between text-[11px]">
+                      <span className="font-semibold text-[#B48327]">
+                        {video.channel}
+                      </span>
+                      <span className="underline font-medium">
+                        {isSelected
+                          ? uiLang === 'fr'
+                            ? 'Active'
+                            : 'Active'
+                          : uiLang === 'fr'
+                          ? 'Lire EN/FR →'
+                          : 'Read EN/FR →'}
+                      </span>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
         </div>
       </div>
 

@@ -6,7 +6,7 @@ import {
   ExternalLink,
   FileText,
   Flame,
-  Languages,
+  Layers,
   Moon,
   Sparkles,
   Sun,
@@ -16,6 +16,7 @@ import {
   UILang,
   VIDEOS_DATA,
 } from './data/spiritualData';
+import { ALL_VIDEOS_DATA } from './data/compendiumData';
 import { TranscriptionsView } from './components/TranscriptionsView';
 import { PrayersAltarView } from './components/PrayersAltarView';
 import {
@@ -23,11 +24,13 @@ import {
   SavedBookmarkItem,
 } from './components/DevotionalsScriptureView';
 import { DocxDownloadsView } from './components/DocxDownloadsView';
+import { MasterCompendiumView } from './components/MasterCompendiumView';
 
-type ActiveSection = 'transcriptions' | 'prayers' | 'devotionals' | 'downloads';
+type ActiveSection = 'compendium' | 'transcriptions' | 'prayers' | 'devotionals' | 'downloads';
 
 export function App() {
-  const [activeSection, setActiveSection] = useState<ActiveSection>('transcriptions');
+  const [activeSection, setActiveSection] = useState<ActiveSection>('compendium');
+  const [selectedReaderVideoId, setSelectedReaderVideoId] = useState<string>(VIDEOS_DATA[0].id);
   const [uiLang, setUiLang] = useState<UILang>('en');
   const [languageMode, setLanguageMode] = useState<LanguageMode>('both');
   const [darkMode, setDarkMode] = useState<boolean>(false);
@@ -84,6 +87,12 @@ export function App() {
     setSavedBookmarks((prev) => prev.filter((b) => b.id !== id));
   };
 
+  const handleOpenVideoInReader = (videoId: string) => {
+    setSelectedReaderVideoId(videoId);
+    setActiveSection('transcriptions');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const navItems: {
     id: ActiveSection;
     label_en: string;
@@ -91,9 +100,15 @@ export function App() {
     icon: React.ReactNode;
   }[] = [
     {
+      id: 'compendium',
+      label_en: 'All Titles & Contents',
+      label_fr: 'Tous les Titres & Contenus',
+      icon: <Layers className="w-4 h-4" />,
+    },
+    {
       id: 'transcriptions',
-      label_en: 'Transcriptions (EN / FR)',
-      label_fr: 'Transcriptions (EN / FR)',
+      label_en: 'Transcriptions Reader (EN / FR)',
+      label_fr: 'Lecteur de Transcriptions (EN / FR)',
       icon: <BookOpen className="w-4 h-4" />,
     },
     {
@@ -336,13 +351,28 @@ export function App() {
               <div className="flex flex-wrap items-center gap-3 pt-2">
                 <button
                   type="button"
-                  onClick={() => setActiveSection('transcriptions')}
+                  onClick={() => setActiveSection('compendium')}
                   className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-xs sm:text-sm font-bold bg-[#B48327] text-white hover:bg-[#9A6E1E] transition shadow-md"
+                >
+                  <Layers className="w-4 h-4" />
+                  {uiLang === 'fr'
+                    ? 'Voir Tous les Titres & Contenus (EN & FR)'
+                    : 'View All Titles & Contents (EN & FR)'}
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setActiveSection('transcriptions')}
+                  className={`inline-flex items-center gap-2 px-5 py-3 rounded-xl text-xs sm:text-sm font-bold border transition ${
+                    darkMode
+                      ? 'bg-[#171F2C] border-[#D4AF37]/40 text-[#D4AF37] hover:bg-[#1C2636]'
+                      : 'bg-[#F3EDE2] border-[#B48327]/40 text-[#7C2D12] hover:bg-[#EAE1D3]'
+                  }`}
                 >
                   <BookOpen className="w-4 h-4" />
                   {uiLang === 'fr'
-                    ? 'Lire les Transcriptions (EN & FR)'
-                    : 'Read Transcriptions (EN & FR)'}
+                    ? 'Lecteur Bilingue (9 Vidéos)'
+                    : 'Bilingual Reader (9 Videos)'}
                 </button>
 
                 <button
@@ -356,8 +386,8 @@ export function App() {
                 >
                   <Flame className="w-4 h-4" />
                   {uiLang === 'fr'
-                    ? 'Ouvrir l’Autel de Prière'
-                    : 'Enter Prayer & Declarations Altar'}
+                    ? 'Autel de Prière'
+                    : 'Prayer Altar'}
                 </button>
 
                 <a
@@ -399,9 +429,9 @@ export function App() {
 
                 <div className="grid grid-cols-3 gap-2 pt-2 border-t border-[#B48327]/15 text-center">
                   <div className="p-2 rounded-xl bg-[#B48327]/10">
-                    <div className="font-display font-bold text-xl text-[#B48327]">3</div>
+                    <div className="font-display font-bold text-xl text-[#B48327]">9</div>
                     <div className="text-[10px] font-semibold uppercase tracking-wider">
-                      {uiLang === 'fr' ? 'Vidéos (2h03)' : 'Videos (2h03m)'}
+                      {uiLang === 'fr' ? 'Vidéos Transcrites' : 'Videos Transcribed'}
                     </div>
                   </div>
                   <div className="p-2 rounded-xl bg-[#B48327]/10">
@@ -413,9 +443,9 @@ export function App() {
                     </div>
                   </div>
                   <div className="p-2 rounded-xl bg-[#B48327]/10">
-                    <div className="font-display font-bold text-xl text-[#B48327]">6</div>
+                    <div className="font-display font-bold text-xl text-[#B48327]">18</div>
                     <div className="text-[10px] font-semibold uppercase tracking-wider">
-                      {uiLang === 'fr' ? 'Manuels .DOCX' : '.DOCX Manuals'}
+                      {uiLang === 'fr' ? 'Titres de Playlists' : 'Playlist Titles'}
                     </div>
                   </div>
                 </div>
@@ -427,6 +457,19 @@ export function App() {
 
       {/* Main Content Container */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+        {activeSection === 'compendium' && (
+          <MasterCompendiumView
+            uiLang={uiLang}
+            languageMode={languageMode}
+            darkMode={darkMode}
+            onOpenVideoInReader={handleOpenVideoInReader}
+            onNavigateTab={(tab) => {
+              setActiveSection(tab);
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+          />
+        )}
+
         {activeSection === 'transcriptions' && (
           <TranscriptionsView
             uiLang={uiLang}
@@ -435,6 +478,8 @@ export function App() {
             darkMode={darkMode}
             bookmarkedIds={savedBookmarks.map((b) => b.id)}
             onToggleBookmark={handleToggleBookmark}
+            externalSelectedVideoId={selectedReaderVideoId}
+            onSelectVideoId={setSelectedReaderVideoId}
           />
         )}
 
@@ -493,10 +538,10 @@ export function App() {
             {/* Col 2: Source Videos */}
             <div className="space-y-2">
               <h4 className="text-xs font-bold uppercase tracking-widest text-[#B48327]">
-                {uiLang === 'fr' ? 'Sources Vidéo YouTube' : 'Source YouTube Videos & Playlists'}
+                {uiLang === 'fr' ? '9 Sessions Vidéo Transcrites (YouTube)' : '9 Transcribed YouTube Sessions'}
               </h4>
               <ul className="space-y-1.5 text-xs">
-                {VIDEOS_DATA.map((v) => (
+                {ALL_VIDEOS_DATA.map((v) => (
                   <li key={v.id}>
                     <a
                       href={v.url}

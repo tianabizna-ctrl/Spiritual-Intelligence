@@ -10,10 +10,10 @@ import {
 } from 'lucide-react';
 import {
   DOCX_PACKAGES_LIST,
-  VIDEOS_DATA,
   LanguageMode,
   UILang,
 } from '../data/spiritualData';
+import { ALL_VIDEOS_DATA } from '../data/compendiumData';
 import { generateCustomDocxBlob } from '../utils/customDocxBuilder';
 
 interface DocxDownloadsViewProps {
@@ -27,7 +27,7 @@ export const DocxDownloadsView: React.FC<DocxDownloadsViewProps> = ({
 }) => {
   const [customLang, setCustomLang] = useState<LanguageMode>('both');
   const [selectedVideos, setSelectedVideos] = useState<string[]>(
-    VIDEOS_DATA.map((v) => v.id)
+    ALL_VIDEOS_DATA.map((v) => v.id)
   );
   const [includeChapters, setIncludeChapters] = useState<boolean>(true);
   const [includeVerbatim, setIncludeVerbatim] = useState<boolean>(true);
@@ -254,10 +254,10 @@ export const DocxDownloadsView: React.FC<DocxDownloadsViewProps> = ({
           {/* Step 2: Choose Videos */}
           <div className={`p-4 rounded-2xl border ${cardSurface} space-y-3`}>
             <h4 className="font-display font-bold text-lg text-[#B48327]">
-              2. {uiLang === 'fr' ? 'Vidéos à Inclure' : 'Videos to Include'}
+              2. {uiLang === 'fr' ? 'Vidéos à Inclure (9 Sessions)' : 'Videos to Include (9 Sessions)'}
             </h4>
-            <div className="space-y-2">
-              {VIDEOS_DATA.map((v) => (
+            <div className="space-y-2 max-h-48 overflow-y-auto pr-1">
+              {ALL_VIDEOS_DATA.map((v) => (
                 <label
                   key={v.id}
                   className="flex items-start gap-2.5 text-xs font-medium cursor-pointer"
