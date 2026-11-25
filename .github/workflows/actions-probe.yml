@@ -1,0 +1,14 @@
+name: actions-probe
+on:
+  push:
+    paths:
+      - '.github/workflows/actions-probe.yml'
+  workflow_dispatch:
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Can the runner reach YouTube?
+        run: |
+          echo "runner up: $(date -u)"
+          curl -sS -o /dev/null -w "youtube.com -> %{http_code}\n" https://www.youtube.com/ || true
