@@ -61,7 +61,17 @@ def load_existing(path: str) -> dict:
     return {}
 
 
-def harvest(playlist: dict, force: bool) -> dict:
+def _net_opts(cookies: str | None, proxy: str | None) -> dict:
+    opts = {}
+    if cookies:
+        opts["cookiefile"] = cookies
+    if proxy:
+        opts["proxy"] = proxy
+    return opts
+
+
+def harvest(playlist: dict, force: bool, cookies: str | None = None,
+            proxy: str | None = None) -> dict:
     import yt_dlp  # imported lazily so --help works without the dependency
 
     os.makedirs(CATALOG_DIR, exist_ok=True)
@@ -88,6 +98,7 @@ def harvest(playlist: dict, force: bool) -> dict:
         "retries": 5,
     }
 
+    opts.update(_net_opts(cookies, proxy))
     with yt_dlp.YoutubeDL(opts) as ydl:
         info = ydl.extract_info(url, download=False)
 
@@ -135,6 +146,8 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--playlist", action="append", help="only harvest this playlist id (repeatable)")
     ap.add_argument("--force", action="store_true", help="re-download even if a complete file exists")
+    ap.add_argument("--cookies", help="Netscape cookies.txt exported from a logged-in browser")
+    ap.add_argument("--proxy", help="proxy URL, e.g. http://user:pass@host:port")
     args = ap.parse_args()
 
     targets = [p for p in PLAYLISTS if not args.playlist or p["playlistId"] in args.playlist]
@@ -147,7 +160,7 @@ def main() -> int:
     print("Harvesting playlist catalogs:")
     for playlist in targets:
         try:
-            payload = harvest(playlist, args.force)
+            payload = harvest(playlist, args.force, args.cookies, args.proxy)
             total += len(payload.get("videos") or [])
         except Exception as exc:  # network / yt-dlp errors are expected offline
             failures += 1

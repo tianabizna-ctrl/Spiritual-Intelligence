@@ -28,25 +28,76 @@ The three source playlists are much larger than the first set of sessions:
 
 **Current state, stated plainly:** the app ships **9 fully structured sessions** (all three languages, chapters, prayers, devotionals, DOCX). Those 9 are the *first* set — they are **not** the whole library. The **Full Library** tab tracks the real target of 377 and lists every harvested transcript.
 
-### Loading the remaining 368 transcripts
+### Two things prevent an automated harvest, both verified
 
-Two resumable scripts do the work, and both are safe to re-run:
+I ran the full harvest from this sandbox and from a GitHub Actions runner on the repo. Results, not guesses:
+
+| Check | Result |
+|---|---|
+| YouTube reachable from the agent sandbox | **No** — `TLS/SSL connection has been closed`. Only GitHub, npm and PyPI are allowed. |
+| GitHub Actions on this repo | **Enabled and working** (probe runs completed, runners reached youtube.com with HTTP 200) |
+| Playlist 1 enumeration from the runner | **194 / 194 videos** ✅ |
+| Playlist 2 enumeration from the runner | **141 / 141 videos** ✅ |
+| Playlist 3 (`PL-7eNL...`) | **"The playlist does not exist"** — deleted by YouTube, so its 42 videos must be harvested individually |
+| Transcript fetch, 6 videos × 7 strategies (`youtube-transcript-api` + yt-dlp via `web`, `android`, `ios`, `tv`, `mweb`, `web_safari`) | **0 of 42 succeeded** |
+
+Every transcript attempt returns the same message from Google:
+
+```
+Sign in to confirm you're not a bot. Use --cookies-from-browser or --cookies for the authentication.
+```
+
+That is YouTube refusing datacenter IP addresses. No amount of retrying or client juggling fixes it — **it needs authenticated cookies from a real browser session.**
+
+### Unblocking it: export cookies, add a secret, run the workflow
+
+**1. Export a `cookies.txt`** (one minute, on your own computer):
+
+- Install the *Get cookies.txt LOCALLY* extension (Chrome/Firefox/Edge) — or any Netscape-format cookie exporter.
+- Open `youtube.com`, make sure you are signed in.
+- Export cookies for `youtube.com` and save the file as `cookies.txt`.
+
+**2. Add it as a repository secret:**
+
+GitHub → repo → **Settings → Secrets and variables → Actions → New repository secret**
+
+- Name: `YT_COOKIES`
+- Value: paste the entire contents of `cookies.txt`
+
+Optionally add `PROXY_URL` (e.g. `socks5://user:pass@host:port`) if you have a residential proxy; the scripts pass it through automatically.
+
+> ⚠️ Use a throwaway/secondary Google account for this. YouTube can permanently ban an account whose cookies are used for automated requests.
+
+**3. Run the harvest:**
+
+GitHub → **Actions → harvest-library → Run workflow**
+
+Leave the inputs at their defaults (`limit 0` = all, `sleep 2`). The job:
+
+1. enumerates the three playlists,
+2. downloads every missing English transcript into `data/transcripts/<id>.json` (resumable — re-running only fetches what is still missing),
+3. writes `public/transcripts/<id>.json` plus the `src/data/libraryTranscripts.ts` index,
+4. commits everything back to the branch.
+
+Then rebuild the site:
 
 ```bash
-# 1. Enumerate all 377 videos from the three playlists
-python3 scripts/harvest_catalog.py
-#    -> data/catalog/playlist_<ID>.json  (one file per playlist)
-
-# 2. Download every English transcript (skips anything already fetched)
-python3 scripts/harvest_transcripts.py --sleep 2
-#    -> data/transcripts/<VIDEO_ID>.json (one file per video)
-
-# 3. Regenerate the TypeScript module the app reads, then rebuild
-python3 scripts/harvest_transcripts.py --build-ts
 npm run build && python3 scripts/build_static_bundle.py
 ```
 
-Useful flags: `--playlist <ID>` (one playlist), `--limit 20` (smoke test), `--only <VIDEO_ID>` (single video), `--sleep 3` (gentler pacing). Transcripts come from `youtube-transcript-api`, falling back to `yt-dlp` auto-captions. **These scripts need live internet access to youtube.com** — some locked-down CI sandboxes block it, in which case run them locally or on any normal machine.
+### The same thing locally
+
+```bash
+python3 scripts/harvest_catalog.py --cookies cookies.txt
+python3 scripts/harvest_transcripts.py --sleep 2 --cookies cookies.txt
+python3 scripts/harvest_transcripts.py --build-ts   # regenerate the index
+```
+
+Flags: `--playlist <ID>`, `--only <VIDEO_ID>`, `--limit 20` (smoke test), `--sleep 3` (gentler), `--proxy <url>`.
+
+### Bundle size
+
+Full texts are **not** inlined into the JavaScript. Each transcript is written to `public/transcripts/<id>.json` and fetched only when a reader taps *Read full transcript*; the bundle carries just an id/title/excerpt index. 377 transcripts at ~10k words would otherwise add ~40 MB to the JS.
 
 ---
 

@@ -38,6 +38,8 @@ const TEXT = {
     openReader: 'Open in reader',
     words: 'words',
     loadMore: 'Show more',
+    readTranscript: 'Read full transcript',
+    hideTranscript: 'Close transcript',
     noResults: 'Nothing matches that search yet.',
     alreadyStructured: 'Already fully structured in the reader',
   },
@@ -57,6 +59,8 @@ const TEXT = {
     openReader: 'Ouvrir dans le lecteur',
     words: 'mots',
     loadMore: 'Afficher plus',
+    readTranscript: 'Lire la transcription complète',
+    hideTranscript: 'Fermer la transcription',
     noResults: 'Aucun résultat pour cette recherche.',
     alreadyStructured: 'Déjà entièrement structuré dans le lecteur',
   },
@@ -76,6 +80,8 @@ const TEXT = {
     openReader: 'Sokafy ao amin’ny mpamaky',
     words: 'teny',
     loadMore: 'Asehoy bebe kokoa',
+    readTranscript: 'Vakio ny fandikana feno',
+    hideTranscript: 'Hidio ny fandikana',
     noResults: 'Tsy misy mifanaraka amin’io fikarohana io.',
     alreadyStructured: 'Efa voarindra tanteraka ao amin’ny mpamaky',
   },
@@ -92,6 +98,9 @@ export const LibraryView: React.FC<LibraryViewProps> = ({ uiLang, darkMode }) =>
   const [query, setQuery] = useState('');
   const [visible, setVisible] = useState(CARDS_PER_PAGE);
   const [copied, setCopied] = useState(false);
+  const [openId, setOpenId] = useState<string | null>(null);
+  const [fullText, setFullText] = useState<Record<string, string>>({});
+  const [loadingId, setLoadingId] = useState<string | null>(null);
 
   const all = useMemo(
     () =>
@@ -106,9 +115,34 @@ export const LibraryView: React.FC<LibraryViewProps> = ({ uiLang, darkMode }) =>
     if (!q) return all;
     return all.filter(
       (item) =>
-        item.title.toLowerCase().includes(q) || item.text.toLowerCase().includes(q)
+        item.title.toLowerCase().includes(q) ||
+        item.excerpt.toLowerCase().includes(q) ||
+        (fullText[item.id] || '').toLowerCase().includes(q)
     );
-  }, [all, query]);
+  }, [all, query, fullText]);
+
+  const toggleTranscript = async (id: string) => {
+    if (openId === id) {
+      setOpenId(null);
+      return;
+    }
+    setOpenId(id);
+    if (fullText[id]) return;
+    setLoadingId(id);
+    try {
+      const res = await fetch(`transcripts/${id}.json`);
+      if (res.ok) {
+        const data = await res.json();
+        setFullText((prev) => ({ ...prev, [id]: data.text || '' }));
+      } else {
+        setFullText((prev) => ({ ...prev, [id]: '' }));
+      }
+    } catch {
+      setFullText((prev) => ({ ...prev, [id]: '' }));
+    } finally {
+      setLoadingId(null);
+    }
+  };
 
   const cardSurface = darkMode
     ? 'bg-[#171F2C] border-[#263246] text-[#F5F2EB]'
@@ -271,7 +305,20 @@ export const LibraryView: React.FC<LibraryViewProps> = ({ uiLang, darkMode }) =>
                   <p className={`text-[11px] mt-0.5 ${subText}`}>
                     {item.channel} • {item.duration} • {item.wordCount.toLocaleString()} {t.words}
                   </p>
-                  <p className={`text-xs mt-1 line-clamp-2 ${subText}`}>{item.text.slice(0, 240)}…</p>
+                  <p className={`text-xs mt-1 ${subText}`}>
+                    {openId === item.id
+                      ? loadingId === item.id
+                        ? '…'
+                        : fullText[item.id] || item.excerpt
+                      : `${item.excerpt}…`}
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => toggleTranscript(item.id)}
+                    className="mt-1 text-[11px] font-bold text-[#B48327] hover:underline"
+                  >
+                    {openId === item.id ? t.hideTranscript : t.readTranscript}
+                  </button>
                 </li>
               ))}
             </ul>
