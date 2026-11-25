@@ -8,6 +8,10 @@ name: harvest-library
 # Full 377-Transcript Library".
 
 on:
+  # TEMPORARY validation trigger — removed once the workflow is confirmed valid.
+  push:
+    paths:
+      - '.github/workflows/harvest-library.yml'
   workflow_dispatch:
     inputs:
       limit:
