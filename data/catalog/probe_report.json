@@ -1,7 +1,35 @@
 {
   "youtube_home_http": 200,
-  "youtube_rss_http": 200,
+  "proxy_configured": false,
+  "runner": "GitHub Actions 1000000508",
   "yt_dlp_version": "2026.11.23",
-  "yt_dlp_error": "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.11.18/x64/lib/python3.11/site-packages/yt_dlp/YoutubeDL.py\", line 1746, in wrapper\n    self.report_error(str(e), e.format_traceback())\n  File \"/opt/hostedtoolcache/Python/3.11.18/x64/lib/python3.11/site-packages/yt_dlp/YoutubeDL.py\", line 1162, in report_error\n    self.trouble(f'{self._format_err(\"ERROR:\", self.Styles.ERROR)} {message}', *args, **kwargs)\n  File \"/opt/hostedtoolcache/Python/3.11.18/x64/lib/python3.11/site-packages/yt_dlp/YoutubeDL.py\", line 1100, in trouble\n    raise DownloadError(message, exc_info if exc_info and exc_info[0] else sys.exc_info())\nyt_dlp.utils.DownloadError: ERROR: [youtube:tab] PL-7eNLWzLZIDACNgNtZWapz_j-TBF4bqs: YouTube said: The playlist does not exist.\n",
-  "transcript_error": "e-transcript-api?tab=readme-ov-file#working-around-ip-bans-requestblocked-or-ipblocked-exception).\n2. (NOT RECOMMENDED) If you authenticate your requests using cookies, you will be able to continue doing requests for a while. However, YouTube will eventually permanently ban the account that you have used to authenticate with! So only do this if you don't mind your account being banned!\n\nIf you are sure that the described cause is not responsible for this error and that a transcript should be retrievable, please create an issue at https://github.com/jdepoix/youtube-transcript-api/issues. Please add which version of youtube_transcript_api you are using and provide the information needed to replicate the error. Also make sure that there are no open issues which already describe your problem!\n"
+  "prayer_by_grace_194": {
+    "playlistId": "PLaptSPguGlRafSbwyTRdhKBc9axh9znP7",
+    "entries": 194,
+    "reportedVideoCount": 194,
+    "first_ids": [
+      "4YElIs15_Ak",
+      "HQzfk0DMgCo",
+      "ZSKymClHnzE"
+    ]
+  },
+  "grace_enclave_141": {
+    "playlistId": "PLK2jIf_WJT5V87ZUiLy8Q0GKet4T-AzRz",
+    "entries": 141,
+    "reportedVideoCount": 141,
+    "first_ids": [
+      "CK9rP2ZBGKg",
+      "XWBUBtEv70A",
+      "zPOULLgPjYc"
+    ]
+  },
+  "overcoming_daily_42": {
+    "playlistId": "PL-7eNLWzLZIDACNgNtZWapz_j-TBF4bqs",
+    "error": "ERROR: [youtube:tab] PL-7eNLWzLZIDACNgNtZWapz_j-TBF4bqs: YouTube said: The playlist does not exist."
+  },
+  "ytdlp_subtitle_error": "ERROR: [youtube] 5SHUzMacfkY: Video unavailable. This content isn’t available.",
+  "transcript_api": {
+    "error": "VideoUnplayable: \nCould not retrieve a transcript for the video https://www.youtube.com/watch?v=5SHUzMacfkY! This is most likely caused by:\n\nThe video is unplayable for the following reason: This content isn’t available.\n\nIf you are sure that the described "
+  },
+  "cookies_present": false
 }
