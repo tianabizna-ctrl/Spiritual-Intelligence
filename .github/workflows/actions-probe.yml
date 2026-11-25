@@ -3,6 +3,7 @@ on:
   push:
     paths:
       - '.github/workflows/actions-probe.yml'
+      - 'scripts/probe_runner.py'
   workflow_dispatch:
 
 permissions:
@@ -11,7 +12,7 @@ permissions:
 jobs:
   probe:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -20,6 +21,9 @@ jobs:
       - name: Install harvest dependencies
         run: python3 -m pip install --quiet yt-dlp youtube-transcript-api
       - name: Run connectivity probe
+        env:
+          PROXY_URL: ${{ secrets.PROXY_URL }}
+          YT_COOKIES: ${{ secrets.YT_COOKIES }}
         run: python3 scripts/probe_runner.py || true
       - name: Commit probe report
         run: |
