@@ -15,6 +15,41 @@ The UI is reorganised so that **prayers and transcriptions are always reachable 
 
 ---
 
+## 🎯 The Real Scope: 377 Videos, Not 9
+
+The three source playlists are much larger than the first set of sessions:
+
+| Playlist | Channel | Videos |
+|---|---|---|
+| `PLaptSPguGlRafSbwyTRdhKBc9axh9znP7` | Prayer By Grace | **194** |
+| `PLK2jIf_WJT5V87ZUiLy8Q0GKet4T-AzRz` | Grace Enclave | **141** |
+| `PL-7eNLWzLZIDACNgNtZWapz_j-TBF4bqs` | OVERCOMING DAILY | **42** |
+| **Total** | | **377** |
+
+**Current state, stated plainly:** the app ships **9 fully structured sessions** (all three languages, chapters, prayers, devotionals, DOCX). Those 9 are the *first* set — they are **not** the whole library. The **Full Library** tab tracks the real target of 377 and lists every harvested transcript.
+
+### Loading the remaining 368 transcripts
+
+Two resumable scripts do the work, and both are safe to re-run:
+
+```bash
+# 1. Enumerate all 377 videos from the three playlists
+python3 scripts/harvest_catalog.py
+#    -> data/catalog/playlist_<ID>.json  (one file per playlist)
+
+# 2. Download every English transcript (skips anything already fetched)
+python3 scripts/harvest_transcripts.py --sleep 2
+#    -> data/transcripts/<VIDEO_ID>.json (one file per video)
+
+# 3. Regenerate the TypeScript module the app reads, then rebuild
+python3 scripts/harvest_transcripts.py --build-ts
+npm run build && python3 scripts/build_static_bundle.py
+```
+
+Useful flags: `--playlist <ID>` (one playlist), `--limit 20` (smoke test), `--only <VIDEO_ID>` (single video), `--sleep 3` (gentler pacing). Transcripts come from `youtube-transcript-api`, falling back to `yt-dlp` auto-captions. **These scripts need live internet access to youtube.com** — some locked-down CI sandboxes block it, in which case run them locally or on any normal machine.
+
+---
+
 ## 📺 Source Videos & Transcriptions (English • Français • Malagasy)
 
 1. **Video 1 (`4YElIs15_Ak` — 1:24:44)**
@@ -56,6 +91,7 @@ Plain-text raw English, French & Malagasy transcripts are also stored in [`/data
 
 ## ✨ Key Features of the Web Application
 
+- **Full Library tab**: shows the 377-video target, the per-playlist breakdown, harvest progress, and a searchable list of every downloaded transcript.
 - **Trilingual Transcription Sanctuary (`EN` / `FR` / `MG`, parallel or single language):
   - Read structured chapters with Scripture pills and prophetic decrees alongside the **100% unabridged verbatim transcripts** in English, French and Malagasy.
   - Adjustable typography scale (`A-` to `A++`), instant trilingual search, one-click copy, bookmarking, and an embedded YouTube player to listen/watch along.

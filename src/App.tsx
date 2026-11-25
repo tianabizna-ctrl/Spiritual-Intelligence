@@ -7,6 +7,7 @@ import {
   FileText,
   Flame,
   Layers,
+  Library,
   Moon,
   Sparkles,
   Sun,
@@ -25,8 +26,16 @@ import {
 } from './components/DevotionalsScriptureView';
 import { DocxDownloadsView } from './components/DocxDownloadsView';
 import { MasterCompendiumView } from './components/MasterCompendiumView';
+import { LibraryView } from './components/LibraryView';
+import { LIBRARY_TOTAL_VIDEOS } from './data/libraryCatalog';
 
-type ActiveSection = 'compendium' | 'transcriptions' | 'prayers' | 'devotionals' | 'downloads';
+type ActiveSection =
+  | 'transcriptions'
+  | 'library'
+  | 'prayers'
+  | 'devotionals'
+  | 'compendium'
+  | 'downloads';
 
 /** Compact UI strings for the shell (header / footer / nav). */
 const SHELL_TEXT: Record<
@@ -50,13 +59,14 @@ const SHELL_TEXT: Record<
       prayers: 'Prayer Altar',
       devotionals: 'Devotionals',
       compendium: 'All Titles',
+      library: 'Full Library',
       downloads: '.DOCX',
     },
     download: 'Download .DOCX',
     languageLabel: 'Reading language',
     footerBlurb:
       'A trilingual (English, French & Malagasy) devotional sanctuary dedicated to fervent prayer, prophetic declarations, Scripture meditation, and sacred video transcriptions.',
-    footerVideos: '9 Transcribed YouTube Sessions',
+    footerVideos: 'Source Library — 377 Videos in 3 Playlists',
     footerDocs: 'Direct .DOCX Downloads',
     footerRights:
       'Spiritual Intelligence • Trilingual English, French & Malagasy Prayers, Devotionals & Transcriptions',
@@ -69,13 +79,14 @@ const SHELL_TEXT: Record<
       prayers: 'Autel de Prière',
       devotionals: 'Méditations',
       compendium: 'Tous les Titres',
+      library: 'Bibliothèque',
       downloads: '.DOCX',
     },
     download: 'Télécharger .DOCX',
     languageLabel: 'Langue de lecture',
     footerBlurb:
       'Un sanctuaire trilingue (anglais, français et malgache) dédié à la prière fervente, aux déclarations prophétiques, à la méditation de la Parole et à l’étude des transcriptions sacrées.',
-    footerVideos: '9 Sessions Vidéo Transcrites (YouTube)',
+    footerVideos: 'Bibliothèque Source — 377 Vidéos en 3 Playlists',
     footerDocs: 'Téléchargements Directs (.DOCX)',
     footerRights:
       'Intelligence Spirituelle • Prières, Méditations & Transcriptions en Anglais, Français et Malgache',
@@ -88,13 +99,14 @@ const SHELL_TEXT: Record<
       prayers: 'Alitara Vavaka',
       devotionals: 'Fanadihadiana',
       compendium: 'Lohateny Rehetra',
+      library: 'Tranomboky',
       downloads: '.DOCX',
     },
     download: 'Alaivo ny .DOCX',
     languageLabel: 'Fiteny ampiasaina',
     footerBlurb:
       'Toerana masina telo fiteny (anglisy, frantsay ary malagasy) natokana ho an’ny vavaka mafana fo, fanambarana ara-paminaniana, fisaintsainana ny Tenin’Andriamanitra ary fandalinana ny fandikana masina.',
-    footerVideos: 'Sesy video 9 efa voasoratra',
+    footerVideos: 'Tranomboky niandohana — video 377 amin’ny playlists 3',
     footerDocs: 'Fampidirana mivantana (.DOCX)',
     footerRights:
       'Faharanitan-tsaina Ara-panahy • Vavaka, Fanadihadiana & Fandikana amin’ny Anglisy, Frantsay ary Malagasy',
@@ -195,6 +207,7 @@ export function App() {
     { id: 'transcriptions', icon: <BookOpen className="w-4 h-4" /> },
     { id: 'prayers', icon: <Flame className="w-4 h-4" /> },
     { id: 'devotionals', icon: <Compass className="w-4 h-4" /> },
+    { id: 'library', icon: <Library className="w-4 h-4" /> },
     { id: 'compendium', icon: <Layers className="w-4 h-4" /> },
     { id: 'downloads', icon: <FileText className="w-4 h-4" /> },
   ];
@@ -373,6 +386,10 @@ export function App() {
           />
         )}
 
+        {activeSection === 'library' && (
+          <LibraryView uiLang={uiLang} darkMode={darkMode} />
+        )}
+
         {activeSection === 'downloads' && (
           <DocxDownloadsView uiLang={uiLang} darkMode={darkMode} />
         )}
@@ -404,6 +421,16 @@ export function App() {
               <h4 className="text-[11px] font-bold uppercase tracking-widest text-[#B48327]">
                 {strings.footerVideos}
               </h4>
+              <button
+                type="button"
+                onClick={() => handleNavigateTab('library')}
+                className="inline-flex items-center gap-1.5 text-xs font-semibold hover:text-[#B48327] transition"
+              >
+                <Library className="w-3 h-3 text-[#B48327]" />
+                <span>
+                  {LIBRARY_TOTAL_VIDEOS} {'videos across 3 playlists — '} {strings.nav.library}
+                </span>
+              </button>
               <ul className="space-y-1 text-xs">
                 {ALL_VIDEOS_DATA.map((v) => (
                   <li key={v.id}>
