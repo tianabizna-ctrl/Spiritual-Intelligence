@@ -48,12 +48,16 @@ jobs:
         run: python3 -m pip install --quiet yt-dlp youtube-transcript-api
 
       - name: Restore YouTube cookies from secret
-        if: ${{ secrets.YT_COOKIES != '' }}
         env:
           YT_COOKIES: ${{ secrets.YT_COOKIES }}
         run: |
+          if [ -z "$YT_COOKIES" ]; then
+            echo "::warning::No YT_COOKIES secret set. YouTube will reject every transcript request with 'Sign in to confirm you are not a bot'. See README."
+            exit 0
+          fi
           printf '%s' "$YT_COOKIES" | sed 's/\\n/\n/g' > "$RUNNER_TEMP/yt_cookies.txt"
           chmod 600 "$RUNNER_TEMP/yt_cookies.txt"
+          echo "cookies restored: $(wc -l < "$RUNNER_TEMP/yt_cookies.txt") lines"
 
       - name: Enumerate the three playlists
         env:
