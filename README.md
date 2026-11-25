@@ -1,10 +1,21 @@
-# ✦ Spiritual Intelligence — Intelligence Spirituelle (EN / FR)
+# ✦ Spiritual Intelligence — Faharanitan-tsaina Ara-panahy (EN / FR / MG)
 
-A bilingual (**English & French**) web application and devotional sanctuary featuring complete video transcriptions, prophetic declarations, interactive prayer watches, a bilingual Scripture concordance, and downloadable **Microsoft Word (`.docx`)** transcription packages.
+A trilingual (**English, French & Malagasy**) web application and devotional sanctuary featuring complete video transcriptions for all **9 sessions**, prophetic declarations, interactive prayer watches, a trilingual Scripture concordance, and downloadable **Microsoft Word (`.docx`)** transcription packages in `EN`, `FR` and `MG`.
 
 ---
 
-## 📺 Source Videos & Transcriptions (English & Français)
+## 📱 Reading-First Mobile Layout
+
+The UI is reorganised so that **prayers and transcriptions are always reachable above the fold on a phone**:
+
+- The app opens directly on the **Read Prayers** tab — no large hero banner, no video card grid to scroll past.
+- A single **ultra-compact sticky header** carries the brand, one-tap `🇬🇧 EN` / `🇫🇷 FR` / `🇲🇬 MG` language pills, the theme switch, and a slim scrollable tab bar.
+- The transcription reader uses a compact session `<select>`, horizontal quick-switch pills, and a **collapsible 9-video drawer**; the full video-card directory lives at the bottom of the page instead of above the reading pane.
+- Mobile chapter navigation is a horizontal chip strip, and each session ends with a "next session" jump so reading flows continuously.
+
+---
+
+## 📺 Source Videos & Transcriptions (English • Français • Malagasy)
 
 1. **Video 1 (`4YElIs15_Ak` — 1:24:44)**
    - **Title (EN):** *[POWERFUL 🔥] COMMAND YOUR DAY IN TOTAL VICTORY BY DECLARING THESE POWERFUL PRAYER | JOSHUA SELMAN*
@@ -30,32 +41,43 @@ A bilingual (**English & French**) web application and devotional sanctuary feat
 
 All pre-built Microsoft Word (`.docx`) transcription documents are available in [`/downloads`](./downloads) and served directly in the web application under `/downloads/`:
 
-- **`Spiritual_Intelligence_Complete_Transcriptions_EN_FR.docx`** — Complete Bilingual Master Package (All 3 videos in English & French, devotional overviews, and Scripture references)
-- **`Spiritual_Intelligence_Transcriptions_EN.docx`** — Complete English Edition (All 3 videos in English)
-- **`Spiritual_Intelligence_Transcriptions_FR.docx`** — Complete French Edition (All 3 videos in French)
+- **`Spiritual_Intelligence_Complete_Transcriptions_EN_FR.docx`** — Complete Trilingual Master Package (all 9 videos in English, French & Malagasy, devotional overviews, and Scripture references)
+- **`Spiritual_Intelligence_Transcriptions_EN.docx`** — Complete English Edition (all 9 videos in English)
+- **`Spiritual_Intelligence_Transcriptions_FR.docx`** — Complete French Edition (all 9 videos in French)
+- **`Spiritual_Intelligence_Transcriptions_MG.docx`** — Complete Malagasy Edition (all 9 videos in Malagasy)
 - **`Video_1_Command_Your_Day_Joshua_Selman_EN_FR.docx`** — Video 1 Bilingual Edition (`1:24:44`)
 - **`Video_2_Call_On_The_Name_Of_Jesus_Morning_Prayer_EN_FR.docx`** — Video 2 Bilingual Edition (`09:02`)
 - **`Video_3_10_Powerful_Morning_Declarations_Joshua_Selman_EN_FR.docx`** — Video 3 Bilingual Edition (`29:12`)
-- **`Spiritual_Intelligence_DOCX_Transcriptions_Package.zip`** — Complete `.zip` archive containing all 6 `.docx` manuals
+- **`Spiritual_Intelligence_DOCX_Transcriptions_Package.zip`** — Complete `.zip` archive containing all 7 `.docx` manuals
 
-Plain-text raw English & French transcripts are also stored in [`/data/raw_transcripts`](./data/raw_transcripts).
+Plain-text raw English, French & Malagasy transcripts are also stored in [`/data/raw_transcripts`](./data/raw_transcripts).
 
 ---
 
 ## ✨ Key Features of the Web Application
 
-- **Bilingual Transcription Sanctuary (`EN + FR Parallel`, `English Only`, `Français Only`)**:
-  - Read structured chapters with Scripture pills and prophetic decrees alongside the **100% unabridged verbatim transcripts** in both English and French.
-  - Adjustable typography scale (`A-` to `A++`), instant bilingual search, one-click copy, bookmarking, and an embedded YouTube player to listen/watch along.
+- **Trilingual Transcription Sanctuary (`EN` / `FR` / `MG`, parallel or single language):
+  - Read structured chapters with Scripture pills and prophetic decrees alongside the **100% unabridged verbatim transcripts** in English, French and Malagasy.
+  - Adjustable typography scale (`A-` to `A++`), instant trilingual search, one-click copy, bookmarking, and an embedded YouTube player to listen/watch along.
 - **Interactive Prayers & Prophetic Declarations Altar**:
   - Categorized prayer points across every watch (*Command the Morning*, *Morning Surrender*, *6:45 AM Declarations*, *Finances & Helpers*, *Family & Marriage*, *Divine Healing*, *Wall of Fire*, *Midnight Warfare*).
   - Built-in **Prayer Watch Timer**, **Guided Focus Altar Mode**, and interactive **"I Declare / Amen"** counter.
-- **Devotional Study Guides & Bilingual Scripture Treasury**:
-  - Three in-depth devotional meditations in English and French, reflection questions, a searchable **KJV / Louis Segond 1910 Scripture Concordance**, and a persistent **Personal Prayer & Prophetic Idea Journal**.
+- **Devotional Study Guides & Trilingual Scripture Treasury**:
+  - Three in-depth devotional meditations in English, French and Malagasy, reflection questions, a searchable **KJV / Louis Segond 1910 / Malagasy Scripture Concordance**, and a persistent **Personal Prayer & Prophetic Idea Journal**.
 - **DOCX Download Center & Custom `.DOCX` Builder**:
-  - Instant download of all 6 pre-built `.docx` files and the `.zip` bundle, plus a client-side custom `.docx` generator.
+  - Instant download of all 7 pre-built `.docx` files and the `.zip` bundle, plus a client-side custom `.docx` generator.
 - **Dawn Parchment & Midnight Watch Themes**:
   - Switch effortlessly between Warm Parchment Light Mode and Midnight Watch Dark Mode.
+
+---
+
+## 🛠️ Rebuild Scripts
+
+```bash
+npm run generate:docx                       # regenerate all 7 .docx files + .zip bundle
+npm run build                               # TypeScript check + Vite production build to dist/
+python3 scripts/build_static_bundle.py      # refresh docs/ (GitHub Pages) and the standalone preview HTML
+```
 
 ---
 

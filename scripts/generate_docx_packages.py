@@ -4,6 +4,7 @@ Generates the downloadable Microsoft Word (.docx) transcription packages
 for the Spiritual Intelligence web application (English & French).
 """
 import os
+import re
 import shutil
 import zipfile
 from docx import Document
@@ -22,10 +23,31 @@ def read_raw(filename: str) -> str:
     with open(path, "r", encoding="utf-8") as f:
         content = f.read()
     # Extract body after the --- marker if present
-    for marker in ["--- RAW TRANSCRIPT ---", "--- TRANSCRIPTION COMPLÈTE EN FRANÇAIS ---"]:
+    for marker in [
+        "--- RAW TRANSCRIPT ---",
+        "--- TRANSCRIPTION COMPLÈTE EN FRANÇAIS ---",
+        "--- TRANSCRIPTION COMPLÈTE EN MALGACHE (MG) ---",
+    ]:
         if marker in content:
             content = content.split(marker, 1)[1].strip()
     return content
+
+
+def load_mg_overviews() -> dict:
+    """Pull the Malagasy devotional overviews straight from src/data/malagasyData.ts."""
+    path = os.path.join(ROOT_DIR, "src", "data", "malagasyData.ts")
+    overviews = {}
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            src = f.read()
+        block = src.split("VIDEO_MG_MAP", 1)[1] if "VIDEO_MG_MAP" in src else ""
+        for key, chunk in re.findall(r"'([A-Za-z0-9_\-]{11})': \{(.*?)\n  \},", block, re.S):
+            m = re.search(r"overview_mg:\s*'((?:[^'\\]|\\.)*)'", chunk, re.S)
+            if m:
+                overviews[key] = m.group(1).replace("\\'", "'")
+    except Exception:
+        pass
+    return overviews
 
 
 VIDEOS_META = [
@@ -73,6 +95,8 @@ VIDEOS_META = [
         ),
         "en_file": "video1_4YElIs15_Ak_en_raw.txt",
         "fr_file": "video1_4YElIs15_Ak_fr_raw.txt",
+        "mg_file": "video1_4YElIs15_Ak_mg_raw.txt",
+        "id_key": "4YElIs15_Ak",
         "docx_filename": "Video_1_Command_Your_Day_Joshua_Selman_EN_FR.docx",
     },
     {
@@ -108,6 +132,8 @@ VIDEOS_META = [
         ),
         "en_file": "video2_XWBUBtEv70A_en_raw.txt",
         "fr_file": "video2_XWBUBtEv70A_fr_raw.txt",
+        "mg_file": "video2_XWBUBtEv70A_mg_raw.txt",
+        "id_key": "XWBUBtEv70A",
         "docx_filename": "Video_2_Call_On_The_Name_Of_Jesus_Morning_Prayer_EN_FR.docx",
     },
     {
@@ -155,6 +181,8 @@ VIDEOS_META = [
         ),
         "en_file": "video3_45wUm7wffBQ_en_raw.txt",
         "fr_file": "video3_45wUm7wffBQ_fr_raw.txt",
+        "mg_file": "video3_45wUm7wffBQ_mg_raw.txt",
+        "id_key": "45wUm7wffBQ",
         "docx_filename": "Video_3_10_Powerful_Morning_Declarations_Joshua_Selman_EN_FR.docx",
     },
     {
@@ -172,6 +200,8 @@ VIDEOS_META = [
         "scriptures": "Job 22:28 • Proverbs 18:21 • Isaiah 10:27 • Judges 6:25 • Obadiah 1:17 • Joshua 24:15 • Psalm 24:7 • Malachi 3:10-11 • Isaiah 53:5 • Joel 2:25 • Psalm 65:11",
         "en_file": "video4_HQzfk0DMgCo_en_raw.txt",
         "fr_file": "video4_HQzfk0DMgCo_fr_raw.txt",
+        "mg_file": "video4_HQzfk0DMgCo_mg_raw.txt",
+        "id_key": "HQzfk0DMgCo",
         "docx_filename": None,
     },
     {
@@ -189,6 +219,8 @@ VIDEOS_META = [
         "scriptures": "Ezekiel 48:35 • Deuteronomy 31:8 • Psalm 139:7-10 • Exodus 33:14 • Exodus 15:26 • Numbers 23:23 • 2 Kings 6:17 • Psalm 121:8 • Matthew 28:20 • Numbers 6:24-26",
         "en_file": "video5_ZSKymClHnzE_en_raw.txt",
         "fr_file": "video5_ZSKymClHnzE_fr_raw.txt",
+        "mg_file": "video5_ZSKymClHnzE_mg_raw.txt",
+        "id_key": "ZSKymClHnzE",
         "docx_filename": None,
     },
     {
@@ -206,6 +238,8 @@ VIDEOS_META = [
         "scriptures": "Jeremiah 29:13 • Matthew 5:6 • Mark 12:30 • Genesis 32:26 • James 4:8 • Psalm 139:23-24 • Psalm 16:11",
         "en_file": "video6_CK9rP2ZBGKg_en_raw.txt",
         "fr_file": "video6_CK9rP2ZBGKg_fr_raw.txt",
+        "mg_file": "video6_CK9rP2ZBGKg_mg_raw.txt",
+        "id_key": "CK9rP2ZBGKg",
         "docx_filename": None,
     },
     {
@@ -223,6 +257,8 @@ VIDEOS_META = [
         "scriptures": "Lamentations 3:22-23 • Isaiah 45:2 • 1 Corinthians 2:16 • Psalm 51:10 • Philippians 4:7 • Colossians 3:23 • Ephesians 6:10-18",
         "en_file": "video7_zPOULLgPjYc_en_raw.txt",
         "fr_file": "video7_zPOULLgPjYc_fr_raw.txt",
+        "mg_file": "video7_zPOULLgPjYc_mg_raw.txt",
+        "id_key": "zPOULLgPjYc",
         "docx_filename": None,
     },
     {
@@ -240,6 +276,8 @@ VIDEOS_META = [
         "scriptures": "Psalm 121:1-8",
         "en_file": "video8_Zvk_jzAsoi8_en_raw.txt",
         "fr_file": "video8_Zvk_jzAsoi8_fr_raw.txt",
+        "mg_file": "video8_Zvk_jzAsoi8_mg_raw.txt",
+        "id_key": "Zvk_jzAsoi8",
         "docx_filename": None,
     },
     {
@@ -257,9 +295,16 @@ VIDEOS_META = [
         "scriptures": "Deuteronomy 30:9 • Deuteronomy 7:15 • Isaiah 54:17 • Isaiah 58:11 • Psalm 86:17 • Isaiah 43:4 • Numbers 6:24-26 • Psalm 66:12 • Numbers 27:20",
         "en_file": "video9_BwWxo1T564Q_en_raw.txt",
         "fr_file": "video9_BwWxo1T564Q_fr_raw.txt",
+        "mg_file": "video9_BwWxo1T564Q_mg_raw.txt",
+        "id_key": "BwWxo1T564Q",
         "docx_filename": None,
     },
 ]
+
+
+_MG_OVERVIEWS = load_mg_overviews()
+for _v in VIDEOS_META:
+    _v["summary_mg"] = _MG_OVERVIEWS.get(_v.get("id_key", ""), "")
 
 
 def configure_styles(doc: Document):
@@ -306,10 +351,14 @@ def add_cover_header(doc: Document, title_text: str, subtitle_text: str, edition
     r_rule.font.color.rgb = RGBColor(0xB4, 0x83, 0x27)
 
 
-def add_video_section(doc: Document, video: dict, include_en: bool = True, include_fr: bool = True):
+def add_video_section(doc: Document, video: dict, include_en: bool = True, include_fr: bool = True, include_mg: bool = False):
     # Video Header
     h1 = doc.add_heading(level=1)
-    r_h1 = h1.add_run(f"VIDEO {video['num']}: {video['title_en'] if include_en else video['title_fr']}")
+    _primary_title = (
+        video["title_en"] if include_en else video.get("title_mg") or video["title_fr"]
+        if include_mg else video["title_fr"]
+    )
+    r_h1 = h1.add_run(f"VIDEO {video['num']}: {_primary_title}")
     r_h1.font.color.rgb = RGBColor(0x1E, 0x29, 0x3B)
     r_h1.font.size = Pt(16)
 
@@ -319,6 +368,13 @@ def add_video_section(doc: Document, video: dict, include_en: bool = True, inclu
         r_fr_t.italic = True
         r_fr_t.bold = True
         r_fr_t.font.color.rgb = RGBColor(0x7C, 0x2D, 0x12)
+
+    if include_en and include_mg:
+        p_mg_title = doc.add_paragraph()
+        r_mg_t = p_mg_title.add_run(f"Lohateny Malagasy : {video.get('title_mg', '')}")
+        r_mg_t.italic = True
+        r_mg_t.bold = True
+        r_mg_t.font.color.rgb = RGBColor(0x1F, 0x5F, 0x3F)
 
     # Metadata block
     p_meta = doc.add_paragraph()
@@ -347,6 +403,13 @@ def add_video_section(doc: Document, video: dict, include_en: bool = True, inclu
         r_sf.font.color.rgb = RGBColor(0xB4, 0x83, 0x27)
         p_sf = doc.add_paragraph(video["summary_fr"])
         p_sf.paragraph_format.space_after = Pt(8)
+
+    if include_mg and video.get("summary_mg"):
+        h_sum_mg = doc.add_heading(level=2)
+        r_sm = h_sum_mg.add_run("Famintinana ara-panahy (Malagasy)")
+        r_sm.font.color.rgb = RGBColor(0xB4, 0x83, 0x27)
+        p_sm = doc.add_paragraph(video["summary_mg"])
+        p_sm.paragraph_format.space_after = Pt(8)
 
     # Full English Transcription
     if include_en:
@@ -384,6 +447,23 @@ def add_video_section(doc: Document, video: dict, include_en: bool = True, inclu
             r = p.add_run(para_text.replace("\n", " "))
             r.font.size = Pt(10.5)
 
+    # Full Malagasy Transcription
+    if include_mg and video.get("mg_file"):
+        h_mg = doc.add_heading(level=2)
+        r_mg = h_mg.add_run(
+            f"TRANSCRIPTION INTÉGRALE EN MALGACHE — VIDÉO {video['num']} ({video['duration']})"
+        )
+        r_mg.font.color.rgb = RGBColor(0x1F, 0x5F, 0x3F)
+
+        mg_text = read_raw(video["mg_file"])
+        mg_paragraphs = [p.strip() for p in mg_text.split("\n\n") if p.strip()]
+        for para_text in mg_paragraphs:
+            p = doc.add_paragraph()
+            p.paragraph_format.space_after = Pt(6)
+            p.paragraph_format.line_spacing = 1.25
+            r = p.add_run(para_text.replace("\n", " "))
+            r.font.size = Pt(10.5)
+
 
 def build_all_packages():
     os.makedirs(PUBLIC_DOWNLOADS, exist_ok=True)
@@ -396,11 +476,11 @@ def build_all_packages():
     add_cover_header(
         doc_master,
         "SPIRITUAL INTELLIGENCE",
-        "Complete Bilingual Video Transcriptions, Prophetic Prayers & Devotional Manual (English & Français)",
-        "Bilingual Master Edition (EN / FR)",
+        "Complete Trilingual Video Transcriptions, Prophetic Prayers & Devotional Manual (English • Français • Malagasy)",
+        "Trilingual Master Edition (EN / FR / MG)",
     )
     p_intro = doc_master.add_paragraph(
-        "This volume contains the complete, unabridged English (EN) and French (FR) transcriptions, "
+        "This volume contains the complete, unabridged English (EN), French (FR) and Malagasy (MG) transcriptions, "
         "devotional syntheses, and Scripture concordances for the three foundational prayer and "
         "devotional sessions of the Spiritual Intelligence Sanctuary:\n"
         "1. [POWERFUL 🔥] Command Your Day in Total Victory by Declaring These Powerful Prayers | Apostle Joshua Selman (1:24:44)\n"
@@ -412,7 +492,7 @@ def build_all_packages():
     for idx, v in enumerate(VIDEOS_META):
         if idx > 0:
             doc_master.add_page_break()
-        add_video_section(doc_master, v, include_en=True, include_fr=True)
+        add_video_section(doc_master, v, include_en=True, include_fr=True, include_mg=True)
 
     master_name = "Spiritual_Intelligence_Complete_Transcriptions_EN_FR.docx"
     master_path = os.path.join(PUBLIC_DOWNLOADS, master_name)
@@ -456,6 +536,25 @@ def build_all_packages():
     fr_path = os.path.join(PUBLIC_DOWNLOADS, fr_name)
     doc_fr.save(fr_path)
     generated_files.append(fr_path)
+
+    # 3b. Malagasy Complete Edition (MG Only, All 9 Videos)
+    doc_mg = Document()
+    configure_styles(doc_mg)
+    add_cover_header(
+        doc_mg,
+        "FAHARANITAN-TSAINA ARA-PANAHY — FANDIKANA MALAGASY",
+        "Fanadihadiana feno amin'ny teny Malagasy, fanambarana ara-paminaniana & boky torolalana momba ny vavaka",
+        "Édition Complète Malagasy (MG)",
+    )
+    for idx, v in enumerate(VIDEOS_META):
+        if idx > 0:
+            doc_mg.add_page_break()
+        add_video_section(doc_mg, v, include_en=False, include_fr=False, include_mg=True)
+
+    mg_name = "Spiritual_Intelligence_Transcriptions_MG.docx"
+    mg_path = os.path.join(PUBLIC_DOWNLOADS, mg_name)
+    doc_mg.save(mg_path)
+    generated_files.append(mg_path)
 
     # 4. Individual Bilingual DOCX for each of the 3 primary videos
     for v in VIDEOS_META:

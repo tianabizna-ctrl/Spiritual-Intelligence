@@ -28,12 +28,115 @@ import { MasterCompendiumView } from './components/MasterCompendiumView';
 
 type ActiveSection = 'compendium' | 'transcriptions' | 'prayers' | 'devotionals' | 'downloads';
 
+/** Compact UI strings for the shell (header / footer / nav). */
+const SHELL_TEXT: Record<
+  UILang,
+  {
+    tagline: string;
+    nav: Record<ActiveSection, string>;
+    download: string;
+    languageLabel: string;
+    footerBlurb: string;
+    footerVideos: string;
+    footerDocs: string;
+    footerRights: string;
+    readNow: string;
+  }
+> = {
+  en: {
+    tagline: 'Prayers • Devotionals • Transcriptions (EN • FR • MG)',
+    nav: {
+      transcriptions: 'Read Prayers',
+      prayers: 'Prayer Altar',
+      devotionals: 'Devotionals',
+      compendium: 'All Titles',
+      downloads: '.DOCX',
+    },
+    download: 'Download .DOCX',
+    languageLabel: 'Reading language',
+    footerBlurb:
+      'A trilingual (English, French & Malagasy) devotional sanctuary dedicated to fervent prayer, prophetic declarations, Scripture meditation, and sacred video transcriptions.',
+    footerVideos: '9 Transcribed YouTube Sessions',
+    footerDocs: 'Direct .DOCX Downloads',
+    footerRights:
+      'Spiritual Intelligence • Trilingual English, French & Malagasy Prayers, Devotionals & Transcriptions',
+    readNow: 'Read Prayers',
+  },
+  fr: {
+    tagline: 'Prières • Méditations • Transcriptions (EN • FR • MG)',
+    nav: {
+      transcriptions: 'Lire les Prières',
+      prayers: 'Autel de Prière',
+      devotionals: 'Méditations',
+      compendium: 'Tous les Titres',
+      downloads: '.DOCX',
+    },
+    download: 'Télécharger .DOCX',
+    languageLabel: 'Langue de lecture',
+    footerBlurb:
+      'Un sanctuaire trilingue (anglais, français et malgache) dédié à la prière fervente, aux déclarations prophétiques, à la méditation de la Parole et à l’étude des transcriptions sacrées.',
+    footerVideos: '9 Sessions Vidéo Transcrites (YouTube)',
+    footerDocs: 'Téléchargements Directs (.DOCX)',
+    footerRights:
+      'Intelligence Spirituelle • Prières, Méditations & Transcriptions en Anglais, Français et Malgache',
+    readNow: 'Lire les Prières',
+  },
+  mg: {
+    tagline: 'Vavaka • Fanadihadiana • Fandikana (EN • FR • MG)',
+    nav: {
+      transcriptions: 'Vakio ny Vavaka',
+      prayers: 'Alitara Vavaka',
+      devotionals: 'Fanadihadiana',
+      compendium: 'Lohateny Rehetra',
+      downloads: '.DOCX',
+    },
+    download: 'Alaivo ny .DOCX',
+    languageLabel: 'Fiteny ampiasaina',
+    footerBlurb:
+      'Toerana masina telo fiteny (anglisy, frantsay ary malagasy) natokana ho an’ny vavaka mafana fo, fanambarana ara-paminaniana, fisaintsainana ny Tenin’Andriamanitra ary fandalinana ny fandikana masina.',
+    footerVideos: 'Sesy video 9 efa voasoratra',
+    footerDocs: 'Fampidirana mivantana (.DOCX)',
+    footerRights:
+      'Faharanitan-tsaina Ara-panahy • Vavaka, Fanadihadiana & Fandikana amin’ny Anglisy, Frantsay ary Malagasy',
+    readNow: 'Vakio ny Vavaka',
+  },
+};
+
+const LANG_PILLS: { id: UILang; flag: string; code: string; full: string }[] = [
+  { id: 'en', flag: '🇬🇧', code: 'EN', full: 'English' },
+  { id: 'fr', flag: '🇫🇷', code: 'FR', full: 'Français' },
+  { id: 'mg', flag: '🇲🇬', code: 'MG', full: 'Malagasy' },
+];
+
+const DEFAULT_BOOKMARKS: SavedBookmarkItem[] = [
+  {
+    id: 'v1-ch1',
+    title: 'Commanding the Gate of the Morning (Job 38:12-13)',
+    textEn:
+      'This morning belongs to God and this morning belongs to me! Every wicked arrangement scheduled for today—I shake you out by fire!',
+    textFr:
+      'Ce matin appartient à Dieu et ce matin m’appartient ! Tout arrangement maléfique programmé pour aujourd’hui — je te secoue par le feu !',
+    ref: 'Job 38:12-13 • Psalm 5:3',
+  },
+  {
+    id: 'v3-ch1',
+    title: 'Breaking the Iron Gate of Visibility (Acts 12:10)',
+    textEn:
+      'In the name of Jesus, nothing keeps my head down in this season—I am lifted supernaturally and every Iron Gate of visibility opens of its own accord!',
+    textFr:
+      'Au nom de Jésus, rien ne maintient ma tête baissée en cette saison — je suis élevé surnaturellement et toute Porte de Fer s’ouvre d’elle-même !',
+    ref: 'Psalm 3:3 • Acts 12:10',
+  },
+];
+
 export function App() {
-  const [activeSection, setActiveSection] = useState<ActiveSection>('compendium');
+  const [activeSection, setActiveSection] = useState<ActiveSection>('transcriptions');
   const [selectedReaderVideoId, setSelectedReaderVideoId] = useState<string>(VIDEOS_DATA[0].id);
   const [uiLang, setUiLang] = useState<UILang>('en');
   const [languageMode, setLanguageMode] = useState<LanguageMode>('en');
   const [darkMode, setDarkMode] = useState<boolean>(false);
+
+  const strings = SHELL_TEXT[uiLang];
 
   const handleSelectLanguage = (lang: UILang) => {
     setUiLang(lang);
@@ -47,22 +150,7 @@ export function App() {
     } catch {
       // ignore
     }
-    return [
-      {
-        id: 'v1-ch1',
-        title: 'Commanding the Gate of the Morning (Job 38:12-13)',
-        textEn: 'This morning belongs to God and this morning belongs to me! Every wicked arrangement scheduled for today—I shake you out by fire!',
-        textFr: 'Ce matin appartient à Dieu et ce matin m’appartient ! Tout arrangement maléfique programmé pour aujourd’hui — je te secoue par le feu !',
-        ref: 'Job 38:12-13 • Psalm 5:3',
-      },
-      {
-        id: 'v3-ch1',
-        title: 'Breaking the Iron Gate of Visibility (Acts 12:10)',
-        textEn: 'In the name of Jesus, nothing keeps my head down in this season—I am lifted supernaturally and every Iron Gate of visibility opens of its own accord!',
-        textFr: 'Au nom de Jésus, rien ne maintient ma tête baissée en cette saison — je suis élevé surnaturellement et toute Porte de Fer s’ouvre d’elle-même !',
-        ref: 'Psalm 3:3 • Acts 12:10',
-      },
-    ];
+    return DEFAULT_BOOKMARKS;
   });
 
   useEffect(() => {
@@ -98,176 +186,116 @@ export function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const navItems: {
-    id: ActiveSection;
-    label_en: string;
-    label_fr: string;
-    icon: React.ReactNode;
-  }[] = [
-    {
-      id: 'compendium',
-      label_en: 'All Titles & Contents',
-      label_fr: 'Tous les Titres & Contenus',
-      icon: <Layers className="w-4 h-4" />,
-    },
-    {
-      id: 'transcriptions',
-      label_en: 'Transcriptions Reader (EN / FR)',
-      label_fr: 'Lecteur de Transcriptions (EN / FR)',
-      icon: <BookOpen className="w-4 h-4" />,
-    },
-    {
-      id: 'prayers',
-      label_en: 'Prayers & Declarations',
-      label_fr: 'Prières & Déclarations',
-      icon: <Flame className="w-4 h-4" />,
-    },
-    {
-      id: 'devotionals',
-      label_en: 'Devotionals & Scriptures',
-      label_fr: 'Méditations & Écritures',
-      icon: <Compass className="w-4 h-4" />,
-    },
-    {
-      id: 'downloads',
-      label_en: 'DOCX Package',
-      label_fr: 'Pack DOCX',
-      icon: <FileText className="w-4 h-4" />,
-    },
+  const handleNavigateTab = (tab: ActiveSection) => {
+    setActiveSection(tab);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const navItems: { id: ActiveSection; icon: React.ReactNode }[] = [
+    { id: 'transcriptions', icon: <BookOpen className="w-4 h-4" /> },
+    { id: 'prayers', icon: <Flame className="w-4 h-4" /> },
+    { id: 'devotionals', icon: <Compass className="w-4 h-4" /> },
+    { id: 'compendium', icon: <Layers className="w-4 h-4" /> },
+    { id: 'downloads', icon: <FileText className="w-4 h-4" /> },
   ];
 
   return (
     <div
       className={`min-h-screen transition-colors duration-300 ${
-        darkMode
-          ? 'bg-[#0F141C] text-[#F5F2EB]'
-          : 'bg-[#FBF8F3] text-[#1C1917]'
+        darkMode ? 'bg-[#0F141C] text-[#F5F2EB]' : 'bg-[#FBF8F3] text-[#1C1917]'
       }`}
     >
-      {/* Top Sticky Frosted Sanctuary Header */}
+      {/* ---------- Ultra-compact sticky header (never blocks reading) ---------- */}
       <header
-        className={`sticky top-0 z-40 backdrop-blur-md border-b transition-colors ${
-          darkMode
-            ? 'bg-[#0F141C]/90 border-[#263246]'
-            : 'bg-[#FBF8F3]/90 border-[#B48327]/20'
+        className={`sticky top-0 z-50 backdrop-blur-md border-b ${
+          darkMode ? 'bg-[#0F141C]/95 border-[#263246]' : 'bg-[#FBF8F3]/95 border-[#B48327]/20'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-3">
-          {/* Brand Logo */}
+        {/* Row 1: brand + language pills + theme */}
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-2 flex items-center justify-between gap-2">
           <button
             type="button"
-            onClick={() => setActiveSection('transcriptions')}
-            className="flex items-center gap-3 text-left group"
+            onClick={() => handleNavigateTab('transcriptions')}
+            className="flex items-center gap-2 text-left group min-w-0"
           >
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#B48327] to-[#7C2D12] flex items-center justify-center text-white shadow-sm group-hover:scale-105 transition">
-              <Sparkles className="w-5 h-5" />
+            <div className="w-8 h-8 sm:w-9 sm:h-9 shrink-0 rounded-lg bg-gradient-to-br from-[#B48327] to-[#7C2D12] flex items-center justify-center text-white shadow-sm group-hover:scale-105 transition">
+              <Sparkles className="w-4 h-4" />
             </div>
-            <div>
-              <span className="font-display font-bold text-xl sm:text-2xl tracking-tight block leading-none">
+            <div className="min-w-0">
+              <span className="font-display font-bold text-sm sm:text-lg tracking-tight block leading-tight truncate">
                 Spiritual Intelligence
               </span>
-              <span className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#B48327] block mt-0.5">
-                {uiLang === 'fr'
-                  ? 'Sanctuaire de Prières & Transcriptions (EN • FR)'
-                  : 'Prayers, Devotionals & Transcriptions (EN • FR)'}
+              <span className="hidden sm:block text-[9px] font-semibold uppercase tracking-[0.14em] text-[#B48327] truncate">
+                {strings.tagline}
               </span>
             </div>
           </button>
 
-          {/* Main Navigation Links */}
-          <nav className="hidden xl:flex items-center gap-1">
-            {navItems.map((item) => {
-              const isActive = activeSection === item.id;
-              return (
-                <button
-                  key={item.id}
-                  type="button"
-                  onClick={() => setActiveSection(item.id)}
-                  className={`inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold transition ${
-                    isActive
-                      ? 'bg-[#B48327] text-white shadow-sm'
-                      : darkMode
-                      ? 'text-[#A8A29E] hover:text-white hover:bg-[#171F2C]'
-                      : 'text-[#57534E] hover:text-[#1C1917] hover:bg-[#F3EDE2]'
-                  }`}
-                >
-                  {item.icon}
-                  <span>{uiLang === 'fr' ? item.label_fr : item.label_en}</span>
-                </button>
-              );
-            })}
-          </nav>
-
-          {/* Right Controls: Reading Language Picker (EN or FR), Theme & Direct DOCX Download CTA */}
-          <div className="flex items-center gap-2">
-            {/* Reading Language Toggle: Choose EN or FR */}
+          <div className="flex items-center gap-1.5 shrink-0">
+            {/* 1-tap language pills: EN | FR | MG */}
             <div
-              className={`inline-flex items-center rounded-xl p-1 border ${
+              className={`inline-flex items-center rounded-full p-0.5 border ${
                 darkMode ? 'bg-[#171F2C] border-[#263246]' : 'bg-[#F3EDE2] border-[#B48327]/30'
               }`}
-              title="Choose Reading Language: English (EN) or Français (FR)"
+              role="group"
+              aria-label={strings.languageLabel}
+              title={strings.languageLabel}
             >
-              <button
-                type="button"
-                onClick={() => handleSelectLanguage('en')}
-                className={`px-3 py-1 rounded-lg text-xs font-bold transition ${
-                  uiLang === 'en'
-                    ? 'bg-[#B48327] text-white shadow-sm'
-                    : 'text-[#57534E] dark:text-[#A8A29E] hover:text-[#B48327]'
-                }`}
-              >
-                English (EN)
-              </button>
-              <button
-                type="button"
-                onClick={() => handleSelectLanguage('fr')}
-                className={`px-3 py-1 rounded-lg text-xs font-bold transition ${
-                  uiLang === 'fr'
-                    ? 'bg-[#B48327] text-white shadow-sm'
-                    : 'text-[#57534E] dark:text-[#A8A29E] hover:text-[#B48327]'
-                }`}
-              >
-                Français (FR)
-              </button>
+              {LANG_PILLS.map((pill) => {
+                const isActive = uiLang === pill.id;
+                return (
+                  <button
+                    key={pill.id}
+                    type="button"
+                    onClick={() => handleSelectLanguage(pill.id)}
+                    aria-pressed={isActive}
+                    title={`${pill.full} (${pill.code})`}
+                    className={`inline-flex items-center gap-1 px-2 sm:px-2.5 py-1 rounded-full text-[11px] sm:text-xs font-bold transition ${
+                      isActive
+                        ? 'bg-[#B48327] text-white shadow-sm'
+                        : darkMode
+                        ? 'text-[#A8A29E] hover:text-[#D4AF37]'
+                        : 'text-[#57534E] hover:text-[#B48327]'
+                    }`}
+                  >
+                    <span aria-hidden>{pill.flag}</span>
+                    <span>{pill.code}</span>
+                  </button>
+                );
+              })}
             </div>
 
-            {/* Dawn Parchment / Midnight Watch Theme Switcher */}
+            {/* Theme switcher */}
             <button
               type="button"
               onClick={() => setDarkMode(!darkMode)}
-              className={`p-2 rounded-xl border transition ${
+              className={`p-1.5 sm:p-2 rounded-lg border transition ${
                 darkMode
                   ? 'bg-[#171F2C] border-[#263246] text-amber-300 hover:border-[#D4AF37]'
                   : 'bg-[#F3EDE2] border-[#B48327]/25 text-[#7C2D12] hover:bg-[#EAE1D3]'
               }`}
-              title={
-                darkMode
-                  ? 'Switch to Dawn Parchment Mode'
-                  : 'Switch to Midnight Watch Mode'
-              }
+              title={darkMode ? 'Dawn Parchment' : 'Midnight Watch'}
             >
               {darkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </button>
 
-            {/* Direct Master DOCX Download CTA */}
             <a
               href="downloads/Spiritual_Intelligence_Complete_Transcriptions_EN_FR.docx"
               download="Spiritual_Intelligence_Complete_Transcriptions_EN_FR.docx"
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold bg-[#7C2D12] text-amber-100 hover:bg-[#63220D] transition shadow-sm"
+              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold bg-[#7C2D12] text-amber-100 hover:bg-[#63220D] transition shadow-sm"
             >
               <Download className="w-3.5 h-3.5 text-amber-300" />
-              <span className="hidden sm:inline">
-                {uiLang === 'fr' ? 'Pack .DOCX (EN/FR)' : 'Download .DOCX'}
-              </span>
+              <span>{strings.download}</span>
             </a>
           </div>
         </div>
 
-        {/* Mobile / Tablet Navigation Bar */}
-        <div
-          className={`xl:hidden border-t px-4 py-2 flex items-center gap-1.5 overflow-x-auto ${
-            darkMode ? 'border-[#263246]' : 'border-[#B48327]/15'
+        {/* Row 2: slim horizontally scrollable nav — reading tab first */}
+        <nav
+          className={`border-t px-2 sm:px-6 lg:px-8 py-1 flex items-center gap-1 overflow-x-auto ${
+            darkMode ? 'border-[#263246]' : 'border-[#B48327]/12'
           }`}
+          aria-label="Sections"
         >
           {navItems.map((item) => {
             const isActive = activeSection === item.id;
@@ -275,252 +303,32 @@ export function App() {
               <button
                 key={item.id}
                 type="button"
-                onClick={() => setActiveSection(item.id)}
-                className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold shrink-0 transition ${
+                onClick={() => handleNavigateTab(item.id)}
+                aria-current={isActive ? 'page' : undefined}
+                className={`inline-flex items-center gap-1.5 px-2.5 sm:px-3.5 py-1.5 rounded-lg text-[11px] sm:text-xs font-bold whitespace-nowrap shrink-0 transition ${
                   isActive
-                    ? 'bg-[#B48327] text-white'
+                    ? 'bg-[#B48327] text-white shadow-sm'
                     : darkMode
-                    ? 'text-[#A8A29E] bg-[#171F2C]'
-                    : 'text-[#57534E] bg-[#F3EDE2]'
+                    ? 'text-[#A8A29E] hover:bg-[#171F2C]'
+                    : 'text-[#57534E] hover:bg-[#F3EDE2]'
                 }`}
               >
                 {item.icon}
-                <span>{uiLang === 'fr' ? item.label_fr : item.label_en}</span>
+                <span>{strings.nav[item.id]}</span>
               </button>
             );
           })}
-        </div>
+        </nav>
       </header>
 
-      {/* Illuminated Sanctuary Hero Banner */}
-      <section
-        className={`relative overflow-hidden border-b ${
-          darkMode
-            ? 'bg-gradient-to-b from-[#171F2C] via-[#121822] to-[#0F141C] border-[#263246]'
-            : 'bg-gradient-to-b from-[#F3EDE2] via-[#FBF8F3] to-[#FBF8F3] border-[#B48327]/20'
-        }`}
-      >
-        {/* Subtle radial gold glow */}
-        <div
-          className="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 w-[720px] h-[320px] rounded-full opacity-25 blur-3xl"
-          style={{
-            background: 'radial-gradient(circle, #B48327 0%, transparent 70%)',
-          }}
-        />
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12 relative">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div className="lg:col-span-8 space-y-4">
-              <div className="inline-flex flex-wrap items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold border border-[#B48327]/35 bg-[#B48327]/10 text-[#B48327]">
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>
-                  {uiLang === 'fr'
-                    ? 'TRANSCRIPTIONS BILINGUES COMPLÈTES (ANGLAIS & FRANÇAIS) • 3 SESSIONS DE PRIÈRE'
-                    : 'COMPLETE BILINGUAL TRANSCRIPTIONS (ENGLISH & FRENCH) • 3 PRAYER SESSIONS'}
-                </span>
-              </div>
-
-              <h1 className="font-display text-3xl sm:text-5xl lg:text-[52px] font-bold leading-[1.1] tracking-tight">
-                {uiLang === 'fr' ? (
-                  <>
-                    Intelligence Spirituelle :{' '}
-                    <span className="italic font-normal text-[#B48327]">
-                      Sanctuaire de Prières, Déclarations & Méditations
-                    </span>
-                  </>
-                ) : (
-                  <>
-                    Spiritual Intelligence:{' '}
-                    <span className="italic font-normal text-[#B48327]">
-                      A Sanctuary for Prayers, Devotionals & Sacred Words
-                    </span>
-                  </>
-                )}
-              </h1>
-
-              <p
-                className={`font-reading text-base sm:text-lg leading-relaxed max-w-3xl ${
-                  darkMode ? 'text-[#A8A29E]' : 'text-[#57534E]'
-                }`}
-              >
-                {uiLang === 'fr'
-                  ? 'Explorez les transcriptions intégrales en anglais (EN) et en français (FR) des trois sessions fondamentales de prière matinale, de dévotion contemplative et de déclarations prophétiques avec l’Apôtre Joshua Selman et Grace Enclave — accompagnées d’un autel de prière interactif, d’une concordance biblique bilingue et d’un pack téléchargeable Microsoft Word (.docx).'
-                  : 'Explore the complete, unabridged English (EN) and French (FR) transcriptions of the three foundational sessions of morning warfare, contemplative devotion, and apostolic declarations with Apostle Joshua Selman and Grace Enclave—complete with an interactive prayer altar, bilingual Scripture concordance, and downloadable Microsoft Word (.docx) packages.'}
-              </p>
-
-              {/* Prominent Language Choice Bar in Hero */}
-              <div className="pt-1">
-                <div
-                  className={`inline-flex flex-wrap items-center gap-2 p-2 rounded-2xl border ${
-                    darkMode
-                      ? 'bg-[#171F2C]/95 border-[#263246]'
-                      : 'bg-[#F3EDE2] border-[#B48327]/30'
-                  }`}
-                >
-                  <span className="text-xs font-bold uppercase tracking-wider px-2 text-[#B48327]">
-                    {uiLang === 'fr'
-                      ? 'Choisir la Langue de Lecture :'
-                      : 'Choose Reading Language:'}
-                  </span>
-                  <button
-                    type="button"
-                    onClick={() => handleSelectLanguage('en')}
-                    className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition ${
-                      uiLang === 'en'
-                        ? 'bg-[#B48327] text-white shadow-sm'
-                        : darkMode
-                        ? 'text-[#A8A29E] hover:bg-[#1E293B]'
-                        : 'text-[#57534E] hover:bg-[#EAE1D3]'
-                    }`}
-                  >
-                    🇬🇧 Read in English (EN)
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => handleSelectLanguage('fr')}
-                    className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition ${
-                      uiLang === 'fr'
-                        ? 'bg-[#B48327] text-white shadow-sm'
-                        : darkMode
-                        ? 'text-[#A8A29E] hover:bg-[#1E293B]'
-                        : 'text-[#57534E] hover:bg-[#EAE1D3]'
-                    }`}
-                  >
-                    🇫🇷 Lire en Français (FR)
-                  </button>
-                </div>
-              </div>
-
-              {/* Hero CTAs */}
-              <div className="flex flex-wrap items-center gap-3 pt-2">
-                <button
-                  type="button"
-                  onClick={() => setActiveSection('compendium')}
-                  className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-xs sm:text-sm font-bold bg-[#B48327] text-white hover:bg-[#9A6E1E] transition shadow-md"
-                >
-                  <Layers className="w-4 h-4" />
-                  {uiLang === 'fr'
-                    ? 'Voir Tous les Titres & Contenus (EN & FR)'
-                    : 'View All Titles & Contents (EN & FR)'}
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => setActiveSection('transcriptions')}
-                  className={`inline-flex items-center gap-2 px-5 py-3 rounded-xl text-xs sm:text-sm font-bold border transition ${
-                    darkMode
-                      ? 'bg-[#171F2C] border-[#D4AF37]/40 text-[#D4AF37] hover:bg-[#1C2636]'
-                      : 'bg-[#F3EDE2] border-[#B48327]/40 text-[#7C2D12] hover:bg-[#EAE1D3]'
-                  }`}
-                >
-                  <BookOpen className="w-4 h-4" />
-                  {uiLang === 'fr'
-                    ? 'Lecteur Bilingue (9 Vidéos)'
-                    : 'Bilingual Reader (9 Videos)'}
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => setActiveSection('prayers')}
-                  className={`inline-flex items-center gap-2 px-5 py-3 rounded-xl text-xs sm:text-sm font-bold border transition ${
-                    darkMode
-                      ? 'bg-[#171F2C] border-[#D4AF37]/40 text-[#D4AF37] hover:bg-[#1C2636]'
-                      : 'bg-[#F3EDE2] border-[#B48327]/40 text-[#7C2D12] hover:bg-[#EAE1D3]'
-                  }`}
-                >
-                  <Flame className="w-4 h-4" />
-                  {uiLang === 'fr'
-                    ? 'Autel de Prière'
-                    : 'Prayer Altar'}
-                </button>
-
-                <a
-                  href="downloads/Spiritual_Intelligence_Complete_Transcriptions_EN_FR.docx"
-                  download="Spiritual_Intelligence_Complete_Transcriptions_EN_FR.docx"
-                  className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-xs sm:text-sm font-bold bg-[#7C2D12] text-amber-100 hover:bg-[#63220D] transition shadow-md"
-                >
-                  <Download className="w-4 h-4 text-amber-300" />
-                  {uiLang === 'fr'
-                    ? 'Télécharger Pack .DOCX (EN + FR)'
-                    : 'Download Master .DOCX Package'}
-                </a>
-              </div>
-            </div>
-
-            {/* Right Key Scripture & Quick Stats Card */}
-            <div className="lg:col-span-4">
-              <div
-                className={`rounded-2xl border p-5 sm:p-6 shadow-sm space-y-4 ${
-                  darkMode
-                    ? 'bg-[#171F2C]/90 border-[#263246]'
-                    : 'bg-[#F3EDE2]/95 border-[#B48327]/30'
-                }`}
-              >
-                <div className="flex items-center justify-between">
-                  <span className="text-[11px] font-bold uppercase tracking-widest text-[#7C2D12] dark:text-[#D4AF37]">
-                    ✦ {uiLang === 'fr' ? 'Parole d’Ancrage' : 'Foundational Mandate'}
-                  </span>
-                  <span className="font-mono-code text-[11px] font-bold text-[#B48327]">
-                    Job 38:12 • Psalm 5:3 • John 15:5
-                  </span>
-                </div>
-
-                <blockquote className="font-display italic text-lg sm:text-xl leading-relaxed border-l-3 border-[#B48327] pl-3.5">
-                  {uiLang === 'fr'
-                    ? '« Notre mission est de prier — prier comme des croyants dotés d’intelligence spirituelle ! Les paroles prophétiques ne font pas que révéler : elles créent. »'
-                    : '“Our assignment is to pray—pray like believers with spiritual intelligence! Prophetic words don’t only reveal; they create.”'}
-                </blockquote>
-
-                <div className="grid grid-cols-3 gap-2 pt-2 border-t border-[#B48327]/15 text-center">
-                  <div className="p-2 rounded-xl bg-[#B48327]/10">
-                    <div className="font-display font-bold text-xl text-[#B48327]">9</div>
-                    <div className="text-[10px] font-semibold uppercase tracking-wider">
-                      {uiLang === 'fr' ? 'Vidéos Transcrites' : 'Videos Transcribed'}
-                    </div>
-                  </div>
-                  <div className="p-2 rounded-xl bg-[#B48327]/10">
-                    <div className="font-display font-bold text-xl text-[#7C2D12] dark:text-[#D4AF37]">
-                      EN • FR
-                    </div>
-                    <div className="text-[10px] font-semibold uppercase tracking-wider">
-                      {uiLang === 'fr' ? '100% Bilingue' : '100% Bilingual'}
-                    </div>
-                  </div>
-                  <div className="p-2 rounded-xl bg-[#B48327]/10">
-                    <div className="font-display font-bold text-xl text-[#B48327]">18</div>
-                    <div className="text-[10px] font-semibold uppercase tracking-wider">
-                      {uiLang === 'fr' ? 'Titres de Playlists' : 'Playlist Titles'}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Main Content Container */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
-        {activeSection === 'compendium' && (
-          <MasterCompendiumView
-            uiLang={uiLang}
-            languageMode={languageMode}
-            onSelectLanguage={handleSelectLanguage}
-            darkMode={darkMode}
-            onOpenVideoInReader={handleOpenVideoInReader}
-            onNavigateTab={(tab) => {
-              setActiveSection(tab);
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
-          />
-        )}
-
+      {/* ---------- Main content: prayers straight away, no blocking hero ---------- */}
+      <main className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-3 sm:py-8">
         {activeSection === 'transcriptions' && (
           <TranscriptionsView
             uiLang={uiLang}
             languageMode={languageMode}
             setLanguageMode={(mode) => {
-              if (mode === 'en' || mode === 'fr') {
+              if (mode === 'en' || mode === 'fr' || mode === 'mg') {
                 handleSelectLanguage(mode);
               } else {
                 setLanguageMode(mode);
@@ -554,44 +362,49 @@ export function App() {
           />
         )}
 
+        {activeSection === 'compendium' && (
+          <MasterCompendiumView
+            uiLang={uiLang}
+            languageMode={languageMode}
+            onSelectLanguage={handleSelectLanguage}
+            darkMode={darkMode}
+            onOpenVideoInReader={handleOpenVideoInReader}
+            onNavigateTab={(tab) => handleNavigateTab(tab)}
+          />
+        )}
+
         {activeSection === 'downloads' && (
           <DocxDownloadsView uiLang={uiLang} darkMode={darkMode} />
         )}
       </main>
 
-      {/* Sanctuary Footer */}
+      {/* ---------- Sanctuary footer ---------- */}
       <footer
-        className={`border-t mt-16 ${
+        className={`border-t mt-10 ${
           darkMode
             ? 'bg-[#0B0F15] border-[#263246] text-[#A8A29E]'
             : 'bg-[#F3EDE2] border-[#B48327]/20 text-[#57534E]'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Col 1: Brand */}
-            <div className="space-y-2.5">
-              <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-lg bg-[#B48327] flex items-center justify-center text-white">
-                  <Sparkles className="w-4 h-4" />
+            <div className="space-y-2">
+              <div className="flex items-center gap-2">
+                <div className="w-7 h-7 rounded-lg bg-[#B48327] flex items-center justify-center text-white">
+                  <Sparkles className="w-3.5 h-3.5" />
                 </div>
-                <span className="font-display font-bold text-xl text-[#1C1917] dark:text-[#F5F2EB]">
-                  Spiritual Intelligence
-                </span>
+                <span className="font-display font-bold text-lg">Spiritual Intelligence</span>
               </div>
-              <p className="text-xs leading-relaxed">
-                {uiLang === 'fr'
-                  ? 'Un sanctuaire bilingue (Anglais & Français) dédié à la prière fervente, aux déclarations prophétiques, à la méditation de la Parole et à l’étude des transcriptions sacrées.'
-                  : 'A bilingual (English & French) devotional sanctuary dedicated to fervent prayer, prophetic declarations, Scripture meditation, and sacred video transcriptions.'}
-              </p>
+              <p className="text-xs leading-relaxed">{strings.footerBlurb}</p>
             </div>
 
             {/* Col 2: Source Videos */}
             <div className="space-y-2">
-              <h4 className="text-xs font-bold uppercase tracking-widest text-[#B48327]">
-                {uiLang === 'fr' ? '9 Sessions Vidéo Transcrites (YouTube)' : '9 Transcribed YouTube Sessions'}
+              <h4 className="text-[11px] font-bold uppercase tracking-widest text-[#B48327]">
+                {strings.footerVideos}
               </h4>
-              <ul className="space-y-1.5 text-xs">
+              <ul className="space-y-1 text-xs">
                 {ALL_VIDEOS_DATA.map((v) => (
                   <li key={v.id}>
                     <a
@@ -601,7 +414,7 @@ export function App() {
                       className="inline-flex items-center gap-1.5 hover:text-[#B48327] transition"
                     >
                       <ExternalLink className="w-3 h-3 shrink-0 text-[#B48327]" />
-                      <span className="truncate max-w-xs">
+                      <span className="truncate max-w-[16rem]">
                         Video {v.videoNumber}: {v.title_en} ({v.duration})
                       </span>
                     </a>
@@ -612,8 +425,8 @@ export function App() {
 
             {/* Col 3: Direct DOCX Downloads */}
             <div className="space-y-2">
-              <h4 className="text-xs font-bold uppercase tracking-widest text-[#B48327]">
-                {uiLang === 'fr' ? 'Téléchargements Directs (.DOCX)' : 'Direct .DOCX Downloads'}
+              <h4 className="text-[11px] font-bold uppercase tracking-widest text-[#B48327]">
+                {strings.footerDocs}
               </h4>
               <div className="flex flex-col gap-1.5 text-xs">
                 <a
@@ -622,7 +435,7 @@ export function App() {
                   className="inline-flex items-center gap-1.5 font-semibold text-[#7C2D12] dark:text-amber-300 hover:underline"
                 >
                   <Download className="w-3.5 h-3.5" />
-                  Spiritual_Intelligence_Complete_Transcriptions_EN_FR.docx
+                  Trilingual Master Edition (EN / FR / MG)
                 </a>
                 <a
                   href="downloads/Spiritual_Intelligence_Transcriptions_EN.docx"
@@ -630,7 +443,7 @@ export function App() {
                   className="inline-flex items-center gap-1.5 hover:text-[#B48327]"
                 >
                   <Download className="w-3.5 h-3.5" />
-                  Spiritual_Intelligence_Transcriptions_EN.docx (English)
+                  Spiritual_Intelligence_Transcriptions_EN.docx
                 </a>
                 <a
                   href="downloads/Spiritual_Intelligence_Transcriptions_FR.docx"
@@ -638,7 +451,15 @@ export function App() {
                   className="inline-flex items-center gap-1.5 hover:text-[#B48327]"
                 >
                   <Download className="w-3.5 h-3.5" />
-                  Spiritual_Intelligence_Transcriptions_FR.docx (Français)
+                  Spiritual_Intelligence_Transcriptions_FR.docx
+                </a>
+                <a
+                  href="downloads/Spiritual_Intelligence_Transcriptions_MG.docx"
+                  download
+                  className="inline-flex items-center gap-1.5 hover:text-[#B48327]"
+                >
+                  <Download className="w-3.5 h-3.5" />
+                  Spiritual_Intelligence_Transcriptions_MG.docx
                 </a>
                 <a
                   href="downloads/Spiritual_Intelligence_DOCX_Transcriptions_Package.zip"
@@ -652,13 +473,9 @@ export function App() {
             </div>
           </div>
 
-          <div className="pt-6 border-t border-[#B48327]/15 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
-            <p>
-              ✦ Spiritual Intelligence • Bilingual English & French Prayers, Devotionals & Transcriptions
-            </p>
-            <p className="font-mono-code text-[11px]">
-              github.com/tianabizna-ctrl/Spiritual-Intelligence
-            </p>
+          <div className="pt-4 border-t border-[#B48327]/15 flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px]">
+            <p>✦ {strings.footerRights}</p>
+            <p className="font-mono-code">github.com/tianabizna-ctrl/Spiritual-Intelligence</p>
           </div>
         </div>
       </footer>

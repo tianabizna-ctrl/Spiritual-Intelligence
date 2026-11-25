@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import {
   BookMarked,
-  Sparkles,
-  Search,
-  PenTool,
-  Plus,
-  Trash2,
-  Copy,
-  Check,
-  Bookmark,
   Compass,
+  Feather,
+  Search,
+  Sparkles,
+  Trash2,
+  PlusCircle,
+  Check,
+  Copy,
+  BookmarkCheck,
+  X,
 } from 'lucide-react';
 import {
   DEVOTIONAL_GUIDES,
@@ -17,6 +18,7 @@ import {
   LanguageMode,
   UILang,
 } from '../data/spiritualData';
+import { DEVOTIONAL_MG_MAP, SCRIPTURE_MG_MAP } from '../data/malagasyData';
 
 export interface SavedBookmarkItem {
   id: string;
@@ -43,16 +45,17 @@ interface DevotionalsScriptureViewProps {
 
 export const DevotionalsScriptureView: React.FC<DevotionalsScriptureViewProps> = ({
   uiLang,
-  languageMode,
   darkMode,
   savedBookmarks,
   onRemoveBookmark,
 }) => {
-  const [activeDevotionalId, setActiveDevotionalId] = useState<string>(DEVOTIONAL_GUIDES[0].id);
+  const [activeDevotionalId, setActiveDevotionalId] = useState<string>(
+    DEVOTIONAL_GUIDES[0].id
+  );
   const [scriptureSearch, setScriptureSearch] = useState<string>('');
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
-  // Personal Devotional & Prayer Journal persisted in localStorage
+  // Personal Prayer & Devotional Journal persisted in localStorage
   const [journalNotes, setJournalNotes] = useState<JournalNote[]>(() => {
     try {
       const raw = localStorage.getItem('si_prayer_journal');
@@ -64,9 +67,9 @@ export const DevotionalsScriptureView: React.FC<DevotionalsScriptureViewProps> =
       {
         id: 'sample-note-1',
         date: '2026-11-24',
-        title: 'Morning Watch Vision & Prayer Focus / Vision de la Veille du Matin',
+        title: 'Morning Watch Vision & Prayer Focus / Fanoloran-tena Maraina',
         content:
-          'EN: "Every morning the day comes waiting for instructions" (Job 38:12-13). Today I direct my prayer like an arrow (Psalm 5:3) and abide closely in the True Vine (John 15:5).\nFR : « Chaque matin, le jour attend des instructions » (Job 38:12-13). Aujourd’hui, je dirige ma prière comme une flèche et je demeure attaché au Cep véritable.',
+          'EN: "Every morning the day comes waiting for instructions" (Job 38:12-13).\nFR : « Chaque matin, le jour attend des instructions » (Job 38:12-13).\nMG : « Isa-maraina dia miposaka miandry baiko ny andro » (Joba 38:12-13).',
       },
     ];
   });
@@ -81,7 +84,11 @@ export const DevotionalsScriptureView: React.FC<DevotionalsScriptureViewProps> =
       date: new Date().toISOString().slice(0, 10),
       title:
         noteTitle.trim() ||
-        (uiLang === 'fr' ? 'Réflexion & Sujet de Prière' : 'Devotional Reflection & Prayer Point'),
+        (uiLang === 'mg'
+          ? 'Fandinihan-tena & Vavaka'
+          : uiLang === 'fr'
+          ? 'Réflexion & Sujet de Prière'
+          : 'Devotional Reflection & Prayer Point'),
       content: noteContent.trim(),
     };
     const updated = [newNote, ...journalNotes];
@@ -114,21 +121,69 @@ export const DevotionalsScriptureView: React.FC<DevotionalsScriptureViewProps> =
   const activeDevotional =
     DEVOTIONAL_GUIDES.find((d) => d.id === activeDevotionalId) || DEVOTIONAL_GUIDES[0];
 
+  const activeDevMg = DEVOTIONAL_MG_MAP[activeDevotional.id];
+
+  const devContent = {
+    dayLabel:
+      uiLang === 'mg'
+        ? activeDevMg?.dayLabel_mg || activeDevotional.dayLabel_en
+        : uiLang === 'fr'
+        ? activeDevotional.dayLabel_fr
+        : activeDevotional.dayLabel_en,
+    title:
+      uiLang === 'mg'
+        ? activeDevMg?.title_mg || activeDevotional.title_en
+        : uiLang === 'fr'
+        ? activeDevotional.title_fr
+        : activeDevotional.title_en,
+    subtitle:
+      uiLang === 'mg'
+        ? activeDevMg?.subtitle_mg || activeDevotional.subtitle_en
+        : uiLang === 'fr'
+        ? activeDevotional.subtitle_fr
+        : activeDevotional.subtitle_en,
+    anchorVerse:
+      uiLang === 'mg'
+        ? activeDevMg?.anchorVerse_mg || activeDevotional.anchorVerse_en
+        : uiLang === 'fr'
+        ? activeDevotional.anchorVerse_fr
+        : activeDevotional.anchorVerse_en,
+    meditation:
+      uiLang === 'mg'
+        ? activeDevMg?.meditation_mg || activeDevotional.meditation_en
+        : uiLang === 'fr'
+        ? activeDevotional.meditation_fr
+        : activeDevotional.meditation_en,
+    prompts:
+      uiLang === 'mg'
+        ? activeDevMg?.reflectionPrompts_mg || activeDevotional.reflectionPrompts_en
+        : uiLang === 'fr'
+        ? activeDevotional.reflectionPrompts_fr
+        : activeDevotional.reflectionPrompts_en,
+    closingPrayer:
+      uiLang === 'mg'
+        ? activeDevMg?.closingPrayer_mg || activeDevotional.closingPrayer_en
+        : uiLang === 'fr'
+        ? activeDevotional.closingPrayer_fr
+        : activeDevotional.closingPrayer_en,
+  };
+
   const filteredScriptures = SCRIPTURE_TREASURY.filter((sc) => {
     if (!scriptureSearch.trim()) return true;
     const q = scriptureSearch.toLowerCase();
+    const mg = SCRIPTURE_MG_MAP[sc.id];
     return (
       sc.reference_en.toLowerCase().includes(q) ||
       sc.reference_fr.toLowerCase().includes(q) ||
+      (mg?.reference_mg || '').toLowerCase().includes(q) ||
       sc.theme_en.toLowerCase().includes(q) ||
       sc.theme_fr.toLowerCase().includes(q) ||
+      (mg?.theme_mg || '').toLowerCase().includes(q) ||
       sc.kjv_en.toLowerCase().includes(q) ||
-      sc.lsg_fr.toLowerCase().includes(q)
+      sc.lsg_fr.toLowerCase().includes(q) ||
+      (mg?.mg_text || '').toLowerCase().includes(q)
     );
   });
-
-  const showEn = languageMode === 'both' || languageMode === 'en';
-  const showFr = languageMode === 'both' || languageMode === 'fr';
 
   const cardSurface = darkMode
     ? 'bg-[#171F2C] border-[#263246] text-[#F5F2EB]'
@@ -141,320 +196,316 @@ export const DevotionalsScriptureView: React.FC<DevotionalsScriptureViewProps> =
   const subText = darkMode ? 'text-[#A8A29E]' : 'text-[#57534E]';
 
   return (
-    <div className="space-y-12">
-      {/* SECTION 1: 3 Deep Devotional Study Guides */}
-      <section className="space-y-6">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+    <div className="space-y-8">
+      {/* PART 1: DEVOTIONAL STUDY GUIDES */}
+      <section className="space-y-4">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
           <div>
             <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.14em] text-[#B48327]">
               <Compass className="w-3.5 h-3.5" />
-              {uiLang === 'fr'
-                ? 'Méditations & Guides Dévotionnels Bilingues (EN / FR)'
-                : 'Bilingual Devotional Study Guides (EN / FR)'}
+              {uiLang === 'mg'
+                ? 'Torolalana Fandinihan-tena sy Fampianarana (MG)'
+                : uiLang === 'fr'
+                ? 'Guides d’Étude Dévotionnelle (FR)'
+                : 'Devotional Study Guides (EN)'}
             </span>
-            <h2 className="font-display text-2xl sm:text-4xl font-bold mt-1">
-              {uiLang === 'fr'
-                ? 'Trois Parcours de Méditation Inspirés des Transcriptions'
-                : 'Three Devotional Pathways Drawn from the Video Transcriptions'}
+            <h2 className="font-display text-xl sm:text-3xl font-bold mt-0.5">
+              {uiLang === 'mg'
+                ? 'Fampianarana sy Fandinihan-tena Lalina'
+                : uiLang === 'fr'
+                ? 'Méditations Théologiques & Pratiques'
+                : 'Deep Devotional Meditations & Reflections'}
             </h2>
           </div>
 
-          {/* Devotional Selector Tabs */}
-          <div className="flex flex-wrap gap-2">
-            {DEVOTIONAL_GUIDES.map((dev, idx) => (
-              <button
-                key={dev.id}
-                type="button"
-                onClick={() => setActiveDevotionalId(dev.id)}
-                className={`px-4 py-2 rounded-xl text-xs font-bold transition border ${
-                  activeDevotionalId === dev.id
-                    ? 'bg-[#B48327] text-white border-[#B48327] shadow-sm'
-                    : darkMode
-                    ? 'bg-[#171F2C] border-[#263246] text-[#A8A29E] hover:border-[#D4AF37]'
-                    : 'bg-[#F3EDE2] border-[#B48327]/25 text-[#57534E] hover:bg-[#EAE1D3]'
-                }`}
-              >
-                {uiLang === 'fr' ? `Méditation ${idx + 1}` : `Devotional ${idx + 1}`}
-              </button>
-            ))}
+          {/* 3 Devotional Selector Pills */}
+          <div className="flex flex-wrap items-center gap-2">
+            {DEVOTIONAL_GUIDES.map((dev, idx) => {
+              const isSelected = dev.id === activeDevotionalId;
+              return (
+                <button
+                  key={dev.id}
+                  type="button"
+                  onClick={() => setActiveDevotionalId(dev.id)}
+                  className={`px-3.5 py-2 rounded-xl text-xs font-bold border transition ${
+                    isSelected
+                      ? 'bg-[#B48327] text-white border-[#B48327] shadow-sm'
+                      : darkMode
+                      ? 'bg-[#171F2C] border-[#263246] text-[#A8A29E] hover:text-white'
+                      : 'bg-[#F3EDE2] border-[#B48327]/25 text-[#57534E] hover:text-[#1C1917]'
+                  }`}
+                >
+                  {uiLang === 'mg'
+                    ? `Torolalana ${idx + 1}`
+                    : uiLang === 'fr'
+                    ? `Guide ${idx + 1}`
+                    : `Guide ${idx + 1}`}{' '}
+                  • {dev.anchorScripture.split('•')[0].trim()}
+                </button>
+              );
+            })}
           </div>
         </div>
 
-        {/* Active Devotional Reading Sanctuary */}
-        <div className={`rounded-3xl border p-6 sm:p-10 ${mainSurface} shadow-sm space-y-8`}>
-          {/* Header */}
-          <div className="border-b border-[#B48327]/20 pb-6 space-y-2">
-            <div className="flex flex-wrap items-center gap-2.5">
+        {/* Active Devotional Study Card in Chosen Language (EN, FR, or MG) */}
+        <article className={`rounded-2xl border p-5 sm:p-8 ${mainSurface} shadow-sm space-y-6`}>
+          <div className="space-y-2 pb-5 border-b border-[#B48327]/20">
+            <div className="flex flex-wrap items-center gap-2">
               <span className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#7C2D12] text-amber-100">
-                {uiLang === 'fr' ? activeDevotional.dayLabel_fr : activeDevotional.dayLabel_en}
+                {devContent.dayLabel}
               </span>
               <span className="font-mono-code text-xs px-2.5 py-1 rounded bg-[#B48327]/15 text-[#B48327] font-bold">
                 {activeDevotional.anchorScripture}
               </span>
             </div>
 
-            {showEn && (
-              <h3 className="font-display text-2xl sm:text-4xl font-bold pt-1">
-                {activeDevotional.title_en}
-              </h3>
-            )}
-            {showFr && (
-              <p
-                className={`font-display ${
-                  showEn
-                    ? 'italic text-xl sm:text-2xl text-[#B48327]'
-                    : 'text-2xl sm:text-4xl font-bold pt-1'
-                }`}
-              >
-                {activeDevotional.title_fr}
-              </p>
-            )}
-            <p className={`text-sm ${subText}`}>
-              {uiLang === 'fr' ? activeDevotional.subtitle_fr : activeDevotional.subtitle_en}
-            </p>
+            <h3 className="font-display text-2xl sm:text-3xl font-bold pt-1">
+              {devContent.title}
+            </h3>
+            <p className={`text-sm sm:text-base ${subText}`}>{devContent.subtitle}</p>
           </div>
 
-          {/* Anchor Scripture Banner */}
-          <div
-            className={`p-5 rounded-2xl border-l-4 border-[#B48327] ${
-              darkMode ? 'bg-[#171F2C]' : 'bg-[#F3EDE2]'
-            } grid grid-cols-1 ${showEn && showFr ? 'lg:grid-cols-2' : ''} gap-6`}
+          {/* Anchor Verse Blockquote */}
+          <blockquote
+            className={`p-4 sm:p-5 rounded-xl border-l-4 border-[#B48327] font-display italic text-base sm:text-lg leading-relaxed ${
+              darkMode ? 'bg-[#171F2C]' : 'bg-[#F3EDE2]/90'
+            }`}
           >
-            {showEn && (
-              <div>
-                <span className="text-[11px] font-bold uppercase tracking-widest text-[#B48327] block mb-1">
-                  Anchor Scripture (KJV) — {activeDevotional.anchorScripture}
-                </span>
-                <p className="font-display italic text-lg sm:text-xl leading-relaxed">
-                  “{activeDevotional.anchorVerse_en}”
-                </p>
-              </div>
-            )}
-            {showFr && (
-              <div>
-                <span className="text-[11px] font-bold uppercase tracking-widest text-[#7C2D12] dark:text-[#D4AF37] block mb-1">
-                  Verset d’Ancrage (Louis Segond) — {activeDevotional.anchorScripture}
-                </span>
-                <p className="font-display italic text-lg sm:text-xl leading-relaxed">
-                  « {activeDevotional.anchorVerse_fr} »
-                </p>
-              </div>
-            )}
-          </div>
+            {devContent.anchorVerse}
+          </blockquote>
 
-          {/* Devotional Meditation Body (EN & FR) */}
-          <div className={`grid grid-cols-1 ${showEn && showFr ? 'lg:grid-cols-2' : ''} gap-8`}>
-            {showEn && (
-              <div className="space-y-4">
-                <h4 className="text-xs font-bold uppercase tracking-widest text-[#B48327]">
-                  Devotional Meditation (English)
-                </h4>
-                {activeDevotional.meditation_en.map((para, idx) => (
-                  <p key={idx} className="font-reading text-[17px] leading-[1.8]">
-                    {para}
-                  </p>
-                ))}
-
-                <div
-                  className={`p-5 rounded-2xl border ${
-                    darkMode ? 'bg-[#171F2C] border-[#263246]' : 'bg-[#F3EDE2]/80 border-[#B48327]/25'
-                  } space-y-2.5 mt-4`}
-                >
-                  <h5 className="font-display font-bold text-lg text-[#7C2D12] dark:text-[#D4AF37]">
-                    ✦ Questions for Heart Reflection (EN)
-                  </h5>
-                  <ul className="space-y-2 text-sm font-reading list-disc pl-5">
-                    {activeDevotional.reflectionPrompts_en.map((q, idx) => (
-                      <li key={idx}>{q}</li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="p-4 rounded-xl bg-[#B48327]/15 border border-[#B48327]/35">
-                  <span className="text-xs font-bold uppercase tracking-wider text-[#B48327] block mb-1">
-                    Consecration Prayer (EN)
-                  </span>
-                  <p className="font-display italic text-lg leading-relaxed">
-                    “{activeDevotional.closingPrayer_en}”
-                  </p>
-                </div>
-              </div>
-            )}
-
-            {showFr && (
-              <div
-                className={`space-y-4 ${
-                  showEn && showFr ? 'lg:border-l lg:border-[#B48327]/20 lg:pl-8' : ''
-                }`}
+          {/* Meditation Paragraphs */}
+          <div className="space-y-4">
+            <h4 className="text-xs font-bold uppercase tracking-widest text-[#B48327]">
+              {uiLang === 'mg'
+                ? 'Fandinihana sy Fampianarana'
+                : uiLang === 'fr'
+                ? 'Méditation & Enseignement'
+                : 'Devotional Meditation'}
+            </h4>
+            {devContent.meditation.map((para, idx) => (
+              <p
+                key={idx}
+                className="font-reading text-base sm:text-[17px] leading-[1.8]"
               >
-                <h4 className="text-xs font-bold uppercase tracking-widest text-[#7C2D12] dark:text-[#D4AF37]">
-                  Méditation Dévotionnelle (Français)
-                </h4>
-                {activeDevotional.meditation_fr.map((para, idx) => (
-                  <p key={idx} className="font-reading text-[17px] leading-[1.8]">
-                    {para}
-                  </p>
-                ))}
-
-                <div
-                  className={`p-5 rounded-2xl border ${
-                    darkMode ? 'bg-[#171F2C] border-[#263246]' : 'bg-[#F3EDE2]/80 border-[#B48327]/25'
-                  } space-y-2.5 mt-4`}
-                >
-                  <h5 className="font-display font-bold text-lg text-[#7C2D12] dark:text-[#D4AF37]">
-                    ✦ Questions d’Examen Spirituel (FR)
-                  </h5>
-                  <ul className="space-y-2 text-sm font-reading list-disc pl-5">
-                    {activeDevotional.reflectionPrompts_fr.map((q, idx) => (
-                      <li key={idx}>{q}</li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="p-4 rounded-xl bg-[#7C2D12]/10 border border-[#7C2D12]/35">
-                  <span className="text-xs font-bold uppercase tracking-wider text-[#7C2D12] dark:text-[#D4AF37] block mb-1">
-                    Prière de Consécration (FR)
-                  </span>
-                  <p className="font-display italic text-lg leading-relaxed">
-                    « {activeDevotional.closingPrayer_fr} »
-                  </p>
-                </div>
-              </div>
-            )}
+                {para}
+              </p>
+            ))}
           </div>
-        </div>
+
+          {/* Reflection Prompts & Closing Prayer */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 pt-2">
+            <div className={`p-4 sm:p-5 rounded-xl border ${cardSurface} space-y-2.5`}>
+              <span className="text-xs font-bold uppercase tracking-wider text-[#B48327] block">
+                ✦{' '}
+                {uiLang === 'mg'
+                  ? 'Fanontaniana Fandinihan-tena'
+                  : uiLang === 'fr'
+                  ? 'Questions de Réflexion Personnelle'
+                  : 'Personal Reflection Prompts'}
+              </span>
+              <ul className="space-y-2 text-sm leading-relaxed list-disc list-inside">
+                {devContent.prompts.map((pr, idx) => (
+                  <li key={idx}>{pr}</li>
+                ))}
+              </ul>
+            </div>
+
+            <div className={`p-4 sm:p-5 rounded-xl border-l-4 border-[#7C2D12] ${cardSurface} space-y-2`}>
+              <span className="text-xs font-bold uppercase tracking-wider text-[#7C2D12] dark:text-[#D4AF37] block">
+                ✦{' '}
+                {uiLang === 'mg'
+                  ? 'Vavaka Famaranana'
+                  : uiLang === 'fr'
+                  ? 'Prière de Consécration'
+                  : 'Closing Consecration Prayer'}
+              </span>
+              <p className="font-display italic font-semibold text-base sm:text-lg leading-relaxed">
+                “{devContent.closingPrayer}”
+              </p>
+            </div>
+          </div>
+        </article>
       </section>
 
-      {/* SECTION 2: Bilingual Scripture Treasury (Bible Concordance of the 3 Videos) */}
-      <section className="space-y-6">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+      {/* PART 2: SCRIPTURE TREASURY CONCORDANCE (KJV / LSG 1910 / BAIBOLY MALAGASY) */}
+      <section className="space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
             <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.14em] text-[#B48327]">
               <BookMarked className="w-3.5 h-3.5" />
-              {uiLang === 'fr'
-                ? 'Trésor des Écritures & Concordance de Prière (KJV & Louis Segond)'
-                : 'Bilingual Scripture Treasury & Prayer Concordance (KJV & Louis Segond)'}
+              {uiLang === 'mg'
+                ? 'Tahirin-tsoratra Masina — Baiboly Malagasy (15 Andininy Fototra)'
+                : uiLang === 'fr'
+                ? 'Trésor Biblique — Louis Segond 1910 (15 Textes Clés)'
+                : 'Scripture Treasury — King James Version (15 Anchor Passages)'}
             </span>
-            <h2 className="font-display text-2xl sm:text-3xl font-bold mt-1">
-              {uiLang === 'fr'
-                ? 'Versets Bibliques Fondamentaux des 3 Vidéos'
-                : 'Foundational Scriptures from the 3 Video Transcriptions'}
-            </h2>
+            <h3 className="font-display text-xl sm:text-2xl font-bold mt-0.5">
+              {uiLang === 'mg'
+                ? ' ireo Soratra Masina Fototra amin’ny Vavaka'
+                : uiLang === 'fr'
+                ? 'Concordance des Écritures Prophétiques'
+                : 'Prophetic Scripture Concordance'}
+            </h3>
           </div>
 
-          <div className="relative w-full md:w-72">
+          <div className="relative w-full sm:w-64">
             <Search className="w-3.5 h-3.5 text-[#B48327] absolute left-3 top-1/2 -translate-y-1/2" />
             <input
               type="text"
               value={scriptureSearch}
               onChange={(e) => setScriptureSearch(e.target.value)}
               placeholder={
-                uiLang === 'fr'
-                  ? 'Filtrer par verset ou thème...'
-                  : 'Filter by verse or theme...'
+                uiLang === 'mg'
+                  ? 'Hikaroka andininy...'
+                  : uiLang === 'fr'
+                  ? 'Rechercher un verset...'
+                  : 'Search Scripture...'
               }
-              className={`w-full pl-8 pr-4 py-2 rounded-xl text-xs border outline-none ${
+              className={`w-full pl-8 pr-7 py-1.5 rounded-xl text-xs border outline-none transition ${
                 darkMode
-                  ? 'bg-[#171F2C] border-[#263246] text-[#F5F2EB]'
-                  : 'bg-[#F3EDE2] border-[#B48327]/30 text-[#1C1917]'
+                  ? 'bg-[#0F141C] border-[#263246] text-[#F5F2EB] focus:border-[#D4AF37]'
+                  : 'bg-[#FBF8F3] border-[#B48327]/30 text-[#1C1917] focus:border-[#B48327]'
               }`}
             />
+            {scriptureSearch && (
+              <button
+                type="button"
+                onClick={() => setScriptureSearch('')}
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#57534E]"
+              >
+                <X className="w-3.5 h-3.5" />
+              </button>
+            )}
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {filteredScriptures.map((sc) => (
-            <div
-              key={sc.id}
-              className={`rounded-2xl border p-5 ${cardSurface} flex flex-col justify-between space-y-4 shadow-sm`}
-            >
-              <div className="space-y-3">
-                <div className="flex items-start justify-between gap-2">
-                  <div>
-                    <span className="font-mono-code text-xs font-bold px-2.5 py-0.5 rounded bg-[#7C2D12] text-amber-100">
-                      {uiLang === 'fr' ? sc.reference_fr : sc.reference_en}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {filteredScriptures.map((sc) => {
+            const mgSc = SCRIPTURE_MG_MAP[sc.id];
+            const ref =
+              uiLang === 'mg'
+                ? mgSc?.reference_mg || sc.reference_en
+                : uiLang === 'fr'
+                ? sc.reference_fr
+                : sc.reference_en;
+            const theme =
+              uiLang === 'mg'
+                ? mgSc?.theme_mg || sc.theme_en
+                : uiLang === 'fr'
+                ? sc.theme_fr
+                : sc.theme_en;
+            const verseText =
+              uiLang === 'mg'
+                ? mgSc?.mg_text || sc.kjv_en
+                : uiLang === 'fr'
+                ? sc.lsg_fr
+                : sc.kjv_en;
+            const appText =
+              uiLang === 'mg'
+                ? mgSc?.application_mg || sc.application_en
+                : uiLang === 'fr'
+                ? sc.application_fr
+                : sc.application_en;
+
+            return (
+              <div
+                key={sc.id}
+                className={`rounded-2xl border p-5 ${cardSurface} flex flex-col justify-between space-y-3`}
+              >
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="font-mono-code text-xs font-bold px-2.5 py-0.5 rounded bg-[#B48327] text-white">
+                      {ref}
                     </span>
-                    <h4 className="font-display font-bold text-xl mt-1.5">
-                      {uiLang === 'fr' ? sc.theme_fr : sc.theme_en}
-                    </h4>
+                    <button
+                      type="button"
+                      onClick={() => handleCopy(sc.id, `${ref} — ${theme}\n${verseText}`)}
+                      className={`text-xs inline-flex items-center gap-1 ${subText} hover:text-[#B48327]`}
+                    >
+                      {copiedId === sc.id ? (
+                        <Check className="w-3.5 h-3.5 text-emerald-500" />
+                      ) : (
+                        <Copy className="w-3.5 h-3.5" />
+                      )}
+                    </button>
                   </div>
-                  <button
-                    type="button"
-                    onClick={() =>
-                      handleCopy(
-                        sc.id,
-                        `${sc.reference_en}: "${sc.kjv_en}"\n${sc.reference_fr} : « ${sc.lsg_fr} »`
-                      )
-                    }
-                    className="p-1.5 rounded-lg border border-[#B48327]/25 hover:bg-[#B48327]/15"
-                    title="Copy Bilingual Verse"
+                  <h4 className="font-display font-bold text-lg text-[#B48327]">{theme}</h4>
+                  <blockquote
+                    className={`p-3.5 rounded-xl border-l-3 border-[#B48327] font-reading italic text-sm sm:text-base leading-relaxed ${
+                      darkMode ? 'bg-[#121822]' : 'bg-[#FBF8F3]'
+                    }`}
                   >
-                    {copiedId === sc.id ? (
-                      <Check className="w-3.5 h-3.5 text-emerald-600" />
-                    ) : (
-                      <Copy className="w-3.5 h-3.5 text-[#B48327]" />
-                    )}
-                  </button>
+                    {verseText}
+                  </blockquote>
                 </div>
 
-                {showEn && (
-                  <div className="space-y-1">
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-[#B48327]">
-                      English (KJV)
-                    </span>
-                    <p className="font-display italic text-base leading-relaxed">
-                      “{sc.kjv_en}”
-                    </p>
-                  </div>
-                )}
-
-                {showFr && (
-                  <div className="space-y-1 pt-1">
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-[#7C2D12] dark:text-[#D4AF37]">
-                      Français (Louis Segond 1910)
-                    </span>
-                    <p className="font-display italic text-base leading-relaxed">
-                      « {sc.lsg_fr} »
-                    </p>
-                  </div>
-                )}
-              </div>
-
-              <div className="pt-3 border-t border-[#B48327]/15">
-                <p className={`text-xs ${subText} leading-relaxed`}>
+                <p className={`text-xs ${subText} pt-2 border-t border-[#B48327]/15`}>
                   <strong className="text-[#B48327]">
-                    {uiLang === 'fr' ? 'Application : ' : 'Prayer Focus: '}
+                    {uiLang === 'mg'
+                      ? 'Fampiharana : '
+                      : uiLang === 'fr'
+                      ? 'Application : '
+                      : 'Application: '}
                   </strong>
-                  {uiLang === 'fr' ? sc.application_fr : sc.application_en}
+                  {appText}
                 </p>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
 
-      {/* SECTION 3: Personal Prayer Journal & Saved Declarations */}
-      <section className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-        {/* Left: Personal Prayer & Vision Journal */}
-        <div className={`lg:col-span-7 rounded-2xl border p-6 ${cardSurface} space-y-5`}>
-          <div>
-            <span className="text-xs font-bold uppercase tracking-widest text-[#B48327] flex items-center gap-1.5">
-              <PenTool className="w-3.5 h-3.5" />
-              {uiLang === 'fr'
-                ? 'Journal Personnel de Prière & d’Inspiration'
-                : 'Personal Prayer & Prophetic Idea Journal'}
-            </span>
-            <h3 className="font-display text-2xl font-bold mt-1">
-              {uiLang === 'fr'
-                ? 'Notez vos Sujets de Prière, Idées Reçues & Témoignages'
-                : 'Write Down Your Prayer Points, Inspired Ideas & Testimonies'}
+      {/* PART 3: PERSONAL PRAYER JOURNAL & SAVED BOOKMARKS */}
+      <section className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        {/* Saved Bookmarks */}
+        <div className={`lg:col-span-5 rounded-2xl border p-5 ${mainSurface} space-y-4`}>
+          <div className="flex items-center justify-between">
+            <h3 className="font-display text-xl font-bold flex items-center gap-2">
+              <BookmarkCheck className="w-5 h-5 text-[#B48327]" />
+              {uiLang === 'mg'
+                ? `Fanambarana Voatahiry (${savedBookmarks.length})`
+                : uiLang === 'fr'
+                ? `Déclarations Sauvegardées (${savedBookmarks.length})`
+                : `Saved Declarations (${savedBookmarks.length})`}
             </h3>
-            <p className={`text-xs ${subText} mt-0.5`}>
-              {uiLang === 'fr'
-                ? '« Pendant que nous priions, une idée est descendue. Ne la laissez pas partir. Écrivez-la après cette prière : cette idée est une porte ! » (Vidéo 1)'
-                : '“While we were praying an idea dropped. Don’t let it go. Write it down after this prayer. That idea is a door!” (Video 1)'}
-            </p>
           </div>
+
+          <div className="space-y-3 max-h-96 overflow-y-auto pr-1">
+            {savedBookmarks.map((bm) => (
+              <div key={bm.id} className={`p-3.5 rounded-xl border ${cardSurface} space-y-1.5`}>
+                <div className="flex items-start justify-between gap-2">
+                  <div>
+                    <h4 className="font-display font-bold text-sm sm:text-base">{bm.title}</h4>
+                    <span className="font-mono-code text-[11px] text-[#B48327]">{bm.ref}</span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => onRemoveBookmark(bm.id)}
+                    className="text-rose-500 hover:text-rose-600 p-1"
+                    title="Remove Bookmark"
+                  >
+                    <Trash2 className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+                <p className="text-xs italic leading-relaxed">
+                  {uiLang === 'fr' ? bm.textFr : bm.textEn}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Personal Prayer Journal */}
+        <div className={`lg:col-span-7 rounded-2xl border p-5 ${mainSurface} space-y-4`}>
+          <h3 className="font-display text-xl font-bold flex items-center gap-2">
+            <Feather className="w-5 h-5 text-[#B48327]" />
+            {uiLang === 'mg'
+              ? 'Diary Fivavahana sy Fandinihan-tena Manokana'
+              : uiLang === 'fr'
+              ? 'Journal Personnel de Prière & Méditation'
+              : 'Personal Prayer & Devotional Journal'}
+          </h3>
 
           <form onSubmit={handleAddNote} className="space-y-3">
             <input
@@ -462,9 +513,11 @@ export const DevotionalsScriptureView: React.FC<DevotionalsScriptureViewProps> =
               value={noteTitle}
               onChange={(e) => setNoteTitle(e.target.value)}
               placeholder={
-                uiLang === 'fr'
-                  ? 'Titre (ex. : Intention de prière, idée reçue, témoignage)...'
-                  : 'Title (e.g., Morning prayer focus, inspired idea, testimony)...'
+                uiLang === 'mg'
+                  ? 'Lohatenin’ny vavaka na fahitana...'
+                  : uiLang === 'fr'
+                  ? 'Titre de votre sujet de prière...'
+                  : 'Prayer topic or prophetic note title...'
               }
               className={`w-full px-3.5 py-2 rounded-xl text-xs border outline-none ${
                 darkMode
@@ -477,11 +530,13 @@ export const DevotionalsScriptureView: React.FC<DevotionalsScriptureViewProps> =
               value={noteContent}
               onChange={(e) => setNoteContent(e.target.value)}
               placeholder={
-                uiLang === 'fr'
-                  ? 'Écrivez votre prière personnelle, votre déclaration ou votre méditation ici...'
-                  : 'Write your personal prayer, prophetic declaration, or devotional reflection here...'
+                uiLang === 'mg'
+                  ? 'Soraty eto ny vavakao, ny teny fikasana na ny fijoroana vavolombelona...'
+                  : uiLang === 'fr'
+                  ? 'Écrivez votre prière, révélation ou témoignage...'
+                  : 'Write your prayer, revelation, or testimony...'
               }
-              className={`w-full px-3.5 py-2.5 rounded-xl text-xs border outline-none ${
+              className={`w-full px-3.5 py-2 rounded-xl text-xs border outline-none ${
                 darkMode
                   ? 'bg-[#0F141C] border-[#263246] text-[#F5F2EB]'
                   : 'bg-[#FBF8F3] border-[#B48327]/30 text-[#1C1917]'
@@ -489,107 +544,37 @@ export const DevotionalsScriptureView: React.FC<DevotionalsScriptureViewProps> =
             />
             <button
               type="submit"
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold bg-[#B48327] text-white hover:bg-[#9A6E1E] transition shadow-sm"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold bg-[#B48327] text-white hover:bg-[#9A6E1E] transition"
             >
-              <Plus className="w-3.5 h-3.5" />
-              {uiLang === 'fr' ? 'Ajouter au Journal de Prière' : 'Save to Prayer Journal'}
+              <PlusCircle className="w-3.5 h-3.5" />
+              {uiLang === 'mg'
+                ? 'Tehirizo ao amin’ny Diary'
+                : uiLang === 'fr'
+                ? 'Enregistrer dans le Journal'
+                : 'Save to Prayer Journal'}
             </button>
           </form>
 
-          <div className="space-y-3 pt-2">
-            {journalNotes.map((note) => (
-              <div
-                key={note.id}
-                className={`p-4 rounded-xl border ${
-                  darkMode ? 'bg-[#0F141C] border-[#263246]' : 'bg-[#FBF8F3] border-[#B48327]/20'
-                } space-y-1.5`}
-              >
+          <div className="space-y-2.5 max-h-60 overflow-y-auto pr-1 pt-2">
+            {journalNotes.map((n) => (
+              <div key={n.id} className={`p-3.5 rounded-xl border ${cardSurface} space-y-1`}>
                 <div className="flex items-center justify-between">
+                  <strong className="text-xs sm:text-sm text-[#B48327]">{n.title}</strong>
                   <div className="flex items-center gap-2">
-                    <span className="font-mono-code text-[11px] text-[#B48327] font-semibold">
-                      {note.date}
-                    </span>
-                    <h4 className="font-display font-bold text-base">{note.title}</h4>
-                  </div>
-                  <button
-                    type="button"
-                    onClick={() => handleDeleteNote(note.id)}
-                    className="text-xs text-[#57534E] hover:text-red-600 p-1"
-                    title="Delete Note"
-                  >
-                    <Trash2 className="w-3.5 h-3.5" />
-                  </button>
-                </div>
-                <p className="font-reading text-xs whitespace-pre-line leading-relaxed">
-                  {note.content}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Right: Saved / Bookmarked Declarations */}
-        <div className={`lg:col-span-5 rounded-2xl border p-6 ${cardSurface} space-y-4`}>
-          <div>
-            <span className="text-xs font-bold uppercase tracking-widest text-[#7C2D12] dark:text-[#D4AF37] flex items-center gap-1.5">
-              <Bookmark className="w-3.5 h-3.5" />
-              {uiLang === 'fr' ? 'Déclarations Sauvegardées' : 'Saved Sanctuary Declarations'}
-            </span>
-            <h3 className="font-display text-2xl font-bold mt-1">
-              {uiLang === 'fr'
-                ? `Vos Décrets Favoris (${savedBookmarks.length})`
-                : `Your Bookmarked Decrees (${savedBookmarks.length})`}
-            </h3>
-          </div>
-
-          {savedBookmarks.length === 0 ? (
-            <div
-              className={`p-6 rounded-xl border border-dashed text-center ${
-                darkMode ? 'border-[#263246]' : 'border-[#B48327]/30'
-              }`}
-            >
-              <p className={`text-xs ${subText}`}>
-                {uiLang === 'fr'
-                  ? 'Cliquez sur « Sauvegarder » sur n’importe quel chapitre de transcription ou carte de prière pour conserver vos décrets favoris ici.'
-                  : 'Click "Save" on any transcription chapter or prayer card to keep your favorite prophetic decrees here for quick daily declaration.'}
-              </p>
-            </div>
-          ) : (
-            <div className="space-y-3 max-h-[420px] overflow-y-auto pr-1">
-              {savedBookmarks.map((bm) => (
-                <div
-                  key={bm.id}
-                  className={`p-4 rounded-xl border ${
-                    darkMode ? 'bg-[#0F141C] border-[#263246]' : 'bg-[#FBF8F3] border-[#B48327]/20'
-                  } space-y-2`}
-                >
-                  <div className="flex items-start justify-between gap-2">
-                    <div>
-                      <span className="font-mono-code text-[10px] font-bold text-[#7C2D12] dark:text-[#D4AF37]">
-                        {bm.ref}
-                      </span>
-                      <h4 className="font-display font-bold text-base leading-snug">{bm.title}</h4>
-                    </div>
+                    <span className="font-mono-code text-[10px] opacity-75">{n.date}</span>
                     <button
                       type="button"
-                      onClick={() => onRemoveBookmark(bm.id)}
-                      className="text-xs text-[#57534E] hover:text-red-600 p-1"
+                      onClick={() => handleDeleteNote(n.id)}
+                      className="text-rose-500 hover:text-rose-600"
                     >
                       <Trash2 className="w-3.5 h-3.5" />
                     </button>
                   </div>
-                  {showEn && (
-                    <p className="font-display italic text-sm">EN: “{bm.textEn}”</p>
-                  )}
-                  {showFr && (
-                    <p className="font-display italic text-sm text-[#7C2D12] dark:text-amber-200">
-                      FR : « {bm.textFr} »
-                    </p>
-                  )}
                 </div>
-              ))}
-            </div>
-          )}
+                <p className="text-xs whitespace-pre-line leading-relaxed">{n.content}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     </div>

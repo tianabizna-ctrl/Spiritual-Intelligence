@@ -1,5 +1,5 @@
-export type LanguageMode = 'both' | 'en' | 'fr';
-export type UILang = 'en' | 'fr';
+export type LanguageMode = 'en' | 'fr' | 'mg' | 'both';
+export type UILang = 'en' | 'fr' | 'mg';
 
 export interface TranscriptChapter {
   id: string;
@@ -984,34 +984,34 @@ export interface DocxPackageItem {
 export const DOCX_PACKAGES_LIST: DocxPackageItem[] = [
   {
     id: 'pkg-master-en-fr',
-    title_en: 'Complete Bilingual Master Package (All 3 Videos — EN & FR)',
-    title_fr: 'Pack Maître Bilingue Complet (Les 3 Vidéos — EN & FR)',
+    title_en: 'Complete Trilingual Master Package (All 9 Videos — EN / FR / MG)',
+    title_fr: 'Pack Maître Trilingue Complet (Les 9 Vidéos — EN / FR / MG)',
     description_en:
-      'The complete Microsoft Word (.docx) volume containing all 3 video transcriptions in both English and French, devotional summaries, and Scripture concordances.',
+      'The complete Microsoft Word (.docx) volume containing all 9 video transcriptions in English, French and Malagasy, devotional summaries, and Scripture concordances.',
     description_fr:
-      'Le volume Microsoft Word (.docx) complet réunissant les 3 transcriptions vidéo intégrales en anglais et en français, les synthèses dévotionnelles et les références bibliques.',
+      'Le volume Microsoft Word (.docx) complet réunissant les 9 transcriptions vidéo intégrales en anglais, en français et en malgache, les synthèses dévotionnelles et les références bibliques.',
     filename: 'Spiritual_Intelligence_Complete_Transcriptions_EN_FR.docx',
     href: 'downloads/Spiritual_Intelligence_Complete_Transcriptions_EN_FR.docx',
     badge_en: 'Recommended Master DOCX',
     badge_fr: 'DOCX Maître Recommandé',
-    sizeLabel: '95 KB • .DOCX',
+    sizeLabel: '126 KB • .DOCX',
     languages: 'English + Français',
     isPrimary: true,
   },
   {
     id: 'pkg-zip-all',
-    title_en: 'Complete All-in-One DOCX Archive Bundle (6 .DOCX Files in .ZIP)',
-    title_fr: 'Archive Complète de Tous les Fichiers DOCX (6 Fichiers .DOCX en .ZIP)',
+    title_en: 'Complete All-in-One DOCX Archive Bundle (7 .DOCX Files in .ZIP)',
+    title_fr: 'Archive Complète de Tous les Fichiers DOCX (7 Fichiers .DOCX en .ZIP)',
     description_en:
       'A single downloadable ZIP package containing the Master Bilingual DOCX, English Edition DOCX, French Edition DOCX, and all 3 individual video DOCX manuals.',
     description_fr:
       'Une archive ZIP téléchargeable regroupant le DOCX Maître Bilingue, l’Édition Anglaise, l’Édition Française et les 3 manuels DOCX individuels par vidéo.',
     filename: 'Spiritual_Intelligence_DOCX_Transcriptions_Package.zip',
     href: 'downloads/Spiritual_Intelligence_DOCX_Transcriptions_Package.zip',
-    badge_en: 'Full Bundle (.ZIP of 6 .DOCX)',
-    badge_fr: 'Pack Intégral (.ZIP de 6 .DOCX)',
-    sizeLabel: '380 KB • .ZIP',
-    languages: 'EN + FR (6 Documents)',
+    badge_en: 'Full Bundle (.ZIP of 7 .DOCX)',
+    badge_fr: 'Pack Intégral (.ZIP de 7 .DOCX)',
+    sizeLabel: '476 KB • .ZIP',
+    languages: 'EN + FR + MG (7 Documents)',
     isPrimary: true,
   },
   {
@@ -1031,18 +1031,33 @@ export const DOCX_PACKAGES_LIST: DocxPackageItem[] = [
   },
   {
     id: 'pkg-fr-only',
-    title_en: 'French Complete Transcriptions Edition (All 3 Videos — FR)',
-    title_fr: 'Édition Complète des Transcriptions en Français (Les 3 Vidéos — FR)',
+    title_en: 'French Complete Transcriptions Edition (All 9 Videos — FR)',
+    title_fr: 'Édition Complète des Transcriptions en Français (Les 9 Vidéos — FR)',
     description_en:
-      'All three complete video transcriptions, prophetic declarations, and Louis Segond scripture references in French only.',
+      'All complete video transcriptions, prophetic declarations, and Louis Segond scripture references in French only.',
     description_fr:
-      'Les trois transcriptions vidéo intégrales, déclarations prophétiques et références bibliques Louis Segond uniquement en français.',
+      'Les transcriptions vidéo intégrales, déclarations prophétiques et références bibliques Louis Segond uniquement en français.',
     filename: 'Spiritual_Intelligence_Transcriptions_FR.docx',
     href: 'downloads/Spiritual_Intelligence_Transcriptions_FR.docx',
     badge_en: 'French Edition',
     badge_fr: 'Édition Française',
     sizeLabel: '58 KB • .DOCX',
     languages: 'Français (FR)',
+  },
+  {
+    id: 'pkg-mg-only',
+    title_en: 'Malagasy Complete Transcriptions Edition (All 9 Videos — MG)',
+    title_fr: 'Édition Complète des Transcriptions en Malgache (Les 9 Vidéos — MG)',
+    description_en:
+      'All complete video transcriptions, prophetic declarations, and Malagasy Bible scripture references in Malagasy (Teny Malagasy).',
+    description_fr:
+      'Toutes les transcriptions vidéo intégrales, déclarations prophétiques et références bibliques en langue malgache (Teny Malagasy).',
+    filename: 'Spiritual_Intelligence_Transcriptions_MG.docx',
+    href: 'downloads/Spiritual_Intelligence_Transcriptions_MG.docx',
+    badge_en: 'Malagasy Edition (MG)',
+    badge_fr: 'Édition Malgache (MG)',
+    sizeLabel: '62 KB • .DOCX',
+    languages: 'Malagasy (MG)',
   },
   {
     id: 'pkg-v1',
