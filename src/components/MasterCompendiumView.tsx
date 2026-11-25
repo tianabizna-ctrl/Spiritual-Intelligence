@@ -125,7 +125,7 @@ export const MasterCompendiumView: React.FC<MasterCompendiumViewProps> = ({
               {uiLang === 'fr' ? 'Tout Réduire' : 'Collapse All'}
             </button>
             <a
-              href="/downloads/Spiritual_Intelligence_Complete_Transcriptions_EN_FR.docx"
+              href="downloads/Spiritual_Intelligence_Complete_Transcriptions_EN_FR.docx"
               download
               className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider bg-[#7C2D12] text-amber-100 hover:bg-[#62230E] transition shadow-sm"
             >

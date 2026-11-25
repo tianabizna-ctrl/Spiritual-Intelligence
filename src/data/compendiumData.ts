@@ -50,7 +50,7 @@ export const COMPANION_VIDEOS_DATA: VideoResource[] = [
       'A 41-minute prophetic warfare and decree session from Playlist 1 teaching believers to speak first into the new month (Job 22:28, Proverbs 18:21), destroy inherited yokes (Isaiah 10:27), pull down ancestral altars like Gideon (Judges 6:25), possess stolen glory (Obadiah 1:17), cover the household (Joshua 24:15), unlock financial gates (Psalm 24:7, Malachi 3:10-11), enforce divine health (Isaiah 53:5), and prophesy over all four weeks of the month.',
     overview_fr:
       'Une session de 41 minutes issue de la Playlist 1 enseignant à parler le premier dans le nouveau mois (Job 22:28, Proverbes 18:21), briser les jougs par l’onction (Ésaïe 10:27), renverser les autels familiaux comme Gédéon (Juges 6:25), reprendre ses possessions (Abdias 1:17), couvrir sa maison (Josué 24:15), ouvrir les portes financières (Psaume 24:7, Malachie 3:10-11), proclamer la guérison (Ésaïe 53:5) et prophétiser sur les quatre semaines du mois.',
-    docxFile: '/downloads/Spiritual_Intelligence_Complete_Transcriptions_EN_FR.docx',
+    docxFile: 'downloads/Spiritual_Intelligence_Complete_Transcriptions_EN_FR.docx',
     keyScriptures: [
       'Job 22:28',
       'Proverbs 18:21',
@@ -147,7 +147,7 @@ export const COMPANION_VIDEOS_DATA: VideoResource[] = [
       'A 39-minute teaching and prayer ministration built around Ezekiel 48:35 ("The name of the city from that day shall be, The Lord is there — Jehovah Shammah"), Deuteronomy 31:8 ("The Lord, he it is that doth go before thee"), Psalm 139:7-10, and Exodus 33:14 ("My presence shall go with thee, and I will give thee rest"), commissioning God’s presence ahead of you into every room of destiny, family, marriage, finance, health, and transition.',
     overview_fr:
       'Un enseignement et une prière de 39 minutes fondés sur Ézéchiel 48:35 (« L’Éternel est ici — Jéhovah Shammah »), Deutéronome 31:8 (« L’Éternel marchera lui-même devant toi »), le Psaume 139:7-10 et Exode 33:14 (« Ma présence ira avec toi, et je te donnerai du repos »), envoyant la présence de Dieu vous précéder dans chaque pièce de destinée, de famille, de mariage, de finance, de santé et de déplacement.',
-    docxFile: '/downloads/Spiritual_Intelligence_Complete_Transcriptions_EN_FR.docx',
+    docxFile: 'downloads/Spiritual_Intelligence_Complete_Transcriptions_EN_FR.docx',
     keyScriptures: [
       'Ezekiel 48:35',
       'Deuteronomy 31:8',
@@ -222,7 +222,7 @@ export const COMPANION_VIDEOS_DATA: VideoResource[] = [
       'Anchored in Jeremiah 29:13 ("You will seek me and find me when you seek me with all your heart"), this 13-minute devotional prayer from Playlist 2 leads the believer out of half-hearted seeking into the Holy of Holies, pulling down idols of comfort and control, persevering like Jacob (Genesis 32:26), and finding fullness of joy in God’s presence (Psalm 16:11).',
     overview_fr:
       'Ancrée dans Jérémie 29:13 (« Vous me chercherez, et vous me trouverez, si vous me cherchez de tout votre cœur »), cette prière dévotionnelle de 13 minutes issue de la Playlist 2 conduit le croyant hors de la tiédeur jusque dans le Lieu Très Saint, renversant les idoles du confort et du contrôle, persévérant comme Jacob (Genèse 32:26) et trouvant la plénitude de joie dans la présence de Dieu (Psaume 16:11).',
-    docxFile: '/downloads/Spiritual_Intelligence_Complete_Transcriptions_EN_FR.docx',
+    docxFile: 'downloads/Spiritual_Intelligence_Complete_Transcriptions_EN_FR.docx',
     keyScriptures: ['Jeremiah 29:13', 'Matthew 5:6', 'Mark 12:30', 'Genesis 32:26', 'James 4:8', 'Psalm 139:23-24', 'Psalm 16:11'],
     chapters: [
       {
@@ -266,7 +266,7 @@ export const COMPANION_VIDEOS_DATA: VideoResource[] = [
       'A 13-minute morning consecration prayer from Playlist 2 expressing gratitude for angelic protection through the night, asking for the mind of Christ (1 Corinthians 2:16), a clean heart (Psalm 51:10), and a guarded mind (Philippians 4:7), surrendering the day’s agenda, interceding for family, the hurting, and leaders, and putting on the full Armor of God (Ephesians 6:10-18).',
     overview_fr:
       'Une prière de consécration matinale de 13 minutes issue de la Playlist 2 exprimant la reconnaissance pour la garde angélique nocturne, demandant la pensée de Christ (1 Corinthiens 2:16), un cœur pur (Psaume 51:12) et la paix de l’esprit (Philippiens 4:7), remettant l’emploi du temps à Dieu, intercédant pour la famille, les affligés et les dirigeants, et revêtant toutes les armes de Dieu (Éphésiens 6:10-18).',
-    docxFile: '/downloads/Spiritual_Intelligence_Complete_Transcriptions_EN_FR.docx',
+    docxFile: 'downloads/Spiritual_Intelligence_Complete_Transcriptions_EN_FR.docx',
     keyScriptures: ['Lamentations 3:22-23', 'Isaiah 45:2', '1 Corinthians 2:16', 'Psalm 51:10', 'Philippians 4:7', '2 Corinthians 10:5', 'Colossians 3:23', 'Ephesians 6:10-18'],
     chapters: [
       {
@@ -310,7 +310,7 @@ export const COMPANION_VIDEOS_DATA: VideoResource[] = [
       'A 7-minute verse-by-verse devotional response to Psalm 121:1-8 from Playlist 2, lifting our eyes beyond the hills to the Maker of heaven and earth who steadies our feet, never slumbers nor sleeps, stands as our shade at our right hand against the sun by day and moon by night, and preserves our going out and coming in from this time forth and forevermore.',
     overview_fr:
       'Une prière méditative de 7 minutes répondant verset par verset au Psaume 121:1-8 (Playlist 2), levant nos yeux au-delà des montagnes vers le Créateur des cieux et de la terre qui affermit nos pas, ne sommeille ni ne dort, demeure notre ombre à notre main droite contre le soleil le jour et la lune la nuit, et garde notre départ et notre arrivée dès maintenant et à toujours.',
-    docxFile: '/downloads/Spiritual_Intelligence_Complete_Transcriptions_EN_FR.docx',
+    docxFile: 'downloads/Spiritual_Intelligence_Complete_Transcriptions_EN_FR.docx',
     keyScriptures: ['Psalm 121:1-2', 'Psalm 121:3-4', 'Psalm 121:5-6', 'Psalm 121:7-8'],
     chapters: [
       {
@@ -354,7 +354,7 @@ export const COMPANION_VIDEOS_DATA: VideoResource[] = [
       'A 23-minute companion session to the 6:45 AM Morning Declarations by Apostle Joshua Selman (Overcoming Daily), releasing 10 apostolic blessings: (1) Plenty in every work of your hand (Deuteronomy 30:9), (2) Exemption from all sickness (Deuteronomy 7:15), (3) Victory over every weapon and tongue (Isaiah 54:17), (4) Continual guidance & watered garden (Isaiah 58:11), (5) A visible token for good to end shame (Psalm 86:17), (6) The gift of quality men (Isaiah 43:4), (7) The Aaronic blessing of keeping, favor & peace (Numbers 6:24-26), (8) Resurrection of prayer life, (9) Kingdom wealth trusteeship (Psalm 66:12), and (10) The Threefold Impartation of Favor, Signs & Wonders, and Honor.',
     overview_fr:
       'Une session compagnon de 23 minutes aux Déclarations de 6h45 avec l’Apôtre Joshua Selman (Overcoming Daily), libérant 10 bénédictions apostoliques : (1) L’abondance (Deutéronome 30:9), (2) L’exemption de toute maladie (Deutéronome 7:15), (3) La victoire sur toute arme et toute langue (Ésaïe 54:17), (4) La direction continuelle et la source intarissable (Ésaïe 58:11), (5) Un signe visible de bonté mettant fin à la honte (Psaume 86:17), (6) Le don d’hommes de qualité (Ésaïe 43:4), (7) La bénédiction sacerdotale de garde, faveur et paix (Nombres 6:24-26), (8) La résurrection de la vie de prière, (9) L’intendance des richesses du Royaume (Psaume 66:12) et (10) La triple impartation de Faveur, de Signes et Prodiges, et d’Honneur.',
-    docxFile: '/downloads/Spiritual_Intelligence_Complete_Transcriptions_EN_FR.docx',
+    docxFile: 'downloads/Spiritual_Intelligence_Complete_Transcriptions_EN_FR.docx',
     keyScriptures: [
       'Exodus 14:13',
       'Deuteronomy 30:9',

@@ -115,7 +115,7 @@ export const VIDEOS_DATA: VideoResource[] = [
       'A comprehensive 84-minute prophetic prayer manual divided into two major movements: Part I commands the morning watch before sunrise (Job 38:12-13, Psalm 5:3, Exodus 14:24), destroying yokes by the anointing, consuming evil altars, blotting out ancestral ordinances, exposing household wickedness, recovering stolen glory, and sealing the household in a wall of fire. Part II enters the Midnight Watch ("Back to Sender" & Total Recovery) rooted in Esther 7:10, Psalm 7:15-16, Isaiah 54:17, and Obadiah 1:17.',
     overview_fr:
       'Un manuel complet de prière prophétique de 84 minutes structuré en deux grands mouvements : la Partie I commande la veille du matin avant le lever du soleil (Job 38:12-13, Psaume 5:4, Exode 14:24), brisant les jougs par l’onction, consumant les autels maléfiques, effaçant les actes ancestraux, exposant la méchanceté domestique, récupérant la gloire volée et entourant la famille d’une muraille de feu. La Partie II ouvre la veille de minuit (« Retour à l’envoyeur » et récupération totale) fondée sur Esther 7:10, Psaume 7:16-17, Ésaïe 54:17 et Abdias 1:17.',
-    docxFile: '/downloads/Video_1_Command_Your_Day_Joshua_Selman_EN_FR.docx',
+    docxFile: 'downloads/Video_1_Command_Your_Day_Joshua_Selman_EN_FR.docx',
     keyScriptures: [
       'Job 38:12-13',
       'Psalm 5:3',
@@ -298,7 +298,7 @@ export const VIDEOS_DATA: VideoResource[] = [
       'A serene, deeply scriptural 9-minute morning devotional prayer that guides the believer through six sacred movements: (1) Awakening in Mercy & Gratitude for Unseen Protection; (2) Wise Stewardship of Time & Generosity; (3) Heart Examination, Confession & Cleansing; (4) Total Surrender of Daily Plans & Trusting God’s Wisdom (Proverbs 3:5-6); (5) Compassionate Intercession for Family, Friends, the Suffering & the Needy; and (6) Eternal Perspective, Christlike Humility & Abiding in the Vine (John 15:5).',
     overview_fr:
       'Une prière matinale contemplative et profondément biblique de 9 minutes qui guide le croyant à travers six mouvements sacrés : (1) Éveil dans la miséricorde et gratitude pour la protection invisible ; (2) Intendance sage du temps et générosité ; (3) Examen du cœur, confession et purification ; (4) Abandon total des projets du jour et confiance en la sagesse divine (Proverbes 3:5-6) ; (5) Intercession compatissante pour la famille, les amis, les malades et les démunis ; et (6) Perspective éternelle, humilité et demeure en Christ, le Cep véritable (Jean 15:5).',
-    docxFile: '/downloads/Video_2_Call_On_The_Name_Of_Jesus_Morning_Prayer_EN_FR.docx',
+    docxFile: 'downloads/Video_2_Call_On_The_Name_Of_Jesus_Morning_Prayer_EN_FR.docx',
     keyScriptures: [
       'Matthew 5:45',
       'Lamentations 3:22-23',
@@ -405,7 +405,7 @@ export const VIDEOS_DATA: VideoResource[] = [
       'A high-impact 29-minute apostolic prayer session where Apostle Joshua Selman leads believers through 10 scriptural declarations—teaching directly that "our assignment is to pray like believers with spiritual intelligence" and that "prophetic words don’t only reveal; they create—they call things that be not and make them appear." Covers supernatural lifting, breaking the Iron Gate of visibility, Elijah speed, covenant immunity with creation, peace by all means, strangers feeding your flocks (Mephibosheth), priestly intercession for the nation, Jabez expansion, guarding joy against offense, and the transferable mantle of honor.',
     overview_fr:
       'Une session apostolique percutante de 29 minutes au cours de laquelle l’Apôtre Joshua Selman conduit les croyants dans 10 déclarations bibliques — enseignant que « notre mission est de prier comme des croyants dotés d’intelligence spirituelle » et que « les paroles prophétiques ne font pas que révéler : elles créent et appellent à l’existence ce qui n’est pas ». Couvre l’élévation surnaturelle, le brisement de la Porte de Fer de la visibilité, la vitesse d’Élie, l’alliance avec les pierres des champs, la paix de toute manière, les étrangers au service de votre destinée (Mephiboscheth), l’intercession sacerdotale pour la nation, l’élargissement de Jaebets, la sauvegarde de la joie contre l’offense et le manteau d’honneur.',
-    docxFile: '/downloads/Video_3_10_Powerful_Morning_Declarations_Joshua_Selman_EN_FR.docx',
+    docxFile: 'downloads/Video_3_10_Powerful_Morning_Declarations_Joshua_Selman_EN_FR.docx',
     keyScriptures: [
       'Psalm 3:1-3',
       'Acts 12:4-10',
@@ -991,7 +991,7 @@ export const DOCX_PACKAGES_LIST: DocxPackageItem[] = [
     description_fr:
       'Le volume Microsoft Word (.docx) complet réunissant les 3 transcriptions vidéo intégrales en anglais et en français, les synthèses dévotionnelles et les références bibliques.',
     filename: 'Spiritual_Intelligence_Complete_Transcriptions_EN_FR.docx',
-    href: '/downloads/Spiritual_Intelligence_Complete_Transcriptions_EN_FR.docx',
+    href: 'downloads/Spiritual_Intelligence_Complete_Transcriptions_EN_FR.docx',
     badge_en: 'Recommended Master DOCX',
     badge_fr: 'DOCX Maître Recommandé',
     sizeLabel: '95 KB • .DOCX',
@@ -1007,7 +1007,7 @@ export const DOCX_PACKAGES_LIST: DocxPackageItem[] = [
     description_fr:
       'Une archive ZIP téléchargeable regroupant le DOCX Maître Bilingue, l’Édition Anglaise, l’Édition Française et les 3 manuels DOCX individuels par vidéo.',
     filename: 'Spiritual_Intelligence_DOCX_Transcriptions_Package.zip',
-    href: '/downloads/Spiritual_Intelligence_DOCX_Transcriptions_Package.zip',
+    href: 'downloads/Spiritual_Intelligence_DOCX_Transcriptions_Package.zip',
     badge_en: 'Full Bundle (.ZIP of 6 .DOCX)',
     badge_fr: 'Pack Intégral (.ZIP de 6 .DOCX)',
     sizeLabel: '380 KB • .ZIP',
@@ -1023,7 +1023,7 @@ export const DOCX_PACKAGES_LIST: DocxPackageItem[] = [
     description_fr:
       'Les trois transcriptions vidéo intégrales, déclarations prophétiques et références bibliques uniquement en anglais.',
     filename: 'Spiritual_Intelligence_Transcriptions_EN.docx',
-    href: '/downloads/Spiritual_Intelligence_Transcriptions_EN.docx',
+    href: 'downloads/Spiritual_Intelligence_Transcriptions_EN.docx',
     badge_en: 'English Edition',
     badge_fr: 'Édition Anglaise',
     sizeLabel: '74 KB • .DOCX',
@@ -1038,7 +1038,7 @@ export const DOCX_PACKAGES_LIST: DocxPackageItem[] = [
     description_fr:
       'Les trois transcriptions vidéo intégrales, déclarations prophétiques et références bibliques Louis Segond uniquement en français.',
     filename: 'Spiritual_Intelligence_Transcriptions_FR.docx',
-    href: '/downloads/Spiritual_Intelligence_Transcriptions_FR.docx',
+    href: 'downloads/Spiritual_Intelligence_Transcriptions_FR.docx',
     badge_en: 'French Edition',
     badge_fr: 'Édition Française',
     sizeLabel: '58 KB • .DOCX',
@@ -1053,7 +1053,7 @@ export const DOCX_PACKAGES_LIST: DocxPackageItem[] = [
     description_fr:
       'Manuel de prière et transcription bilingue (anglais et français) dédié à la Vidéo 1 (4YElIs15_Ak — 1:24:44).',
     filename: 'Video_1_Command_Your_Day_Joshua_Selman_EN_FR.docx',
-    href: '/downloads/Video_1_Command_Your_Day_Joshua_Selman_EN_FR.docx',
+    href: 'downloads/Video_1_Command_Your_Day_Joshua_Selman_EN_FR.docx',
     badge_en: 'Video 1 • 1:24:44',
     badge_fr: 'Vidéo 1 • 1:24:44',
     sizeLabel: '75 KB • .DOCX',
@@ -1068,7 +1068,7 @@ export const DOCX_PACKAGES_LIST: DocxPackageItem[] = [
     description_fr:
       'Manuel dévotionnel et transcription bilingue (anglais et français) dédié à la Vidéo 2 (XWBUBtEv70A — 09:02).',
     filename: 'Video_2_Call_On_The_Name_Of_Jesus_Morning_Prayer_EN_FR.docx',
-    href: '/downloads/Video_2_Call_On_The_Name_Of_Jesus_Morning_Prayer_EN_FR.docx',
+    href: 'downloads/Video_2_Call_On_The_Name_Of_Jesus_Morning_Prayer_EN_FR.docx',
     badge_en: 'Video 2 • 09:02',
     badge_fr: 'Vidéo 2 • 09:02',
     sizeLabel: '44 KB • .DOCX',
@@ -1083,7 +1083,7 @@ export const DOCX_PACKAGES_LIST: DocxPackageItem[] = [
     description_fr:
       'Manuel de déclarations et transcription bilingue (anglais et français) dédié à la Vidéo 3 (45wUm7wffBQ — 29:12).',
     filename: 'Video_3_10_Powerful_Morning_Declarations_Joshua_Selman_EN_FR.docx',
-    href: '/downloads/Video_3_10_Powerful_Morning_Declarations_Joshua_Selman_EN_FR.docx',
+    href: 'downloads/Video_3_10_Powerful_Morning_Declarations_Joshua_Selman_EN_FR.docx',
     badge_en: 'Video 3 • 29:12',
     badge_fr: 'Vidéo 3 • 29:12',
     sizeLabel: '49 KB • .DOCX',

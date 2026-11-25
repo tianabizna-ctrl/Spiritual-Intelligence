@@ -250,7 +250,7 @@ export function App() {
 
             {/* Direct Master DOCX Download CTA */}
             <a
-              href="/downloads/Spiritual_Intelligence_Complete_Transcriptions_EN_FR.docx"
+              href="downloads/Spiritual_Intelligence_Complete_Transcriptions_EN_FR.docx"
               download="Spiritual_Intelligence_Complete_Transcriptions_EN_FR.docx"
               className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold bg-[#7C2D12] text-amber-100 hover:bg-[#63220D] transition shadow-sm"
             >
@@ -391,7 +391,7 @@ export function App() {
                 </button>
 
                 <a
-                  href="/downloads/Spiritual_Intelligence_Complete_Transcriptions_EN_FR.docx"
+                  href="downloads/Spiritual_Intelligence_Complete_Transcriptions_EN_FR.docx"
                   download="Spiritual_Intelligence_Complete_Transcriptions_EN_FR.docx"
                   className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-xs sm:text-sm font-bold bg-[#7C2D12] text-amber-100 hover:bg-[#63220D] transition shadow-md"
                 >
@@ -566,7 +566,7 @@ export function App() {
               </h4>
               <div className="flex flex-col gap-1.5 text-xs">
                 <a
-                  href="/downloads/Spiritual_Intelligence_Complete_Transcriptions_EN_FR.docx"
+                  href="downloads/Spiritual_Intelligence_Complete_Transcriptions_EN_FR.docx"
                   download
                   className="inline-flex items-center gap-1.5 font-semibold text-[#7C2D12] dark:text-amber-300 hover:underline"
                 >
@@ -574,7 +574,7 @@ export function App() {
                   Spiritual_Intelligence_Complete_Transcriptions_EN_FR.docx
                 </a>
                 <a
-                  href="/downloads/Spiritual_Intelligence_Transcriptions_EN.docx"
+                  href="downloads/Spiritual_Intelligence_Transcriptions_EN.docx"
                   download
                   className="inline-flex items-center gap-1.5 hover:text-[#B48327]"
                 >
@@ -582,7 +582,7 @@ export function App() {
                   Spiritual_Intelligence_Transcriptions_EN.docx (English)
                 </a>
                 <a
-                  href="/downloads/Spiritual_Intelligence_Transcriptions_FR.docx"
+                  href="downloads/Spiritual_Intelligence_Transcriptions_FR.docx"
                   download
                   className="inline-flex items-center gap-1.5 hover:text-[#B48327]"
                 >
@@ -590,7 +590,7 @@ export function App() {
                   Spiritual_Intelligence_Transcriptions_FR.docx (Français)
                 </a>
                 <a
-                  href="/downloads/Spiritual_Intelligence_DOCX_Transcriptions_Package.zip"
+                  href="downloads/Spiritual_Intelligence_DOCX_Transcriptions_Package.zip"
                   download
                   className="inline-flex items-center gap-1.5 hover:text-[#B48327]"
                 >

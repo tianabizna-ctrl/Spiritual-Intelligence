@@ -151,7 +151,7 @@ export const TranscriptionsView: React.FC<TranscriptionsViewProps> = ({
 
           <div className="flex flex-wrap items-center gap-2">
             <a
-              href="/downloads/Spiritual_Intelligence_Complete_Transcriptions_EN_FR.docx"
+              href="downloads/Spiritual_Intelligence_Complete_Transcriptions_EN_FR.docx"
               download="Spiritual_Intelligence_Complete_Transcriptions_EN_FR.docx"
               className="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-semibold bg-[#B48327] text-white hover:bg-[#9A6E1E] transition shadow-sm"
             >
@@ -161,7 +161,7 @@ export const TranscriptionsView: React.FC<TranscriptionsViewProps> = ({
                 : 'Download Master .DOCX (EN + FR)'}
             </a>
             <a
-              href="/downloads/Spiritual_Intelligence_DOCX_Transcriptions_Package.zip"
+              href="downloads/Spiritual_Intelligence_DOCX_Transcriptions_Package.zip"
               download="Spiritual_Intelligence_DOCX_Transcriptions_Package.zip"
               className={`inline-flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-semibold border transition ${
                 darkMode
