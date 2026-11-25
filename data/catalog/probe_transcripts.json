@@ -1,0 +1,195 @@
+{
+  "videos": {
+    "4YElIs15_Ak": {
+      "transcript_api": {
+        "ok": false,
+        "error": "RequestBlocked: \nCould not retrieve a transcript for the video https://www.youtube.com/watch?v=4YElIs15_Ak! This is most likely caused by:\n\nYouTube is blocking reques"
+      },
+      "ytdlp_default": {
+        "ok": false,
+        "error": "DownloadError: ERROR: [youtube] 4YElIs15_Ak: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies for the a"
+      },
+      "ytdlp_android": {
+        "ok": false,
+        "error": "DownloadError: ERROR: [youtube] 4YElIs15_Ak: Sign in to confirm you’re not a bot. Use --cookies-from-browser or --cookies for the authentication. See  https://github"
+      },
+      "ytdlp_ios": {
+        "ok": false,
+        "error": "DownloadError: ERROR: [youtube] 4YElIs15_Ak: Sign in to confirm you’re not a bot. Use --cookies-from-browser or --cookies for the authentication. See  https://github"
+      },
+      "ytdlp_tv": {
+        "ok": false,
+        "error": "DownloadError: ERROR: [youtube] 4YElIs15_Ak: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies for the a"
+      },
+      "ytdlp_mweb": {
+        "ok": false,
+        "error": "DownloadError: ERROR: [youtube] 4YElIs15_Ak: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies for the a"
+      },
+      "ytdlp_web_safari": {
+        "ok": false,
+        "error": "DownloadError: ERROR: [youtube] 4YElIs15_Ak: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies for the a"
+      }
+    },
+    "HQzfk0DMgCo": {
+      "transcript_api": {
+        "ok": false,
+        "error": "RequestBlocked: \nCould not retrieve a transcript for the video https://www.youtube.com/watch?v=HQzfk0DMgCo! This is most likely caused by:\n\nYouTube is blocking reques"
+      },
+      "ytdlp_default": {
+        "ok": false,
+        "error": "DownloadError: ERROR: [youtube] HQzfk0DMgCo: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies for the a"
+      },
+      "ytdlp_android": {
+        "ok": false,
+        "error": "DownloadError: ERROR: [youtube] HQzfk0DMgCo: Sign in to confirm you’re not a bot. Use --cookies-from-browser or --cookies for the authentication. See  https://github"
+      },
+      "ytdlp_ios": {
+        "ok": false,
+        "error": "DownloadError: ERROR: [youtube] HQzfk0DMgCo: Sign in to confirm you’re not a bot. Use --cookies-from-browser or --cookies for the authentication. See  https://github"
+      },
+      "ytdlp_tv": {
+        "ok": false,
+        "error": "DownloadError: ERROR: [youtube] HQzfk0DMgCo: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies for the a"
+      },
+      "ytdlp_mweb": {
+        "ok": false,
+        "error": "DownloadError: ERROR: [youtube] HQzfk0DMgCo: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies for the a"
+      },
+      "ytdlp_web_safari": {
+        "ok": false,
+        "error": "DownloadError: ERROR: [youtube] HQzfk0DMgCo: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies for the a"
+      }
+    },
+    "ZSKymClHnzE": {
+      "transcript_api": {
+        "ok": false,
+        "error": "RequestBlocked: \nCould not retrieve a transcript for the video https://www.youtube.com/watch?v=ZSKymClHnzE! This is most likely caused by:\n\nYouTube is blocking reques"
+      },
+      "ytdlp_default": {
+        "ok": false,
+        "error": "DownloadError: ERROR: [youtube] ZSKymClHnzE: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies for the a"
+      },
+      "ytdlp_android": {
+        "ok": false,
+        "error": "DownloadError: ERROR: [youtube] ZSKymClHnzE: Sign in to confirm you’re not a bot. Use --cookies-from-browser or --cookies for the authentication. See  https://github"
+      },
+      "ytdlp_ios": {
+        "ok": false,
+        "error": "DownloadError: ERROR: [youtube] ZSKymClHnzE: Sign in to confirm you’re not a bot. Use --cookies-from-browser or --cookies for the authentication. See  https://github"
+      },
+      "ytdlp_tv": {
+        "ok": false,
+        "error": "DownloadError: ERROR: [youtube] ZSKymClHnzE: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies for the a"
+      },
+      "ytdlp_mweb": {
+        "ok": false,
+        "error": "DownloadError: ERROR: [youtube] ZSKymClHnzE: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies for the a"
+      },
+      "ytdlp_web_safari": {
+        "ok": false,
+        "error": "DownloadError: ERROR: [youtube] ZSKymClHnzE: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies for the a"
+      }
+    },
+    "CK9rP2ZBGKg": {
+      "transcript_api": {
+        "ok": false,
+        "error": "RequestBlocked: \nCould not retrieve a transcript for the video https://www.youtube.com/watch?v=CK9rP2ZBGKg! This is most likely caused by:\n\nYouTube is blocking reques"
+      },
+      "ytdlp_default": {
+        "ok": false,
+        "error": "DownloadError: ERROR: [youtube] CK9rP2ZBGKg: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies for the a"
+      },
+      "ytdlp_android": {
+        "ok": false,
+        "error": "DownloadError: ERROR: [youtube] CK9rP2ZBGKg: Sign in to confirm you’re not a bot. Use --cookies-from-browser or --cookies for the authentication. See  https://github"
+      },
+      "ytdlp_ios": {
+        "ok": false,
+        "error": "DownloadError: ERROR: [youtube] CK9rP2ZBGKg: Sign in to confirm you’re not a bot. Use --cookies-from-browser or --cookies for the authentication. See  https://github"
+      },
+      "ytdlp_tv": {
+        "ok": false,
+        "error": "DownloadError: ERROR: [youtube] CK9rP2ZBGKg: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies for the a"
+      },
+      "ytdlp_mweb": {
+        "ok": false,
+        "error": "DownloadError: ERROR: [youtube] CK9rP2ZBGKg: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies for the a"
+      },
+      "ytdlp_web_safari": {
+        "ok": false,
+        "error": "DownloadError: ERROR: [youtube] CK9rP2ZBGKg: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies for the a"
+      }
+    },
+    "45wUm7wffBQ": {
+      "transcript_api": {
+        "ok": false,
+        "error": "RequestBlocked: \nCould not retrieve a transcript for the video https://www.youtube.com/watch?v=45wUm7wffBQ! This is most likely caused by:\n\nYouTube is blocking reques"
+      },
+      "ytdlp_default": {
+        "ok": false,
+        "error": "DownloadError: ERROR: [youtube] 45wUm7wffBQ: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies for the a"
+      },
+      "ytdlp_android": {
+        "ok": false,
+        "error": "DownloadError: ERROR: [youtube] 45wUm7wffBQ: Sign in to confirm you’re not a bot. Use --cookies-from-browser or --cookies for the authentication. See  https://github"
+      },
+      "ytdlp_ios": {
+        "ok": false,
+        "error": "DownloadError: ERROR: [youtube] 45wUm7wffBQ: Sign in to confirm you’re not a bot. Use --cookies-from-browser or --cookies for the authentication. See  https://github"
+      },
+      "ytdlp_tv": {
+        "ok": false,
+        "error": "DownloadError: ERROR: [youtube] 45wUm7wffBQ: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies for the a"
+      },
+      "ytdlp_mweb": {
+        "ok": false,
+        "error": "DownloadError: ERROR: [youtube] 45wUm7wffBQ: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies for the a"
+      },
+      "ytdlp_web_safari": {
+        "ok": false,
+        "error": "DownloadError: ERROR: [youtube] 45wUm7wffBQ: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies for the a"
+      }
+    },
+    "5SHUzMacfkY": {
+      "transcript_api": {
+        "ok": false,
+        "error": "RequestBlocked: \nCould not retrieve a transcript for the video https://www.youtube.com/watch?v=5SHUzMacfkY! This is most likely caused by:\n\nYouTube is blocking reques"
+      },
+      "ytdlp_default": {
+        "ok": false,
+        "error": "DownloadError: ERROR: [youtube] 5SHUzMacfkY: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies for the a"
+      },
+      "ytdlp_android": {
+        "ok": false,
+        "error": "DownloadError: ERROR: [youtube] 5SHUzMacfkY: Sign in to confirm you’re not a bot. Use --cookies-from-browser or --cookies for the authentication. See  https://github"
+      },
+      "ytdlp_ios": {
+        "ok": false,
+        "error": "DownloadError: ERROR: [youtube] 5SHUzMacfkY: Sign in to confirm you’re not a bot. Use --cookies-from-browser or --cookies for the authentication. See  https://github"
+      },
+      "ytdlp_tv": {
+        "ok": false,
+        "error": "DownloadError: ERROR: [youtube] 5SHUzMacfkY: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies for the a"
+      },
+      "ytdlp_mweb": {
+        "ok": false,
+        "error": "DownloadError: ERROR: [youtube] 5SHUzMacfkY: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies for the a"
+      },
+      "ytdlp_web_safari": {
+        "ok": false,
+        "error": "DownloadError: ERROR: [youtube] 5SHUzMacfkY: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies for the a"
+      }
+    }
+  },
+  "summary": {
+    "working_paths": [],
+    "blocked_videos": [
+      "4YElIs15_Ak",
+      "HQzfk0DMgCo",
+      "ZSKymClHnzE",
+      "CK9rP2ZBGKg",
+      "45wUm7wffBQ",
+      "5SHUzMacfkY"
+    ]
+  }
+}
