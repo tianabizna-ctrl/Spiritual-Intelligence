@@ -289,6 +289,14 @@ def main() -> int:
     ap.add_argument("--playlist", action="append")
     ap.add_argument("--only", nargs="+", help="specific video ids")
     ap.add_argument("--limit", type=int, default=0, help="stop after N newly fetched videos")
+    ap.add_argument(
+        "--abort-after",
+        type=int,
+        default=12,
+        help="abort when this many consecutive videos fail (0 disables). "
+             "Detects the 'Sign in to confirm you are not a bot' wall immediately "
+             "instead of grinding through hundreds of impossible requests.",
+    )
     ap.add_argument("--sleep", type=float, default=1.0, help="delay between requests (default 1s)")
     ap.add_argument("--build-ts", action="store_true", help="only regenerate the app transcript index")
     ap.add_argument("--cookies", help="Netscape cookies.txt exported from a logged-in browser")
@@ -317,16 +325,38 @@ def main() -> int:
         pending = pending[: args.limit]
 
     ok = skip = fail = 0
-    for video in pending:
+    consecutive_failures = 0
+    aborted = False
+    for position, video in enumerate(pending, start=1):
         status = harvest_one(video, args.sleep)
         ok += status == "ok"
         skip += status == "skip"
         fail += status == "fail"
+        consecutive_failures = consecutive_failures + 1 if status == "fail" else 0
+
+        if (
+            args.abort_after
+            and consecutive_failures >= args.abort_after
+            and ok == 0
+        ):
+            print(
+                f"\nABORTING: {consecutive_failures} consecutive failures with 0 successes.\n"
+                "This is almost always YouTube refusing this IP: 'Sign in to confirm you're not a bot'.\n"
+                "Fix: export cookies.txt from a logged-in browser and pass --cookies, or set the\n"
+                "YT_COOKIES repository secret if running via GitHub Actions. See README.",
+                file=sys.stderr,
+            )
+            aborted = True
+            break
+        if position % 25 == 0:
+            print(f"  … {position}/{len(pending)} attempted (ok={ok} fail={fail})")
         time.sleep(args.sleep)
 
     print(f"\nfetched={ok} skipped={skip} failed={fail}")
     if ok:
         print("Regenerate the TypeScript module with:  python3 scripts/harvest_transcripts.py --build-ts")
+    if aborted:
+        return 3
     if fail:
         print(
             "Some transcripts failed. YouTube blocks transcript endpoints from many datacenter IPs; "

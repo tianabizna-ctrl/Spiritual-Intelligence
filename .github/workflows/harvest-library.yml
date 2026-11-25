@@ -102,7 +102,14 @@ jobs:
           if [ -n "$PROXY_URL" ]; then PROXY_ARG="--proxy $PROXY_URL"; fi
           LIMIT_ARG=""
           if [ -n "$LIMIT" ] && [ "$LIMIT" != "0" ]; then LIMIT_ARG="--limit $LIMIT"; fi
-          python3 scripts/harvest_transcripts.py --sleep "${SLEEP:-2}" $LIMIT_ARG $COOKIES_ARG $PROXY_ARG
+          set +e
+          python3 scripts/harvest_transcripts.py --sleep "${SLEEP:-2}" --abort-after 12 $LIMIT_ARG $COOKIES_ARG $PROXY_ARG
+          RC=$?
+          if [ "$RC" = "3" ]; then
+            echo "::error::Harvest aborted early: YouTube is refusing this runner's IP. Set the YT_COOKIES secret (see README) and re-run."
+            exit 1
+          fi
+          exit 0
 
       - name: Regenerate the app transcript index
         run: python3 scripts/harvest_transcripts.py --build-ts

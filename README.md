@@ -70,6 +70,10 @@ Optionally add `PROXY_URL` (e.g. `socks5://user:pass@host:port`) if you have a r
 
 **3. Run the harvest:**
 
+The workflow fails fast: if the first 12 transcript attempts all fail with 0 successes it aborts in seconds with an `::error::` annotation telling you the cookies are missing, instead of grinding through 377 impossible requests.
+
+
+
 GitHub → **Actions → harvest-library → Run workflow**
 
 Leave the inputs at their defaults (`limit 0` = all, `sleep 2`). The job:
