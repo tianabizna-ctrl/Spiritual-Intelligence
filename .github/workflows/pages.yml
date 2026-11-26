@@ -109,11 +109,22 @@ jobs:
 
       - name: Smoke-test the pull request bundle
         if: github.event_name == 'pull_request'
+        # Step logs are not always retrievable from every client, so a failure
+        # is re-emitted as an annotation with the tail of the output.
         run: |
-          set -euo pipefail
-          npm ci --no-audit --no-fund
-          npm run build
-          npm run smoke:ui
+          set +e
+          npm ci --no-audit --no-fund > /tmp/smoke.log 2>&1
+          npm run build >> /tmp/smoke.log 2>&1
+          npm run smoke:ui >> /tmp/smoke.log 2>&1
+          status=$?
+          if [ $status -ne 0 ]; then
+            echo "---- last 40 lines ----"
+            tail -40 /tmp/smoke.log
+            msg=$(tail -25 /tmp/smoke.log | tr '\n' ' ' | tr -d '%' | cut -c1-900)
+            echo "::error::smoke:ui failed ($status): $msg"
+            exit $status
+          fi
+          tail -20 /tmp/smoke.log
 
       - name: Assemble the Pages site
         run: |
