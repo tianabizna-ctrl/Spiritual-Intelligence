@@ -27,6 +27,13 @@ on:
         required: false
         default: '0'
 
+  # A push trigger exists because workflow_dispatch needs an explicit actor, so
+  # the harvest can only be started by someone with actions:write. Pushing a
+  # marked commit is an equivalent, scriptable start. Set limit=0 for the whole
+  # playlist. Remove the 'HARVEST-NOW' guard to run on every push.
+  push:
+    branches: [main]
+
 permissions:
   contents: write
 
@@ -38,6 +45,17 @@ jobs:
   harvest:
     runs-on: ubuntu-latest
     timeout-minutes: 120
+    # Push triggers run only when the commit message opts in; manual dispatch
+    # always runs. Without this guard every push to main would re-harvest.
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      contains(github.event.head_commit.message, '[harvest]')
+    env:
+      PLAYLIST_URL: >-
+        ${{ inputs.playlist_url ||
+            'https://www.youtube.com/playlist?list=PL92WcLuzyEGORejB8thjnIOCfxedSicKR' }}
+      COLLECTION: ${{ inputs.collection || 'christian-house' }}
+      LIMIT: ${{ inputs.limit || '0' }}
     steps:
       - uses: actions/checkout@v4
 
@@ -51,16 +69,12 @@ jobs:
         run: pip install --quiet -U "yt-dlp[default]>=2026.11.23"
 
       - name: Enumerate the playlist
-        env:
-          PLAYLIST_URL: ${{ inputs.playlist_url }}
         run: |
           set -euo pipefail
           python3 scripts/yt/playlist.py "$PLAYLIST_URL" -o manifest.json
           echo "videos in manifest: $(python3 -c "import json;print(len(json.load(open('manifest.json'))))")"
 
       - name: Harvest through the transcript service
-        env:
-          LIMIT: ${{ inputs.limit || '0' }}
         run: |
           set +e
           python3 scripts/harvest_thirdparty.py manifest.json -o transcripts \
@@ -113,8 +127,6 @@ jobs:
           fi
 
       - name: Import into the app
-        env:
-          COLLECTION: ${{ inputs.collection }}
         run: |
           set -euo pipefail
           python3 scripts/import_transcripts.py \
