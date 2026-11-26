@@ -1,0 +1,165 @@
+name: pages
+
+# Publishes one GitHub Pages site that contains:
+#   /                     → the production build of main
+#   /pr-<number>/         → a live preview of every open pull request
+#
+# GitHub's built-in PR-preview support on actions/deploy-pages is alpha-only and
+# not publicly available, so previews are assembled as sibling directories of a
+# single static site. `base: './'` in vite.config.ts is what makes the nested
+# builds work. Transcript payloads are pruned from previews (identical between
+# builds, ~30MB) and resolved from the site root at runtime.
+#
+# One Pages environment means these share a single concurrency group: two
+# deploys cannot overlap, so the last one to run wins and always contains the
+# current full set of previews.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    types: [opened, reopened, synchronize, closed]
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          # 22+, not 20: jsdom pulls in undici, whose zstd support binds
+          # createZstdDecompress, which Node 20 does not expose. That crashes
+          # the smoke test with "Cannot read properties of undefined".
+          node-version: '22'
+          cache: npm
+
+      # ---- production build from main ----
+      # Built in a worktree, never by checking out in the workspace: the
+      # assembly step below needs this branch's scripts/ directory, which main
+      # does not have until this change lands.
+      - name: Build main
+        run: |
+          set -euo pipefail
+          git worktree add --detach /tmp/wt-main origin/main
+          cd /tmp/wt-main
+          npm ci
+          npm run build
+          mkdir -p "$GITHUB_WORKSPACE/../root-build"
+          cp -a dist/. "$GITHUB_WORKSPACE/../root-build/"
+
+      # ---- build every pull request that should have a preview ----
+      - name: Collect open pull requests
+        id: prs
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          # The PR that triggered this run is excluded when it was just closed.
+          gh pr list --repo "$REPO" --state open --json number,headRefOid \
+            --jq '.[] | "\(.number) \(.headRefOid)"' > /tmp/prs.txt || echo -n > /tmp/prs.txt
+
+          if [ "${{ github.event_name }}" = "pull_request" ] && \
+             [ "${{ github.event.action }}" = "closed" ]; then
+            grep -v "^${{ github.event.pull_request.number }} " /tmp/prs.txt > /tmp/prs.filtered.txt || true
+            mv /tmp/prs.filtered.txt /tmp/prs.txt
+          fi
+
+          echo "pull requests to preview:"
+          cat /tmp/prs.txt
+
+      - name: Build each pull request
+        env:
+          REPO_DIR: ${{ github.workspace }}
+        run: |
+          set -euo pipefail
+          mkdir -p ../previews
+          : > /tmp/extras.txt
+
+          while read -r number sha; do
+            [ -z "${number:-}" ] && continue
+            dir="$(cd .. && pwd)/previews/pr-$number"
+            echo "::group::PR #$number @ $sha"
+            git worktree add --detach "/tmp/wt-$number" "$sha"
+            (
+              cd "/tmp/wt-$number"
+              npm ci --no-audit --no-fund
+              npm run build
+              mkdir -p "$dir"
+              cp -a dist/. "$dir/"
+            ) || echo "::warning::PR #$number failed to build; skipping its preview"
+            git worktree remove --force "/tmp/wt-$number" || true
+            if [ -f "$dir/index.html" ]; then
+              echo "pr-$number:$(cd "$dir" && pwd)" >> /tmp/extras.txt
+            fi
+            echo "::endgroup::"
+          done < /tmp/prs.txt
+
+      - name: Smoke-test the pull request bundle
+        if: github.event_name == 'pull_request'
+        # Step logs are not always retrievable from every client, so a failure
+        # is re-emitted as an annotation with the tail of the output.
+        run: |
+          set +e
+          npm ci --no-audit --no-fund > /tmp/smoke.log 2>&1
+          npm run build >> /tmp/smoke.log 2>&1
+          npm run smoke:ui >> /tmp/smoke.log 2>&1
+          status=$?
+          if [ $status -ne 0 ]; then
+            echo "---- last 40 lines ----"
+            tail -40 /tmp/smoke.log
+            msg=$(tail -25 /tmp/smoke.log | tr '\n' ' ' | tr -d '%' | cut -c1-900)
+            echo "::error::smoke:ui failed ($status): $msg"
+            exit $status
+          fi
+          tail -20 /tmp/smoke.log
+
+      - name: Assemble the Pages site
+        run: |
+          set -euo pipefail
+          args=()
+          while read -r entry; do
+            [ -n "$entry" ] || continue
+            # extras.txt holds absolute paths written by the previous step
+            args+=(--extra "$entry")
+          done < /tmp/extras.txt
+          bash "$GITHUB_WORKSPACE/scripts/build_pages_site.sh" \
+            --out "$GITHUB_WORKSPACE/_site" \
+            --root "$GITHUB_WORKSPACE/../root-build" \
+            --prune transcripts \
+            ${args[@]+"${args[@]}"}
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    # The github-pages environment only accepts deployments from main, so a
+    # pull_request run cannot deploy. It still builds and uploads the artifact,
+    # which proves the change compiles; deploying waits for the merge.
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -26,6 +26,14 @@ import {
 import { ALL_VIDEOS_DATA, COMPANION_VIDEOS_DATA } from '../data/compendiumData';
 import { RAW_TRANSCRIPTS } from '../data/rawTranscripts';
 import { VIDEO_MG_MAP, CHAPTER_MG_MAP } from '../data/malagasyData';
+import {
+  LINE_WIDTH_CLASS,
+  READING_FONT_CLASS,
+  TEXT_SCALE_CLASS,
+  type LineWidth,
+  type ReadingFont,
+  type TextScale,
+} from '../hooks/useSettings';
 
 interface TranscriptionsViewProps {
   uiLang: UILang;
@@ -36,10 +44,13 @@ interface TranscriptionsViewProps {
   onToggleBookmark: (id: string, title: string, textEn: string, textFr: string, ref: string) => void;
   externalSelectedVideoId?: string;
   onSelectVideoId?: (id: string) => void;
+  /** Global reading preferences (Settings → Appearance). */
+  textScale: TextScale;
+  readingFont: ReadingFont;
+  lineWidth: LineWidth;
 }
 
 type ReaderScope = 'all' | 'structured' | 'verbatim';
-type FontScale = 'sm' | 'md' | 'lg' | 'xl';
 
 export const TranscriptionsView: React.FC<TranscriptionsViewProps> = ({
   uiLang,
@@ -50,6 +61,9 @@ export const TranscriptionsView: React.FC<TranscriptionsViewProps> = ({
   onToggleBookmark,
   externalSelectedVideoId,
   onSelectVideoId,
+  textScale,
+  readingFont,
+  lineWidth,
 }) => {
   const [internalVideoId, setInternalVideoId] = useState<string>(VIDEOS_DATA[0].id);
   const selectedVideoId = externalSelectedVideoId || internalVideoId;
@@ -58,7 +72,6 @@ export const TranscriptionsView: React.FC<TranscriptionsViewProps> = ({
   const [showVideoCatalogDrawer, setShowVideoCatalogDrawer] = useState<boolean>(false);
   const [showMobileChapters, setShowMobileChapters] = useState<boolean>(false);
   const [readerScope, setReaderScope] = useState<ReaderScope>('all');
-  const [fontScale, setFontScale] = useState<FontScale>('md');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [showVideoPlayer, setShowVideoPlayer] = useState<boolean>(false);
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
@@ -110,12 +123,9 @@ export const TranscriptionsView: React.FC<TranscriptionsViewProps> = ({
     setTimeout(() => setCopiedKey(null), 2200);
   };
 
-  const fontSizeClass = {
-    sm: 'text-[15px] leading-[1.7]',
-    md: 'text-[17px] leading-[1.8]',
-    lg: 'text-[19px] leading-[1.85]',
-    xl: 'text-[21px] leading-[1.9]',
-  }[fontScale];
+  // Reading size/typeface/line width are global now (Settings → Appearance),
+  // so every long-form surface matches without its own controls.
+  const fontSizeClass = `${TEXT_SCALE_CLASS[textScale]} ${READING_FONT_CLASS[readingFont]} ${LINE_WIDTH_CLASS[lineWidth]}`;
 
   const filteredChapters = useMemo(() => {
     if (!searchQuery.trim()) return activeVideo.chapters;
@@ -397,36 +407,8 @@ export const TranscriptionsView: React.FC<TranscriptionsViewProps> = ({
             </h2>
           </div>
 
-          {/* Language Picker (EN | FR | MG) + Font Size + Search */}
+          {/* Reader toolbar: scope filter + search (language/size live in Settings) */}
           <div className="flex flex-wrap items-center gap-2">
-            {/* 3-Language Choice (EN | FR | MG) */}
-            <div
-              className={`inline-flex rounded-xl p-1 border ${
-                darkMode ? 'bg-[#0F141C] border-[#263246]' : 'bg-[#EAE1D3]/70 border-[#B48327]/25'
-              }`}
-            >
-              {(
-                [
-                  { id: 'en', label: '🇬🇧 EN' },
-                  { id: 'fr', label: '🇫🇷 FR' },
-                  { id: 'mg', label: '🇲🇬 MG' },
-                ] as const
-              ).map((tab) => (
-                <button
-                  key={tab.id}
-                  type="button"
-                  onClick={() => setLanguageMode(tab.id)}
-                  className={`px-3 py-1 rounded-lg text-xs font-bold transition ${
-                    uiLang === tab.id
-                      ? 'bg-[#B48327] text-white shadow-sm'
-                      : `${subText} hover:text-[#B48327]`
-                  }`}
-                >
-                  {tab.label}
-                </button>
-              ))}
-            </div>
-
             {/* Scope Filter */}
             <div
               className={`inline-flex rounded-xl p-1 border ${
@@ -451,29 +433,6 @@ export const TranscriptionsView: React.FC<TranscriptionsViewProps> = ({
                   }`}
                 >
                   {uiLang === 'mg' ? sc.mg : uiLang === 'fr' ? sc.fr : sc.en}
-                </button>
-              ))}
-            </div>
-
-            {/* Font Scale Controls */}
-            <div
-              className={`inline-flex items-center rounded-xl p-1 border ${
-                darkMode ? 'bg-[#0F141C] border-[#263246]' : 'bg-[#EAE1D3]/70 border-[#B48327]/20'
-              }`}
-              title="Adjust Reading Font Size"
-            >
-              {(['sm', 'md', 'lg', 'xl'] as FontScale[]).map((sz, idx) => (
-                <button
-                  key={sz}
-                  type="button"
-                  onClick={() => setFontScale(sz)}
-                  className={`px-2 py-1 rounded-lg text-xs font-serif font-bold transition ${
-                    fontScale === sz
-                      ? 'bg-[#B48327] text-white'
-                      : `${subText} hover:text-[#B48327]`
-                  }`}
-                >
-                  A{idx === 0 ? '-' : idx === 1 ? '' : idx === 2 ? '+' : '++'}
                 </button>
               ))}
             </div>

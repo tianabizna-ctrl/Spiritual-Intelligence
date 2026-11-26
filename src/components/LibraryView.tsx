@@ -148,7 +148,22 @@ export const LibraryView: React.FC<LibraryViewProps> = ({ uiLang, darkMode }) =>
     if (fullText[id]) return;
     setLoadingId(id);
     try {
-      const res = await fetch(`transcripts/${collection}__${id}.json`);
+      const name = `transcripts/${collection}__${id}.json`;
+      let res = await fetch(name);
+
+      // Pull-request previews are published as subdirectories of the main site
+      // and deliberately omit the ~30MB transcript payloads, because those are
+      // identical between builds. Fall back to the copy at the site root.
+      if (!res.ok) {
+        const base = document.baseURI;
+        const segments = new URL(base).pathname.split('/').filter(Boolean);
+        const prIndex = segments.findIndex((s) => /^pr-\d+$/.test(s));
+        if (prIndex >= 0) {
+          const prefix = `/${segments.slice(0, prIndex).join('/')}/`.replace('//', '/');
+          res = await fetch(prefix + name);
+        }
+      }
+
       if (res.ok) {
         const data = await res.json();
         setFullText((prev) => ({ ...prev, [id]: data.text || '' }));
