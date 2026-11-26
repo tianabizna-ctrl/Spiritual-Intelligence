@@ -1,11 +1,13 @@
 name: harvest-youtube
 
-# Harvests transcripts for playlists that are not in the Drive library, using
-# the reader-proxy method from SKILL.md: yt-dlp for the signed caption URL,
-# r.jina.ai to fetch it from a different egress IP.
+# Harvests transcripts with the vendored toolkit in scripts/yt/ (playlist.py →
+# harvest.py → ytfetch.py). That toolkit's approach is the one that works:
+# yt-dlp for the signed caption URL (with --remote-components ejs:github so the
+# solver scripts are present), then the caption *JSON document* fetched through
+# r.jina.ai. It never scrapes the player page.
 #
-# The sandbox this repo is edited from cannot reach YouTube at all, so this
-# only works on a runner. No secrets required.
+# Optional: a YT_COOKIES secret clears the metadata bot wall. Without it the
+# runner's datacenter IP may be refused — the run reports which.
 
 on:
   workflow_dispatch:
@@ -13,18 +15,24 @@ on:
       collection:
         description: 'Collection to harvest'
         required: true
-        default: 'christian-house-selman'
+        default: 'christian-house'
         type: choice
         options:
-          - christian-house-selman
+          - christian-house
       limit:
-        description: 'Max videos (0 = all) — use 3 for a smoke test'
+        description: 'Max videos (0 = all)'
         required: false
         default: '0'
       workers:
-        description: 'Parallel workers (4 is what the skill recommends)'
+        description: 'Parallel workers (4 is the documented ceiling)'
         required: false
         default: '4'
+  # Temporary: smoke-test a 3-video run whenever the toolkit changes, before merge.
+  push:
+    paths:
+      - '.github/workflows/harvest-youtube.yml'
+      - 'scripts/yt/**'
+      - 'scripts/ingest_youtube.py'
 
 permissions:
   contents: write
@@ -36,7 +44,7 @@ concurrency:
 jobs:
   harvest:
     runs-on: ubuntu-latest
-    timeout-minutes: 180
+    timeout-minutes: 240
     steps:
       - uses: actions/checkout@v4
 
@@ -44,57 +52,15 @@ jobs:
         with:
           python-version: '3.11'
 
-      # yt-dlp needs a JavaScript runtime to solve YouTube's signature
-      # challenge; without one every video fails with "No supported JavaScript
-      # runtime could be found".
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-
-      - name: Install Deno
-        uses: denoland/setup-deno@v2
+      # yt-dlp ignores Node unless named explicitly; Deno is its default runtime.
+      - uses: denoland/setup-deno@v2
         with:
           deno-version: v2.x
 
-      - name: Install yt-dlp with the EJS solver scripts
-        # [default] pulls in yt-dlp-ejs; without it you get
-        # "challenge solver script was skipped" even with a runtime present.
-        run: pip install --quiet -U "yt-dlp[default]>=2026.11.23"
+      - name: Install yt-dlp and requests
+        # [default] brings the bundled EJS solver scripts; ejs:github covers the rest.
+        run: pip install --quiet -U "yt-dlp[default]>=2026.11.23" requests
 
-      - name: Verify yt-dlp can resolve a video
-        run: |
-          set +e
-          echo "deno: $(which deno) $(deno --version 2>/dev/null | head -1)"
-          echo "yt-dlp: $(yt-dlp --version)"
-          yt-dlp -v 2>&1 | grep -E "JS runtimes|Optional libraries" || true
-          yt-dlp --no-warnings -J --skip-download wgsJbNzePrI \
-            > /tmp/probe.json 2>/tmp/probe.err
-          echo "exit=$?"
-          tail -5 /tmp/probe.err
-          python3 - <<'PY'
-          import json
-          try:
-              d = json.load(open('/tmp/probe.json'))
-          except Exception as e:
-              print("::error::probe could not parse JSON:", e); raise SystemExit(0)
-          subs = d.get('subtitles') or {}
-          auto = d.get('automatic_captions') or {}
-          print('title:', d.get('title'))
-          print('manual en tracks:', sum(1 for k in subs if k.startswith('en')))
-          print('auto  en tracks:', sum(1 for k in auto if k.startswith('en')))
-          print('has json3:', any(t.get('ext')=='json3' for ts in list(subs.values())+list(auto.values()) for t in ts))
-          PY
-          tail -3 /tmp/probe.err
-
-      - name: Probe reachability
-        run: |
-          set +e
-          curl -sS -o /dev/null -w "youtube.com      -> %{http_code}\n" -m 20 https://www.youtube.com/
-          curl -sS -o /dev/null -w "r.jina.ai        -> %{http_code}\n" -m 30 https://r.jina.ai/https://example.com/
-          yt-dlp --version
-
-      # Optional: cookies are the only thing that reliably clears the bot wall.
-      # Guarded at runtime — `secrets.*` is not allowed in a step-level `if:`.
       - name: Restore cookies (optional)
         env:
           YT_COOKIES: ${{ secrets.YT_COOKIES }}
@@ -106,27 +72,48 @@ jobs:
           printf '%s' "$YT_COOKIES" > cookies.txt
           echo "cookies restored ($(wc -l < cookies.txt) lines)"
 
-      - name: Harvest
-        env:
-          COLLECTION: ${{ inputs.collection || 'christian-house-selman' }}
-          LIMIT: ${{ inputs.limit || '3' }}
-          WORKERS: ${{ inputs.workers || '2' }}
+      - name: Probe one video
         run: |
           set +e
+          COOKIE=""
+          [ -f cookies.txt ] && COOKIE="--cookies cookies.txt"
+          echo "deno: $(deno --version 2>/dev/null | head -1)"
+          echo "yt-dlp: $(yt-dlp --version)"
+          python3 scripts/yt/ytfetch.py wgsJbNzePrI $COOKIE 2>&1 | head -25
+
+      - name: Enumerate the playlist
+        run: |
+          set -euo pipefail
+          python3 scripts/yt/playlist.py \
+            "https://www.youtube.com/playlist?list=PL92WcLuzyEGORejB8thjnIOCfxedSicKR" \
+            -o manifest.json
+
+      - name: Harvest transcripts
+        env:
+          LIMIT: ${{ inputs.limit || '3' }}
+          WORKERS: ${{ inputs.workers || '4' }}
+        run: |
+          set +e
+          COOKIE=""
+          [ -f cookies.txt ] && COOKIE="--cookies cookies.txt"
           LIMIT_ARG=""
-          if [ -n "$LIMIT" ] && [ "$LIMIT" != "0" ]; then LIMIT_ARG="--limit $LIMIT"; fi
-          COOKIE_ARG=""
-          [ -f cookies.txt ] && COOKIE_ARG="--cookies cookies.txt"
-          python3 scripts/harvest_youtube_proxy.py \
-            --collection "$COLLECTION" \
-            --workers "${WORKERS:-4}" \
-            $COOKIE_ARG \
-            $LIMIT_ARG 2>&1 | tee /tmp/harvest.log
+          [ -n "$LIMIT" ] && [ "$LIMIT" != "0" ] && LIMIT_ARG="--limit $LIMIT"
+          python3 scripts/yt/harvest.py manifest.json \
+            -o transcripts --workers "${WORKERS:-4}" $COOKIE $LIMIT_ARG \
+            2>&1 | tee /tmp/harvest.log
           status=${PIPESTATUS[0]}
           if [ "$status" -ne 0 ]; then
-            echo "::error::harvest failed ($status): $(tail -15 /tmp/harvest.log | tr '\n' ' ' | cut -c1-800)"
+            echo "::error::harvest failed ($status): $(tail -12 /tmp/harvest.log | tr '\n' ' ' | cut -c1-800)"
           fi
           exit "$status"
+
+      - name: Ingest into the app
+        env:
+          COLLECTION: ${{ inputs.collection || 'christian-house' }}
+        run: |
+          set -euo pipefail
+          python3 scripts/ingest_youtube.py \
+            --collection "$COLLECTION" --src transcripts --manifest manifest.json
 
       - name: Regenerate the app index
         run: python3 scripts/harvest_drive.py --build-ts
@@ -141,6 +128,6 @@ jobs:
             echo "nothing new to commit"
             exit 0
           fi
-          git commit -m "chore(harvest): Christian House playlist [skip ci]"
+          git commit -m "chore(harvest): Christian House transcripts [skip ci]"
           git pull --rebase --autostash
           git push

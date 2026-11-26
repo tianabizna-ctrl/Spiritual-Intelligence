@@ -56,6 +56,14 @@ COLLECTIONS = {
         "subdir": "munroe",
         "label": "Dr. Myles Munroe teachings",
     },
+    # Harvested from YouTube with scripts/yt/ (playlist.py + harvest.py).
+    # No Drive folder; the ingest script writes into its subdir instead.
+    "christian-house": {
+        "folderId": "",
+        "manifestId": "",
+        "subdir": "christian-house",
+        "label": "Apostle Joshua Selman — Christian House",
+    },
 }
 
 HEADERS = {
@@ -110,6 +118,10 @@ def target_path(collection: dict, video_id: str) -> str:
 def harvest(collection_key: str, limit: int, sleep: float, force: bool) -> dict:
     coll = COLLECTIONS[collection_key]
     print(f"\n== {coll['label']} ==")
+
+    if not coll["folderId"]:
+        print(f"  skipped: no Drive folder (harvested from YouTube instead)")
+        return {"ok": 0, "skip": 0, "fail": 0}
 
     # 1. manifest first so we get titles / channels / playlists
     meta = {}
