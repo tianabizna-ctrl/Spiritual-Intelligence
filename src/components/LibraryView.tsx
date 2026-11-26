@@ -36,8 +36,11 @@ const TEXT = {
     harvested: 'English transcripts downloaded',
     of: 'of',
     search: 'Search downloaded transcripts…',
-    prayersTab: 'Prayers',
-    munroeTab: 'Myles Munroe',
+    collectionLabels: {
+      prayers: 'Prayers',
+      teachings: 'Myles Munroe',
+      'christian-house': 'Joshua Selman',
+    } as Record<string, string>,
     empty: 'Nothing here yet.',
     setupTitle: 'To refresh the library',
     setupNote:
@@ -59,8 +62,11 @@ const TEXT = {
     harvested: 'Transcriptions anglaises téléchargées',
     of: 'sur',
     search: 'Rechercher dans les transcriptions téléchargées…',
-    prayersTab: 'Prières',
-    munroeTab: 'Myles Munroe',
+    collectionLabels: {
+      prayers: 'Prières',
+      teachings: 'Myles Munroe',
+      'christian-house': 'Joshua Selman',
+    } as Record<string, string>,
     empty: 'Aucune transcription téléchargée pour le moment.',
     setupTitle: 'Pour charger la bibliothèque complète de 377 transcriptions',
     setupNote:
@@ -82,8 +88,11 @@ const TEXT = {
     harvested: 'Fandikana anglisy efa alaina',
     of: 'amin’ny',
     search: 'Hikaroka amin’ny fandikana efa alaina…',
-    prayersTab: 'Vavaka',
-    munroeTab: 'Myles Munroe',
+    collectionLabels: {
+      prayers: 'Vavaka',
+      teachings: 'Myles Munroe',
+      'christian-house': 'Joshua Selman',
+    } as Record<string, string>,
     empty: 'Mbola tsy misy na inona eto.',
     setupTitle: 'Havaozina ny tranomboky',
     setupNote:
@@ -107,7 +116,13 @@ const SETUP_COMMANDS = [
 export const LibraryView: React.FC<LibraryViewProps> = ({ uiLang, darkMode }) => {
   const t = TEXT[uiLang];
   const [query, setQuery] = useState('');
-  const [collection, setCollection] = useState<'prayers' | 'teachings'>('prayers');
+  // Collection tabs come from the generated index, so a newly harvested
+  // collection is reachable without a code change.
+  const collectionKeys = useMemo(
+    () => Array.from(new Set(Object.values(LIBRARY_TRANSCRIPTS).map((t) => t.collection))),
+    []
+  );
+  const [collection, setCollection] = useState<string>(collectionKeys[0] ?? 'prayers');
   const [visible, setVisible] = useState(CARDS_PER_PAGE);
   const [copied, setCopied] = useState(false);
   const [openId, setOpenId] = useState<string | null>(null);
@@ -125,8 +140,7 @@ export const LibraryView: React.FC<LibraryViewProps> = ({ uiLang, darkMode }) =>
     () => everything.filter((t) => t.collection === collection),
     [everything, collection]
   );
-  const prayerCount = everything.filter((t) => t.collection === 'prayers').length;
-  const munroeCount = everything.filter((t) => t.collection === 'teachings').length;
+  const countFor = (key: string) => everything.filter((t) => t.collection === key).length;
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -260,7 +274,7 @@ export const LibraryView: React.FC<LibraryViewProps> = ({ uiLang, darkMode }) =>
                   </p>
                 </div>
                 <div className="shrink-0 text-right">
-                  <div className="font-mono-code text-sm font-bold text-[#B48327]">{munroeCount}</div>
+                  <div className="font-mono-code text-sm font-bold text-[#B48327]">{countFor('teachings')}</div>
                   <div className="text-[10px] font-semibold uppercase tracking-wider opacity-70">
                     {t.videos}
                   </div>
@@ -340,35 +354,25 @@ export const LibraryView: React.FC<LibraryViewProps> = ({ uiLang, darkMode }) =>
         </div>
       ) : (
         <div className={`rounded-2xl border p-3.5 sm:p-5 ${cardSurface} shadow-sm space-y-3`}>
-          <div className="inline-flex items-center rounded-xl p-0.5 border border-[#B48327]/30 bg-[#B48327]/5">
-            <button
-              type="button"
-              onClick={() => {
-                setCollection('prayers');
-                setVisible(CARDS_PER_PAGE);
-              }}
-              className={`px-3 py-1.5 rounded-lg text-[11px] sm:text-xs font-bold transition ${
-                collection === 'prayers'
-                  ? 'bg-[#7C2D12] text-amber-100'
-                  : 'text-[#57534E] dark:text-[#A8A29E] hover:text-[#B48327]'
-              }`}
-            >
-              {t.prayersTab} ({prayerCount})
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                setCollection('teachings');
-                setVisible(CARDS_PER_PAGE);
-              }}
-              className={`px-3 py-1.5 rounded-lg text-[11px] sm:text-xs font-bold transition ${
-                collection === 'teachings'
-                  ? 'bg-[#7C2D12] text-amber-100'
-                  : 'text-[#57534E] dark:text-[#A8A29E] hover:text-[#B48327]'
-              }`}
-            >
-              {t.munroeTab} ({munroeCount})
-            </button>
+          <div className="inline-flex flex-wrap items-center rounded-xl p-0.5 border border-[#B48327]/30 bg-[#B48327]/5">
+            {collectionKeys.map((key) => (
+              <button
+                key={key}
+                type="button"
+                onClick={() => {
+                  setCollection(key);
+                  setVisible(CARDS_PER_PAGE);
+                }}
+                aria-pressed={collection === key}
+                className={`px-3 py-1.5 rounded-lg text-[11px] sm:text-xs font-bold transition ${
+                  collection === key
+                    ? 'bg-[#7C2D12] text-amber-100'
+                    : 'text-[#57534E] dark:text-[#A8A29E] hover:text-[#B48327]'
+                }`}
+              >
+                {t.collectionLabels[key] ?? key} ({countFor(key)})
+              </button>
+            ))}
           </div>
 
           <div className="relative">

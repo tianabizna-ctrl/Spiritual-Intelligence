@@ -153,7 +153,15 @@ const readerAfter = doc.querySelector('main')?.textContent || '';
 check('no "40 Chapters" claim', !/40 Chapters|40 Chapitres|Toko 40/.test(readerAfter));
 check('no "All 9 Videos" claim', !/All 9 Videos|Les 9 Vidéos/.test(readerAfter));
 check('no "/9" naked badge', !/Video \d+\/9\b/.test(readerAfter));
-check('scope note shows the real library size', /841/.test(readerAfter), readerAfter.slice(0, 80));
+// Derive the expected size from the generated index so the guard cannot go
+// stale when a harvest lands more transcripts.
+const tsSrc = readFileSync(new URL('../src/data/libraryTranscripts.ts', import.meta.url), 'utf8');
+const expectedCount = (tsSrc.match(/^ {2}"[^"]+": \{/gm) || []).length;
+check(
+  'scope note shows the real library size',
+  expectedCount > 0 && readerAfter.includes(String(expectedCount)),
+  `expected ${expectedCount} in UI; got: ${readerAfter.slice(0, 80)}`
+);
 
 check('no runtime errors', errors.length === 0, errors.slice(0, 3).join(' | '));
 
