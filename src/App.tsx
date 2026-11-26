@@ -1,22 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import {
-  BookOpen,
-  Compass,
-  Download,
-  ExternalLink,
-  FileText,
-  Flame,
-  Layers,
-  Library,
-  Moon,
-  Sparkles,
-  Sun,
-} from 'lucide-react';
-import {
-  LanguageMode,
-  UILang,
-  VIDEOS_DATA,
-} from './data/spiritualData';
+import { Download, ExternalLink, Library, Menu, Settings as SettingsIcon, Sparkles } from 'lucide-react';
+import { UILang, VIDEOS_DATA } from './data/spiritualData';
 import { ALL_VIDEOS_DATA } from './data/compendiumData';
 import { TranscriptionsView } from './components/TranscriptionsView';
 import { PrayersAltarView } from './components/PrayersAltarView';
@@ -28,14 +12,11 @@ import { DocxDownloadsView } from './components/DocxDownloadsView';
 import { MasterCompendiumView } from './components/MasterCompendiumView';
 import { LibraryView } from './components/LibraryView';
 import { LIBRARY_TOTAL_VIDEOS, MUNROE_LIBRARY } from './data/libraryCatalog';
+import { Sidebar, type Section } from './components/Sidebar';
+import { SettingsPanel } from './components/SettingsPanel';
+import { useDarkMode, useSettings } from './hooks/useSettings';
 
-type ActiveSection =
-  | 'transcriptions'
-  | 'library'
-  | 'prayers'
-  | 'devotionals'
-  | 'compendium'
-  | 'downloads';
+type ActiveSection = Section;
 
 /** Compact UI strings for the shell (header / footer / nav). */
 const SHELL_TEXT: Record<
@@ -50,6 +31,7 @@ const SHELL_TEXT: Record<
     footerDocs: string;
     footerRights: string;
     readNow: string;
+    settings: string;
   }
 > = {
   en: {
@@ -60,7 +42,7 @@ const SHELL_TEXT: Record<
       devotionals: 'Devotionals',
       compendium: 'All Titles',
       library: 'Full Library',
-      downloads: '.DOCX',
+      downloads: 'DOCX Downloads',
     },
     download: 'Download .DOCX',
     languageLabel: 'Reading language',
@@ -71,6 +53,7 @@ const SHELL_TEXT: Record<
     footerRights:
       'Spiritual Intelligence • Trilingual English, French & Malagasy Prayers, Devotionals & Transcriptions',
     readNow: 'Read Prayers',
+    settings: 'Settings',
   },
   fr: {
     tagline: 'Prières • Méditations • Transcriptions (EN • FR • MG)',
@@ -80,7 +63,7 @@ const SHELL_TEXT: Record<
       devotionals: 'Méditations',
       compendium: 'Tous les Titres',
       library: 'Bibliothèque',
-      downloads: '.DOCX',
+      downloads: 'DOCX Downloads',
     },
     download: 'Télécharger .DOCX',
     languageLabel: 'Langue de lecture',
@@ -91,6 +74,7 @@ const SHELL_TEXT: Record<
     footerRights:
       'Intelligence Spirituelle • Prières, Méditations & Transcriptions en Anglais, Français et Malgache',
     readNow: 'Lire les Prières',
+    settings: 'Paramètres',
   },
   mg: {
     tagline: 'Vavaka • Fanadihadiana • Fandikana (EN • FR • MG)',
@@ -100,7 +84,7 @@ const SHELL_TEXT: Record<
       devotionals: 'Fanadihadiana',
       compendium: 'Lohateny Rehetra',
       library: 'Tranomboky',
-      downloads: '.DOCX',
+      downloads: 'DOCX Downloads',
     },
     download: 'Alaivo ny .DOCX',
     languageLabel: 'Fiteny ampiasaina',
@@ -111,6 +95,7 @@ const SHELL_TEXT: Record<
     footerRights:
       'Faharanitan-tsaina Ara-panahy • Vavaka, Fanadihadiana & Fandikana amin’ny Anglisy, Frantsay ary Malagasy',
     readNow: 'Vakio ny Vavaka',
+    settings: 'Fikirana',
   },
 };
 
@@ -144,16 +129,27 @@ const DEFAULT_BOOKMARKS: SavedBookmarkItem[] = [
 export function App() {
   const [activeSection, setActiveSection] = useState<ActiveSection>('transcriptions');
   const [selectedReaderVideoId, setSelectedReaderVideoId] = useState<string>(VIDEOS_DATA[0].id);
-  const [uiLang, setUiLang] = useState<UILang>('en');
-  const [languageMode, setLanguageMode] = useState<LanguageMode>('en');
-  const [darkMode, setDarkMode] = useState<boolean>(false);
+  const [navOpen, setNavOpen] = useState(false);
+  const [settingsOpen, setSettingsOpen] = useState(false);
+
+  const { settings, update, reset } = useSettings();
+  const darkMode = useDarkMode(settings.theme);
+
+  const uiLang = settings.uiLang;
+  const languageMode = settings.languageMode;
 
   const strings = SHELL_TEXT[uiLang];
 
   const handleSelectLanguage = (lang: UILang) => {
-    setUiLang(lang);
-    setLanguageMode(lang);
+    update('uiLang', lang);
+    update('languageMode', lang);
   };
+
+  // Reflect the active theme on the document so the browser chrome matches.
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', darkMode);
+    document.documentElement.style.colorScheme = darkMode ? 'dark' : 'light';
+  }, [darkMode]);
 
   const [savedBookmarks, setSavedBookmarks] = useState<SavedBookmarkItem[]>(() => {
     try {
@@ -192,6 +188,40 @@ export function App() {
     setSavedBookmarks((prev) => prev.filter((b) => b.id !== id));
   };
 
+  const handleExportBookmarks = () => {
+    const blob = new Blob([JSON.stringify(savedBookmarks, null, 2)], {
+      type: 'application/json',
+    });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'spiritual-intelligence-bookmarks.json';
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
+  const handleImportBookmarks = (file: File) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      try {
+        const parsed = JSON.parse(String(reader.result));
+        if (!Array.isArray(parsed)) return;
+        // Accept only entries that look like bookmarks, then de-duplicate by id.
+        const valid = parsed.filter(
+          (b): b is SavedBookmarkItem =>
+            !!b && typeof b.id === 'string' && typeof b.title === 'string'
+        );
+        setSavedBookmarks((prev) => {
+          const seen = new Set(prev.map((b) => b.id));
+          return [...prev, ...valid.filter((b) => !seen.has(b.id))];
+        });
+      } catch {
+        // ignore malformed files
+      }
+    };
+    reader.readAsText(file);
+  };
+
   const handleOpenVideoInReader = (videoId: string) => {
     setSelectedReaderVideoId(videoId);
     setActiveSection('transcriptions');
@@ -203,56 +233,75 @@ export function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const navItems: { id: ActiveSection; icon: React.ReactNode }[] = [
-    { id: 'transcriptions', icon: <BookOpen className="w-4 h-4" /> },
-    { id: 'prayers', icon: <Flame className="w-4 h-4" /> },
-    { id: 'devotionals', icon: <Compass className="w-4 h-4" /> },
-    { id: 'library', icon: <Library className="w-4 h-4" /> },
-    { id: 'compendium', icon: <Layers className="w-4 h-4" /> },
-    { id: 'downloads', icon: <FileText className="w-4 h-4" /> },
-  ];
-
   return (
     <div
       className={`min-h-screen transition-colors duration-300 ${
         darkMode ? 'bg-[#0F141C] text-[#F5F2EB]' : 'bg-[#FBF8F3] text-[#1C1917]'
       }`}
     >
-      {/* ---------- Ultra-compact sticky header (never blocks reading) ---------- */}
+      {/* Desktop sidebar + mobile drawer */}
+      <Sidebar
+        uiLang={uiLang}
+        activeSection={activeSection}
+        onNavigate={handleNavigateTab}
+        onOpenSettings={() => setSettingsOpen(true)}
+        darkMode={darkMode}
+        open={navOpen}
+        onClose={() => setNavOpen(false)}
+      />
+
+      {/* Settings sheet */}
+      <SettingsPanel
+        open={settingsOpen}
+        onClose={() => setSettingsOpen(false)}
+        settings={settings}
+        update={update}
+        reset={reset}
+        darkMode={darkMode}
+        bookmarkCount={savedBookmarks.length}
+        onExportBookmarks={handleExportBookmarks}
+        onImportBookmarks={handleImportBookmarks}
+      />
+
+      {/* Slim top bar — no duplicated language/theme controls, those live in Settings */}
       <header
-        className={`sticky top-0 z-50 backdrop-blur-md border-b ${
+        className={`lg:pl-60 sticky top-0 z-30 backdrop-blur-md border-b ${
           darkMode ? 'bg-[#0F141C]/95 border-[#263246]' : 'bg-[#FBF8F3]/95 border-[#B48327]/20'
         }`}
       >
-        {/* Row 1: brand + language pills + theme */}
-        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-2 flex items-center justify-between gap-2">
-          <button
-            type="button"
-            onClick={() => handleNavigateTab('transcriptions')}
-            className="flex items-center gap-2 text-left group min-w-0"
-          >
-            <div className="w-8 h-8 sm:w-9 sm:h-9 shrink-0 rounded-lg bg-gradient-to-br from-[#B48327] to-[#7C2D12] flex items-center justify-center text-white shadow-sm group-hover:scale-105 transition">
-              <Sparkles className="w-4 h-4" />
-            </div>
+        <div className="px-3 sm:px-6 lg:px-8 py-2 flex items-center justify-between gap-2">
+          <div className="flex items-center gap-2 min-w-0">
+            <button
+              type="button"
+              onClick={() => setNavOpen(true)}
+              aria-label="Open menu"
+              aria-expanded={navOpen}
+              className={`lg:hidden p-2 rounded-lg border transition shrink-0 ${
+                darkMode
+                  ? 'bg-[#171F2C] border-[#263246] text-[#D4AF37]'
+                  : 'bg-[#F3EDE2] border-[#B48327]/25 text-[#7C2D12]'
+              }`}
+            >
+              <Menu className="w-4 h-4" />
+            </button>
             <div className="min-w-0">
-              <span className="font-display font-bold text-sm sm:text-lg tracking-tight block leading-tight truncate">
-                Spiritual Intelligence
-              </span>
-              <span className="hidden sm:block text-[9px] font-semibold uppercase tracking-[0.14em] text-[#B48327] truncate">
+              <h1 className="font-display font-bold text-sm sm:text-base leading-tight truncate">
+                {strings.nav[activeSection]}
+              </h1>
+              <p className="hidden sm:block text-[9px] font-semibold uppercase tracking-[0.14em] text-[#B48327] truncate">
                 {strings.tagline}
-              </span>
+              </p>
             </div>
-          </button>
+          </div>
 
           <div className="flex items-center gap-1.5 shrink-0">
-            {/* 1-tap language pills: EN | FR | MG */}
+            {/* Quick language switcher — the full control lives in Settings */}
             <div
               className={`inline-flex items-center rounded-full p-0.5 border ${
                 darkMode ? 'bg-[#171F2C] border-[#263246]' : 'bg-[#F3EDE2] border-[#B48327]/30'
               }`}
               role="group"
               aria-label={strings.languageLabel}
-              title={strings.languageLabel}
             >
               {LANG_PILLS.map((pill) => {
                 const isActive = uiLang === pill.id;
@@ -263,7 +312,7 @@ export function App() {
                     onClick={() => handleSelectLanguage(pill.id)}
                     aria-pressed={isActive}
                     title={`${pill.full} (${pill.code})`}
-                    className={`inline-flex items-center gap-1 px-2 sm:px-2.5 py-1 rounded-full text-[11px] sm:text-xs font-bold transition ${
+                    className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-[11px] font-bold transition ${
                       isActive
                         ? 'bg-[#B48327] text-white shadow-sm'
                         : darkMode
@@ -272,86 +321,45 @@ export function App() {
                     }`}
                   >
                     <span aria-hidden>{pill.flag}</span>
-                    <span>{pill.code}</span>
+                    <span className="hidden sm:inline">{pill.code}</span>
                   </button>
                 );
               })}
             </div>
 
-            {/* Theme switcher */}
             <button
               type="button"
-              onClick={() => setDarkMode(!darkMode)}
-              className={`p-1.5 sm:p-2 rounded-lg border transition ${
+              onClick={() => setSettingsOpen(true)}
+              aria-label={strings.settings}
+              title={strings.settings}
+              className={`p-2 rounded-lg border transition ${
                 darkMode
-                  ? 'bg-[#171F2C] border-[#263246] text-amber-300 hover:border-[#D4AF37]'
+                  ? 'bg-[#171F2C] border-[#263246] text-[#D4AF37] hover:border-[#D4AF37]'
                   : 'bg-[#F3EDE2] border-[#B48327]/25 text-[#7C2D12] hover:bg-[#EAE1D3]'
               }`}
-              title={darkMode ? 'Dawn Parchment' : 'Midnight Watch'}
             >
-              {darkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+              <SettingsIcon className="w-4 h-4" />
             </button>
-
-            <a
-              href="downloads/Spiritual_Intelligence_Complete_Transcriptions_EN_FR.docx"
-              download="Spiritual_Intelligence_Complete_Transcriptions_EN_FR.docx"
-              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold bg-[#7C2D12] text-amber-100 hover:bg-[#63220D] transition shadow-sm"
-            >
-              <Download className="w-3.5 h-3.5 text-amber-300" />
-              <span>{strings.download}</span>
-            </a>
           </div>
         </div>
-
-        {/* Row 2: slim horizontally scrollable nav — reading tab first */}
-        <nav
-          className={`border-t px-2 sm:px-6 lg:px-8 py-1 flex items-center gap-1 overflow-x-auto ${
-            darkMode ? 'border-[#263246]' : 'border-[#B48327]/12'
-          }`}
-          aria-label="Sections"
-        >
-          {navItems.map((item) => {
-            const isActive = activeSection === item.id;
-            return (
-              <button
-                key={item.id}
-                type="button"
-                onClick={() => handleNavigateTab(item.id)}
-                aria-current={isActive ? 'page' : undefined}
-                className={`inline-flex items-center gap-1.5 px-2.5 sm:px-3.5 py-1.5 rounded-lg text-[11px] sm:text-xs font-bold whitespace-nowrap shrink-0 transition ${
-                  isActive
-                    ? 'bg-[#B48327] text-white shadow-sm'
-                    : darkMode
-                    ? 'text-[#A8A29E] hover:bg-[#171F2C]'
-                    : 'text-[#57534E] hover:bg-[#F3EDE2]'
-                }`}
-              >
-                {item.icon}
-                <span>{strings.nav[item.id]}</span>
-              </button>
-            );
-          })}
-        </nav>
       </header>
 
       {/* ---------- Main content: prayers straight away, no blocking hero ---------- */}
-      <main className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-3 sm:py-8">
+      <main className="lg:pl-60">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-3 sm:py-8">
         {activeSection === 'transcriptions' && (
           <TranscriptionsView
             uiLang={uiLang}
             languageMode={languageMode}
-            setLanguageMode={(mode) => {
-              if (mode === 'en' || mode === 'fr' || mode === 'mg') {
-                handleSelectLanguage(mode);
-              } else {
-                setLanguageMode(mode);
-              }
-            }}
+            setLanguageMode={(mode) => update('languageMode', mode)}
             darkMode={darkMode}
             bookmarkedIds={savedBookmarks.map((b) => b.id)}
             onToggleBookmark={handleToggleBookmark}
             externalSelectedVideoId={selectedReaderVideoId}
             onSelectVideoId={setSelectedReaderVideoId}
+            textScale={settings.textScale}
+            readingFont={settings.readingFont}
+            lineWidth={settings.lineWidth}
           />
         )}
 
@@ -393,11 +401,12 @@ export function App() {
         {activeSection === 'downloads' && (
           <DocxDownloadsView uiLang={uiLang} darkMode={darkMode} />
         )}
+        </div>
       </main>
 
       {/* ---------- Sanctuary footer ---------- */}
       <footer
-        className={`border-t mt-10 ${
+        className={`lg:pl-60 border-t mt-10 ${
           darkMode
             ? 'bg-[#0B0F15] border-[#263246] text-[#A8A29E]'
             : 'bg-[#F3EDE2] border-[#B48327]/20 text-[#57534E]'

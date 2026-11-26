@@ -2,14 +2,15 @@
   "name": "spiritual-intelligence",
   "private": true,
   "version": "1.0.0",
-  "description": "Spiritual Intelligence — Trilingual (English, French & Malagasy) Sanctuary for Prophetic Prayers, Daily Devotionals & Sacred Video Transcriptions",
+  "description": "Spiritual Intelligence \u2014 Trilingual (English, French & Malagasy) Sanctuary for Prophetic Prayers, Daily Devotionals & Sacred Video Transcriptions",
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0 --port 5173",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview --host 0.0.0.0 --port 4173",
     "generate:docx": "python3 scripts/generate_docx_packages.py",
-    "bundle:static": "python3 scripts/build_static_bundle.py"
+    "bundle:static": "python3 scripts/build_static_bundle.py",
+    "smoke:ui": "node scripts/smoke_ui.mjs"
   },
   "dependencies": {
     "docx": "^9.5.0",
@@ -22,6 +23,7 @@
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
     "@vitejs/plugin-react": "^4.4.1",
+    "jsdom": "^31.0.1",
     "tailwindcss": "^4.1.7",
     "typescript": "~5.8.3",
     "vite": "^6.3.5"
