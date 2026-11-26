@@ -1,0 +1,35 @@
+{
+  "youtube_home_http": 200,
+  "proxy_configured": false,
+  "runner": "GitHub Actions 1000000508",
+  "yt_dlp_version": "2026.11.23",
+  "prayer_by_grace_194": {
+    "playlistId": "PLaptSPguGlRafSbwyTRdhKBc9axh9znP7",
+    "entries": 194,
+    "reportedVideoCount": 194,
+    "first_ids": [
+      "4YElIs15_Ak",
+      "HQzfk0DMgCo",
+      "ZSKymClHnzE"
+    ]
+  },
+  "grace_enclave_141": {
+    "playlistId": "PLK2jIf_WJT5V87ZUiLy8Q0GKet4T-AzRz",
+    "entries": 141,
+    "reportedVideoCount": 141,
+    "first_ids": [
+      "CK9rP2ZBGKg",
+      "XWBUBtEv70A",
+      "zPOULLgPjYc"
+    ]
+  },
+  "overcoming_daily_42": {
+    "playlistId": "PL-7eNLWzLZIDACNgNtZWapz_j-TBF4bqs",
+    "error": "ERROR: [youtube:tab] PL-7eNLWzLZIDACNgNtZWapz_j-TBF4bqs: YouTube said: The playlist does not exist."
+  },
+  "ytdlp_subtitle_error": "ERROR: [youtube] 5SHUzMacfkY: Video unavailable. This content isn’t available.",
+  "transcript_api": {
+    "error": "VideoUnplayable: \nCould not retrieve a transcript for the video https://www.youtube.com/watch?v=5SHUzMacfkY! This is most likely caused by:\n\nThe video is unplayable for the following reason: This content isn’t available.\n\nIf you are sure that the described "
+  },
+  "cookies_present": false
+}
