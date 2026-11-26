@@ -10,6 +10,11 @@ name: harvest-youtube
 # runner's datacenter IP may be refused — the run reports which.
 
 on:
+  # Temporary: harvests the rest of the playlist from this branch while
+  # gh workflow run returns 403 to the integration. Remove once dispatched.
+  push:
+    paths:
+      - '.github/workflows/harvest-youtube.yml'
   workflow_dispatch:
     inputs:
       collection:
@@ -118,12 +123,20 @@ jobs:
       - name: Regenerate the app index
         run: python3 scripts/harvest_drive.py --build-ts
 
+      # The .docx packages are derived from the corpus, so rebuild them whenever
+      # new transcripts land; otherwise their labels drift.
+      - name: Rebuild the DOCX packages
+        run: |
+          pip install --quiet python-docx
+          python3 scripts/generate_docx_packages.py
+
       - name: Commit results
         run: |
           set -e
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -f data/transcripts data/catalog public/transcripts src/data/libraryTranscripts.ts
+          git add -f data/transcripts data/catalog public/transcripts src/data/libraryTranscripts.ts \
+            public/downloads downloads
           if git diff --cached --quiet; then
             echo "nothing new to commit"
             exit 0
