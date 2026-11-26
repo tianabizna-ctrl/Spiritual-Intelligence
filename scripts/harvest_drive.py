@@ -227,6 +227,30 @@ def discover_subdirs() -> list[tuple[str, str]]:
     return found
 
 
+def format_duration(value) -> str:
+    """Render a duration as H:MM:SS / M:SS, or "" when it is unusable.
+
+    Older records stored raw second counts ("5278") which the UI printed
+    verbatim. Normalising here means the index is always display-ready.
+    """
+    if value in (None, "", "NA", "None"):
+        return ""
+    try:
+        if isinstance(value, str) and ":" in value:
+            seconds = 0
+            for part in value.split(":"):
+                seconds = seconds * 60 + int(part)
+        else:
+            seconds = int(float(value))
+    except (TypeError, ValueError):
+        return ""
+    if seconds <= 0:
+        return ""
+    h, rem = divmod(seconds, 3600)
+    m, s = divmod(rem, 60)
+    return f"{h}:{m:02d}:{s:02d}" if h else f"{m}:{s:02d}"
+
+
 def build_ts():
     """Regenerate the app index + public per-transcript files."""
     public_dir = os.path.join(ROOT_DIR, "public", "transcripts")
@@ -259,10 +283,18 @@ def build_ts():
                     "title": data.get("title", ""),
                     "collection": collection_key,
                     "collectionSlug": slug,
-                    "author": (data.get("author") or data.get("channel") or "").strip(),
+                    # Required by LibraryTranscript, so never allow it to fall to
+                    # "" — an empty string here fails the Pages typecheck rather
+                    # than the generator.
+                    "author": (
+                        data.get("author")
+                        or data.get("channel")
+                        or COLLECTIONS.get(collection_key, {}).get("label", "")
+                        or collection_key.replace("-", " ").title()
+                    ).strip(),
                     "channel": data.get("channel", ""),
                     "playlistId": data.get("playlistId") or None,
-                    "duration": str(data.get("duration") or ""),
+                    "duration": format_duration(data.get("duration")),
                     "wordCount": data.get("wordCount", len(text.split())),
                     "excerpt": " ".join(text.split()[:40]),
                 }
@@ -321,6 +353,20 @@ def build_ts():
             )
     # Report every collection present, not just the two Drive-backed ones, so a
     # playlist harvest is visible in the output instead of silently unreported.
+    # The index is consumed by the TypeScript compiler. Every declared field is
+    # required, so an entry missing one fails the Pages build rather than this
+    # script. Check here instead, where the cause is obvious.
+    broken = [
+        e["id"]
+        for e in entries
+        if not e["collectionSlug"] or not e["author"] or not e["title"]
+    ]
+    if broken:
+        raise SystemExit(
+            f"error: {len(broken)} index entries are missing a required field "
+            f"(collectionSlug/author/title): {', '.join(broken[:10])}"
+        )
+
     per_collection = ", ".join(f"{len(by_collection[k])} {k}" for k in sorted(by_collection))
     print(
         f"Wrote {len(entries)} transcripts "
