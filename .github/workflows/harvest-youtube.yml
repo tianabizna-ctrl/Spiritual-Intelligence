@@ -130,6 +130,17 @@ jobs:
           pip install --quiet python-docx
           python3 scripts/generate_docx_packages.py
 
+      - name: Keep the harvest log as an artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: harvest-log
+          path: |
+            /tmp/harvest.log
+            /tmp/ingest.err
+            manifest.json
+          if-no-files-found: ignore
+
       - name: Commit results
         run: |
           set -e
