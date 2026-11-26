@@ -55,23 +55,26 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Install yt-dlp
-        run: pip install --quiet "yt-dlp>=2026.11.23"
+      - name: Install Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+
+      - name: Install yt-dlp with the EJS solver scripts
+        # [default] pulls in yt-dlp-ejs; without it you get
+        # "challenge solver script was skipped" even with a runtime present.
+        run: pip install --quiet -U "yt-dlp[default]>=2026.11.23"
 
       - name: Verify yt-dlp can resolve a video
         run: |
           set +e
-          echo "node: $(which node) $(node --version)"
+          echo "deno: $(which deno) $(deno --version 2>/dev/null | head -1)"
           echo "yt-dlp: $(yt-dlp --version)"
-          # Different yt-dlp builds expose the JS runtime under different flags.
-          yt-dlp --js-runtimes node --no-warnings -J --skip-download wgsJbNzePrI \
+          yt-dlp -v 2>&1 | grep -E "JS runtimes|Optional libraries" || true
+          yt-dlp --no-warnings -J --skip-download wgsJbNzePrI \
             > /tmp/probe.json 2>/tmp/probe.err
-          echo "exit(with --js-runtimes node)=$?"
-          if [ ! -s /tmp/probe.json ]; then
-            yt-dlp --extractor-args "youtube:player_js_version=node" --no-warnings \
-              -J --skip-download wgsJbNzePrI > /tmp/probe.json 2>>/tmp/probe.err
-            echo "exit(with extractor-args)=$?"
-          fi
+          echo "exit=$?"
+          tail -5 /tmp/probe.err
           python3 - <<'PY'
           import json
           try:

@@ -36,6 +36,28 @@ OUT_DIR = os.path.join(ROOT_DIR, "data", "transcripts")
 
 PROXY_PREFIX = "https://r.jina.ai/"
 
+# yt-dlp needs a JavaScript runtime plus its EJS solver scripts to get past
+# YouTube's JS challenges. Only Deno is enabled by default, so any other
+# runtime must be named explicitly.
+_JS_RUNTIME_ARGS: list[str] | None = None
+
+
+def js_runtime_args() -> list[str]:
+    global _JS_RUNTIME_ARGS
+    if _JS_RUNTIME_ARGS is not None:
+        return _JS_RUNTIME_ARGS
+    import shutil
+
+    for runtime in ("deno", "node", "bun"):
+        path = shutil.which(runtime)
+        if path:
+            _JS_RUNTIME_ARGS = ["--js-runtimes", f"{runtime}:{path}"]
+            print(f"  JS runtime: {runtime} ({path})")
+            return _JS_RUNTIME_ARGS
+    print("  JS runtime: NONE — yt-dlp may fail to resolve caption URLs")
+    _JS_RUNTIME_ARGS = []
+    return _JS_RUNTIME_ARGS
+
 # Playlists to harvest, with the collection slug they land in.
 PLAYLISTS = {
     "christian-house-selman": {
@@ -60,6 +82,7 @@ def enumerate_playlist(playlist_id: str) -> list[dict]:
     out = run(
         [
             "yt-dlp",
+            *js_runtime_args(),
             "--flat-playlist",
             "--print",
             "%(id)s\t%(title)s\t%(duration)s",
@@ -86,7 +109,10 @@ def enumerate_playlist(playlist_id: str) -> list[dict]:
 
 def caption_url(video_id: str) -> str | None:
     """Signed caption URL from metadata; prefers manual English over auto."""
-    raw = run(["yt-dlp", "-J", "--skip-download", video_id], timeout=180)
+    raw = run(
+        ["yt-dlp", *js_runtime_args(), "-J", "--skip-download", video_id],
+        timeout=180,
+    )
     info = json.loads(raw)
     for track_group in (info.get("subtitles") or {}, info.get("automatic_captions") or {}):
         for lang, tracks in track_group.items():
