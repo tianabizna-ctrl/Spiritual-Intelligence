@@ -61,8 +61,17 @@ jobs:
       - name: Verify yt-dlp can resolve a video
         run: |
           set +e
-          yt-dlp --no-warnings -J --skip-download wgsJbNzePrI > /tmp/probe.json 2>/tmp/probe.err
-          echo "exit=$?"
+          echo "node: $(which node) $(node --version)"
+          echo "yt-dlp: $(yt-dlp --version)"
+          # Different yt-dlp builds expose the JS runtime under different flags.
+          yt-dlp --js-runtimes node --no-warnings -J --skip-download wgsJbNzePrI \
+            > /tmp/probe.json 2>/tmp/probe.err
+          echo "exit(with --js-runtimes node)=$?"
+          if [ ! -s /tmp/probe.json ]; then
+            yt-dlp --extractor-args "youtube:player_js_version=node" --no-warnings \
+              -J --skip-download wgsJbNzePrI > /tmp/probe.json 2>>/tmp/probe.err
+            echo "exit(with extractor-args)=$?"
+          fi
           python3 - <<'PY'
           import json
           try:
