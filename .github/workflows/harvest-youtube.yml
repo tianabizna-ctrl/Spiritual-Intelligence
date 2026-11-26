@@ -48,8 +48,35 @@ jobs:
         with:
           python-version: '3.11'
 
+      # yt-dlp needs a JavaScript runtime to solve YouTube's signature
+      # challenge; without one every video fails with "No supported JavaScript
+      # runtime could be found".
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
       - name: Install yt-dlp
         run: pip install --quiet "yt-dlp>=2026.11.23"
+
+      - name: Verify yt-dlp can resolve a video
+        run: |
+          set +e
+          yt-dlp --no-warnings -J --skip-download wgsJbNzePrI > /tmp/probe.json 2>/tmp/probe.err
+          echo "exit=$?"
+          python3 - <<'PY'
+          import json
+          try:
+              d = json.load(open('/tmp/probe.json'))
+          except Exception as e:
+              print("::error::probe could not parse JSON:", e); raise SystemExit(0)
+          subs = d.get('subtitles') or {}
+          auto = d.get('automatic_captions') or {}
+          print('title:', d.get('title'))
+          print('manual en tracks:', sum(1 for k in subs if k.startswith('en')))
+          print('auto  en tracks:', sum(1 for k in auto if k.startswith('en')))
+          print('has json3:', any(t.get('ext')=='json3' for ts in list(subs.values())+list(auto.values()) for t in ts))
+          PY
+          tail -3 /tmp/probe.err
 
       - name: Probe reachability
         run: |
