@@ -1,6 +1,6 @@
 // Smoke-test the built bundle: mount the real app in jsdom and exercise the
 // new shell (sidebar, settings sheet, theme + language + reset persistence).
-// Run with: node scripts/smoke_ui.mjs
+// Run with: npm run smoke:ui
 import { JSDOM, VirtualConsole } from 'jsdom';
 import { readFileSync, readdirSync } from 'node:fs';
 import path from 'node:path';
@@ -25,7 +25,7 @@ const dom = new JSDOM(readFileSync(path.join(dist, 'index.html'), 'utf8'), {
 
 // Minimal matchMedia — jsdom has none, and useDarkMode/theme follow needs it.
 dom.window.matchMedia = (query) => ({
-  matches: false,
+  matches: /dark/.test(query) ? false : false,
   media: query,
   onchange: null,
   addEventListener: () => {},
@@ -34,6 +34,10 @@ dom.window.matchMedia = (query) => ({
   removeListener: () => {},
   dispatchEvent: () => false,
 });
+
+// React 19 relies on these being present.
+dom.window.requestAnimationFrame = (cb) => setTimeout(() => cb(Date.now()), 0);
+dom.window.cancelAnimationFrame = (id) => clearTimeout(id);
 dom.window.scrollTo = () => {};
 dom.window.URL.createObjectURL = () => 'blob:mock';
 dom.window.URL.revokeObjectURL = () => {};
@@ -45,14 +49,25 @@ try {
   process.exit(1);
 }
 
-await new Promise((r) => setTimeout(r, 600));
-
 const doc = dom.window.document;
+
+// Wait for React to mount rather than assuming a fixed delay.
+for (let i = 0; i < 40; i++) {
+  if (doc.querySelector('#root')?.children.length) break;
+  await new Promise((r) => setTimeout(r, 50));
+}
 const text = doc.body.textContent || '';
 let failures = 0;
 const check = (label, ok, extra = '') => {
   console.log(`${ok ? 'PASS ' : 'FAIL '} ${label}${extra ? ` — ${extra}` : ''}`);
-  if (!ok) failures++;
+  if (!ok) {
+    failures++;
+    // Dump context so a CI log is enough to diagnose the failure.
+    const body = (doc.body.textContent || '').replace(/\s+/g, ' ').slice(0, 400);
+    console.log(`      root children: ${doc.querySelector('#root')?.children.length ?? 'none'}`);
+    console.log(`      body sample : ${body || '(empty)'}`);
+    if (errors.length) console.log(`      errors      : ${errors.slice(0, 5).join(' | ')}`);
+  }
 };
 
 check('app mounted', doc.querySelector('#root')?.children.length > 0);
