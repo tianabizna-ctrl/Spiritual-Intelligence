@@ -39,16 +39,23 @@ curl -sI https://api.github.com     → 200
 
 Only the allowlisted hosts answer. This is not a bot wall, a cookie problem, a `yt-dlp` flag,
 a proxy problem, or a parsing bug. **No script in this skill can fetch YouTube from there**,
-and no amount of retrying changes it. There are exactly two working patterns.
+and no amount of retrying changes it.
 
-**A. Committed handoff — deterministic, use this by default.**
+### Escape ladder — use the first rung that works, top to bottom
 
-Harvest on any machine with YouTube access (a laptop is enough), commit the JSON, and let the
-sandbox only read files:
+| # | Rung | When | Cost |
+|---|---|---|---|
+| 1 | **Relay** — `--transport "<relay template>"` | preflight says `RELAY:<name>` | free, automatic |
+| 2 | **Handoff** — harvest elsewhere, commit the JSON | always available if anyone can run it | one commit, deterministic |
+| 3 | **Cookies locally** — `--cookies cookies.txt` | metadata returns `COOKIES` (bot wall) | needs a browser login, expires |
+| 4 | **Dispatch to CI with cookies** — last resort | nobody can run rung 2 or 3 | one secret, shared IPs, opaque |
+
+**Rung 2 — handoff (default).** Harvest on any machine with YouTube access, commit the JSON,
+let the sandbox only read files:
 
 ```bash
 # on the machine that has egress
-python3 scripts/preflight.py                       # expect DIRECT
+python3 scripts/preflight.py                       # expect DIRECT or RELAY
 python3 scripts/harvest_all.py "<playlist url>" -o transcripts --workers 4
 python3 scripts/verify_transcripts.py transcripts  # expect VERDICT: OK
 git add transcripts && git commit -m "data: transcripts" && git push
@@ -61,22 +68,33 @@ python3 scripts/verify_transcripts.py data/transcripts
 npm run build            # or your app's build
 ```
 
-This is also the right architecture in general: acquisition and build are separate steps, so
-CI is reproducible and never depends on someone's IP.
+Acquisition and build are separate steps, so CI is reproducible and never depends on an IP.
 
-**B. Dispatch the harvest to a runner that may have egress.**
-
-The sandbox reaches GitHub, so it can start a workflow. Add `YT_COOKIES` (Netscape cookies
-exported from a logged-in browser) as a repository secret first; without it the runner is still
-a coin flip.
+**Rung 4 — dispatch to CI, only as a last resort.** Use this only when neither a local harvest
+nor a committed handoff is possible. The sandbox reaches GitHub, so it can start a workflow —
+but the runner's IP may still be bot-walled, and a machine-generated harvest is harder to
+inspect than files you can read before committing.
 
 ```bash
+# one time: store the cookies as a secret. Never write them to a tracked file.
+gh secret set YT_COOKIES --repo <owner>/<repo> < cookies.txt
+
 gh workflow run harvest-youtube.yml --repo <owner>/<repo>
 gh run watch --repo <owner>/<repo>
 ```
 
-**Do not** re-run the harvest inside the sandbox to "see if it works now". Check with
-`python3 scripts/preflight.py` — if it says `NO-EGRESS`, report that and stop.
+Cookie hygiene, because `YT_COOKIES` is a live session credential:
+
+- Export from a browser you are willing to sign out of; they expire within days and must be
+  refreshed when the run starts reporting `COOKIES` again.
+- Never `echo` the secret, never commit `cookies.txt` (add it to `.gitignore`), and revoke by
+  signing out of that browser session.
+- Prefer a throwaway account over your primary one.
+- If the dispatched run is still blocked, automation is exhausted — go back to rung 2. Do not
+  keep dispatching.
+
+**Never** re-run the harvest inside the sandbox to "see if it works now". Check with
+`python3 scripts/preflight.py`; if it says `NO-EGRESS`, report that and move down the ladder.
 
 ## §1 Enumerate the playlist
 
