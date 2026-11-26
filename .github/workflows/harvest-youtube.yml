@@ -8,6 +8,9 @@ name: harvest-youtube
 # only works on a runner. No secrets required.
 
 on:
+  push:
+    paths:
+      - '.github/workflows/harvest-youtube.yml'
   workflow_dispatch:
     inputs:
       collection:
@@ -56,9 +59,9 @@ jobs:
 
       - name: Harvest
         env:
-          COLLECTION: ${{ inputs.collection }}
-          LIMIT: ${{ inputs.limit }}
-          WORKERS: ${{ inputs.workers }}
+          COLLECTION: ${{ inputs.collection || 'christian-house-selman' }}
+          LIMIT: ${{ inputs.limit || '3' }}
+          WORKERS: ${{ inputs.workers || '2' }}
         run: |
           set +e
           LIMIT_ARG=""
