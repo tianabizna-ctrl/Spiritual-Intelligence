@@ -27,12 +27,6 @@ on:
         description: 'Parallel workers (4 is the documented ceiling)'
         required: false
         default: '4'
-  # Temporary: smoke-test a 3-video run whenever the toolkit changes, before merge.
-  push:
-    paths:
-      - '.github/workflows/harvest-youtube.yml'
-      - 'scripts/yt/**'
-      - 'scripts/ingest_youtube.py'
 
 permissions:
   contents: write
@@ -90,7 +84,7 @@ jobs:
 
       - name: Harvest transcripts
         env:
-          LIMIT: ${{ inputs.limit || '3' }}
+          LIMIT: ${{ inputs.limit || '0' }}
           WORKERS: ${{ inputs.workers || '4' }}
         run: |
           set +e
