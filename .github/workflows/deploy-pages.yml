@@ -6,7 +6,7 @@ name: deploy-pages
 
 on:
   push:
-    branches: [main, arena/b262a9cd-spiritual-intelligence]
+    branches: [main]
     paths:
       - 'src/**'
       - 'public/**'
@@ -44,10 +44,6 @@ jobs:
         run: touch dist/.nojekyll
 
       - uses: actions/configure-pages@v5
-        with:
-          # Turns GitHub Pages on if it is not already enabled, using the
-          # workflow's own token (the local CLI token lacks the pages scope).
-          enablement: true
 
       - uses: actions/upload-pages-artifact@v3
         with:
