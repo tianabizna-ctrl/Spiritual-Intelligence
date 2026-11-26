@@ -130,7 +130,30 @@ Harvesting needs a machine where YouTube is reachable. CI cannot reach it (bot
 wall on the runner IP) and the agent sandbox has no YouTube egress at all, so the
 harvest runs on a workstation and the JSON is brought in.
 
-One command does the whole chain — playlist, captions, import, index:
+There are two harvesters. Both write the same record shape, so everything
+downstream is identical.
+
+**`scripts/yt/ytfetch.py`** asks YouTube for the signed caption URL. It gets the
+best text when it works, but YouTube bot-walls datacenter IPs, which is why the
+`harvest-youtube` job reports `blocked` for every video without `YT_COOKIES`.
+
+**`scripts/harvest_thirdparty.py`** asks a public transcript service instead. The
+service resolves the video server-side and returns plain text over HTTP, so the
+caller never contacts YouTube and the bot wall does not apply. The workflow
+`harvest-thirdparty.yml` runs it on a runner:
+
+```bash
+gh workflow run harvest-thirdparty.yml \
+  -f playlist_url="https://www.youtube.com/playlist?list=PLxxxx" \
+  -f collection=christian-house
+```
+
+Use `-f limit=1` first. It harvests one video and, if the parser finds nothing,
+prints the raw page and its size in the job summary so the cause is visible
+rather than guessed at.
+
+On a workstation, one command does the whole chain — playlist, captions,
+import, index:
 
 ```bash
 python3 -m pip install -r scripts/requirements-harvest.txt   # once

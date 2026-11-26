@@ -1,0 +1,144 @@
+name: harvest-thirdparty
+
+# Harvests captions through a third-party transcript service instead of asking
+# YouTube directly.
+#
+# Why a second harvester: scripts/yt/ytfetch.py asks YouTube for the signed
+# caption URL, and YouTube bot-walls the runner's datacenter IP, so every video
+# came back `blocked`. A transcript service resolves the video server-side and
+# serves plain text over HTTP, so the runner never contacts YouTube.
+#
+# Output is byte-compatible with scripts/yt/harvest.py, so the same
+# import_transcripts.py consumes it.
+
+on:
+  workflow_dispatch:
+    inputs:
+      playlist_url:
+        description: 'Playlist URL to harvest'
+        required: true
+        default: 'https://www.youtube.com/playlist?list=PL92WcLuzyEGORejB8thjnIOCfxedSicKR'
+      collection:
+        description: 'Collection slug to import into'
+        required: true
+        default: 'christian-house'
+      limit:
+        description: 'Max videos (0 = all). Use 1 to smoke-test the parser first.'
+        required: false
+        default: '0'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: harvest-thirdparty
+  cancel-in-progress: false
+
+jobs:
+  harvest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install yt-dlp (for playlist enumeration only)
+        # Only --flat-playlist is used here, which is the cheap listing endpoint
+        # and is not what gets bot-walled.
+        run: pip install --quiet -U "yt-dlp[default]>=2026.11.23"
+
+      - name: Enumerate the playlist
+        env:
+          PLAYLIST_URL: ${{ inputs.playlist_url }}
+        run: |
+          set -euo pipefail
+          python3 scripts/yt/playlist.py "$PLAYLIST_URL" -o manifest.json
+          echo "videos in manifest: $(python3 -c "import json;print(len(json.load(open('manifest.json'))))")"
+
+      - name: Harvest through the transcript service
+        env:
+          LIMIT: ${{ inputs.limit || '0' }}
+        run: |
+          set +e
+          python3 scripts/harvest_thirdparty.py manifest.json -o transcripts \
+            --limit "${LIMIT:-0}" --workers 2 --delay 1.5 --dump-html /tmp/html \
+            2>&1 | tee /tmp/harvest.log
+          echo "exit=${PIPESTATUS[0]}"
+          exit 0
+
+      - name: Inspect what came back
+        if: always()
+        run: |
+          {
+            echo '### harvest-thirdparty'
+            echo ''
+            echo '```'
+            echo "json files: $(ls transcripts/*.json 2>/dev/null | wc -l)"
+            grep -E '^summary:|^  (ok|blocked|no-transcript|too-short)' /tmp/harvest.log | tail -30
+            echo ''
+            echo '--- parser diagnostics ---'
+            if [ -d /tmp/html ] && ls /tmp/html/*.html >/dev/null 2>&1; then
+              first=$(ls /tmp/html/*.html | head -1)
+              echo "sample page: $first ($(wc -c < "$first") bytes)"
+              echo "contains <h2>Transcript</h2>: $(grep -c -i '<h2[^>]*>[[:space:]]*Transcript' "$first" || true)"
+              echo "first 600 bytes of that page:"
+              head -c 600 "$first"
+            else
+              echo 'no HTML captured'
+            fi
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Keep diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: harvest-diag
+          path: |
+            /tmp/harvest.log
+            /tmp/html
+            manifest.json
+          if-no-files-found: ignore
+
+      - name: Fail if nothing was harvested
+        run: |
+          set -euo pipefail
+          n=$(ls transcripts/*.json 2>/dev/null | wc -l)
+          if [ "$n" -eq 0 ]; then
+            echo "::error::no transcripts harvested — see the job summary for parser diagnostics"
+            exit 1
+          fi
+
+      - name: Import into the app
+        env:
+          COLLECTION: ${{ inputs.collection }}
+        run: |
+          set -euo pipefail
+          python3 scripts/import_transcripts.py \
+            --src transcripts --collection "$COLLECTION" --manifest manifest.json
+
+      - name: Regenerate the app index
+        run: python3 scripts/harvest_drive.py --build-ts
+
+      - name: Rebuild the DOCX packages
+        run: |
+          pip install --quiet python-docx
+          python3 scripts/generate_docx_packages.py
+
+      - name: Commit results
+        run: |
+          set -e
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -f data/transcripts data/catalog public/transcripts src/data/libraryTranscripts.ts \
+            public/downloads downloads
+          if git diff --cached --quiet; then
+            echo "nothing new to commit"
+            exit 0
+          fi
+          git commit -m "chore(harvest): ${{ inputs.collection }} transcripts via transcript service [skip ci]"
+          git pull --rebase --autostash
+          git push
