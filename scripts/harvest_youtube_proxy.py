@@ -70,6 +70,9 @@ PLAYLISTS = {
 }
 
 
+COOKIE_ARGS: list[str] = []
+
+
 def run(cmd: list[str], timeout: int = 120) -> str:
     res = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout)
     if res.returncode != 0:
@@ -83,6 +86,7 @@ def enumerate_playlist(playlist_id: str) -> list[dict]:
         [
             "yt-dlp",
             *js_runtime_args(),
+            *COOKIE_ARGS,
             "--flat-playlist",
             "--print",
             "%(id)s\t%(title)s\t%(duration)s",
@@ -149,7 +153,7 @@ def discover_caption_urls(video_id: str) -> list[str]:
 def caption_url(video_id: str) -> str | None:
     """Signed caption URL from metadata; prefers manual English over auto."""
     raw = run(
-        ["yt-dlp", *js_runtime_args(), "-J", "--skip-download", video_id],
+        ["yt-dlp", *js_runtime_args(), *COOKIE_ARGS, "-J", "--skip-download", video_id],
         timeout=180,
     )
     info = json.loads(raw)
@@ -296,10 +300,16 @@ def main() -> int:
     ap.add_argument("--workers", type=int, default=4)
     ap.add_argument("--force", action="store_true")
     ap.add_argument("--build-ts", action="store_true")
+    ap.add_argument("--cookies", default="", help="Netscape cookies.txt — clears the bot wall")
     args = ap.parse_args()
 
     if args.build_ts:
         os.execv(sys.executable, [sys.executable, os.path.join(ROOT_DIR, "scripts", "harvest_drive.py"), "--build-ts"])
+
+    if args.cookies:
+        global COOKIE_ARGS
+        COOKIE_ARGS = ["--cookies", args.cookies]
+        print(f"  cookies: {args.cookies}")
 
     spec = dict(PLAYLISTS[args.collection], slug=args.collection)
     print(f"== {args.collection} ({spec['playlistId']}) ==")

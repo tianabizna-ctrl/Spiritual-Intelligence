@@ -8,10 +8,6 @@ name: harvest-youtube
 # only works on a runner. No secrets required.
 
 on:
-  push:
-    paths:
-      - '.github/workflows/harvest-youtube.yml'
-      - 'scripts/harvest_youtube_proxy.py'
   workflow_dispatch:
     inputs:
       collection:
@@ -97,6 +93,19 @@ jobs:
           curl -sS -o /dev/null -w "r.jina.ai        -> %{http_code}\n" -m 30 https://r.jina.ai/https://example.com/
           yt-dlp --version
 
+      # Optional: cookies are the only thing that reliably clears the bot wall.
+      # Guarded at runtime — `secrets.*` is not allowed in a step-level `if:`.
+      - name: Restore cookies (optional)
+        env:
+          YT_COOKIES: ${{ secrets.YT_COOKIES }}
+        run: |
+          if [ -z "$YT_COOKIES" ]; then
+            echo "no YT_COOKIES secret — continuing without cookies"
+            exit 0
+          fi
+          printf '%s' "$YT_COOKIES" > cookies.txt
+          echo "cookies restored ($(wc -l < cookies.txt) lines)"
+
       - name: Harvest
         env:
           COLLECTION: ${{ inputs.collection || 'christian-house-selman' }}
@@ -106,9 +115,12 @@ jobs:
           set +e
           LIMIT_ARG=""
           if [ -n "$LIMIT" ] && [ "$LIMIT" != "0" ]; then LIMIT_ARG="--limit $LIMIT"; fi
+          COOKIE_ARG=""
+          [ -f cookies.txt ] && COOKIE_ARG="--cookies cookies.txt"
           python3 scripts/harvest_youtube_proxy.py \
             --collection "$COLLECTION" \
             --workers "${WORKERS:-4}" \
+            $COOKIE_ARG \
             $LIMIT_ARG 2>&1 | tee /tmp/harvest.log
           status=${PIPESTATUS[0]}
           if [ "$status" -ne 0 ]; then
