@@ -107,6 +107,45 @@ def enumerate_playlist(playlist_id: str) -> list[dict]:
     return entries
 
 
+def discover_caption_urls(video_id: str) -> list[str]:
+    """
+    Ask YouTube's player endpoint (via the reader proxy) for caption tracks.
+
+    yt-dlp cannot resolve metadata from a datacenter IP — it gets "Sign in to
+    confirm you're not a bot". The player response itself is still served, so
+    the track list is read from there instead.
+    """
+    import re as _re
+    import urllib.request
+
+    target = (
+        "https://www.youtube.com/watch?v="
+        + video_id
+        + "&hl=en"
+    )
+    req = urllib.request.Request(
+        PROXY_PREFIX + target,
+        headers={"User-Agent": "Mozilla/5.0", "Accept": "text/plain"},
+    )
+    with urllib.request.urlopen(req, timeout=120) as resp:
+        body = resp.read().decode("utf-8", "replace")
+
+    # Caption track URLs appear in the player response, already signed.
+    urls = _re.findall(
+        r'"(https://www\.youtube\.com/api/timedtext\?[^"\\]+)"', body
+    )
+    # Prefer English tracks.
+    english = [u for u in urls if ("lang=en" in u or "vss_id" in u and "en" in u)]
+    ordered = english + [u for u in urls if u not in english]
+    seen, out = set(), []
+    for u in ordered:
+        if "fmt=json3" in u or "lang=en" in u:
+            if u not in seen:
+                seen.add(u)
+                out.append(u.replace("\\u0026", "&"))
+    return out
+
+
 def caption_url(video_id: str) -> str | None:
     """Signed caption URL from metadata; prefers manual English over auto."""
     raw = run(
@@ -193,17 +232,36 @@ def harvest_one(entry: dict, spec: dict, seen: set[str], force: bool) -> tuple[s
     if vid in seen:
         return vid, "duplicate"
 
+    # Preferred: scrape the signed track URLs from the player response.
+    text, detail = "", ""
     try:
-        url = caption_url(vid)
+        candidates = discover_caption_urls(vid)
     except Exception as exc:  # noqa: BLE001
-        return vid, f"meta-fail:{type(exc).__name__}:{str(exc)[:80]}"
-    if not url:
-        return vid, "no-english-track"
+        candidates = []
+        detail = f"player-fail:{type(exc).__name__}"
 
-    try:
-        text = fetch_via_proxy(url)
-    except Exception as exc:  # noqa: BLE001
-        return vid, f"proxy-fail:{type(exc).__name__}:{str(exc)[:80]}"
+    for url in candidates[:3]:
+        try:
+            candidate = fetch_via_proxy(url)
+            if len(candidate) >= 300:
+                text = candidate
+                break
+            detail = f"short:{len(candidate)}"
+        except Exception as exc:  # noqa: BLE001
+            detail = f"proxy-fail:{type(exc).__name__}"
+
+    # Fallback: yt-dlp metadata (works on residential IPs).
+    if not text:
+        try:
+            url = caption_url(vid)
+            if url:
+                text = fetch_via_proxy(url)
+        except Exception as exc:  # noqa: BLE001
+            if not detail:
+                detail = f"meta-fail:{type(exc).__name__}"
+
+    if not text:
+        return vid, detail or "no-english-track"
 
     if len(text) < 300:
         return vid, "empty"
