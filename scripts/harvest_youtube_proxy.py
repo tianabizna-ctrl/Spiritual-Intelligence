@@ -199,8 +199,20 @@ def paragraphs(text: str, target: int = 420) -> list[str]:
     """Split into readable paragraphs without inventing content."""
     sentences = re.split(r"(?<=[.!?])\s+", text)
     if len(sentences) == 1:
-        # Unpunctuated auto-captions: fall back to a single paragraph.
-        return [text] if text else []
+        # Unpunctuated auto-captions have no ". " to split on. Chunk by words to the same
+        # target length so a 28k-word sermon is still readable on screen; nothing is added.
+        if not text:
+            return []
+        out, buf = [], ""
+        for word in text.split():
+            if len(buf) + len(word) + 1 <= target:
+                buf = f"{buf} {word}".strip()
+            else:
+                out.append(buf)
+                buf = word
+        if buf:
+            out.append(buf)
+        return out
     out, buf = [], ""
     for sentence in sentences:
         if len(buf) + len(sentence) + 1 <= target:
