@@ -13,6 +13,36 @@ export interface LibraryTranscript {
 }
 
 export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
+  "christian-house__wgsJbNzePrI": {
+    id: "wgsJbNzePrI",
+    title: "7 Warning Signs Your Church Is Secretly Destroying Your Future | Apostle Joshua Selman",
+    collection: "christian-house",
+    channel: "Christian House",
+    playlistId: "PL92WcLuzyEGORejB8thjnIOCfxedSicKR",
+    duration: "3523",
+    wordCount: 8612,
+    excerpt: "Did you hear what I said? THAT CEO'S VISION WAS KILLED THE MOMENT HE JOINED A CHURCH. THE MOMENT HE JOINED COONIA, A POISONOUS engineering came from A WELL-INTENTIONED preacher that destroyed his appetite for growth and called it piety.",
+  },
+  "christian-house__oNIT_kYWQzo": {
+    id: "oNIT_kYWQzo",
+    title: "A Prayer to Start the Month With God | Apostle Joshua Selman",
+    collection: "christian-house",
+    channel: "Christian House",
+    playlistId: "PL92WcLuzyEGORejB8thjnIOCfxedSicKR",
+    duration: "2314",
+    wordCount: 5051,
+    excerpt: "Lift your hands wherever you are under the sound of my voice. Father, we honor you this morning. We bless you for life. We bless you for the gift of another day. Thank you for your mercy that woke us",
+  },
+  "christian-house__yxQHCNyYKzc": {
+    id: "yxQHCNyYKzc",
+    title: "Why Satan Fights With Words | Apostle Joshua Selman",
+    collection: "christian-house",
+    channel: "Christian House",
+    playlistId: "PL92WcLuzyEGORejB8thjnIOCfxedSicKR",
+    duration: "1606",
+    wordCount: 3462,
+    excerpt: "Genesis chapter 3, the Bible says, \"Now the serpent was more subtle than any creature that was found in the garden.\" Please pay attention. It said, \"He said to the woman, \"Yeah, had God said, Ye shall not eat of",
+  },
   "prayers__ISqjv5OIOMM": {
     id: "ISqjv5OIOMM",
     title: "10 Minutes Powerful Morning Prayer Before You Start Your Day",
