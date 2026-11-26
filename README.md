@@ -128,7 +128,27 @@ Regenerate them from the corpus with `python3 scripts/generate_docx_packages.py`
 
 Harvesting needs a machine where YouTube is reachable. CI cannot reach it (bot
 wall on the runner IP) and the agent sandbox has no YouTube egress at all, so the
-harvest runs on a workstation and the JSON is brought in:
+harvest runs on a workstation and the JSON is brought in.
+
+One command does the whole chain — playlist, captions, import, index:
+
+```bash
+python3 -m pip install -r scripts/requirements-harvest.txt   # once
+./scripts/harvest_playlist.sh "<playlist url>" <collection-slug>
+```
+
+Then build the DOCX packages if you want them:
+
+```bash
+python3 scripts/generate_docx_packages.py
+```
+
+The wrapper refuses to import when nothing usable was harvested, so a bot-walled
+run fails loudly instead of writing an empty collection. It also prints an honest
+`ok / blocked / missing` tally, and re-running resumes (finished videos are
+skipped) unless you pass `--refresh`.
+
+The individual steps, if you want to run them by hand:
 
 ```bash
 python3 scripts/yt/playlist.py "<playlist url>" -o manifest.json
@@ -138,6 +158,9 @@ python3 scripts/import_transcripts.py --src transcripts --collection christian-h
 python3 scripts/harvest_drive.py --build-ts
 python3 scripts/generate_docx_packages.py
 ```
+
+`build_ts` discovers collections from the folders under `data/transcripts/`, so a
+new playlist becomes a new collection without editing any Python.
 
 `import_transcripts.py` accepts the toolkit's raw `{"id","status":"ok","text"}`
 output or an already-built app record, applies the SKILL.md §6 cleaning rules,

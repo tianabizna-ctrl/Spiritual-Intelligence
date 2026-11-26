@@ -204,14 +204,37 @@ def harvest(collection_key: str, limit: int, sleep: float, force: bool) -> dict:
     return {"ok": ok, "skip": skip, "fail": fail}
 
 
+def discover_subdirs() -> list[tuple[str, str]]:
+    """Return (collection_key, subdir) for every collection directory on disk.
+
+    COLLECTIONS is the registry for *Drive-backed* collections, which need a
+    folder id to be downloaded. Playlist-harvested collections have no Drive
+    folder and are imported straight into data/transcripts/<slug>/, so they are
+    discovered from the filesystem instead. Without this, adding a playlist meant
+    also editing this file, and harvest_playlist.sh would silently produce an
+    index that omitted the new collection.
+    """
+    found = []
+    for key, coll in COLLECTIONS.items():
+        found.append((key, coll["subdir"]))
+    claimed = {sub for _, sub in found}
+    if os.path.isdir(OUT_DIR):
+        for name in sorted(os.listdir(OUT_DIR)):
+            path = os.path.join(OUT_DIR, name)
+            if not os.path.isdir(path) or name in claimed:
+                continue
+            found.append((name, name))
+    return found
+
+
 def build_ts():
     """Regenerate the app index + public per-transcript files."""
     public_dir = os.path.join(ROOT_DIR, "public", "transcripts")
     os.makedirs(public_dir, exist_ok=True)
 
     entries = []
-    for collection_key, coll in COLLECTIONS.items():
-        base = os.path.join(OUT_DIR, coll["subdir"]) if coll["subdir"] else OUT_DIR
+    for collection_key, subdir in discover_subdirs():
+        base = os.path.join(OUT_DIR, subdir) if subdir else OUT_DIR
         if not os.path.isdir(base):
             continue
         for name in sorted(os.listdir(base)):
@@ -296,10 +319,12 @@ def build_ts():
                 f"Object.values(LIBRARY_TRANSCRIPTS).filter((t) => t.collection === "
                 f"{json.dumps(key)}).length;\n"
             )
+    # Report every collection present, not just the two Drive-backed ones, so a
+    # playlist harvest is visible in the output instead of silently unreported.
+    per_collection = ", ".join(f"{len(by_collection[k])} {k}" for k in sorted(by_collection))
     print(
         f"Wrote {len(entries)} transcripts "
-        f"({len(by_collection.get('prayers', []))} prayers, "
-        f"{len(by_collection.get('teachings', []))} teachings) -> {os.path.relpath(target, ROOT_DIR)}"
+        f"({per_collection}) -> {os.path.relpath(target, ROOT_DIR)}"
     )
 
 
