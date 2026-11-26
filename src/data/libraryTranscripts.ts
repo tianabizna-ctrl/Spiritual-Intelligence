@@ -2,9 +2,10 @@
 // Full text lives in public/transcripts/<collection>__<id>.json and is
 // fetched on demand, so a large library does not bloat the JS bundle.
 export interface LibraryTranscript {
+  key: string;
   id: string;
   title: string;
-  collection: 'prayers' | 'teachings';
+  collection: "christian-house" | "prayers" | "teachings";
   channel: string;
   playlistId: string | null;
   duration: string;
@@ -14,6 +15,7 @@ export interface LibraryTranscript {
 
 export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
   "christian-house__wgsJbNzePrI": {
+    key: "christian-house__wgsJbNzePrI",
     id: "wgsJbNzePrI",
     title: "7 Warning Signs Your Church Is Secretly Destroying Your Future | Apostle Joshua Selman",
     collection: "christian-house",
@@ -24,6 +26,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Did you hear what I said? THAT CEO'S VISION WAS KILLED THE MOMENT HE JOINED A CHURCH. THE MOMENT HE JOINED COONIA, A POISONOUS engineering came from A WELL-INTENTIONED preacher that destroyed his appetite for growth and called it piety.",
   },
   "christian-house__oNIT_kYWQzo": {
+    key: "christian-house__oNIT_kYWQzo",
     id: "oNIT_kYWQzo",
     title: "A Prayer to Start the Month With God | Apostle Joshua Selman",
     collection: "christian-house",
@@ -34,6 +37,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Lift your hands wherever you are under the sound of my voice. Father, we honor you this morning. We bless you for life. We bless you for the gift of another day. Thank you for your mercy that woke us",
   },
   "christian-house__yxQHCNyYKzc": {
+    key: "christian-house__yxQHCNyYKzc",
     id: "yxQHCNyYKzc",
     title: "Why Satan Fights With Words | Apostle Joshua Selman",
     collection: "christian-house",
@@ -44,6 +48,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Genesis chapter 3, the Bible says, \"Now the serpent was more subtle than any creature that was found in the garden.\" Please pay attention. It said, \"He said to the woman, \"Yeah, had God said, Ye shall not eat of",
   },
   "prayers__ISqjv5OIOMM": {
+    key: "prayers__ISqjv5OIOMM",
     id: "ISqjv5OIOMM",
     title: "10 Minutes Powerful Morning Prayer Before You Start Your Day",
     collection: "prayers",
@@ -54,6 +59,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Father, we thank you. We thank you for breath. We thank you for life. We thank you for the mercy that kept us through the night. There are people who closed their eyes last night and never opened them again.",
   },
   "prayers__45wUm7wffBQ": {
+    key: "prayers__45wUm7wffBQ",
     id: "45wUm7wffBQ",
     title: "10 POWERFUL MORNING DECLARATIONS WITH APOSTLE JOSHUA SELMAN",
     collection: "prayers",
@@ -64,6 +70,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "are you ready to pray ER Point number one psalm 3. Psalm 3 please help us media Psalm 3 and verse 1. Lord how they are they increased that trouble me many are they that rise up against me verse",
   },
   "prayers__ju2Ain5zc9E": {
+    key: "prayers__ju2Ain5zc9E",
     id: "ju2Ain5zc9E",
     title: "20 Minute Violent Prayer AGAINST CLOSED DOORS AND REJECTIONS",
     collection: "prayers",
@@ -74,6 +81,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Beloved in Christ, hear me very carefully tonight. The Lord has sent me as a voice of prophecy to somebody under the sound of my voice. This year will not end with your documents trapped in delay. Heaven has sent",
   },
   "prayers__SfcAZdcwysQ": {
+    key: "prayers__SfcAZdcwysQ",
     id: "SfcAZdcwysQ",
     title: "20 MINUTES MORNING FAMILY DELIVERANCE PRAYER",
     collection: "prayers",
@@ -84,6 +92,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Hallelujah. Hallelujah. Hallelujah. Glory be to the most high God. We worship you, Father. We worship you, ancient of days. We worship you, Yahweh. The one who was and who is [music] and who is to come. You are the",
   },
   "prayers__v9cWPQPe9ro": {
+    key: "prayers__v9cWPQPe9ro",
     id: "v9cWPQPe9ro",
     title: "2026 IS YOUR SEASON OF GOD'S FAVOR",
     collection: "prayers",
@@ -94,6 +103,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "I want you to do me a favor right now. Wherever you are listening to this, share this message. Share it with somebody. There are people in your circle. There are people in your network. There are people God has",
   },
   "prayers__Tl4lFyTPRvA": {
+    key: "prayers__Tl4lFyTPRvA",
     id: "Tl4lFyTPRvA",
     title: "2026 IS YOUR YEAR OF DIVINE TURNAROUNDS",
     collection: "prayers",
@@ -104,6 +114,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "If this ministration blesses you, I want you to do something for the kingdom. Share this prayer with somebody. Send it to your family WhatsApp group. Send it to your colleagues. Send it to that person that has been struggling,",
   },
   "prayers__iHDs5sqphzc": {
+    key: "prayers__iHDs5sqphzc",
     id: "iHDs5sqphzc",
     title: "2026 IS YOUR YEAR OF VICTORY AND TESTIMONY",
     collection: "prayers",
@@ -114,6 +125,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Beloved, before we go into the depths of what the spirit of God is saying concerning this season, I want you to do something for me. I want you to share this word with someone. Don't just keep it to",
   },
   "prayers__K2FAY35y61k": {
+    key: "prayers__K2FAY35y61k",
     id: "K2FAY35y61k",
     title: "3 HOURS MOST POWERFUL EARLY MORNING WARFARE PRAYER BEFORE YOU START YOUR DAY",
     collection: "prayers",
@@ -124,6 +136,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Beloved in Christ, there are hours that heaven recognizes as strategic, and there are times when darkness seeks to prevail. Between 2:00 a.m. and 3:00 a.m., destinies are often contested, witches gather, sorcerers conspire, and evil altars seek to speak.",
   },
   "prayers__Amld8k_rayo": {
+    key: "prayers__Amld8k_rayo",
     id: "Amld8k_rayo",
     title: "30 MINUTES FEARLESS WARFARE MORNING PRAYERS",
     collection: "prayers",
@@ -134,6 +147,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Oh, we worship you this morning. We worship you, lion of the tribe of Judah. We worship you, the man of war. We worship you, the Lord, strong and mighty, the Lord mighty in battle. We give you glory. We",
   },
   "prayers__SnQVKS4adOQ": {
+    key: "prayers__SnQVKS4adOQ",
     id: "SnQVKS4adOQ",
     title: "30 MINUTES HOT POWERFUL PRAYER TO COMMAND THE NEW DAY",
     collection: "prayers",
@@ -144,6 +158,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "I feel something. I feel something right now. Before I even open my mouth to teach, the atmosphere is already charged. The presence of the Holy Ghost is thick in this place. And I want you wherever you are, whether",
   },
   "prayers__liUeM_fuxCU": {
+    key: "prayers__liUeM_fuxCU",
     id: "liUeM_fuxCU",
     title: "30 MINUTES MOST POWERFUL PSALM 120 MORNING PRAYER TO START YOUR DAY",
     collection: "prayers",
@@ -154,6 +169,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Beloved, hear me. Every morning is a doorway into destiny, a gate into the unfolding of prophecy. How you start your day matters greatly in the realm of the spirit. Psalm 120:1 declares, \"In my distress, I cried unto the",
   },
   "prayers__piEqhUF80Ho": {
+    key: "prayers__piEqhUF80Ho",
     id: "piEqhUF80Ho",
     title: "30 MINUTES MOST POWERFUL PSALM 120 MORNING PRAYER TO START YOUR DAY",
     collection: "prayers",
@@ -164,6 +180,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "We bless you ancient of days. We bless you the God of Abraham, the God of Isaac, the God of Jacob, the God who neither slumbers nor sleeps, the God who watches over Israel, the God whose eyes run to",
   },
   "prayers__HkC3o-L0E3A": {
+    key: "prayers__HkC3o-L0E3A",
     id: "HkC3o-L0E3A",
     title: "30 MINUTES MOST POWERFUL PSALM 91 MORNING PRAYER TO START YOUR DAY",
     collection: "prayers",
@@ -174,6 +191,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Before we begin, hear me in the spirit. This is not just another prayer you scroll past. Someone you are connected to by blood, by marriage, by destiny is standing at the edge of a decision that will determine the",
   },
   "prayers__NhtWb1v2wnI": {
+    key: "prayers__NhtWb1v2wnI",
     id: "NhtWb1v2wnI",
     title: "30 MINUTES OPEN HEAVEN MORNING PRAYER THAT OPENS THE FLOODS GATE OF HEAVEN",
     collection: "prayers",
@@ -184,6 +202,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Somewhere right now in this city, in another city, in another country, someone is sitting in a car in a parking lot. They have arrived at work, but they cannot bring themselves to walk inside. Their hands are gripping the",
   },
   "prayers__h8nNJ-mfVec": {
+    key: "prayers__h8nNJ-mfVec",
     id: "h8nNJ-mfVec",
     title: "30 Minutes Powerful Prayer For Financial Breakthrough",
     collection: "prayers",
@@ -194,6 +213,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Beloved in Christ, hear me clearly tonight. God never designed scarcity to be the identity of his covenant children. From Genesis to Revelation, the picture of God's covenant is abundance, multiplication, and overflow. In Genesis 1:28, the Bible says, \"And",
   },
   "prayers__bsP03EnnIQw": {
+    key: "prayers__bsP03EnnIQw",
     id: "bsP03EnnIQw",
     title: "32 MINUTES POWERFUL PSALM 100 MORNING PRAYERS TO COMMAND THE DAY",
     collection: "prayers",
@@ -204,6 +224,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "There is a sound in this place this morning that heaven has been waiting for. Before you speak a word, before you frame a sentence, before you even open your mouth to worship, heaven is leaning forward because heaven does",
   },
   "prayers__oij6fJyAv1w": {
+    key: "prayers__oij6fJyAv1w",
     id: "oij6fJyAv1w",
     title: "32 MINUTES PRAYERS TO COMMAND THE NEW WEEK BY FIRE",
     collection: "prayers",
@@ -214,6 +235,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Before 7 in the morning, before the city is fully awake, before the traffic starts, before the emails begin, before the phone fills with the world's demands, before the week has opened its mouth to speak its version over your",
   },
   "prayers__v1D-_J0TW5Y": {
+    key: "prayers__v1D-_J0TW5Y",
     id: "v1D-_J0TW5Y",
     title: "35 MINUTES AGGRESSIVE MORNING PRAYER TO COMMAND THE DAY",
     collection: "prayers",
@@ -224,6 +246,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "The week has already started. Not for you, for the enemy. He did not wait for Monday morning. He did not take Sunday off. While you were resting, he was assembling. >> [music] >> While you were sleeping, he was",
   },
   "prayers__l8IzaYP19Zg": {
+    key: "prayers__l8IzaYP19Zg",
     id: "l8IzaYP19Zg",
     title: "35 MINUTES MOST POWERFUL MORNING ALTAR FIRE PRAYERS",
     collection: "prayers",
@@ -234,6 +257,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Somebody shout hallelujah. Hallelujah. Come on, lift your hands right where you are. Just lift your hands and begin to bless the name of the Lord. Begin to bless him, begin to honor him. Come on. Don't just sit there.",
   },
   "prayers__6_OGWXgvCJI": {
+    key: "prayers__6_OGWXgvCJI",
     id: "6_OGWXgvCJI",
     title: "35 MINUTES MOST VIOLENT MORNING PRAYER TO COMMAND THE NEW WEEK",
     collection: "prayers",
@@ -244,6 +268,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Take out your phone right now. Hold it up. I said hold it up. Lift it above your head. That device in your hand is not just a phone. It is a prophetic instrument. It is a delivery system. It",
   },
   "prayers__tnKmaY7LUKk": {
+    key: "prayers__tnKmaY7LUKk",
     id: "tnKmaY7LUKk",
     title: "35 MINUTES POWERFUL MORNING PRAYER BEFORE YOU START YOUR DAY",
     collection: "prayers",
@@ -254,6 +279,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Before you scroll past this, before you rush into your bathroom, before you check your phone, before you let the noise of the day speak the first word over you, stop. I need you to stop because there is a",
   },
   "prayers__5H_ro4Db76k": {
+    key: "prayers__5H_ro4Db76k",
     id: "5H_ro4Db76k",
     title: "35 MINUTES VIOLENT MORNING PRAYERS TO COMMAND THE NEW DAY",
     collection: "prayers",
@@ -264,6 +290,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Hallelujah. There is a stirring in my spirit right now. Even before I say anything else, I sense that the Holy Spirit has been waiting for this moment. He has been preparing hearts. He has been arranging circumstances. He has",
   },
   "prayers__l3gtcCezOS4": {
+    key: "prayers__l3gtcCezOS4",
     id: "l3gtcCezOS4",
     title: "3AM - 9AM POWERFUL MORNING DECLARATION TO START YOUR DAY",
     collection: "prayers",
@@ -274,6 +301,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Don't move. Don't touch your phone. Don't scroll. The moment you open your eyes this morning, something was already being decided about your day and God is saying not without you. Not without your voice. Not without your authority. You",
   },
   "prayers__UotweJdDO3c": {
+    key: "prayers__UotweJdDO3c",
     id: "UotweJdDO3c",
     title: "40 MINUTES 7AM - 9AM POWERFUL MORNING PRAYERS",
     collection: "prayers",
@@ -284,6 +312,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Hallelujah. Hallelujah. Hallelujah. Oh, we worship you tonight, Father. We worship you. There is none like you in all the earth. There is none like you in the heavens. You are God and besides you, there is no other. We",
   },
   "prayers__WRKkfRif7I4": {
+    key: "prayers__WRKkfRif7I4",
     id: "WRKkfRif7I4",
     title: "40 MINUTES MOST POWERFUL PRAYERS TO COMMAND YOUR NIGHT",
     collection: "prayers",
@@ -294,6 +323,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Believers, hear me tonight. This is not an ordinary night. Midnight is not just a time on the clock. It is a gate in the spirit. Job 38:12 asks, \"Hast thou commanded the morning since thy days and caused the",
   },
   "prayers__ErYYar3kjYA": {
+    key: "prayers__ErYYar3kjYA",
     id: "ErYYar3kjYA",
     title: "45 MINUTES MOST POWERFUL PSALM 120 MORNING PRAYER TO START YOUR DAY",
     collection: "prayers",
@@ -304,6 +334,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "I want somebody to say it out loud before we do anything else. I did not come here by accident. There is a reason this title found you tonight. Somewhere in this gathering is a person who has quietly suspected",
   },
   "prayers__4SxIr5Ymq_E": {
+    key: "prayers__4SxIr5Ymq_E",
     id: "4SxIr5Ymq_E",
     title: "5 ALTARS YOU MUST RAISE BEFORE 2026 BEGINS",
     collection: "prayers",
@@ -314,6 +345,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "I want you to take your phone right now and I want you to share this message with someone. There is a prophetic grace upon this word that will change destinies. Don't keep it to yourself. Someone needs to hear",
   },
   "prayers__TuquWlqxk0A": {
+    key: "prayers__TuquWlqxk0A",
     id: "TuquWlqxk0A",
     title: "5 MINUTES POWERFUL MORNING PRAYERS TO COVER YOUR DAY WITH THE BLOOD",
     collection: "prayers",
@@ -324,6 +356,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Before you say another word this morning, before you check that phone, before you rehearse today's schedule in your head, I need you to do one thing. Close your eyes and remember that you are alive. Not by luck. Not",
   },
   "prayers__oZLbgBvojQI": {
+    key: "prayers__oZLbgBvojQI",
     id: "oZLbgBvojQI",
     title: "5 MINUTES POWERFUL MORNING PRAYERS TO COVER YOUR DAY WITH THE BLOOD",
     collection: "prayers",
@@ -334,6 +367,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Lift your hands wherever you are. Just lift your hands. Father, we thank you. We thank you for this moment. We thank you for the gift of breath. We thank you that we are alive to see this day. Lord,",
   },
   "prayers__Qrd-ev2ISIE": {
+    key: "prayers__Qrd-ev2ISIE",
     id: "Qrd-ev2ISIE",
     title: "5 Months of Progress in 1 Wk:The Prophetic Move for Supernatural Acceleration ",
     collection: "prayers",
@@ -344,6 +378,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Are you ready to pray? Shout this and say, \"Father, in the name OF JESUS, I DECLARE BY THE BLOOD FREEDOM FROM EVERY CAPTIVITY AND EVERY DEMONIC INFLUENCE. SAY IT AGAIN, I DECLARE BY THE BLOOD OF JESUS FREEDOM FROM",
   },
   "prayers__vUT52by3XHE": {
+    key: "prayers__vUT52by3XHE",
     id: "vUT52by3XHE",
     title: "5AM - 7AM POWERFUL MORNING DECLARATION TO START YOUR DAY",
     collection: "prayers",
@@ -354,6 +389,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Beloved, lift your hands wherever you are and begin to bless the name of the Lord. Give him praise for a new day. Give him glory for the gift of life. The psalm is declared in Psalm 35, \"I laid",
   },
   "prayers__tfq7JQ3XpV8": {
+    key: "prayers__tfq7JQ3XpV8",
     id: "tfq7JQ3XpV8",
     title: "5AM - 7AM PROPHETIC MORNING DECLARATIONS",
     collection: "prayers",
@@ -364,6 +400,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Beloved, before we go into the deep things of the spirit this morning, I want you to do something for me. I want you to share this prayer point. I want you to send it to somebody. There is someone",
   },
   "prayers__JH7ofU2bMvg": {
+    key: "prayers__JH7ofU2bMvg",
     id: "JH7ofU2bMvg",
     title: "5AM MORNING WARFARE DECLARATIONS",
     collection: "prayers",
@@ -374,6 +411,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Father, we thank you. We thank you for the privilege of your presence. We thank you that you do not leave us as orphans, that you do not abandon us to the darkness of this world without equipping us, without",
   },
   "prayers__xMz0EUAzi64": {
+    key: "prayers__xMz0EUAzi64",
     id: "xMz0EUAzi64",
     title: "5AM PRAYER THAT SHIFTS YOUR DAY FROM STRUGGLE TO SUPERNATURAL FAVOUR",
     collection: "prayers",
@@ -384,6 +422,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Glory, glory, glory to the most high God. Oh, I feel the weight of heaven in this place already. Something is different about this moment. Something is shifting in the realm of the spirit. I don't know who I'm speaking",
   },
   "prayers__bFz41y_4GPk": {
+    key: "prayers__bFz41y_4GPk",
     id: "bFz41y_4GPk",
     title: "5AM PRAYER WARRIORS RECEIVE WHAT 5PM PRAYERS CAN'T TOUCH",
     collection: "prayers",
@@ -394,6 +433,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Hallelujah. Hallelujah. Hallelujah. Glory to God. There is a sound in this place tonight. Can you feel it? There is a sound, the sound of the spirit, the sound of power, the sound of breakthrough. I want you to just",
   },
   "prayers__4O_LhVJEKtM": {
+    key: "prayers__4O_LhVJEKtM",
     id: "4O_LhVJEKtM",
     title: "5AM VIOLENT MORNING PRAYER THAT SHAKES HEAVEN AND DESTROYS DARKNESS DO NOT SKIP THIS",
     collection: "prayers",
@@ -404,6 +444,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "It is 5 in the morning and I need you to understand what that means, not what it means on the clock, what it means in the spirit. 5 in the morning is the deepest darkness before the dawn. It",
   },
   "prayers__zdrV4thgcAM": {
+    key: "prayers__zdrV4thgcAM",
     id: "zdrV4thgcAM",
     title: "6:30 AM PRAYER THAT SETS YOUR DAY ON FIRE FOR GOD",
     collection: "prayers",
@@ -414,6 +455,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Father, we give you praise. Someone whisper, \"Jesus,\" not casually call him like you need him. Jesus, we honor you this morning. We honor you at 6:30 a.m. We honor you as the first voice we hear, the first presence",
   },
   "prayers__4FzqZ2gD2zs": {
+    key: "prayers__4FzqZ2gD2zs",
     id: "4FzqZ2gD2zs",
     title: "6:39AM VIOLENT MORNING DECLARATIONS",
     collection: "prayers",
@@ -424,6 +466,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Let me ask you something. When was the last time your prayer shook a room? Not a room in a building, a room in the spirit. When was the last time you prayed and something moved? Not [music] eventually, not",
   },
   "prayers__GYkPUSia0zw": {
+    key: "prayers__GYkPUSia0zw",
     id: "GYkPUSia0zw",
     title: "6:45AM MORNING POWERFUL PRAYER TO COMMAND THE NEW MONTH",
     collection: "prayers",
@@ -434,6 +477,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Oh, I feel the weight of this moment. I feel the density of the spirit in this place. Something is about to happen. Something is shifting even before I open my mouth to teach. The heavens already responding. The angels",
   },
   "prayers__FVmnPFIZeTc": {
+    key: "prayers__FVmnPFIZeTc",
     id: "FVmnPFIZeTc",
     title: "6AM PRAYER THAT MAKES YOUR ENEMIES CONFUSED ALL DAY",
     collection: "prayers",
@@ -444,6 +488,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Hallelujah. Hallelujah. Hallelujah. Oh, glory to God. Glory to God. Glory to God. Can you just lift your hands wherever you are right now? I want you to know that this is not an ordinary morning. This is not just",
   },
   "prayers__1YlVX_AoyRc": {
+    key: "prayers__1YlVX_AoyRc",
     id: "1YlVX_AoyRc",
     title: "7 EYES 7 WINDS 7 SCROLLS",
     collection: "prayers",
@@ -454,6 +499,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "There is a difference between a man who speaks because he has something to [music] say and a man who speaks because heaven has opened and [music] something must be released before the service ends. Tonight I am the second",
   },
   "prayers__4YElIs15_Ak": {
+    key: "prayers__4YElIs15_Ak",
     id: "4YElIs15_Ak",
     title: "[POWERFUL 🔥] COMMAND YOUR DAY IN TOTAL VICTORY BY DECLARING THESE POWERFUL PRAYER",
     collection: "prayers",
@@ -464,6 +510,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Get up. Get up from that bed right now. Don't reach for your phone. Don't scroll. Don't check messages. Put your feet on the floor and open your mouth. The sun hasn't fully come up yet. And before it does,",
   },
   "prayers__nE5ggTYyQp4": {
+    key: "prayers__nE5ggTYyQp4",
     id: "nE5ggTYyQp4",
     title: "[POWERFUL 🔥] COMMAND YOUR DAY IN TOTAL VICTORY BY DECLARING THESE POWERFUL PRAYER",
     collection: "prayers",
@@ -474,6 +521,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Good morning, sons of God. Welcome to your day of total victory. Please understand that the realm of the spirit controls the physical realm. If you do not program your day in the place of prayer, you become a victim",
   },
   "prayers__lahXXa54ptE": {
+    key: "prayers__lahXXa54ptE",
     id: "lahXXa54ptE",
     title: "[PSALM 34, 50] MORNING PRAYER TO CRY TO GOD FOR HELP BEFORE THE YEAR ENDS",
     collection: "prayers",
@@ -484,6 +532,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Beloved, I want you to understand something today. As we stand at the threshold of a new year, I need you to pay attention to what [music] the spirit of God is saying to the church. There is something profoundly",
   },
   "prayers__XmxRgRpeDtU": {
+    key: "prayers__XmxRgRpeDtU",
     id: "XmxRgRpeDtU",
     title: "A MORNING PRAYER: I COMMIT THIS DAY TO YOU — LET YOUR PLANS PREVAIL",
     collection: "prayers",
@@ -494,6 +543,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "You did not wake yourself up. Something signed for you to see this day. >> [music] >> Somewhere in the courts of heaven, a decision was made that you would not be a statistic, that you would not be a",
   },
   "prayers__qeqY2MCvgHk": {
+    key: "prayers__qeqY2MCvgHk",
     id: "qeqY2MCvgHk",
     title: "A PROPHETIC VISION FOR YOUR LIFE — GOD SENT ME TO TELL YOU THIS!",
     collection: "prayers",
@@ -504,6 +554,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "There are moments in destiny when heaven interrupts the schedule of men and says, \"Now I must speak.\" Today is not another gathering of words. It is a prophetic appointment. [music] It is the voice of God calling a destiny",
   },
   "prayers__SSdaYGhd8QY": {
+    key: "prayers__SSdaYGhd8QY",
     id: "SSdaYGhd8QY",
     title: "ACTIVATING POWERFUL EARLY MORNING WARFARE PRAYERS",
     collection: "prayers",
@@ -514,6 +565,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Hallelujah. Hallelujah. Glory be to God. Glory be to God. Just lift your hands where you are. Whether you are in this auditorium, whether you are watching online, whether you are connected by faith, I want you to just lift",
   },
   "prayers__QrK4o4zWtdY": {
+    key: "prayers__QrK4o4zWtdY",
     id: "QrK4o4zWtdY",
     title: "ACTIVATING POWERFUL WARFARE MORNING PRAYERS TO START YOUR DAY",
     collection: "prayers",
@@ -524,6 +576,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Hear me people of God. This is not an ordinary night. This is not a casual gathering. This is not a normal moment. Tonight is prophetic. Tonight [music] is strategic. Tonight is warfare. Midnight is the womb of the spirit.",
   },
   "prayers__GefdZjGqBUA": {
+    key: "prayers__GefdZjGqBUA",
     id: "GefdZjGqBUA",
     title: "ACTIVATING PRAYER MORNING BLESSINGS TO PROSPER AS YOU START YOUR DAY",
     collection: "prayers",
@@ -534,6 +587,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Beloved, hear me this morning. God has not brought you into a new day for nothing. Every day is a gift and every morning is a prophetic gate that must be opened correctly. The Bible says in Psalm 118:4, \"This",
   },
   "prayers__e_MzEgc9Sf0": {
+    key: "prayers__e_MzEgc9Sf0",
     id: "e_MzEgc9Sf0",
     title: "ACTIVATING PRAYER MORNING BLESSINGS TO PROSPER AS YOU START YOUR DAY",
     collection: "prayers",
@@ -544,6 +598,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Something is happening in the realm of the spirit before the sun fully climbs over the horizon this morning and I need you to stop whatever your hands are holding and pay attention to what is being loosed over your",
   },
   "prayers__n_-qJ-cojO0": {
+    key: "prayers__n_-qJ-cojO0",
     id: "n_-qJ-cojO0",
     title: "Always Give God The Start Of Your Day",
     collection: "prayers",
@@ -554,6 +609,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Every new day is a miracle. The breath in your lungs, the strength in your body, and the opportunity to rise and see the light of another morning are all gifts from the Lord. Each sunrise whispers of his mercy,",
   },
   "prayers__5p9aar5K0xg": {
+    key: "prayers__5p9aar5K0xg",
     id: "5p9aar5K0xg",
     title: "Always Pray First Before You Start Your Day Start Your Day",
     collection: "prayers",
@@ -564,6 +620,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "As a new day dawn, the stillness of the early hours reminds us of God's mercies made fresh with the rising of the sun. Morning is not only the beginning of another cycle of ours. It is an opportunity to",
   },
   "prayers__fRqkThhH-HU": {
+    key: "prayers__fRqkThhH-HU",
     id: "fRqkThhH-HU",
     title: "ASK GOD TO ALIGN YOUR DESIRES WITH HIS, TODAY",
     collection: "prayers",
@@ -574,6 +631,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Lift your hands wherever you are. Lift your hands and just worship him for a moment. Father, we thank you. We thank you, Lord. You are worthy of all praise, worthy of all adoration. We bless your name this morning.",
   },
   "prayers__MOlU5TOK8Nc": {
+    key: "prayers__MOlU5TOK8Nc",
     id: "MOlU5TOK8Nc",
     title: "ATTRACT BLESSINGS THIS NEW WEEK",
     collection: "prayers",
@@ -584,6 +642,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Hallelujah. Hallelujah. Hallelujah. Give somebody a shout of praise right where you are. Come on, lift your voice and bless the name of the Lord. We are alive. We are well and we're in the presence of God this morning.",
   },
   "prayers__wDEiJLCh5NM": {
+    key: "prayers__wDEiJLCh5NM",
     id: "wDEiJLCh5NM",
     title: "Before God Can Announce You, He Will Force You into This Silent Season ",
     collection: "prayers",
@@ -594,6 +653,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Please go for knowledge. If you're a man of God, go for knowledge. Don't say God is not announcing me. He doesn't want to disgrace you. Go for knowledge. Keeping you quiet is an act of his mercy. So that",
   },
   "prayers__OycoUfbQ-Z0": {
+    key: "prayers__OycoUfbQ-Z0",
     id: "OycoUfbQ-Z0",
     title: "Before May Ends, Fix This One Mistake ",
     collection: "prayers",
@@ -604,6 +664,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Reason number one why people do not make consistent progress in their lives. I wrote here lack of goals and defined expectations. The first reason that I pointed here as to why many people including believers do not make constructive",
   },
   "prayers__QQDZ7v33EJ8": {
+    key: "prayers__QQDZ7v33EJ8",
     id: "QQDZ7v33EJ8",
     title: "BEFORE NOVEMBER ENDS SAY THIS POWERFUL PRAYER AND DECLARATION",
     collection: "prayers",
@@ -614,6 +675,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Father, we give you glory. We honor you. We magnify your holy name. You are Yahweh, the God that never fails. You are the same yesterday, today, and forever. And tonight, as we lift our voices before the throne of",
   },
   "prayers__Vj3egIXUZAQ": {
+    key: "prayers__Vj3egIXUZAQ",
     id: "Vj3egIXUZAQ",
     title: "BEFORE YOU START YOR DAY ASK GOD FOR THESE 3 THINGS",
     collection: "prayers",
@@ -624,6 +686,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "This is not an ordinary morning. This is a spiritual gateway. The first moments of your day determine the instructions of the day. The protection of the day and the blessings assigned to the day. I hear the spirit of",
   },
   "prayers__PJJK2Jb3ZdE": {
+    key: "prayers__PJJK2Jb3ZdE",
     id: "PJJK2Jb3ZdE",
     title: "BLOOD OF JESUS ARISE AND FIGHT FOR ME NOW",
     collection: "prayers",
@@ -634,6 +697,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Oh, the blood of Jesus. The blood of Jesus. The blood of Jesus. Before I say anything tonight, before a single word of teaching comes forth, I want you to just open your mouth right where you are and begin",
   },
   "prayers__oeGwkCzsn1A": {
+    key: "prayers__oeGwkCzsn1A",
     id: "oeGwkCzsn1A",
     title: "CALL FORTH DIVINE HELPERS TO LOCATE YOU THIS WEEK",
     collection: "prayers",
@@ -644,6 +708,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Beloved, I want you to take a moment and share this prayer with someone, there is a prophetic grace upon this word. And the Lord showed me that as you share it, you are releasing a divine signal into the",
   },
   "prayers__XWBUBtEv70A": {
+    key: "prayers__XWBUBtEv70A",
     id: "XWBUBtEv70A",
     title: "Call on the Name of Jesus and Watch God Work Today",
     collection: "prayers",
@@ -654,6 +719,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Father in heaven, I come before you at the dawn of this new day with a heart that longs to be near you. As the light begins to touch the earth, I am reminded that you are the one who",
   },
   "prayers__QF0EwftbXsI": {
+    key: "prayers__QF0EwftbXsI",
     id: "QF0EwftbXsI",
     title: "Church and State Part 2: Restoring the King-Priest Dominion Strategy ",
     collection: "prayers",
@@ -664,6 +730,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "every impartation of grace that is resting upon your life. I want to remind you that God is in an intentional business of building, molding, making a sign and a wonder out of your life. Hallelujah. And provided you have",
   },
   "prayers__Mh2MLXPs4ug": {
+    key: "prayers__Mh2MLXPs4ug",
     id: "Mh2MLXPs4ug",
     title: "COMMAND BLESSINGS THIS  WEEK AND WATCH YOUR LIFE CHANGE",
     collection: "prayers",
@@ -674,6 +741,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Hallelujah. Glory to God. Lift your hands wherever you are and just bless the name of the Lord. We give you praise, we give you honor, we give you glory. You are the ancient of days, the one who was",
   },
   "prayers__zgRBt8l-wvg": {
+    key: "prayers__zgRBt8l-wvg",
     id: "zgRBt8l-wvg",
     title: "COMMAND BLESSINGS THIS MORNING",
     collection: "prayers",
@@ -684,6 +752,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Hallelujah. Glory to God. I want you to lift up your hands wherever you are right now. Whether you are in your room, in your car, in your office, at the marketplace, lift up your hands to the Lord. We",
   },
   "prayers__icb1qMJn4cE": {
+    key: "prayers__icb1qMJn4cE",
     id: "icb1qMJn4cE",
     title: "COMMAND BLESSINGS THIS NEW DAY",
     collection: "prayers",
@@ -694,6 +763,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Beloved, before we go into this place of prayer, I want you to do something for me. Share this prayer with someone right now. Send it to a friend, a family member, a colleague, somebody who needs to hear from",
   },
   "prayers__eFNXQEJNkH0": {
+    key: "prayers__eFNXQEJNkH0",
     id: "eFNXQEJNkH0",
     title: "COMMAND BLESSINGS THIS NEW MONTH",
     collection: "prayers",
@@ -704,6 +774,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "I want you to share this prayer with somebody. Don't just keep it to yourself. There are people in your life. There are people in your network. There are people in your sphere of influence who [music] need to hear",
   },
   "prayers__yehyeZqRalU": {
+    key: "prayers__yehyeZqRalU",
     id: "yehyeZqRalU",
     title: "COMMAND BLESSINGS TODAY!!",
     collection: "prayers",
@@ -714,6 +785,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Lift your hands wherever you are and just give praise to the King of kings and Lord of lords. Come on, give him praise from the depth of your heart. He is worthy. He is worthy of all glory, all",
   },
   "prayers__INrSM5xy39c": {
+    key: "prayers__INrSM5xy39c",
     id: "INrSM5xy39c",
     title: "COMMAND THE FIRST SUNDAY OF THE NEW MONTH",
     collection: "prayers",
@@ -724,6 +796,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Father God, we come before your throne right now. We come in the authority of the blood of Jesus Christ. We come as the redeemed of the Lord, as kings and priests onto our God. Every demon that thought it",
   },
   "prayers__kTUeAQ4kb-8": {
+    key: "prayers__kTUeAQ4kb-8",
     id: "kTUeAQ4kb-8",
     title: "COMMAND THE LAST SUNDAY OF THE MONTH",
     collection: "prayers",
@@ -734,6 +807,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "command the last Sunday of the month. Glory to God. Glory to God. Something is happening in this place right now. I want you to sense it. Don't rush past this moment. The spirit of God is already moving before",
   },
   "prayers__1RyNJKmXmuI": {
+    key: "prayers__1RyNJKmXmuI",
     id: "1RyNJKmXmuI",
     title: "COMMAND THE MORNING GATES TO OPEN WITH WITH BLESSINGS",
     collection: "prayers",
@@ -744,6 +818,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Beloved, I want you to do something for me right now. Wherever you are listening to this message, I want you to share this prayer with someone. There's somebody on your contact list that needs to hear this word. There's",
   },
   "prayers__z9w_WvdnWHI": {
+    key: "prayers__z9w_WvdnWHI",
     id: "z9w_WvdnWHI",
     title: "COMMAND THE NEW DAY FOR SUPERNATURAL BREAKTHROUGHS",
     collection: "prayers",
@@ -754,6 +829,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Every new day is an invitation from God to begin again. Fresh grace, fresh favor, fresh help. Psalm 118:4 declares, \"This is the day which the Lord hath made. We will rejoice and be glad in it.\" That means the",
   },
   "prayers__RrrABABNbqI": {
+    key: "prayers__RrrABABNbqI",
     id: "RrrABABNbqI",
     title: "COMMAND THE NEW DAY WITH POWERFUL MORNING PRAYERS BEFORE THE ENEMY DOES",
     collection: "prayers",
@@ -764,6 +840,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Something woke me up before my alarm this morning and I have learned never to ignore that. There is a difference between waking up and being awakened. One is biological, the other is summoned. And when you are summoned before",
   },
   "prayers__ZGBNNGpi0k4": {
+    key: "prayers__ZGBNNGpi0k4",
     id: "ZGBNNGpi0k4",
     title: "COMMAND THE NEW MONTH FOR PROSPERITY",
     collection: "prayers",
@@ -774,6 +851,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "I want you to lift your hands where you are. Not because I said so, but because heaven is already leaning forward. There is an atmosphere in this place that did not [music] come from the sound system, that did",
   },
   "prayers__l6cNUadhLcc": {
+    key: "prayers__l6cNUadhLcc",
     id: "l6cNUadhLcc",
     title: "COMMAND THE NEW WEEK",
     collection: "prayers",
@@ -784,6 +862,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Glory be to God. [music] I want you to understand something this morning that is going to shift your entire perspective concerning time, concerning seasons, and concerning the authority that heaven has invested in the believer. You see, many believers",
   },
   "prayers__WNHuKgmtNB4": {
+    key: "prayers__WNHuKgmtNB4",
     id: "WNHuKgmtNB4",
     title: "COMMAND THE NEW WEEK WITH AGGRESSIVE MONDAY MORNING PRAYER BEFORE THE ENEMY DOES",
     collection: "prayers",
@@ -794,6 +873,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Hallelujah. Hallelujah. Hallelujah. Oh, we worship you, Father. We worship you, Lord. We give you praise. We give you glory. We give you honor. There is none like you. There is none beside you. You are the alpha and the",
   },
   "prayers__4hb72caH-Bo": {
+    key: "prayers__4hb72caH-Bo",
     id: "4hb72caH-Bo",
     title: "COMMAND THE NEW WEEK WITH THE BLOOD OF JESUS WITH APOSTLE JOSHUA SELMAN",
     collection: "prayers",
@@ -804,6 +884,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Something happened in Egypt on one particular night, not a series of nights. One night, [music] and on that one night the most powerful empire on earth was broken. The most feared king on earth wept. The most fortified nation",
   },
   "prayers__fZ7rHEtLUe0": {
+    key: "prayers__fZ7rHEtLUe0",
     id: "fZ7rHEtLUe0",
     title: "COMMAND YOUR 2026 BEFORE THE ENEMY DOES..",
     collection: "prayers",
@@ -814,6 +895,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "If this message blesses you, please share it with someone. There are people in your circle, in your family, in your workplace who need to hear this word. The Lord has given us a mandate for this season and we",
   },
   "prayers__7B9Pensbets": {
+    key: "prayers__7B9Pensbets",
     id: "7B9Pensbets",
     title: "COMMAND YOUR BLESSINGS TO LOCATE YOU EVERY MORNING WITH THIS PRAYER",
     collection: "prayers",
@@ -824,6 +906,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Stop. Do not move. The Lord just arrested this moment. Before you understood what was happening, heaven already shifted on your behalf. That tongue that broke out of me, it was not for me. It was for you. It was",
   },
   "prayers__HtUDQJ8kYXg": {
+    key: "prayers__HtUDQJ8kYXg",
     id: "HtUDQJ8kYXg",
     title: "COMMAND YOUR DAY BEFORE 7AM – PSALM 143 MORNING DECLARATION",
     collection: "prayers",
@@ -834,6 +917,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Glory, glory, glory to God. Hallelujah. Hallelujah. Hallelujah. Oh, the presence of God is here already. I can feel it. I can sense it. The atmosphere is charged. Heaven is leaning in. Angels are gathering. Something is about to happen.",
   },
   "prayers__VEkxBjvzOII": {
+    key: "prayers__VEkxBjvzOII",
     id: "VEkxBjvzOII",
     title: "COMMAND YOUR DECEMBER TO DELIVER GOODNEWS",
     collection: "prayers",
@@ -844,6 +928,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Glory to the name of Jesus. I want you to lift up your [music] hands wherever you are and begin to bless the name of the Lord. Begin to magnify his name. Begin to [music] worship him. For the Bible",
   },
   "prayers__Tqb6VuHDw7M": {
+    key: "prayers__Tqb6VuHDw7M",
     id: "Tqb6VuHDw7M",
     title: "COMMAND YOUR MORNING TO BRING TESTIMONIES",
     collection: "prayers",
@@ -854,6 +939,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Beloved, I want you to understand something profound this morning. Before we go into this word, I need you to do something for me. I need you to share this prayer with someone right now. Don't wait until the end.",
   },
   "prayers__0mkVk-oEIRA": {
+    key: "prayers__0mkVk-oEIRA",
     id: "0mkVk-oEIRA",
     title: "COMMAND YOUR MORNING WITH FIRE!!",
     collection: "prayers",
@@ -864,6 +950,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Glory to God. Before we go into this powerful time of prayer and ministration, I want you to do something for me. Share this prayer with somebody. Don't keep it to yourself. There is a principle in the kingdom empire.",
   },
   "prayers__202GMAtI75M": {
+    key: "prayers__202GMAtI75M",
     id: "202GMAtI75M",
     title: "COMMAND YOUR NEW WEEK",
     collection: "prayers",
@@ -874,6 +961,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "I want you to lift up your spirit right now as [music] we step into the prophetic arena of commanding your weak. This is not mere religious exercise. [music] This is militant intercession. This is prophetic warfare. This is the",
   },
   "prayers__xl1pEDyx8yY": {
+    key: "prayers__xl1pEDyx8yY",
     id: "xl1pEDyx8yY",
     title: "COMMAND YOUR SUNDAY FOR GOOD NEWS ALERT",
     collection: "prayers",
@@ -884,6 +972,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Let me tell you a story before anything else this morning. There was a man sitting in a well, not by choice. His brothers, his own blood, stripped him naked, threw him in, and walked away to eat lunch while",
   },
   "prayers__o38YlYdgNho": {
+    key: "prayers__o38YlYdgNho",
     id: "o38YlYdgNho",
     title: "COVER YOUR DAY WITH THE BLOOD",
     collection: "prayers",
@@ -894,6 +983,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Blessed be the Lord my strength, which teacheth my hands to war, and my fingers to fight. My goodness and my fortress, my high tower and my deliverer, my shield and he in whom I trust. Psalm 144:1-2. Before I",
   },
   "prayers__Af3Jp7Wgudk": {
+    key: "prayers__Af3Jp7Wgudk",
     id: "Af3Jp7Wgudk",
     title: "COVER YOUR DECEMBER WITH GOD'S PROTECTION",
     collection: "prayers",
@@ -904,6 +994,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "I want you to open your Bibles with me to Psalm 91. I am speaking by the uncction of the Holy Ghost tonight. There is a dimension of divine covering that God wants to establish over your life as we",
   },
   "prayers__olWy7xYstdA": {
+    key: "prayers__olWy7xYstdA",
     id: "olWy7xYstdA",
     title: "COVER YOUR MORNING WITH GOD'S PROTECTION",
     collection: "prayers",
@@ -914,6 +1005,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "I want you to share this prayer with somebody. Don't just listen and walk away. There are people in your network, in your family, in your workplace that need the kind of covering we are about to invoke this morning.",
   },
   "prayers__3oReO2mtQVc": {
+    key: "prayers__3oReO2mtQVc",
     id: "3oReO2mtQVc",
     title: "DANGEROUS MIDNIGHT PRAYERS FOR UNSTOPPABLE FAVOUR AND ACCELERATION",
     collection: "prayers",
@@ -924,6 +1016,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Somebody shout hallelujah. I welcome you into this sacred atmosphere where heaven and earth are about to collide. This is not an ordinary prayer session. This is a divine appointment orchestrated by the spirit of the living God. The angels",
   },
   "prayers__aoczVpQW_m0": {
+    key: "prayers__aoczVpQW_m0",
     id: "aoczVpQW_m0",
     title: "DANGEROUS MIDNIGHT PRAYERS FOR UNSTOPPABLE FAVOUR AND DIVINE ACCELERATION",
     collection: "prayers",
@@ -934,6 +1027,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Welcome to the watch. While the world sleeps, the generals are awake. While the ordinary man is dreaming, the spiritual man is legislating. Hear me. Midnight is not just [music] a time on the clock. It is a spiritual coordinate.",
   },
   "prayers__s9nsNuR8asY": {
+    key: "prayers__s9nsNuR8asY",
     id: "s9nsNuR8asY",
     title: "DANGEROUS MORNING DECLARATIONS THAT CONFUSE THE CAMP OF THE ENEMY",
     collection: "prayers",
@@ -944,6 +1038,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Somebody's about to encounter God tonight. I don't want to preach yet. I need you to just stay with me. Something is happening right now. The spirit of the living God is moving in this place and I want you",
   },
   "prayers__bJ-pvyZN--o": {
+    key: "prayers__bJ-pvyZN--o",
     id: "bJ-pvyZN--o",
     title: "DANGEROUS MORNING PRAYER BEFORE YOU START YOUR DAY",
     collection: "prayers",
@@ -954,6 +1049,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Hallelujah. Hallelujah. Hallelujah. We worship you, Lord. We worship you, Father. We bow our hearts before you tonight. You are the King of Kings and the Lord of Lords. There is none beside you. There is none above you. You",
   },
   "prayers__jGRaay8pgCI": {
+    key: "prayers__jGRaay8pgCI",
     id: "jGRaay8pgCI",
     title: "DANGEROUS MORNING PRAYER BEFORE YOU START YOUR DAY",
     collection: "prayers",
@@ -964,6 +1060,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Something is shifting in the atmosphere right now. I need you to lift your hands wherever you are. Just lift your hands. Don't wait. Don't adjust yourself. Lift your hands because there is a wind that is beginning to move",
   },
   "prayers__me_VsKKaieU": {
+    key: "prayers__me_VsKKaieU",
     id: "me_VsKKaieU",
     title: "DANGEROUS MORNING PRAYERS THAT WORK",
     collection: "prayers",
@@ -974,6 +1071,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "I want you to do me a favor right now. Share this prayer point with everyone in your contact list. Don't keep it to yourself. There are people on your timeline, in your WhatsApp groups, in your family circles, who",
   },
   "prayers__9ZBTzzQ-zoI": {
+    key: "prayers__9ZBTzzQ-zoI",
     id: "9ZBTzzQ-zoI",
     title: "DANGEROUS PRAYER: Say These 7 Prayers Before You Sleep To Expose Every Secret Enemy",
     collection: "prayers",
@@ -984,6 +1082,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Before your head touches that pillow, before sleep comes over your body and your conscious mind goes to rest, there is something that must happen first. There is a spiritual transaction that must take place in the heavenly realm. There",
   },
   "prayers__EZeNtgLM8u0": {
+    key: "prayers__EZeNtgLM8u0",
     id: "EZeNtgLM8u0",
     title: "DANGEROUS PSALM 91 MORNING PRAYERS THAT WORKS",
     collection: "prayers",
@@ -994,6 +1093,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Somebody's under attack right now. I don't mean metaphorically, I mean there is a coordinated deliberate demonic assignment running against your life at this very moment. And you have been sensing it, you have been feeling it in the atmosphere",
   },
   "prayers__0XlKLmZkY7A": {
+    key: "prayers__0XlKLmZkY7A",
     id: "0XlKLmZkY7A",
     title: "DECLARE  PSALM 118 PRAYER EVERY MORNING AND WATCH YOUR LIFE CHANGE",
     collection: "prayers",
@@ -1004,6 +1104,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Beloved, before we go into this place of communion with the spirit this morning, I want you to do something very significant. Share this prayer. Send it to somebody. There's a prophetic instruction embedded in sharing divine encounters. When you",
   },
   "prayers__9q10lJfTI4w": {
+    key: "prayers__9q10lJfTI4w",
     id: "9q10lJfTI4w",
     title: "DECLARE  PSALM 91 PRAYER EVERY MORNING AND WATCH YOUR LIFE CHANGE",
     collection: "prayers",
@@ -1014,6 +1115,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Beloved, before we go into the realm of the spirit this morning, I want you to do something for me. I want you to share this prayer. I want you to send it to somebody. There are people in your",
   },
   "prayers__OK9Y5AEZO7k": {
+    key: "prayers__OK9Y5AEZO7k",
     id: "OK9Y5AEZO7k",
     title: "DECLARE 121 EVERY MORNING AND WATCH GOD WORK WONDERS IN YOUR LIFE",
     collection: "prayers",
@@ -1024,6 +1126,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Beloved, I want you to lift up your hands wherever you are, whether you are in your bedroom, in your car, in your office, or wherever this word has found you. I want you to understand something. What I am",
   },
   "prayers__RIrvhQGktvg": {
+    key: "prayers__RIrvhQGktvg",
     id: "RIrvhQGktvg",
     title: "DECLARE DIVINE PEACE AND JOY OVER YOUR MORNING",
     collection: "prayers",
@@ -1034,6 +1137,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Beloved, I want you to do me a favor this morning before we go deep into the things of the spirit. I need you to share this prayer point with somebody. Send it to your family members. Send it to",
   },
   "prayers__yYhjGpf6BfQ": {
+    key: "prayers__yYhjGpf6BfQ",
     id: "yYhjGpf6BfQ",
     title: "DECLARE PSALM 118 EVERY MORNING AND WATCH YOUR LIFE TURN AROUND",
     collection: "prayers",
@@ -1044,6 +1148,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Glory, glory, glory to the most high God. Lift your hands right where you are. Don't wait for anyone. Don't look around. Just begin to worship. Begin to magnify the King of Kings. Begin to exalt the Lord of Lords.",
   },
   "prayers__sYbmcaPjgu8": {
+    key: "prayers__sYbmcaPjgu8",
     id: "sYbmcaPjgu8",
     title: "DECLARE PSALM 145 AND PRAISE GOD IN THE MORNING",
     collection: "prayers",
@@ -1054,6 +1159,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Hallelujah. Hallelujah. Give the Lord a hand of praise right where you are. Come on, lift your hands and worship him. Father, we give you glory. We give you honor. We bless your name. You are worthy, Lord. You are",
   },
   "prayers__-J1zUxoYgBY": {
+    key: "prayers__-J1zUxoYgBY",
     id: "-J1zUxoYgBY",
     title: "DECLARE THIS 30 MINUTES VIOLENT PRAYER EVERY MORNING THIS NEW WEEK - APOSTLE JOSHUA SELMAN",
     collection: "prayers",
@@ -1064,6 +1170,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Beloved people of God, hear me as I declare unto you by the spirit of the living God. Great is the Lord and greatly to be praised, and his greatness is unsearchable. Psalm 145:3. This is not just another week.",
   },
   "prayers__slcJncbK4zE": {
+    key: "prayers__slcJncbK4zE",
     id: "slcJncbK4zE",
     title: "DECLARE THIS OVER YOUR MORNING BEFORE THE DEVIL STEALS YOUR DAY",
     collection: "prayers",
@@ -1074,6 +1181,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Lift your hands wherever you are. Just lift your hands right now. Father, we thank you. We thank you for this moment. We thank you because you are a God who does not sleep, a God who does not slumber,",
   },
   "prayers__OPT4NxeRvu0": {
+    key: "prayers__OPT4NxeRvu0",
     id: "OPT4NxeRvu0",
     title: "DECLARE THIS POWERFUL PSALM 23 PRAYER THIS MORNING & WATCH YOUR LIFE CHANGE",
     collection: "prayers",
@@ -1084,6 +1192,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Beloved, if this message blesses your spirit, I want you to do something for me. Don't just keep it to yourself. Share it with your family members, share it with your friends, on WhatsApp, on Facebook, on every platform that",
   },
   "prayers__ouo0Khb0tNU": {
+    key: "prayers__ouo0Khb0tNU",
     id: "ouo0Khb0tNU",
     title: "DECLARE THIS SCRIPTURES EVERY MORNING BEFORE GOING OUT",
     collection: "prayers",
@@ -1094,6 +1203,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Stop whatever you are doing for the next few minutes because I'm not going to give you a sermon this morning. [music] I'm going to hand you a weapon and if you receive it correctly, you will never walk out",
   },
   "prayers__peqTpTrANdo": {
+    key: "prayers__peqTpTrANdo",
     id: "peqTpTrANdo",
     title: "DECLARE VICTORY OVER EVERY BATTLE IN YOUR LIFE THIS WEEK",
     collection: "prayers",
@@ -1104,6 +1214,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Hallelujah. Glory to God. I want you to [music] lift up your hands wherever you are. Whether you are in your room, in your car, in your office, lift up your [music] hands unto the Lord. The Bible says in",
   },
   "prayers__euEZnVb0QS0": {
+    key: "prayers__euEZnVb0QS0",
     id: "euEZnVb0QS0",
     title: "DECREE DIVINE ALIGNMENT OVER THE NEW WEEK",
     collection: "prayers",
@@ -1114,6 +1225,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "I want you to share this prayer with somebody. There's a grace upon [music] it. When you share what God is doing, you're not just informing people. You're transferring grace. The Bible says in Philippians 1:6 that the communication of",
   },
   "prayers__XRT-w_n01Lo": {
+    key: "prayers__XRT-w_n01Lo",
     id: "XRT-w_n01Lo",
     title: "DECREE DIVINE ALIGNMENT OVER YOUR MORNING",
     collection: "prayers",
@@ -1124,6 +1236,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Glory to God. I want you to listen to me very carefully this morning. Before we go into the place of prayer, I need you to do something very significant. Share this prayer with somebody. Send it to your family",
   },
   "prayers__XUEpbi96UUQ": {
+    key: "prayers__XUEpbi96UUQ",
     id: "XUEpbi96UUQ",
     title: "DEMONS HATES THIS DANGEROUS PRAYER",
     collection: "prayers",
@@ -1134,6 +1247,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Beloved, hear me this morning. God has not brought you into a new day for nothing. Every day is a gift and every morning is a prophetic gate that must be opened correctly. The Bible says in Psalm 118:4, \"This",
   },
   "prayers__rdxpyZ2BF3M": {
+    key: "prayers__rdxpyZ2BF3M",
     id: "rdxpyZ2BF3M",
     title: "Destroy the Monitoring System Blocking Your Breakthroughs ",
     collection: "prayers",
@@ -1144,6 +1258,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "There's a family that has been under a [music] siege. You have been under a siege. Nobody completes anything. No matter what it is they start, the grace [music] for completion is not there. As I'm praying for you, the",
   },
   "prayers__J_AoFChWl5c": {
+    key: "prayers__J_AoFChWl5c",
     id: "J_AoFChWl5c",
     title: "Do Not Enter June Blinded! The Midnight Prayer to Tear Down Covering Casts  ",
     collection: "prayers",
@@ -1154,6 +1269,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "You see, it's one thing to be gifted. It's one thing to be blessed, but it's one thing to be seen. We're going to tear the covering cast. Listen. That tying up people. For as long as Isaac did not",
   },
   "prayers__KnoHGBhy2XU": {
+    key: "prayers__KnoHGBhy2XU",
     id: "KnoHGBhy2XU",
     title: "Do Not Enter June Without This! Breaking Every Delay ",
     collection: "prayers",
@@ -1164,6 +1280,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Now let the garment of reproach be torn to pieces. I tear to pieces the garment of shame. I tear to pieces the garment of reproach in the name of Jesus. Open your mouth. SAY AFTER ME. HEY FATHER, IN",
   },
   "prayers__QyXvhKRAzJ0": {
+    key: "prayers__QyXvhKRAzJ0",
     id: "QyXvhKRAzJ0",
     title: "DO NOT LEAVE YOUR HOUSE WITHOUT THIS PRAYER",
     collection: "prayers",
@@ -1174,6 +1291,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Somebody is about to make a terrible mistake, not a financial mistake, not a career mistake, a spiritual one. They are about to step out of their house into the most dangerous day of their life without the covering of",
   },
   "prayers__A2ubKG51JPA": {
+    key: "prayers__A2ubKG51JPA",
     id: "A2ubKG51JPA",
     title: "DO THIS BEFORE JANUARY 1ST 2026 TO UNLOCK YOUR DESTINY",
     collection: "prayers",
@@ -1184,6 +1302,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "The atmosphere is shifting. The spirit of God is stirring something ancient, something prophetic, something deeply connected to your destiny. I hear the Lord saying before January 1st, 2026, you must prepare your destiny for what is coming. Somebody shout",
   },
   "prayers__mTxYZ6IX2wM": {
+    key: "prayers__mTxYZ6IX2wM",
     id: "mTxYZ6IX2wM",
     title: "DO THIS FOR [ 30 MINUTES ] EVERY MORNING YOU WAKE UP AND 7 THINGS WILL HAPPEN",
     collection: "prayers",
@@ -1194,6 +1313,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Hallelujah. Glory to God. There is a stirring in the realm of the spirit even as you are connecting right now. I want you to know that this is not ordinary. This is not a coincidence. Heaven has orchestrated this",
   },
   "prayers__kmKRei8OykQ": {
+    key: "prayers__kmKRei8OykQ",
     id: "kmKRei8OykQ",
     title: "DON'T LEAVE YOUR HOUSE WITHOUT PRAYING THIS",
     collection: "prayers",
@@ -1204,6 +1324,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Somebody is about to make a terrible mistake, not a financial mistake, not a career mistake, a spiritual one. They are about to step out of their house into the most dangerous day of their life without the covering of",
   },
   "prayers__m9pqUdufNEE": {
+    key: "prayers__m9pqUdufNEE",
     id: "m9pqUdufNEE",
     title: "DON'T LET THE ENEMY SPEAK FIRST — POWERFUL MORNING PRAYERS",
     collection: "prayers",
@@ -1214,6 +1335,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Beloved, some of you came here today with heaviness. You came with questions. You came with uncertainty about the week ahead. I want you to know that before you stepped into this place, God had already written your name in",
   },
   "prayers__RRT7iO0Il3o": {
+    key: "prayers__RRT7iO0Il3o",
     id: "RRT7iO0Il3o",
     title: "DON'T LET THE SUN RISE WITHOUT PRAYING THIS – PSALM 5 MORNING PRAYER",
     collection: "prayers",
@@ -1224,6 +1346,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Glory, glory, glory to the most high God. Hallelujah. Somebody shout, \"Jesus is Lord.\" Jesus is Lord. Oh, I feel the weight of glory in this place already. I feel the tangible presence of the Holy Spirit. Something is shifting",
   },
   "prayers__FJrFsgJfUbQ": {
+    key: "prayers__FJrFsgJfUbQ",
     id: "FJrFsgJfUbQ",
     title: "Don’t Waste the Last Days of May — God May Be Preparing Your Breakthrough ",
     collection: "prayers",
@@ -1234,6 +1357,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Life is divided into seasons, like I have taught you. And our lives are divided into seasons. When you read Ecclesiastes chapter 3, I believe it begins to talk about a time and a season. The Bible says to everything,",
   },
   "prayers__Y0LWV5VHg4w": {
+    key: "prayers__Y0LWV5VHg4w",
     id: "Y0LWV5VHg4w",
     title: "EARLY MORNING WARFARE PRAYERS & DECLARATIONS",
     collection: "prayers",
@@ -1244,6 +1368,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Before the sun rises tomorrow morning, before the city wakes up, before the noise starts, before the phone lights up with the world's agenda, before the enemy has had time to assemble the day's strategy against you, >> [music] >>",
   },
   "prayers__5SHUzMacfkY": {
+    key: "prayers__5SHUzMacfkY",
     id: "5SHUzMacfkY",
     title: "ENOUGH IS ENOUGH YOUR BAD DAYS ARE OVER SAYS THE LORD",
     collection: "prayers",
@@ -1254,6 +1379,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Something shifted the moment this gathering came together. And I need you to feel it before I say another word. There is a sound in the spirit right now that does not sound like worship, does not sound like prayer.",
   },
   "prayers__vVY-_btuzgA": {
+    key: "prayers__vVY-_btuzgA",
     id: "vVY-_btuzgA",
     title: "EXPECT GOD TO STEP IN [NO SITUATION IS IMPOSSIBLE]",
     collection: "prayers",
@@ -1264,6 +1390,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Hallelujah. Glory to God. I want you to lift [music] up your hands wherever you are. Whether you are in this auditorium, whether you are watching online, whether you are listening through audio, I want you to understand that the",
   },
   "prayers__sjjPE29Y1MA": {
+    key: "prayers__sjjPE29Y1MA",
     id: "sjjPE29Y1MA",
     title: "FATHER GOD, ALIGN ME WITH YOUR PLANS FOR THE FUTURE",
     collection: "prayers",
@@ -1274,6 +1401,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Beloved, I want you to do me a favor right now. Wherever you are reading this, I want you to share this prayer [music] with somebody. Send it to your family members. Send it to your friends. Send it to",
   },
   "prayers__WLisVHtMyyU": {
+    key: "prayers__WLisVHtMyyU",
     id: "WLisVHtMyyU",
     title: "FATHER GOD, FIGHT FOR ME WHILE I REST IN YOU",
     collection: "prayers",
@@ -1284,6 +1412,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Beloved, before we go into the depths of this word today, I want you to do something for me. Wherever you are watching this, listening to this, I want you to share this message. There is somebody in your contact",
   },
   "prayers__VDljSvWiJ3Y": {
+    key: "prayers__VDljSvWiJ3Y",
     id: "VDljSvWiJ3Y",
     title: "FATHER GOD, GIVE ME REST FROM EVERY BATTLE OF TODAY",
     collection: "prayers",
@@ -1294,6 +1423,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Glory to God in the highest. I want you to lift up your voice right [music] now wherever you are and say, \"Father, I receive rest.\" Say it again with authority, \"I receive rest.\" One more time, say it like",
   },
   "prayers__AXumLqejSz0": {
+    key: "prayers__AXumLqejSz0",
     id: "AXumLqejSz0",
     title: "FATHER GOD, I WELCOME YOUR PRESENCE INTO MY DAY",
     collection: "prayers",
@@ -1304,6 +1434,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Beloved, I want you to understand something that will revolutionize your entire [music] existence. When you wake up in the morning, what happens in the first 30 minutes of your day will determine the atmosphere that follows you for the",
   },
   "prayers___EFmoJilPSM": {
+    key: "prayers___EFmoJilPSM",
     id: "_EFmoJilPSM",
     title: "FATHER GOD, LET EVERY BATTLE OF TODAY END IN TESTIMONY!!",
     collection: "prayers",
@@ -1314,6 +1445,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Glory to God. Hallelujah. I want you to lift up your hands wherever you are right now. Whether you are in your living room, in your car, at your workplace, I want you to understand that we are not gathering",
   },
   "prayers__d9bSVeTwkYU": {
+    key: "prayers__d9bSVeTwkYU",
     id: "d9bSVeTwkYU",
     title: "FATHER GOD, LET NO EVIL COME NEAR ME TODAY",
     collection: "prayers",
@@ -1324,6 +1456,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "I stand in the authority of the name that is above every other name, the name of Jesus Christ of Nazareth. And I decree and declare that no evil shall come near me this day. I take my position in",
   },
   "prayers__PkASQUkWzgo": {
+    key: "prayers__PkASQUkWzgo",
     id: "PkASQUkWzgo",
     title: "FATHER GOD, LET OPPORTUNITITES LOCATE ME TODAY",
     collection: "prayers",
@@ -1334,6 +1467,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Lift your hands wherever you are and let's just worship him for a moment. Just worship him. Bless the name of the Lord. Father, we thank you. We honor you. You are the God of all flesh and there is",
   },
   "prayers__PFBCfLWsNGg": {
+    key: "prayers__PFBCfLWsNGg",
     id: "PFBCfLWsNGg",
     title: "FATHER GOD, LET YOUR ANGELS GO BEFORE ME TODAY",
     collection: "prayers",
@@ -1344,6 +1478,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Father, I come before you this morning in the name of Jesus [music] Christ, acknowledging that you are the Lord of hosts, the commander of the armies of heaven, the God who has millions upon millions of angels at your",
   },
   "prayers__Ic8G1zSCduY": {
+    key: "prayers__Ic8G1zSCduY",
     id: "Ic8G1zSCduY",
     title: "FATHER GOD, LET YOUR LIGHT SHINE ON MY DAY",
     collection: "prayers",
@@ -1354,6 +1489,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "I want you to lift up your hands wherever you are this morning. Whether you are in your room, in your car, in your office, or wherever the spirit of [music] God has found you at this hour, I want",
   },
   "prayers__B0z5ULkEaQ4": {
+    key: "prayers__B0z5ULkEaQ4",
     id: "B0z5ULkEaQ4",
     title: "FATHER GOD, LET YOUR PRESENCE FINISH WHAT I CANNOT FINISH",
     collection: "prayers",
@@ -1364,6 +1500,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Beloved, before we even begin this morning, I want you to do something for me. Wherever you are right now, whether you're in your room, in your car, in your office, or even if you're walking, I want you to",
   },
   "prayers__LHYd7rr6nUQ": {
+    key: "prayers__LHYd7rr6nUQ",
     id: "LHYd7rr6nUQ",
     title: "FATHER GOD, LIFT THE PRESSURE I FEEL IN THIS SEASON",
     collection: "prayers",
@@ -1374,6 +1511,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "I want you to share this prayer with everyone you know. Send it to your family, send it to your friends, your colleagues at work, people in your church, people in your fellowship. There are people under pressure right now,",
   },
   "prayers__9yCmhsky7CM": {
+    key: "prayers__9yCmhsky7CM",
     id: "9yCmhsky7CM",
     title: "FATHER GOD, REFRESH MY SPIRIT AND RENEW MY STRENGTH FOR TODAY",
     collection: "prayers",
@@ -1384,6 +1522,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Glory to God. I want you to do something for me this morning. Before we go into the place of prayer, I want you to share this prayer with somebody. There is somebody on your contact list. There is somebody",
   },
   "prayers__f4aQZ1rsryM": {
+    key: "prayers__f4aQZ1rsryM",
     id: "f4aQZ1rsryM",
     title: "FATHER GOD, RELEASE ANGELIC PROTECTION OVER MY FAMILY",
     collection: "prayers",
@@ -1394,6 +1533,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Beloved, before we go into the depths of this prophetic prayer, I want you to do something for me. Share this [music] prayer with somebody. Don't just keep it to yourself. There is a family that is under siege right",
   },
   "prayers__g3ManjZBwhk": {
+    key: "prayers__g3ManjZBwhk",
     id: "g3ManjZBwhk",
     title: "FATHER GOD, REPLACE MY STRUGGLES WITH YOUR VICTORY",
     collection: "prayers",
@@ -1404,6 +1544,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "If this word ministers to your spirit this morning, I want you to share it with somebody. There's someone in your circle, there's someone in your family, there's someone in your workplace that needs to hear what the spirit of",
   },
   "prayers__yu0AgqnMYKc": {
+    key: "prayers__yu0AgqnMYKc",
     id: "yu0AgqnMYKc",
     title: "FATHER GOD, STAND IN THE GAP FOR ME AND MY HOUSEHOLD",
     collection: "prayers",
@@ -1414,6 +1555,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "I want you to take your time and share this prayer with someone. Don't just keep it to yourself. There is somebody in your family, there is somebody in your circle, there is somebody God has connected to your life",
   },
   "prayers__VmNMZWqwmcE": {
+    key: "prayers__VmNMZWqwmcE",
     id: "VmNMZWqwmcE",
     title: "FATHER GOD, TAKE OVER EVERY BATTLE THAT IS BEYOND MY STRENGTH",
     collection: "prayers",
@@ -1424,6 +1566,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Beloved, before we go into the depths of this prophetic hour, I want you to do something for me. I want you to share this prayer with someone. There is somebody connected to your life. Maybe in your family, maybe",
   },
   "prayers__1_ztfXuFrOc": {
+    key: "prayers__1_ztfXuFrOc",
     id: "1_ztfXuFrOc",
     title: "FATHER GOD, TAKE THE WEIGHT OFF MY SHOULDERS",
     collection: "prayers",
@@ -1434,6 +1577,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Good morning precious people. Before we begin this powerful time in the presence of the Lord, I want you to do something very significant. Whatever platform you're watching this from, YouTube, Facebook, WhatsApp, I want you to share this prayer",
   },
   "prayers__1ClOYlFD3l0": {
+    key: "prayers__1ClOYlFD3l0",
     id: "1ClOYlFD3l0",
     title: "FATHER GOD, THANK YOU FOR THE GIFT OF A NEW DAY",
     collection: "prayers",
@@ -1444,6 +1588,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "I want you to lift up your hands wherever you are in your room, in your [music] office, in your car. And I want you to begin to worship the ancient of days. I want you to worship [music] the",
   },
   "prayers__s21-qS58gTg": {
+    key: "prayers__s21-qS58gTg",
     id: "s21-qS58gTg",
     title: "FATHER GOD, THANK YOU FOR THE GIFT OF LIFE",
     collection: "prayers",
@@ -1454,6 +1599,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Hallelujah. Glory to God. I want you to lift up your [music] hands right now wherever you are. Whether you're watching from your room, whether you're in your office, whether you're driving, just lift up your hands and begin to",
   },
   "prayers__uBRYCDrEz4A": {
+    key: "prayers__uBRYCDrEz4A",
     id: "uBRYCDrEz4A",
     title: "FATHER GOD, TURN TODAY'S TEARS INTO TOMORROW'S JOY",
     collection: "prayers",
@@ -1464,6 +1610,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "I want you to share this prayer with somebody. I want you to send this to someone who is in tears right now. Send this to somebody who has been crying in secret. Send this to that person whose pillow",
   },
   "prayers___dVAKvP8uZ8": {
+    key: "prayers___dVAKvP8uZ8",
     id: "_dVAKvP8uZ8",
     title: "FATHER, BREATHE FRESH LIFE INTO MY DAY",
     collection: "prayers",
@@ -1474,6 +1621,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Father, in the mighty name of [music] Jesus Christ, I come before your throne of grace this morning with a heart full of expectation and a spirit that is hungry for your presence. I thank you for the gift of",
   },
   "prayers__9LqXCC6NJQU": {
+    key: "prayers__9LqXCC6NJQU",
     id: "9LqXCC6NJQU",
     title: "FATHER, GIVE US THIS DAY OUR DAILY BREAD",
     collection: "prayers",
@@ -1484,6 +1632,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Father, I come before your throne of grace in the mighty [music] name of Jesus Christ, acknowledging [singing] that you are Jehovah Gyra, the Lord, my provider, the God who sees and provides, the one who supplies all my needs",
   },
   "prayers__de7OiGgGsCM": {
+    key: "prayers__de7OiGgGsCM",
     id: "de7OiGgGsCM",
     title: "FATHER, LET MY ACTIONS REFLECT YOUR GOODNESS",
     collection: "prayers",
@@ -1494,6 +1643,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Good morning. Good morning. Good morning. I want you to take a deep breath and acknowledge that you are alive this morning. Not just alive biologically, alive spiritually, alive with purpose. Alive with the breath of God in your lungs.",
   },
   "prayers__fsmw9b_8tBs": {
+    key: "prayers__fsmw9b_8tBs",
     id: "fsmw9b_8tBs",
     title: "FEARLESS WARFARE MORNING PRAYERS",
     collection: "prayers",
@@ -1504,6 +1654,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Hallelujah. Hallelujah. Glory to God. Glory to God. Glory to God in the highest. Oh, thank you, Jesus. Thank you, Lord. Thank you, Father. I want you to lift your hands wherever you are right now. I don't care if",
   },
   "prayers__Y4FA9WbKIQY": {
+    key: "prayers__Y4FA9WbKIQY",
     id: "Y4FA9WbKIQY",
     title: "FOLLOW THIS POWERFUL 7-DAY PRAYER GUIDE AND WATCH YOUR LIFE CHANGE",
     collection: "prayers",
@@ -1514,6 +1665,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Glory to God. Glory to God. Somebody say glory. I want you to settle in your spirit right now because what is about [music] to happen in this place, what is about to happen as you engage with this word",
   },
   "prayers__KH8u5xEnIdM": {
+    key: "prayers__KH8u5xEnIdM",
     id: "KH8u5xEnIdM",
     title: "GOD CANNOT LIE, HIS PROMISES NEVER FAIL",
     collection: "prayers",
@@ -1524,6 +1676,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Beloved, before we go into this word and this time of prayer, I want you to do something for me. Share this. Share this with someone who is standing on a promise right now. Share this with someone whose faith",
   },
   "prayers__2r4yVMB8Sr4": {
+    key: "prayers__2r4yVMB8Sr4",
     id: "2r4yVMB8Sr4",
     title: "God Does Not Need More Church Members. He Needs This Instead. ",
     collection: "prayers",
@@ -1534,6 +1687,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "It's good to see us in the house of God. The psalmist said, \"I was glad when they said unto me, let us go to the house of God.\" We're honored to be hosting Coonia for the first time from",
   },
   "prayers__tknJu9TVjJ4": {
+    key: "prayers__tknJu9TVjJ4",
     id: "tknJu9TVjJ4",
     title: "GOD IS ABOUT TO MAKE A STATEMENT CONCERNING YOUR LIFE",
     collection: "prayers",
@@ -1544,6 +1698,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Lift your hands wherever you are. Lift your hands and let's give glory to the most high God. Father, we worship you. We worship you, Lord. You are the beginning and the ending, the first and the last, the one",
   },
   "prayers__NOpWpxlAmdw": {
+    key: "prayers__NOpWpxlAmdw",
     id: "NOpWpxlAmdw",
     title: "GOD IS FIGHTING FOR ME THIS MORNING",
     collection: "prayers",
@@ -1554,6 +1709,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Holy Spirit, you are welcome here. You are welcome here. Take over this altar. Take over this atmosphere. We are not here to perform religion. We are here to encounter the living God. I want to begin reading to you",
   },
   "prayers__p-v4pJQTgf8": {
+    key: "prayers__p-v4pJQTgf8",
     id: "p-v4pJQTgf8",
     title: "GOD OF JABEZ Change My STORY",
     collection: "prayers",
@@ -1564,6 +1720,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] The God of heaven has brought you into this atmosphere for a divine encounter. Tonight is not an ordinary gathering. It is a prophetic appointment with destiny. Hear the word of the Lord in 1st Chronicles 4:9-10. And Jabz",
   },
   "prayers__hJmY1TfWmdY": {
+    key: "prayers__hJmY1TfWmdY",
     id: "hJmY1TfWmdY",
     title: "GOD OF JABEZ CHANGE MY STORY THIS MORNING",
     collection: "prayers",
@@ -1574,6 +1731,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Something is about to happen to somebody's story this morning. And I'm not talking in riddles. Before the microphone found my hand, before the sound of instruments [music] settled, I already sensed a company of people in this place carrying",
   },
   "prayers__yg57hiaFgWw": {
+    key: "prayers__yg57hiaFgWw",
     id: "yg57hiaFgWw",
     title: "GOD OF JACOB, CHANGE MY NAME AND DESTINY TONIGHT",
     collection: "prayers",
@@ -1584,6 +1742,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Hear me tonight. There are moments in destiny when God must step in and rewrite the script of a man's life. Jacob was a struggler, a suppler, a man marked by limitation. But one encounter, one encounter shifted him from",
   },
   "prayers__BdBkdzG7y58": {
+    key: "prayers__BdBkdzG7y58",
     id: "BdBkdzG7y58",
     title: "GOD OF JEREMIAH MORNING PROPHETIC DECLARATION SPEAK YOUR FUTURE INTO EXISTENCE",
     collection: "prayers",
@@ -1594,6 +1753,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Before you were born, before your mother knew she was carrying you, before the hospital, before the name, before the first cry, there was a meeting in heaven, and in that meeting your future was discussed, not guessed at, not",
   },
   "prayers__f6fmrYHomUA": {
+    key: "prayers__f6fmrYHomUA",
     id: "f6fmrYHomUA",
     title: "GOD OF MOSES, ARISE AND PART EVERY RED SEA BEFORE ME!",
     collection: "prayers",
@@ -1604,6 +1764,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Lift your hands wherever you are and give thanks to the Ancient of Days. Say, \"Father, you are the same yesterday, today, and forever. You were the God of Moses, and you are still the God of miracles.\" Exodus 14:13,",
   },
   "prayers__VOJQ_j-ObKA": {
+    key: "prayers__VOJQ_j-ObKA",
     id: "VOJQ_j-ObKA",
     title: "GOD OF SARAH, DO FOR ME WHAT MEN SAY IS IMPOSSIBLE",
     collection: "prayers",
@@ -1614,6 +1775,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "I welcome you in the name of Jesus. Tonight, the spirit of God is about to do something remarkable in your life. The same God who appeared to Abraham and Sarah when the world had already written them off is",
   },
   "prayers__Eafmcral9TA": {
+    key: "prayers__Eafmcral9TA",
     id: "Eafmcral9TA",
     title: "GOD OF THE 11TH HOUR",
     collection: "prayers",
@@ -1624,6 +1786,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Glory to the name of Jesus Christ. We are in the presence of almighty God. There is something that the spirit of God wants to do in this place tonight. There are people who are tired. There are people who",
   },
   "prayers__PMeqY_LKAZI": {
+    key: "prayers__PMeqY_LKAZI",
     id: "PMeqY_LKAZI",
     title: "GOD OF THE ELEVENTH HOUR - NOTHING MISSING, NOTHING BROKEN",
     collection: "prayers",
@@ -1634,6 +1797,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "begin to bless his name. Something is already staring in this atmosphere. Father, we give you praise. We give you glory. We magnify you. We enthrone you above all principalities, powers, thrones, and dominions. You are the God of the",
   },
   "prayers__nZ2_vcnc9oo": {
+    key: "prayers__nZ2_vcnc9oo",
     id: "nZ2_vcnc9oo",
     title: "GOD SAID \"SPEAK IT BEFORE SUNRISE\"",
     collection: "prayers",
@@ -1644,6 +1808,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Hallelujah. Before you say what to anyone this morning, before you check your phone, before you look at your schedule, before the noise of this day has a chance to define you, God is speaking right now. In this [music]",
   },
   "prayers__fSmGjrVAsS4": {
+    key: "prayers__fSmGjrVAsS4",
     id: "fSmGjrVAsS4",
     title: "God Told Me To Release This Midnight Prayer For Everyone Still Wrapped In Grave Clothes — Watch Now",
     collection: "prayers",
@@ -1654,6 +1819,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Open your mouth right now. Open your mouth and let your throat become a weapon. You are not here by accident. You did not stumble onto this prayer by coincidence. There's no such thing as coincidence in the kingdom of",
   },
   "prayers__EbRbOjLgB2E": {
+    key: "prayers__EbRbOjLgB2E",
     id: "EbRbOjLgB2E",
     title: "GOD WILL SURPRISE YOU BEFORE THIS WEEK ENDS - PRAY THIS NOW",
     collection: "prayers",
@@ -1664,6 +1830,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "There is a sound in this house tonight that heaven has been waiting to release, and I want you to lift your hands right where you are because before I open my mouth to preach one word, the spirit of",
   },
   "prayers__E38Shw4jDqQ": {
+    key: "prayers__E38Shw4jDqQ",
     id: "E38Shw4jDqQ",
     title: "GOD, ARISE AND DEFEND ME AGAINST EVERY UNSEEN ENEMY",
     collection: "prayers",
@@ -1674,6 +1841,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "If you're watching this, I want you to do me a favor right now. Share this prayer. Share it with somebody. There's someone in your family. There's someone in your network. There's someone God has connected to you that needs",
   },
   "prayers__ii1XHajxPBM": {
+    key: "prayers__ii1XHajxPBM",
     id: "ii1XHajxPBM",
     title: "GOD, BE MY SHIELD, MY STRENGTH AND MY DEFENDER",
     collection: "prayers",
@@ -1684,6 +1852,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "I want you to share this prayer with someone. There is a prophetic grace upon this word and the spirit of God is about to visit somebody in a dimension that will shock you. Share it with a family member.",
   },
   "prayers__mhqbaph-yEI": {
+    key: "prayers__mhqbaph-yEI",
     id: "mhqbaph-yEI",
     title: "GOD, EASE MY MIND AND CALM MY SPIRIT",
     collection: "prayers",
@@ -1694,6 +1863,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Beloved, I greet you in the matchless name of our Lord Jesus Christ. I want you to know that you are not on this broadcast [music] by accident. The fact that you are connected to this frequency this morning is",
   },
   "prayers__XPjMoSLcLM0": {
+    key: "prayers__XPjMoSLcLM0",
     id: "XPjMoSLcLM0",
     title: "GOD, MAKE THIS DAY FRUITFUL AND PRODUCTIVE",
     collection: "prayers",
@@ -1704,6 +1874,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Somebody shout hallelujah. I want you to understand something this morning. There is a difference between activity and productivity. There is a difference between motion and progress. And I have come in the name of the Lord to make a",
   },
   "prayers__BbJvdxYVFgM": {
+    key: "prayers__BbJvdxYVFgM",
     id: "BbJvdxYVFgM",
     title: "GOD, REMOVE THE LOAD THAT IS BREAKING MY STRENGTH",
     collection: "prayers",
@@ -1714,6 +1885,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Beloved, before we go into the depths of this ministration, I want you to do something for me. I want you to share this prayer. Share it with someone who is carrying a burden that is too heavy. Share it",
   },
   "prayers__qi7W8gYNXxM": {
+    key: "prayers__qi7W8gYNXxM",
     id: "qi7W8gYNXxM",
     title: "GOD, RESTORE MY WASTED YEARS",
     collection: "prayers",
@@ -1724,6 +1896,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Beloved, I want you to lift up your hands wherever you are this morning. Whether you are in your room, in your car, in your office, or wherever the spirit of God has found you, I want you to open",
   },
   "prayers__o0Z6Bwq1Hy0": {
+    key: "prayers__o0Z6Bwq1Hy0",
     id: "o0Z6Bwq1Hy0",
     title: "GOOD MORNING AND THANK YOU ABBA FATHER",
     collection: "prayers",
@@ -1734,6 +1907,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Good morning, Abba Father. Righteous Father, ancient of days, the everlasting God, I come before your throne of grace this morning with a heart overflowing with thanksgiving and praise. I magnify your holy name. For you alone are worthy of",
   },
   "prayers__x_7S0t0TlkU": {
+    key: "prayers__x_7S0t0TlkU",
     id: "x_7S0t0TlkU",
     title: "GOOD MORNING ANGELS OF HEAVEN",
     collection: "prayers",
@@ -1744,6 +1918,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "I want you to open your [music] spirit this morning. I want you to lift up your hands wherever you are and begin to bless the [music] name of the Lord. The Bible says in Psalm 103, \"Bless the Lord,",
   },
   "prayers__1zZC33P2VPg": {
+    key: "prayers__1zZC33P2VPg",
     id: "1zZC33P2VPg",
     title: "GOOD MORNING DEVIL — YOUR PLANS FOR MY DAY ARE CANCELLED BEFORE THEY START",
     collection: "prayers",
@@ -1754,6 +1929,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Somebody shout good morning to your future. Shout it like you mean it. Because there is a certain kind of morning that the devil did not budget for. And this is that morning before you settled into your seat, before",
   },
   "prayers__81W03gnuv2M": {
+    key: "prayers__81W03gnuv2M",
     id: "81W03gnuv2M",
     title: "GOOD MORNING FATHER GOD",
     collection: "prayers",
@@ -1764,6 +1940,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Good morning, Father. I come before you as [music] the sun rises on this new day with a heart full of gratitude and a spirit that is awakened by the awareness of your presence. Lord, I thank you for the",
   },
   "prayers__83FuxGMMeKg": {
+    key: "prayers__83FuxGMMeKg",
     id: "83FuxGMMeKg",
     title: "GOOD MORNING HOLY SPIRIT",
     collection: "prayers",
@@ -1774,6 +1951,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Good morning, Holy Spirit. I welcome you into this new day that the Lord has made. I acknowledge your presence in my life, in my home, and in every space I occupy today. Holy Spirit, you are not a force.",
   },
   "prayers__mUZkinMGuRg": {
+    key: "prayers__mUZkinMGuRg",
     id: "mUZkinMGuRg",
     title: "GOOD MORNING JESUS CHRIST",
     collection: "prayers",
@@ -1784,6 +1962,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Good morning, Jesus. I worship you [music] this morning as the King of Kings and the Lord of Lords. I honor you as the Alpha and Omega, the beginning and the end, the first and the last. Jesus, you are",
   },
   "prayers__GbVugxUtRv0": {
+    key: "prayers__GbVugxUtRv0",
     id: "GbVugxUtRv0",
     title: "GOOD MORNING SON OF GOD",
     collection: "prayers",
@@ -1794,6 +1973,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "I want you to lift up your hands right there where you [music] are seated. Just lift up your hands onto the Lord. I decree over your life this morning every satanic cobweb that has been woven around your destiny.",
   },
   "prayers__tTYMmDq_TdQ": {
+    key: "prayers__tTYMmDq_TdQ",
     id: "tTYMmDq_TdQ",
     title: "GOODMORNING JESUS",
     collection: "prayers",
@@ -1804,6 +1984,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Hallelujah. Come on, lift your voice and give him praise right now. Come on, worship him. Worship him from that place in your spirit where words almost fail you. Worship him because he's worthy. Not because of what he has",
   },
   "prayers__k3SJStxjBFY": {
+    key: "prayers__k3SJStxjBFY",
     id: "k3SJStxjBFY",
     title: "HOLY GHOST FIRE ARISE DANGEROUS MORNING PRAYER THE ENEMY DOESN'T WANT YOU TO PRAY",
     collection: "prayers",
@@ -1814,6 +1995,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Fire, not warmth, not a candle, not a controlled, contained, domesticated [singing] flame. Fire, the kind that cannot be managed, the kind that does not ask permission to spread. >> [music] >> The kind that consumes everything it touches that",
   },
   "prayers__qtEOax265GU": {
+    key: "prayers__qtEOax265GU",
     id: "qtEOax265GU",
     title: "HOLY SPIRIT, EMPOWER ME FOR TODAY'S ASSIGNMENT",
     collection: "prayers",
@@ -1824,6 +2006,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Beloved, I greet you in the name of the Lord Jesus Christ. Hallelujah. I want you to understand something this morning that you are not here by accident. The very fact that you are hearing these words, the very fact",
   },
   "prayers__eLE9Prj3K20": {
+    key: "prayers__eLE9Prj3K20",
     id: "eLE9Prj3K20",
     title: "HOLY SPIRIT, SURROUND ME WITH YOUR FIRE TODAY",
     collection: "prayers",
@@ -1834,6 +2017,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Beloved, I want you to lift up your hands right now wherever you are. Whether you are in your room, whether you [music] are in your office, whether you are driving, I want you to understand that this is not",
   },
   "prayers__W6YoA5eeWTI": {
+    key: "prayers__W6YoA5eeWTI",
     id: "W6YoA5eeWTI",
     title: "How to Recognize the Person God Sent to Lift You ",
     collection: "prayers",
@@ -1844,6 +2028,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "When you see me cry about favor all the time and I teach you relationship principles all the time is because this is is not one of the many ways. I tell you sincerely it is the accelerator factor in",
   },
   "prayers__VKJ_2pUxzrE": {
+    key: "prayers__VKJ_2pUxzrE",
     id: "VKJ_2pUxzrE",
     title: "How to Respond When a Door Closes ",
     collection: "prayers",
@@ -1854,6 +2039,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Test number one is a test of courage. It takes courage. Hear me. The first price it takes to be a trailblazer, to be consistent, to weary limitations till you win, is the price of courage. Courage is derived from",
   },
   "prayers__Q500qLk6Msc": {
+    key: "prayers__Q500qLk6Msc",
     id: "Q500qLk6Msc",
     title: "I AM DONE WAITING — GOD OF ELIJAH ARISE AND SEND RAIN TO MY DRY SEASON",
     collection: "prayers",
@@ -1864,6 +2050,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Somebody lift your hands where you are. Don't lift it like a formality. Lift it like a man drowning lifts his hand out of the water like this is the last gesture you have before you go under. Lift it",
   },
   "prayers__fZmDrDLQ8q8": {
+    key: "prayers__fZmDrDLQ8q8",
     id: "fZmDrDLQ8q8",
     title: "I COMMAND THIS NEW WEEK TO FAVOUR ME AND MY HOUSEHOLD BY FIRE",
     collection: "prayers",
@@ -1874,6 +2061,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Stand to your feet wherever you are. I don't care if you are in your car, in your kitchen, on your bed, or walking into an office you've been dreading. Stand up in your spirit right now. Because we are",
   },
   "prayers__Qxucuj1ejZg": {
+    key: "prayers__Qxucuj1ejZg",
     id: "Qxucuj1ejZg",
     title: "I SPEAK FAVOUR OVER MY MORNING AND EVERYTHING I TOUCH TODAY IN JESUS NAME",
     collection: "prayers",
@@ -1884,6 +2072,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "There is something happening in the atmosphere right now, and I need everybody in this place to lay down whatever you carried in here with you. Lay it down because heaven did not open today for you to sit and",
   },
   "prayers__eMmRBO4H3oc": {
+    key: "prayers__eMmRBO4H3oc",
     id: "eMmRBO4H3oc",
     title: "If You Can't Discern What God Is Doing, Watch This Immediately ",
     collection: "prayers",
@@ -1894,6 +2083,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Now there are four channels. When God gives a man the gift of sight, when God grants a man access to the seeing eye, it expresses itself in four principal channels. And I want you to please pay attention because",
   },
   "prayers__dCPowm3g5Kg": {
+    key: "prayers__dCPowm3g5Kg",
     id: "dCPowm3g5Kg",
     title: "If You Feel Forgotten by God in This Season, Watch This Before You Sleep",
     collection: "prayers",
@@ -1904,6 +2094,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Romans 8:28, result together. Every single thing. Not some things, not the comfortable things, not the things that make sense. All things, every bit, every false accusation, every dungeon, every forgotten promise, every lost chance, every door that closed, every",
   },
   "prayers__gk9rB-7qHcU": {
+    key: "prayers__gk9rB-7qHcU",
     id: "gk9rB-7qHcU",
     title: "If You Feel Forgotten by God in This Season, Watch This Before You Sleep",
     collection: "prayers",
@@ -1914,6 +2105,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "that has been erected against your financial destiny. Midnight fire prayer. If your finances are under siege, this prayer will locate the root altar. Father God, we enter this midnight hour with holy violence. The lion of the tribe of",
   },
   "prayers__7BTxJEfReTg": {
+    key: "prayers__7BTxJEfReTg",
     id: "7BTxJEfReTg",
     title: "If You Keep Experiencing Delay, This Message Will Shock You ",
     collection: "prayers",
@@ -1924,6 +2116,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "The gospel the gospel that we that we preach has two sides to it. There is the message that saves. That is the first dimension of the gospel. The message that saves and the key to propagating that message is",
   },
   "prayers__7r-eVf6Uep8": {
+    key: "prayers__7r-eVf6Uep8",
     id: "7r-eVf6Uep8",
     title: "If You Keep Experiencing Repeated Battles, Watch This Immediately ",
     collection: "prayers",
@@ -1934,6 +2127,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "to tear down demonic altars. The first thing is not to start speaking, oh my life is no, no, no. You are dealing with something serious and you are dealing with something that is on a legal basis. I remember",
   },
   "prayers__dirPq4kBNRE": {
+    key: "prayers__dirPq4kBNRE",
     id: "dirPq4kBNRE",
     title: "If You Need Divine Speed, This June Message Is for You ",
     collection: "prayers",
@@ -1944,6 +2138,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "So, the first key to prepare your heart is that all true and lasting help comes from God. I am [music] happy it comes from God because if it came directly from men, some of us will not even have",
   },
   "prayers__tzq90f6pRZU": {
+    key: "prayers__tzq90f6pRZU",
     id: "tzq90f6pRZU",
     title: "If You're Confused About Your Next Step, Watch This Tonight ",
     collection: "prayers",
@@ -1954,6 +2149,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Surrender. Number two, let's hurry up. Are you learning? Number two, how do I know the will of God? How do I discern the will of God? Number two, the word of God, the wisdom that comes from the word",
   },
   "prayers__gvWbKnc6QgQ": {
+    key: "prayers__gvWbKnc6QgQ",
     id: "gvWbKnc6QgQ",
     title: "INVITE GOD TO RENEW YOUR MIND AND PURIFY YOUR HEART",
     collection: "prayers",
@@ -1964,6 +2160,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Glory to God. Glory to God. Hallelujah. We give you praise, Lord Jesus. We bless your holy name this morning. Father, we thank you. We thank you for the gift of this day. We thank you because your mercies are",
   },
   "prayers__1etNTunQsKQ": {
+    key: "prayers__1etNTunQsKQ",
     id: "1etNTunQsKQ",
     title: "INVITE GRATITUDE TO REPLACE COMPLAINT THROUGHOUT THE DAY",
     collection: "prayers",
@@ -1974,6 +2171,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Lift your hands wherever you are. Just lift your hands to the father. Father, we bless your name. We thank you for this moment, for this gathering of hearts before your throne. Lord, let every word [music] spoken today carry",
   },
   "prayers__Lp1rgIF1-0Q": {
+    key: "prayers__Lp1rgIF1-0Q",
     id: "Lp1rgIF1-0Q",
     title: "INVITE THE HOLY SPIRIT TO LEAD YOU THIS MORNING",
     collection: "prayers",
@@ -1984,6 +2182,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Beloved, before we go into the depths of what the spirit of God wants to release over your life this morning, I want you to do something very significant. I want you to share this prayer with someone. Don't just",
   },
   "prayers__qBL7aV77_gE": {
+    key: "prayers__qBL7aV77_gE",
     id: "qBL7aV77_gE",
     title: "INVITE THE HOLY SPIRIT TO LEAD YOUR WEEK",
     collection: "prayers",
@@ -1994,6 +2193,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Glory to God. Glory to God. Glory to God. Somebody shout hallelujah. I want you to understand that what we are about to do in the next few moments is not just a teaching. It is an invitation into a",
   },
   "prayers__ZSKymClHnzE": {
+    key: "prayers__ZSKymClHnzE",
     id: "ZSKymClHnzE",
     title: "JEHOVAH SHAMMAH, THE GOD WHO IS THERE, GO AHEAD OF ME INTO EVERY ROOM I ENTER TODAY!",
     collection: "prayers",
@@ -2004,6 +2204,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Today, the office you're about to enter, the hospital corridor you are dreading, the meeting room where a decision will be made about your future while you are not even present to defend yourself, the kitchen where a difficult conversation",
   },
   "prayers__zLHGJktAmTA": {
+    key: "prayers__zLHGJktAmTA",
     id: "zLHGJktAmTA",
     title: "LEAVE THIS PLAYING THROUGHOUT TODAY",
     collection: "prayers",
@@ -2014,6 +2215,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "I want you to open your mouth and begin to worship. Begin to worship. Don't just sit there. Wherever you are in your car, in your kitchen, in your bedroom, on your way to work, open your mouth and release",
   },
   "prayers__nAAj1m1QKHo": {
+    key: "prayers__nAAj1m1QKHo",
     id: "nAAj1m1QKHo",
     title: "Leave This Worship On All Night ",
     collection: "prayers",
@@ -2024,6 +2226,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "I'm here broken. >> I came here broken. >> I did not know where else to go. I came here broken. The weight of everything I am caring has bent me lower than I thought I could go. I have",
   },
   "prayers__7How1xYML8A": {
+    key: "prayers__7How1xYML8A",
     id: "7How1xYML8A",
     title: "Let God's Favor Establish Your Steps Today",
     collection: "prayers",
@@ -2034,6 +2237,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Heavenly Father, I come before you this morning with a heart open and a spirit willing, asking for your presence to go before me and lead me in every step I take today. Lord, the morning is fresh, the air",
   },
   "prayers__iUohVtRMW34": {
+    key: "prayers__iUohVtRMW34",
     id: "iUohVtRMW34",
     title: "LET GRACE SPEAK FOR ME THIS MORNING",
     collection: "prayers",
@@ -2044,6 +2248,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Oh, I feel the weight of this moment. [music] I feel it. Something is stirring in the heavens right now. Something is shifting even before we begin. And I want you wherever you are, I want you to just lift",
   },
   "prayers__NOXa2AhIQ28": {
+    key: "prayers__NOXa2AhIQ28",
     id: "NOXa2AhIQ28",
     title: "LET GRACE SPEAK FOR ME THROUGHOUT THIS WEEK – PROPHETIC PRAYER & DECLARATION",
     collection: "prayers",
@@ -2054,6 +2259,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Lift your hands and bless the name of the Lord. Say Father, you are my confidence, my refuge, and my resting place. Psalm 84:11 For the Lord God is a sun and shield. The Lord will give grace and glory.",
   },
   "prayers__4JZpYk6bpGU": {
+    key: "prayers__4JZpYk6bpGU",
     id: "4JZpYk6bpGU",
     title: "Let This Morning Be the Moment You Stop Fighting Alone",
     collection: "prayers",
@@ -2064,6 +2270,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Each new day reminds us that life is a journey filled with both joys and struggles. Moments of triumph and times of testing. We rise in the morning knowing that battles await us. Battles in our minds, battles in our",
   },
   "prayers__HgtswAXABb8": {
+    key: "prayers__HgtswAXABb8",
     id: "HgtswAXABb8",
     title: "LISTEN TO THIS POWERFUL PRAYER THIS NIGHT WHILE YOU SLEEP GOD WILL TOUCH YOU TONIGHT",
     collection: "prayers",
@@ -2074,6 +2281,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Glory be to God in the highest. I want you to understand something this evening. There is a dimension of divine encounter that heaven releases when men settle their hearts before the presence of God. The Bible says in Psalm",
   },
   "prayers__ASVLid2KAJ8": {
+    key: "prayers__ASVLid2KAJ8",
     id: "ASVLid2KAJ8",
     title: "LISTEN TO THIS PRAYER EVERYDAY BEFORE 7:26AM",
     collection: "prayers",
@@ -2084,6 +2292,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Lift your hands wherever you are. If you're driving, keep your eyes open, but let your spirit be open. >> [music] >> If you're at home, stand up for a moment. There are instructions coming with power. Father, we thank",
   },
   "prayers__GAkUQQj2RWU": {
+    key: "prayers__GAkUQQj2RWU",
     id: "GAkUQQj2RWU",
     title: "LORD JESUS, STRETCH FORTH YOUR HAND AND TOUCH ME AS YOU TOUCHED THE LEPER",
     collection: "prayers",
@@ -2094,6 +2303,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Hallelujah. Somebody shout hallelujah like you mean it. Not like church etiquette, like a man on the ground who just watched the hand move toward him. I want you to hold your own hand right now. Hold it. Look at",
   },
   "prayers__D0Fp1zgsYLo": {
+    key: "prayers__D0Fp1zgsYLo",
     id: "D0Fp1zgsYLo",
     title: "LORD, CONVERT MY PAIN TO POWER",
     collection: "prayers",
@@ -2104,6 +2314,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "I want you to share this prayer with somebody. There's a dimension of grace that is released when you become a distributor of spiritual content. The Bible says in Proverbs 11:25, \"The liberal soul shall be made fat, and he",
   },
   "prayers__0nKO7MNe3xU": {
+    key: "prayers__0nKO7MNe3xU",
     id: "0nKO7MNe3xU",
     title: "LORD, COVER ME AND MY FAMILY WITH YOUR PROTECTION",
     collection: "prayers",
@@ -2114,6 +2325,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Father, I [music and singing] come before your throne of grace in the mighty name of Jesus [music] Christ, acknowledging that you are my refuge and my fortress, my God in whom I trust. Your word declares [music] in Psalm",
   },
   "prayers__M_DJijHtFs0": {
+    key: "prayers__M_DJijHtFs0",
     id: "M_DJijHtFs0",
     title: "LORD, CROWN MY DAY WITH YOUR GOODNESS AND MERCY",
     collection: "prayers",
@@ -2124,6 +2336,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Glory be to God. I want you to lift up your hands wherever you are right now. I don't care where you're listening from. I don't care what time of the day it is. I want you to understand that",
   },
   "prayers__fsYF-nMzJbM": {
+    key: "prayers__fsYF-nMzJbM",
     id: "fsYF-nMzJbM",
     title: "Lord, Fill Me with Your Holy Spirit and Lead Me into All Truth Today",
     collection: "prayers",
@@ -2134,6 +2347,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Before we pray, let's first take a moment to listen to God's word and then we'll pray together. John 14:15 to18 says, \"If ye love me, keep my commandments and I will pray the father and he shall give you",
   },
   "prayers__eYAbJB0IfzY": {
+    key: "prayers__eYAbJB0IfzY",
     id: "eYAbJB0IfzY",
     title: "LORD, GO AHEAD OF ME AND MAKE MY DAY PEACEFUL AND VICTORIOUS",
     collection: "prayers",
@@ -2144,6 +2358,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Father, we bless your holy name today. We honor you. We celebrate you. We magnify your greatness. Lord, we acknowledge that without you we can do absolutely nothing. We recognize that every breath we take, every step we make, every",
   },
   "prayers__8Nw0FP-mqnQ": {
+    key: "prayers__8Nw0FP-mqnQ",
     id: "8Nw0FP-mqnQ",
     title: "LORD, GO BEFORE ME TODAY AND CLEAR MY PATH",
     collection: "prayers",
@@ -2154,6 +2369,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Father, I come before your [music] throne of grace this morning in the mighty name of Jesus Christ, acknowledging that you are the [music] God who goes before your people. I thank you for the promise in Deuteronomy 31:8 that",
   },
   "prayers__cLq7uMZDMZc": {
+    key: "prayers__cLq7uMZDMZc",
     id: "cLq7uMZDMZc",
     title: "LORD, GRANT ME FAVOR WHEREVER I GO",
     collection: "prayers",
@@ -2164,6 +2380,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Hallelujah. We bless the name of the Lord. This is the day that the Lord has made and we will rejoice and be glad in it. I want you to understand something about morning. Morning is not just a time",
   },
   "prayers__0qa3cDCvUXg": {
+    key: "prayers__0qa3cDCvUXg",
     id: "0qa3cDCvUXg",
     title: "LORD, HELP ME REDEEM LOST TIME",
     collection: "prayers",
@@ -2174,6 +2391,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "I greet you this morning in the matchless name of our Lord Jesus Christ. Glory be to God. I want you to understand that you have not stumbled upon this message by accident. The very fact that you are listening",
   },
   "prayers__T9VumJxcbJI": {
+    key: "prayers__T9VumJxcbJI",
     id: "T9VumJxcbJI",
     title: "LORD, I COMMIT THE MONTH OF JANUARY INTO YOUR HANDS",
     collection: "prayers",
@@ -2184,6 +2402,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Beloved, before we go into the deep waters of prayer and prophecy this hour, I want you to do something very significant. I want you to share this ministration with somebody. There is a grace that follows shared content. When",
   },
   "prayers__s62zfKo1B_o": {
+    key: "prayers__s62zfKo1B_o",
     id: "s62zfKo1B_o",
     title: "LORD, LEAD ME SAFELY THROUGH THIS STORM",
     collection: "prayers",
@@ -2194,6 +2413,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Beloved, I greet you in the mighty name of Jesus Christ, the name that is above every name, the name before which every knee must bow. Glory be to God. I want you to understand that this morning, as you",
   },
   "prayers__NZDpmJXAqOQ": {
+    key: "prayers__NZDpmJXAqOQ",
     id: "NZDpmJXAqOQ",
     title: "LORD, LET EVERY ARROW OF STRESS AND PRESSURE BE BROKEN",
     collection: "prayers",
@@ -2204,6 +2424,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Before we begin, I want to encourage you to share this prayer with someone who needs to hear it today. There is somebody under unusual pressure right now. There is somebody dealing with stress that is beyond human [music] explanation",
   },
   "prayers__fK5RZoulhkk": {
+    key: "prayers__fK5RZoulhkk",
     id: "fK5RZoulhkk",
     title: "LORD, LET ME END THIS DAY WITH VICTORY NOT DEFEAT",
     collection: "prayers",
@@ -2214,6 +2435,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "I want you to lift [music] up your hands wherever you are this morning. Whether you are in your room, in your office, in your car, or wherever the spirit of God has found you, I want [music] you to",
   },
   "prayers__Kb7ftCbT9_4": {
+    key: "prayers__Kb7ftCbT9_4",
     id: "Kb7ftCbT9_4",
     title: "LORD, LET MY DAY END IN VICTORY AND PRAISE",
     collection: "prayers",
@@ -2224,6 +2446,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "But I come [music] before your throne of grace in the mighty name of Jesus Christ of Nazareth, standing on the authority of your word that declares this is the day that [music] you have made and I will rejoice",
   },
   "prayers__ksZhijboD64": {
+    key: "prayers__ksZhijboD64",
     id: "ksZhijboD64",
     title: "LORD, LET YOUR POWER ACCOMPLISH WHAT MY STRENGTH CANNOT",
     collection: "prayers",
@@ -2234,6 +2457,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Hallelujah. Hallelujah. We give you praise, Lord. We give you praise. Father, we acknowledge you this morning. We acknowledge you not as a distant deity, not as a theological concept that men debate in seminaries, but as the living God,",
   },
   "prayers__Yi_OBUgX0dg": {
+    key: "prayers__Yi_OBUgX0dg",
     id: "Yi_OBUgX0dg",
     title: "LORD, REMIND ME THAT NO BATTLE IS GREATER THAN YOU",
     collection: "prayers",
@@ -2244,6 +2468,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Before we go into this place in the spirit this morning, I want to ask you to do something very simple. Share this prayer with someone. Share it right now. There is somebody in your circle, somebody in your family,",
   },
   "prayers__Jb9cO4oBCS8": {
+    key: "prayers__Jb9cO4oBCS8",
     id: "Jb9cO4oBCS8",
     title: "LORD, REVEAL HIDDEN SOLUTIONS TO COMPLEX PROBLEMS",
     collection: "prayers",
@@ -2254,6 +2479,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Hallelujah. Hallelujah. Hallelujah. Glory to God. Glory to God. Glory to God. We give you praise this morning. We give you honor. We give you adoration. Ancient of days. The one who sits upon the circle of the earth. The",
   },
   "prayers__p2lKY4Jd7DI": {
+    key: "prayers__p2lKY4Jd7DI",
     id: "p2lKY4Jd7DI",
     title: "LORD, SEAL MY DAY WITH SUPERNATURAL BREAKTHROUGH",
     collection: "prayers",
@@ -2264,6 +2490,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Beloved, I want you to understand [music] something today. When we talk about supernatural breakthroughs, we're not talking about ordinary interventions. We're talking about a dimension of God's dealings where the natural laws that have held you bound suddenly become",
   },
   "prayers__N-BfeJXLzz4": {
+    key: "prayers__N-BfeJXLzz4",
     id: "N-BfeJXLzz4",
     title: "LORD, SHIELD MY FAMILY FROM EVERY ARROW OF DARKNESS",
     collection: "prayers",
@@ -2274,6 +2501,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Glory to God. I want you to lift [music] up your hands wherever you are right now. Whether you're watching this from your home, from your office, from wherever the Lord has positioned you at this moment, I want you",
   },
   "prayers__p5MYNVzOJmA": {
+    key: "prayers__p5MYNVzOJmA",
     id: "p5MYNVzOJmA",
     title: "Lord, Strengthen Me with Your Power and Fill Me with Courage to Overcome Challenges",
     collection: "prayers",
@@ -2284,6 +2512,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Heavenly Father, I come before you today with humility and dependence, recognizing my weakness and my need for your strength. Lord, I cannot make it through this life on my own. I do not have the power within myself to",
   },
   "prayers__AApITO8fgU8": {
+    key: "prayers__AApITO8fgU8",
     id: "AApITO8fgU8",
     title: "LORD, TAKE COMMAND OF THE BATTLES I'M LOSING",
     collection: "prayers",
@@ -2294,6 +2523,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Beloved, before we go into this sacred moment, I want you to do something for me. Share this prayer with someone. There is a reason you are watching this right now. The Holy Spirit orchestrated this divine appointment. Someone in",
   },
   "prayers__tz55Bz6BAmY": {
+    key: "prayers__tz55Bz6BAmY",
     id: "tz55Bz6BAmY",
     title: "LORD, TAKE OVER THE BATTLES I DO NOT UNDERSTAND",
     collection: "prayers",
@@ -2304,6 +2534,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Beloved, before we go into the throne room this morning, I want you to do something for me. Share this [music] prayer with someone. There is somebody on your contact list. There is somebody in your family. There is somebody",
   },
   "prayers__ASI7p2ACz3U": {
+    key: "prayers__ASI7p2ACz3U",
     id: "ASI7p2ACz3U",
     title: "LORD, TEACH ME HUMILITY IN SUCCESS AND FAITH IN HARDSHIP",
     collection: "prayers",
@@ -2314,6 +2545,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Glory to God. Glory to God. Glory to God. We welcome the Holy Spirit into this place. We welcome the presence of the most high God. Father, we thank you for this morning. We thank you for the breath in",
   },
   "prayers__CvVPyQMxBSA": {
+    key: "prayers__CvVPyQMxBSA",
     id: "CvVPyQMxBSA",
     title: "LORD, TURN MY DARKNESS TO DAWN",
     collection: "prayers",
@@ -2324,6 +2556,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Father, I come before you in the name of Jesus Christ, acknowledging that you are the God who turns [music] darkness into light, who transforms sorrow into joy, who converts mourning into dancing, who changes weeping into laughter. And today",
   },
   "prayers__VZUiWm_qCm4": {
+    key: "prayers__VZUiWm_qCm4",
     id: "VZUiWm_qCm4",
     title: "LORD, WIN THE VICTORIES I CANNOT WIN ON MY OWN",
     collection: "prayers",
@@ -2334,6 +2567,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Beloved, if this message finds you and the spirit of God begins to stir your heart, I want you to take a moment and share this [music] prayer. Share it with someone who has been fighting battles they cannot win",
   },
   "prayers__-C-46AsFDRA": {
+    key: "prayers__-C-46AsFDRA",
     id: "-C-46AsFDRA",
     title: "Make These 20 Midnight Decrees When Your Family Is Under Demonic Siege ",
     collection: "prayers",
@@ -2344,6 +2578,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Do me [music] to me what you want. [music] Father, in the name of Jesus Christ, I pray that tonight [music] indeed will be an extraordinary night for someone. Let it be an encounter [music] of a lifetime. Let someone",
   },
   "prayers__VU1tmZaNcns": {
+    key: "prayers__VU1tmZaNcns",
     id: "VU1tmZaNcns",
     title: "MERRY CHRISTMAS JESUS CHRIST",
     collection: "prayers",
@@ -2354,6 +2589,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Beloved, I want you to do me a favor right now. Before we go any further into this divine encounter, I want you to share this message [music] with someone. There's somebody in your family, there's somebody in your workplace,",
   },
   "prayers__yDRldHMXQPU": {
+    key: "prayers__yDRldHMXQPU",
     id: "yDRldHMXQPU",
     title: "MONDAY MORNING AGGRESSIVE PRAYERS & DECLARATIONS",
     collection: "prayers",
@@ -2364,6 +2600,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "This week, obey. Not I hope this week goes well. Not Lord, please let this week be better than last week. >> [music] >> Not I am asking you to consider blessing my efforts this week. This week, obey. Obey",
   },
   "prayers__dCG8rDUqqDw": {
+    key: "prayers__dCG8rDUqqDw",
     id: "dCG8rDUqqDw",
     title: "MORNING FIRE PRAYER FOR UNCOMMON BREAKTHROUGH – START YOUR DAY ON FIRE!",
     collection: "prayers",
@@ -2374,6 +2611,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Lift your hands wherever you are. Begin to bless the name of the Lord this morning. Father, we give you praise. We give you glory. We give you honor. [music] You are worthy of all our praise. You are the",
   },
   "prayers__FFRalFsppTU": {
+    key: "prayers__FFRalFsppTU",
     id: "FFRalFsppTU",
     title: "Morning Prayer for a Clean Heart",
     collection: "prayers",
@@ -2384,6 +2622,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "When a new morning comes, it is more than just another sunrise. It is a fresh invitation from God to be renewed, restored, and made whole. Life often burdens our hearts with heaviness, guilt, and struggles that we quietly carry.",
   },
   "prayers__HKH5-ALT-mk": {
+    key: "prayers__HKH5-ALT-mk",
     id: "HKH5-ALT-mk",
     title: "MORNING PRAYER FOR FINANCIAL FAVOUR – MONEY IS COMING",
     collection: "prayers",
@@ -2394,6 +2633,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "I need you to do something unusual right now before I say a word of prayer, before I open a scripture, before worship begins. I need you to stretch your hands forward, both hands, palms open facing upward like someone",
   },
   "prayers__9AjwDgwx9mA": {
+    key: "prayers__9AjwDgwx9mA",
     id: "9AjwDgwx9mA",
     title: "MORNING PRAYER SPEAK INTO THE NEW WEEK BEFORE THE ENEMY DOES",
     collection: "prayers",
@@ -2404,6 +2644,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Lift your hands wherever you are. This is not an ordinary morning. This is not an ordinary week. You are not stepping into seven days casually. You are stepping in prophetically, intentionally, and with dominion. I hear the spirit of",
   },
   "prayers__1YJW4-7hokQ": {
+    key: "prayers__1YJW4-7hokQ",
     id: "1YJW4-7hokQ",
     title: "Morning Prayer to Start Your Day with God",
     collection: "prayers",
@@ -2414,6 +2655,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Before we pray, let's first take a moment to listen to God's word and then we'll pray together. [Music] Heavenly Father, I thank you for waking me up this morning. I thank you for the breath in my lungs, the",
   },
   "prayers__oAQuEPhKklQ": {
+    key: "prayers__oAQuEPhKklQ",
     id: "oAQuEPhKklQ",
     title: "MORNING WARFARE PRAYER FOR PROSPERITY",
     collection: "prayers",
@@ -2424,6 +2666,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Beloved, before we go into the place of prayer this morning, I want you to do something for me. I want you to share this prayer with someone. Don't keep it to yourself. There is a protocol in the kingdom.",
   },
   "prayers__m02qjHixeXQ": {
+    key: "prayers__m02qjHixeXQ",
     id: "m02qjHixeXQ",
     title: "MOST POWERFUL MORNING PRAYERS THAT SILENCE EVERY VOICE OF DARKNESS",
     collection: "prayers",
@@ -2434,6 +2677,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Hallelujah. Glory to God. If you are connected to this service right now, I want you to do something. I want you to share this message. Share it on your WhatsApp status. Share it on your Facebook. Send it to",
   },
   "prayers__O7sJIsoTgTA": {
+    key: "prayers__O7sJIsoTgTA",
     id: "O7sJIsoTgTA",
     title: "MOST POWERFUL PSALM 121 MORNING PRAYER TO START YOUR DAY",
     collection: "prayers",
@@ -2444,6 +2688,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Lift your hands wherever you are. Before the noise of the day begins, let the voice of faith rise first. Let the morning hear your conviction, not your complaint. Let the first sound from your house be worship. I will",
   },
   "prayers__ftZakGoMUzU": {
+    key: "prayers__ftZakGoMUzU",
     id: "ftZakGoMUzU",
     title: "MOST POWERFUL PSALM 140 WARFARE PRAYERS TO SCATTER EVERY EVIL CONSPIRACY AGAINST YOU",
     collection: "prayers",
@@ -2454,6 +2699,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "We bless you, Jesus. We honor you, ancient of days. [music] We magnify you, the mighty man in battle. We glorify you, the lion of the tribe of Judah. Something is already shifting in this atmosphere. [music] There's a staring",
   },
   "prayers__03210No5MgE": {
+    key: "prayers__03210No5MgE",
     id: "03210No5MgE",
     title: "MOST POWERFUL PSALM 34 MORNING PRAYER TO START YOU DAY",
     collection: "prayers",
@@ -2464,6 +2710,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Holy Spirit, we acknowledge you. We acknowledge you as Lord of this moment. We acknowledge you as the one whose breath turns ordinary moments into history. We receive you. We welcome you. We open every gate of our hearts to",
   },
   "prayers__PyXsgaJnGbw": {
+    key: "prayers__PyXsgaJnGbw",
     id: "PyXsgaJnGbw",
     title: "MOST POWERFUL PSALM 63 EARLY MORNING PRAYER TO COMMAND THE DAY",
     collection: "prayers",
@@ -2474,6 +2721,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Hallelujah. Hallelujah. Hallelujah. Before we begin, before a single word goes forth tonight, I want you to do something for me. If you are watching this, if you are connected to this service right now, wherever you are in the",
   },
   "prayers__5zyj34WvhLA": {
+    key: "prayers__5zyj34WvhLA",
     id: "5zyj34WvhLA",
     title: "MOST POWERFUL PSALM 91 MORNING PRAYER TO START YOUR DAY WITH FIRE",
     collection: "prayers",
@@ -2484,6 +2732,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Somebody lift your hands and give God a shout of praise. Right where you are. Come on, open your mouth. Open your mouth. If you believe that this morning is not ordinary, give him a shout. Come on. Hallelujah. Hallelujah.",
   },
   "prayers__uRcS9WpqNAc": {
+    key: "prayers__uRcS9WpqNAc",
     id: "uRcS9WpqNAc",
     title: "MOST VIOLENT PSALM PRAYERS TO BLIND EVERY EVIL EYES WATCHING YOU",
     collection: "prayers",
@@ -2494,6 +2743,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Tonight we declare that you alone are worthy. We thank you because there is no enchantment against Jacob. Neither is there any divination against Israel. Numbers 23:23. We thank you because you are our refuge and fortress. Psalm 91:2. We",
   },
   "prayers__kTSAeLKnH2U": {
+    key: "prayers__kTSAeLKnH2U",
     id: "kTSAeLKnH2U",
     title: "My Name Shall Not Be Found on the Register of Calamity This Day",
     collection: "prayers",
@@ -2504,6 +2754,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Father God, your name is written in the Lamb's Book of Life. Your name is sealed in the records of heaven. Your name is inscribed by the finger of God in the registry of the righteous. And this day, this",
   },
   "prayers__tVIxljSUueo": {
+    key: "prayers__tVIxljSUueo",
     id: "tVIxljSUueo",
     title: "NEVER START YOUR DAY UNTILL YOU SAY THIS POWERFUL PRAYER",
     collection: "prayers",
@@ -2514,6 +2765,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Glory to Jesus Christ. Hallelujah. Someone is receiving their mantle today. Before this service ends, there will be a shifting. The spirit of God is here with intent, with purpose, with divine appointment. I want you to know that the",
   },
   "prayers__GK5VrH2nm1g": {
+    key: "prayers__GK5VrH2nm1g",
     id: "GK5VrH2nm1g",
     title: "OH GOD OF JABEZ HEAR MY CRY TODAY AND HELP ME",
     collection: "prayers",
@@ -2524,6 +2776,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "I want to speak directly to whatever name has been spoken over your life before we go one sentence further because I believe some of you have been living inside a name you never chose, carrying its weight into every",
   },
   "prayers__AtSFyX1EJMU": {
+    key: "prayers__AtSFyX1EJMU",
     id: "AtSFyX1EJMU",
     title: "ONLY GOD CAN LIFT YOU",
     collection: "prayers",
@@ -2534,6 +2787,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Something is happening in this place right now. I want you to feel it. Do not dismiss what your spirit is sensing. There is a weight in this atmosphere. It is not ordinary. Heaven is bending over this moment, and",
   },
   "prayers__L8pA5uYDSXI": {
+    key: "prayers__L8pA5uYDSXI",
     id: "L8pA5uYDSXI",
     title: "PLAY THIS 2AM - 3AM MOST POWERFUL 60 MINUTES PRAYER TO COMMAND YOUR NIGHT",
     collection: "prayers",
@@ -2544,6 +2798,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Beloved in Christ, there are hours that heaven recognizes as strategic, and there are times when darkness seeks to prevail. Between 2:00 a.m. and 3:00 a.m., destinies are often contested, witches gather, sorcerers conspire, and evil altars seek to speak.",
   },
   "prayers__UwBbMwyUBz0": {
+    key: "prayers__UwBbMwyUBz0",
     id: "UwBbMwyUBz0",
     title: "PLAY THIS EVERY MORNING BEFORE YOU START YOUR DAY [5AM  MORNING DECLARATION]",
     collection: "prayers",
@@ -2554,6 +2809,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "In the mighty name of Jesus, I receive grace to [music] minister to you this morning. The Lord bless you. The Lord keep you. The Lord make his [music] face to shine upon you and be gracious unto you. The",
   },
   "prayers__YbBBDuqfzLc": {
+    key: "prayers__YbBBDuqfzLc",
     id: "YbBBDuqfzLc",
     title: "PLAY THIS EVERY MORNING BEFORE YOU START YOUR DAY [7:45AM Prayers For You] APOSTLE JOSHUA SELMAN",
     collection: "prayers",
@@ -2564,6 +2820,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Stop. Don't move yet. Before you pick up your phone, before you check your notifications, before you let the noise of the world come crashing into the sacred silence of this new morning, stop. Just stop. Because this moment right",
   },
   "prayers__84HrCwSMgzQ": {
+    key: "prayers__84HrCwSMgzQ",
     id: "84HrCwSMgzQ",
     title: "PLAY THIS HEALING PRAYER BEFORE YOU EAT — WATCH WHAT HAPPENS",
     collection: "prayers",
@@ -2574,6 +2831,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "The Holy Ghost told me to tell you you didn't stumble upon this by accident. Somebody's healing was scheduled for this moment. Somebody's deliverance has been pending and heaven has just authorized the release. You came here thinking this was",
   },
   "prayers__WKOY_W3-Pcc": {
+    key: "prayers__WKOY_W3-Pcc",
     id: "WKOY_W3-Pcc",
     title: "PLAY THIS MIDNIGHT BATTLE PRAYER EVERY NIGHT AS YOU SLEEP",
     collection: "prayers",
@@ -2584,6 +2842,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Before we begin, hear me in the spirit. This is not just another prayer you scroll past. Someone you are connected to by blood, by marriage, by destiny is standing at the edge of a decision that will determine the",
   },
   "prayers__zPOULLgPjYc": {
+    key: "prayers__zPOULLgPjYc",
     id: "zPOULLgPjYc",
     title: "Powerful 13-Minute Morning Prayer with God to Start Your Day Right",
     collection: "prayers",
@@ -2594,6 +2853,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Heavenly Father, as I rise to meet the gift of a new day, I come before you in quiet reverence, humbled by your presence and grateful for your mercy that renews every morning. Thank you, Lord, for the breath in",
   },
   "prayers__xHuyxnEzHfk": {
+    key: "prayers__xHuyxnEzHfk",
     id: "xHuyxnEzHfk",
     title: "POWERFUL 2AM TO 3AM MID-NIGHT PRAYERS TO BREAK GENERATIONAL CURSES",
     collection: "prayers",
@@ -2604,6 +2864,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Beloved in Christ, there are hours that heaven recognizes as strategic, and there are times when darkness seeks to prevail. Between 2:00 a.m. and 3:00 a.m., destinies are often contested, witches gather, sorcerers conspire, and evil altars seek to speak.",
   },
   "prayers__s6GkrK9pcB8": {
+    key: "prayers__s6GkrK9pcB8",
     id: "s6GkrK9pcB8",
     title: "POWERFUL 3AM MORNING PRAYERS FOR BREAKTHROUGH",
     collection: "prayers",
@@ -2614,6 +2875,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Beloved, I greet you in the matchless name of our Lord and Savior Jesus Christ. This is not an ordinary hour. This is the hour when heaven touches earth. When the veil between the natural and the supernatural becomes thin.",
   },
   "prayers__z2t0N2RnSZc": {
+    key: "prayers__z2t0N2RnSZc",
     id: "z2t0N2RnSZc",
     title: "POWERFUL 3AM PRAYER – THE SECRET HOUR OF DIVINE INTERVENTION",
     collection: "prayers",
@@ -2624,6 +2886,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Hallelujah. There is a staring in my spirit. I can feel it. Something is about to break loose. Something is about to shift. The atmosphere is charged. Heaven is paying attention. Before I say another word, I need you to",
   },
   "prayers__nXTG617LPvc": {
+    key: "prayers__nXTG617LPvc",
     id: "nXTG617LPvc",
     title: "POWERFUL FAMILY PRAYERS TO BEGIN THE NEW DAY IN THE PRESENCE OF THE LORD",
     collection: "prayers",
@@ -2634,6 +2897,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Let your spirit [music] become sensitive. Let the atmosphere around you shift. I hear the spirit of God saying, [music] \"As families rise before me, I rise for them.\" Somebody declare, \"Lord, we begin this day in [music] your presence.\"",
   },
   "prayers__YWvIN1i6suk": {
+    key: "prayers__YWvIN1i6suk",
     id: "YWvIN1i6suk",
     title: "Powerful Morning Prayer",
     collection: "prayers",
@@ -2644,6 +2908,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "When a new day breaks, it is more than just the rising of the sun. It is a reminder of the grace and mercy of God that has carried us through the night and awakened us with breath in our",
   },
   "prayers__Kh9Rq0UoTaw": {
+    key: "prayers__Kh9Rq0UoTaw",
     id: "Kh9Rq0UoTaw",
     title: "POWERFUL MORNING PRAYER TO COMMAND THE NEW DAY",
     collection: "prayers",
@@ -2654,6 +2919,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Hallelujah. Hallelujah. Hallelujah. Oh, we worship you this morning. We worship you ancient of days. We worship you the one who sits above the circle of the earth. The one who calls those things that be not as though they",
   },
   "prayers__XZQASAHmbWg": {
+    key: "prayers__XZQASAHmbWg",
     id: "XZQASAHmbWg",
     title: "Powerful Morning Prayer to Start Your Day with God",
     collection: "prayers",
@@ -2664,6 +2930,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Father, we commit our work, our studies, and our endeavors into your hands. Give us clarity of mind, creativity, and focus. Bless the labor of our hands, and let it bring fruitfulness. May we work not just for human recognition,",
   },
   "prayers__-pRx8HZpQcw": {
+    key: "prayers__-pRx8HZpQcw",
     id: "-pRx8HZpQcw",
     title: "Powerful Morning Prayer with Psalm 51",
     collection: "prayers",
@@ -2674,6 +2941,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "This morning, as the light of a new day touches the earth, we turn our hearts toward you, Lord, with the words of Psalm 51 as our starting point. This psalm is a cry of humility, a song of repentance,",
   },
   "prayers__qX8vVpeE49U": {
+    key: "prayers__qX8vVpeE49U",
     id: "qX8vVpeE49U",
     title: "POWERFUL MORNING PRAYERS TO ACTIVATE ANGEL MICHAEL",
     collection: "prayers",
@@ -2684,6 +2952,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Oh, lift your hands right where you are. Lift your hands. Before we go anywhere tonight, before a single word is spoken, I want you to just breathe in the presence of God. Breathe him in. The atmosphere is already",
   },
   "prayers__fcxGwYtRszs": {
+    key: "prayers__fcxGwYtRszs",
     id: "fcxGwYtRszs",
     title: "POWERFUL PRAYER TO CALL UPON GOD IN DAYS OF TROUBLE",
     collection: "prayers",
@@ -2694,6 +2963,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Somebody here needs to hear what the spirit is saying. The Lord of hosts is rising. The God who answers by fire is in this place. And I feel the weight of glory right now. Something is shifting in the",
   },
   "prayers__iR_oqgunPkg": {
+    key: "prayers__iR_oqgunPkg",
     id: "iR_oqgunPkg",
     title: "POWERFUL PRAYERS & DECLARATION TO COMMAND THE MORNING",
     collection: "prayers",
@@ -2704,6 +2974,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Lift your head. Lift it up right now, wherever you are, because something about the posture of your neck affects the posture of your faith. And I need you looking up, not down, for what is about to be released.",
   },
   "prayers__5pWuog0OoUA": {
+    key: "prayers__5pWuog0OoUA",
     id: "5pWuog0OoUA",
     title: "POWERFUL PRAYERS TO COMMAND THE FIRST MONDAY OF THE NEW MONTH",
     collection: "prayers",
@@ -2714,6 +2985,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "There is something happening in the realm of the spirit right now in this very hour, and I need somebody reading this, somebody standing where you are, sitting where you are, to lift your two hands and say to the",
   },
   "prayers__DtIydt58mbY": {
+    key: "prayers__DtIydt58mbY",
     id: "DtIydt58mbY",
     title: "POWERFUL PSALM 46 SUNDAY MORNING PRAYERS",
     collection: "prayers",
@@ -2724,6 +2996,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "I want you to stop everything you are doing, not slow down, stop. Put down whatever is in your hand. Quiet the noise around you if you can. And for the next few moments, just breathe because the thing you",
   },
   "prayers__k9RKMGPoqwE": {
+    key: "prayers__k9RKMGPoqwE",
     id: "k9RKMGPoqwE",
     title: "POWERFUL SUNDAY MORNING FIRE PRAYERS TO DESTROY EVILS TODAY",
     collection: "prayers",
@@ -2734,6 +3007,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Listen. Listen to me. Right now, in this very moment, the spirit of God is breaking the assignment of heaviness that was scheduled against your morning. Do you understand what I'm saying? There is a spirit, a demonic assignment that",
   },
   "prayers__02NwVp2jGDg": {
+    key: "prayers__02NwVp2jGDg",
     id: "02NwVp2jGDg",
     title: "POWERFUL SUNDAY MORNING KOINONIA MIRACLE SERVICE",
     collection: "prayers",
@@ -2744,6 +3018,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Something woke you up this morning that an alarm clock cannot take credit for. [music] Sit with that for a second before you even try to sing. You did not fight your way out of sleep by [music] your own",
   },
   "prayers__g-qT5y4Cw2Q": {
+    key: "prayers__g-qT5y4Cw2Q",
     id: "g-qT5y4Cw2Q",
     title: "PRAY BEFORE YOUR FEET TOUCH THE GROUND – INSTANT MORNING PROTECTION",
     collection: "prayers",
@@ -2754,6 +3029,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Hallelujah. Hallelujah. Hallelujah. There is somebody here tonight. God is about to do something. I feel the presence of God so strong. Before I even begin, I want you to lift your hands wherever you are right now. Whether you",
   },
   "prayers__Q5SmO9vxDZk": {
+    key: "prayers__Q5SmO9vxDZk",
     id: "Q5SmO9vxDZk",
     title: "PRAY PSALM 23 EVERYDAY AND SEE WHAT WILL HAPPEN IN YOUR LIFE",
     collection: "prayers",
@@ -2764,6 +3040,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "The shepherd is near ruonai. LIFT YOUR HEAD RIGHT NOW. The Lord is not asking you to fight your way into rest. He's leading you into it. Someone under the sound of my voice, you've been exhausted trying to provide",
   },
   "prayers__9NV6SPnoEUk": {
+    key: "prayers__9NV6SPnoEUk",
     id: "9NV6SPnoEUk",
     title: "PRAY PSALM 23 LIKE THIS EVERY MORNING AND SEE THE DIFFERENCE",
     collection: "prayers",
@@ -2774,6 +3051,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "should. Do not say anything. Do not move. Just breathe. Something just walked into this room. You felt it, didn't you? That weight, that warmth, that thickness in the atmosphere. That is not goosebumps. That is not emotion. That is",
   },
   "prayers__slCepRoiQBU": {
+    key: "prayers__slCepRoiQBU",
     id: "slCepRoiQBU",
     title: "PRAY PSALM 35 EVERY MORNING WHEN ENEMIES ARE RISING AGAINST YOU WATCH GOD RESPOND",
     collection: "prayers",
@@ -2784,6 +3062,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "There is a battle going on over your life, right now. Not tomorrow, not in some distant future. Right [music] now. And the reason you have not been sleeping, the reason the same obstacle keeps appearing in different clothing, the",
   },
   "prayers__l8f9Ekuae1U": {
+    key: "prayers__l8f9Ekuae1U",
     id: "l8f9Ekuae1U",
     title: "PRAY PSALM 91 MORNING PRAYER TO START YOUR DAY",
     collection: "prayers",
@@ -2794,6 +3073,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Open your eyes before you check your phone, before another voice reaches you today, before the noise of the world says one word to you, stop where you are. Something is already speaking over your life this morning, and I",
   },
   "prayers__zQz5LRSq774": {
+    key: "prayers__zQz5LRSq774",
     id: "zQz5LRSq774",
     title: "PRAY THIS 6AM FIRE PRAYER EVERY MORNING AND NOTHING WILL STOP YOU THIS WEEK",
     collection: "prayers",
@@ -2804,6 +3084,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Nothing. That is not enthusiasm. That is a decree. Nothing will stop your breakthrough this week. Not the principality that has been stationed against your advancement. Not the witchcraft altar that has been working against your name. Not the generational",
   },
   "prayers__4r60EKff95E": {
+    key: "prayers__4r60EKff95E",
     id: "4r60EKff95E",
     title: "PRAY THIS AND SOMEONE WILL BLESS YOU OUT OF NOWHERE",
     collection: "prayers",
@@ -2814,6 +3095,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Wait. Wait. Wait. Do not touch that phone. Do not scroll past The Holy Ghost arrested me in my prayer closet this morning. He seized me and he said, \"The person who is about to listen to this prayer does",
   },
   "prayers__HDWw_jPpPBQ": {
+    key: "prayers__HDWw_jPpPBQ",
     id: "HDWw_jPpPBQ",
     title: "PRAY THIS AT SUNRISE AND TAKE AUTHORITY OVER THE NEXT 48 HOURS",
     collection: "prayers",
@@ -2824,6 +3106,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Father, we give you thanks. We thank you because you are life. We thank you because you are present. We thank you because you are not a memory and you are not an idea. You are God mighty, near and",
   },
   "prayers__cAMEgq0hnu4": {
+    key: "prayers__cAMEgq0hnu4",
     id: "cAMEgq0hnu4",
     title: "PRAY THIS BEFORE 6AM AND CONTROL YOUR ENTIRE DAY",
     collection: "prayers",
@@ -2834,6 +3117,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Hallelujah. >> Hallelujah. Glory to God. I want you to lift your voice right now. Wherever you are, whether you are watching this at midnight, whether it's 3:00 a.m., whether it's 4:00 a.m., I want you to lift your voice",
   },
   "prayers__7FU2N6NfH-A": {
+    key: "prayers__7FU2N6NfH-A",
     id: "7FU2N6NfH-A",
     title: "PRAY THIS BEFORE 7AM AND WATCH GOD REARRANGE YOUR DESTINY",
     collection: "prayers",
@@ -2844,6 +3128,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Hallelujah. Somebody help me worship him tonight. Just lift your voice and worship the King of Kings, the Lion of the Tribe of Judah, the ancient of days, the one who was, who is, and who is to come. Hallelujah.",
   },
   "prayers__a4HPviUbf6U": {
+    key: "prayers__a4HPviUbf6U",
     id: "a4HPviUbf6U",
     title: "PRAY THIS BEFORE SUNRISE AND CANCEL EVERY EVIL APPOINTMENT SET FOR YOUR DAY",
     collection: "prayers",
@@ -2854,6 +3139,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Hallelujah. Hallelujah. Hallelujah. Thank you, Lord. Thank you, Jesus. We worship you. We magnify your name. There is none like you. There is none beside you. >> [music] >> In all the earth, there is none that can be compared",
   },
   "prayers__uDA38RirvAQ": {
+    key: "prayers__uDA38RirvAQ",
     id: "uDA38RirvAQ",
     title: "PRAY THIS BEFORE SUNRISE AND CANCEL EVERY EVIL APPOINTMENT SET FOR YOUR DAY",
     collection: "prayers",
@@ -2864,6 +3150,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Put your hand on your chest. Say this, I am covered. I am hidden. I am preserved by the blood that never loses its power. Glory to God. Sit down. Sit down. Sit down. I need to talk to you",
   },
   "prayers__iIzlQ2pBtFk": {
+    key: "prayers__iIzlQ2pBtFk",
     id: "iIzlQ2pBtFk",
     title: "PRAY THIS BEFORE YOU EAT BREAKFAST AND EVERY SPIRITUAL CHAIN WILL BREAK",
     collection: "prayers",
@@ -2874,6 +3161,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Before you touch that spoon, before you pour that tea, before your lips taste anything this morning, I need you to understand what is actually happening in the spirit realm in the first 60 minutes after your eyes open. There",
   },
   "prayers__hPNAD_Nc6iI": {
+    key: "prayers__hPNAD_Nc6iI",
     id: "hPNAD_Nc6iI",
     title: "PRAY THIS MORNING PRAYER BEFORE 7AM AND RECEIVE UNEXPECTED MIRACLES",
     collection: "prayers",
@@ -2884,6 +3172,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Before the noise of the day swallows you, before your phone starts ringing with problems dressed as messages, before the enemy gets the chance to set the tone for your next 24 hours, heaven has released a window, and that",
   },
   "prayers__njP80DusGPc": {
+    key: "prayers__njP80DusGPc",
     id: "njP80DusGPc",
     title: "PRAY THIS MORNING PRAYER BEFORE 7AM AND RECEIVE UNEXPECTED MIRACLES TODAY",
     collection: "prayers",
@@ -2894,6 +3183,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Glory to Jesus Christ. Glory. Someone just release a shout right now. Not a quiet thing, a shout that tells the heavens you are awake, you are alive, you are positioned. The spirit of slumber has no power over your",
   },
   "prayers__iQPu6p3Krdk": {
+    key: "prayers__iQPu6p3Krdk",
     id: "iQPu6p3Krdk",
     title: "PRAY THIS MORNING PRAYER BEFORE 9AM AND RECEIVE UNEXPECTED MIRACLES",
     collection: "prayers",
@@ -2904,6 +3194,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Glory to Jesus. Father in heaven, we come before you this morning in the name of Jesus Christ. Before we even begin, someone is hearing this message and the Holy Ghost wants you to know that the siege against your",
   },
   "prayers__vhPs7ZltTqY": {
+    key: "prayers__vhPs7ZltTqY",
     id: "vhPs7ZltTqY",
     title: "PRAY THIS MORNING PRAYER BEFORE 9AM AND RECEIVE UNEXPECTED MIRACLES",
     collection: "prayers",
@@ -2914,6 +3205,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Shai T. Hallelujah. Father, we receive you this morning. We receive you. Somebody lift your hands wherever you are. Lift your hands to the king of kings. Before you do anything this morning, before your phone, before your notifications, before",
   },
   "prayers__rJ2OoxcGYqA": {
+    key: "prayers__rJ2OoxcGYqA",
     id: "rJ2OoxcGYqA",
     title: "Pray This Now if Your Family Suffers Mysterious Attacks ",
     collection: "prayers",
@@ -2924,6 +3216,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[music] >> Your power. Go ahead and begin to pray in the spirit. Thanking [music] God for the word tonight and declaring that you are receiver. >> [music] >> Someone pray. >> [music] >> Someone pray. Someone pray. All the",
   },
   "prayers__0YIKrODAtUU": {
+    key: "prayers__0YIKrODAtUU",
     id: "0YIKrODAtUU",
     title: "PRAY THIS POWERFUL MORNING PRAYER WITH ALL SERIOUSNESS OR THE REPERCUSSION WILL HUNT YOU FOR LIFE",
     collection: "prayers",
@@ -2934,6 +3227,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Oh, glory, glory, glory. The spirit of God is already moving in this place. Before I say anything else, before we go any further, I need you to do something right now. Share this broadcast. Share it immediately. Don't wait.",
   },
   "prayers__yi46unmBQtA": {
+    key: "prayers__yi46unmBQtA",
     id: "yi46unmBQtA",
     title: "PRAY THIS PSALM 23 EVERY MORNING AND SEE THE DIFFERENCE IN YOUR LIFE",
     collection: "prayers",
@@ -2944,6 +3238,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "There is a battle going on over your life right now. Not tomorrow, not in some distant future. Right now. And the reason you have not been sleeping, the reason the same obstacle keeps appearing in different clothing, the reason",
   },
   "prayers__GySiWSsgqIw": {
+    key: "prayers__GySiWSsgqIw",
     id: "GySiWSsgqIw",
     title: "PRAY THIS SUNDAY MORNING PRAYER BEFORE 7AM",
     collection: "prayers",
@@ -2954,6 +3249,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Father, I thank you. I thank you for every single person under the sound of my voice right now. I thank you that your name is glorified. I thank you that we are gathered in this atmosphere of divine presence.",
   },
   "prayers__Ygvqqapwxjk": {
+    key: "prayers__Ygvqqapwxjk",
     id: "Ygvqqapwxjk",
     title: "PRAY THIS VIOLENT MORNING PRAYER BEFORE 7AM",
     collection: "prayers",
@@ -2964,6 +3260,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "All the lion of the tribe of Judah, the ancient of days, the one who was and who is and who is to come. We worship you this morning. We worship you, Father. Not because of what you have done,",
   },
   "prayers__a1F8pOYQ9Lg": {
+    key: "prayers__a1F8pOYQ9Lg",
     id: "a1F8pOYQ9Lg",
     title: "PRAY THIS VIOLENT PRAYER AND YOUR LIFE CANNOT REMAIN THE SAME",
     collection: "prayers",
@@ -2974,6 +3271,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Before you proceed to read this word, I want you to understand something. This is not just another message. The spirit of God has laid this upon my heart with urgency. Somebody connected to you is at the edge of",
   },
   "prayers__7HHaSJ3ooN0": {
+    key: "prayers__7HHaSJ3ooN0",
     id: "7HHaSJ3ooN0",
     title: "PRAY WHILE YOU SLEEP OH GOD!! WIPE MY TEARS MIDNIGHT PRAYERS",
     collection: "prayers",
@@ -2984,6 +3282,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Beloved, wherever you are joining from tonight, lift up your hands and bless the name of the Lord, for this is not an ordinary night. This is a night of divine visitation. There are nights that change stories. There are",
   },
   "prayers__0eXOGudTg5k": {
+    key: "prayers__0eXOGudTg5k",
     id: "0eXOGudTg5k",
     title: "Prayer for Readiness",
     collection: "prayers",
@@ -2994,6 +3293,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Heavenly Father, we come before your throne of grace today with reverence, awe, and a deep awareness of your holiness. You are the alpha and the omega, the beginning and the end. You hold all time in your hands, and",
   },
   "prayers__LvN2AUymW24": {
+    key: "prayers__LvN2AUymW24",
     id: "LvN2AUymW24",
     title: "Prayer for Struggle and Pain",
     collection: "prayers",
@@ -3004,6 +3304,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Heavenly Father, I come before you today with an honest heart. You see me exactly as I am. My struggles, my burdens, my weariness, and my pain. There is nothing I can hide from you. For you know my thoughts",
   },
   "prayers__1NvJnGj6WvY": {
+    key: "prayers__1NvJnGj6WvY",
     id: "1NvJnGj6WvY",
     title: "PREPARING FOR THE SHIFT GOD IS ABOUT TO MAKE IN MY LIFE",
     collection: "prayers",
@@ -3014,6 +3315,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "In the mighty name of Jesus, I want you to share this word with somebody. Send it to that friend, that family member, that colleague who needs to hear what the spirit of God is saying in this season. There",
   },
   "prayers__f0WXbdUIS3A": {
+    key: "prayers__f0WXbdUIS3A",
     id: "f0WXbdUIS3A",
     title: "PROPHESY DIVINE COMPLETION OVER YOUR MORNING",
     collection: "prayers",
@@ -3024,6 +3326,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "I want you to share this prayer with somebody. There is a covenant in sharing. When you share what God is saying, you are not just blessing others. You are positioning yourself for a double portion. The Bible says in",
   },
   "prayers__5eAxiGYd9SE": {
+    key: "prayers__5eAxiGYd9SE",
     id: "5eAxiGYd9SE",
     title: "PROPHESY INTO YOUR DAY BEFORE 6AM",
     collection: "prayers",
@@ -3034,6 +3337,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Lift your hands to the God who never sleeps, the God who was already awake before your alarm went off, the God who was watching over you through the night and he has brought you to this moment on purpose.",
   },
   "prayers__L0wyYbncGV8": {
+    key: "prayers__L0wyYbncGV8",
     id: "L0wyYbncGV8",
     title: "PROPHESY INTO YOUR DAY BEFORE THE ENEMY DOES THIS MORNING",
     collection: "prayers",
@@ -3044,6 +3348,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Hallelujah. Father, we thank you. We thank you, Lord. Spirit of the living God, we welcome you into this moment, into this hour, into this atmosphere. You are the reason we are gathered. You are the reason we open our",
   },
   "prayers__tzMA2L_tGdg": {
+    key: "prayers__tzMA2L_tGdg",
     id: "tzMA2L_tGdg",
     title: "PROPHESY INTO YOUR WHOLE DAY BEFORE 6AM",
     collection: "prayers",
@@ -3054,6 +3359,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "I [music] speak over you by the mercies of God. You will never lack help for the rest of your life. You will never lack helpers [music] for the rest of your life. You will never lack help for the",
   },
   "prayers__5_0WTpPrVXM": {
+    key: "prayers__5_0WTpPrVXM",
     id: "5_0WTpPrVXM",
     title: "PROPHESY NEW BEGINNINGS THIS MORNING",
     collection: "prayers",
@@ -3064,6 +3370,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Beloved, before we go into the depths of what the spirit is saying, I want you to do something for me. I want you to share this ministration with someone. There is somebody on your contact list. There is somebody",
   },
   "prayers__-7PXzNeWaq4": {
+    key: "prayers__-7PXzNeWaq4",
     id: "-7PXzNeWaq4",
     title: "PSALM 118:24 A MORNING PRAYER: THANK YOU, LORD, FOR THE GIFT OF THIS DAY",
     collection: "prayers",
@@ -3074,6 +3381,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Open your mouth right now and say thank you. Not tomorrow, not when their leg changes, not when the report changes color. Right now, this morning, with whatever strength is left in your body, lift your voice and say thank",
   },
   "prayers__Zvk_jzAsoi8": {
+    key: "prayers__Zvk_jzAsoi8",
     id: "Zvk_jzAsoi8",
     title: "Psalm 121: Morning Prayer For Protection and Safety",
     collection: "prayers",
@@ -3084,6 +3392,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] There are moments in life when we feel exposed, vulnerable to worry, exhaustion, or the unknown ahead. In those moments, our natural instinct is to look for help, for something or someone to hold on to. Psalm 121 is",
   },
   "prayers__KtFpTD2fF9w": {
+    key: "prayers__KtFpTD2fF9w",
     id: "KtFpTD2fF9w",
     title: "PSALM 30:5 – JOY COMES IN THE MORNING – RECEIVE IT NOW",
     collection: "prayers",
@@ -3094,6 +3403,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Glory, glory, glory. Don't rush this moment. Something about this atmosphere is different. I didn't come with an agenda tonight. I came with a burden and the burden is simple. Some of you have survived the night, but you did",
   },
   "prayers__7xN7KLGm0Kg": {
+    key: "prayers__7xN7KLGm0Kg",
     id: "7xN7KLGm0Kg",
     title: "PSALM 46 POWERFUL MORNING PRAYER",
     collection: "prayers",
@@ -3104,6 +3414,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "And just say, \"Jesus, I am available.\" Say it like you mean it. Jesus, I am available for whatever you want to do tonight. I am available for however you want to move. I am available. I hold nothing back.",
   },
   "prayers__9nAA19mI1qw": {
+    key: "prayers__9nAA19mI1qw",
     id: "9nAA19mI1qw",
     title: "PSALM 90 MORNING DECLARATION – SATISFY ME EARLY WITH YOUR MERCY",
     collection: "prayers",
@@ -3114,6 +3425,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Hallelujah. All glory, glory, glory. The presence of God is so thick in this place right now. I can sense it. I can feel it. Heaven has come down. Before we begin, I want you to do something very quickly.",
   },
   "prayers__F_ybcqqqSNQ": {
+    key: "prayers__F_ybcqqqSNQ",
     id: "F_ybcqqqSNQ",
     title: "Put On the Armor of God Before It's Too Late",
     collection: "prayers",
@@ -3124,6 +3436,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Each new day brings both blessings and battles, joys and struggles, and unseen challenges that our hearts cannot always predict. The world around us is filled with noise, distraction, and temptation. But beyond the physical, there is also a spiritual",
   },
   "prayers__fjRyrRiXiH8": {
+    key: "prayers__fjRyrRiXiH8",
     id: "fjRyrRiXiH8",
     title: "SAY THESE 10 WORDS EVERY MORNING AND YOUR LIFE WILL NEVER BE THE SAME",
     collection: "prayers",
@@ -3134,6 +3447,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Oh, the fire, the fire of God. I feel it. I feel the tangible weight of the Holy Ghost right now. Something is pressing in the atmosphere. Something is descending, and I have learned when heaven begins to press before",
   },
   "prayers__CPjP8xtIIgk": {
+    key: "prayers__CPjP8xtIIgk",
     id: "CPjP8xtIIgk",
     title: "SAY THIS POWERFUL PSALM 46 PROPHETIC MORNING DECLARATION PRAYER EVERY MORNING",
     collection: "prayers",
@@ -3144,6 +3458,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Hallelujah. Glory to God. I want to take a moment before we go anywhere before I open my mouth to say anything to just acknowledge the presence of the one who makes all of this possible. Holy Spirit, you are",
   },
   "prayers__CK9rP2ZBGKg": {
+    key: "prayers__CK9rP2ZBGKg",
     id: "CK9rP2ZBGKg",
     title: "Seek God with All Your Heart and Witness His Miracles in Your Life",
     collection: "prayers",
@@ -3154,6 +3469,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Before we pray, let's first take a moment to listen to God's word and then we'll pray together. Jeremiah 29:13 says, \"You will seek me and find me when you seek me with all your heart. Father in heaven, your",
   },
   "prayers__NVtFWFNXFOo": {
+    key: "prayers__NVtFWFNXFOo",
     id: "NVtFWFNXFOo",
     title: "Something Is Wrong If These Revival Signs Are Missing in Your Life 🔥  ",
     collection: "prayers",
@@ -3164,6 +3480,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "clear evidences that attest to the presence of a true revival. There are false moves. There are similitudes of revivals, but when a genuine revival breaks out within a territory or within a life, there are biblical indices. There are",
   },
   "prayers__HQzfk0DMgCo": {
+    key: "prayers__HQzfk0DMgCo",
     id: "HQzfk0DMgCo",
     title: "SPEAK FIRE INTO THE NEW MONTH BEFORE THE ENEMY DOES",
     collection: "prayers",
@@ -3174,6 +3491,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Get up on your feet. Don't sit down. Don't fold your arms. Don't look at the person beside you. While you were sleeping last month, somebody was awake. While you were scrolling, somebody was sacrificing. While you were planning, somebody",
   },
   "prayers__YX6eFvaFhUI": {
+    key: "prayers__YX6eFvaFhUI",
     id: "YX6eFvaFhUI",
     title: "SPEAK FIRE INTO THE NEW WEEK BEFORE THE ENEMY DOES",
     collection: "prayers",
@@ -3184,6 +3502,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Somebody in this place needs to open their mouth before this week opens [music] his door. Because whoever speaks first into an empty room sets the tone for everyone who walks in after them. And right now at the threshold",
   },
   "prayers__T5DCxJH7LA0": {
+    key: "prayers__T5DCxJH7LA0",
     id: "T5DCxJH7LA0",
     title: "SPEAK FIRST INTO THE NEW WEEK BEFORE THE ENEMY WAKES UP",
     collection: "prayers",
@@ -3194,6 +3513,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Stand to your feet. Don't sit down yet. Something is about to be released in this house that you're sitting down cannot carry. I [music] want you to stand and before the instruments even settle, before the ushers find their",
   },
   "prayers__dTwzDaONFcQ": {
+    key: "prayers__dTwzDaONFcQ",
     id: "dTwzDaONFcQ",
     title: "SPEAK INTO THE FIRST SUNDAY OF FEBRUARY BEFORE THE ENEMY DOES",
     collection: "prayers",
@@ -3204,6 +3524,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Good morning church. The spirit of the Lord is heavy in this place. Before we go any further, I want you to understand something. God has spoken a word and this word is not for you alone. When you leave",
   },
   "prayers__orjfysocV3g": {
+    key: "prayers__orjfysocV3g",
     id: "orjfysocV3g",
     title: "SPEAK INTO THE NEW WEEK BEFORE THE ENEMY DOES",
     collection: "prayers",
@@ -3214,6 +3535,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Stop. Before you scroll past this, before you let another sentence of this week be written by anything other than your own mouth, I need you to sit up straight and pay attention because there is a race happening right",
   },
   "prayers__sX1xi6uSloQ": {
+    key: "prayers__sX1xi6uSloQ",
     id: "sX1xi6uSloQ",
     title: "SPEAK INTO YOUR DAY BEFORE THE ENEMY DOES",
     collection: "prayers",
@@ -3224,6 +3546,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Glory to God. Glory to Jesus. Somebody lift up your voice and worship the Lord right now. I said worship him. Hallelujah. You know the spirit of the Lord dropped something in my spirit. And I want you to hear",
   },
   "prayers__EFxbzkRyec0": {
+    key: "prayers__EFxbzkRyec0",
     id: "EFxbzkRyec0",
     title: "SPEAK INTO YOUR MORNING BEFORE THE ENEMY DOES",
     collection: "prayers",
@@ -3234,6 +3557,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Father God, we come before you this morning not in our own strength, [music] but in the authority of the name of Jesus Christ. Let the fire of God fall upon this place. Let every demonic assignment against the people",
   },
   "prayers__GWtw9_8UDTw": {
+    key: "prayers__GWtw9_8UDTw",
     id: "GWtw9_8UDTw",
     title: "SPEAK INTO YOUR WEEK BEFORE THE ENEMY DOES",
     collection: "prayers",
@@ -3244,6 +3568,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Beloved, before we begin this morning, I want you to do something significant. Share this prayer with someone. Don't just keep it to [music] yourself. There are people in your sphere of influence who need to hear what the spirit",
   },
   "prayers__9Uzwad2chbk": {
+    key: "prayers__9Uzwad2chbk",
     id: "9Uzwad2chbk",
     title: "SPEAK LIFE AND VICTORY INTO THIS NEW WEEK",
     collection: "prayers",
@@ -3254,6 +3579,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Beloved, I greet you in the matchless name of our Lord Jesus Christ. >> [music] >> As we stand at the threshold of this new week, I want you to understand that we are not stepping into ordinary days. We",
   },
   "prayers__F1KgYEiLsXo": {
+    key: "prayers__F1KgYEiLsXo",
     id: "F1KgYEiLsXo",
     title: "SPEAK LIFE INTO YOUR DAY BEFORE ANYTHING ELSE SPEAK EVIL FOR YOU",
     collection: "prayers",
@@ -3264,6 +3590,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Hallelujah. Glory to God. Can we just lift our hands right now? Just lift your hands wherever you are. I want you to understand something. You did not stumble into this broadcast by accident. You did not just find this",
   },
   "prayers__CUa6GUUsFvs": {
+    key: "prayers__CUa6GUUsFvs",
     id: "CUa6GUUsFvs",
     title: "SPEAK LIFE INTO YOUR DAY BEFORE THE ENEMY DOES",
     collection: "prayers",
@@ -3274,6 +3601,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Beloved, before we begin, I want you to do something for me. If this prayer, this word ministers to you, share it. Share it with somebody. There's a brother, there's a sister, there's a friend, there's a colleague who needs",
   },
   "prayers__q7VVsCRKJ9I": {
+    key: "prayers__q7VVsCRKJ9I",
     id: "q7VVsCRKJ9I",
     title: "SPEAK PSALM 23 INTO YOUR LIFE THIS MORNING",
     collection: "prayers",
@@ -3284,6 +3612,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Somebody open your mouth and say good morning to the Almighty God. I said open your mouth, lift your head and greet the King of glory this morning because this is not an ordinary gathering. This is not a casual",
   },
   "prayers__uKA0N3aqgCM": {
+    key: "prayers__uKA0N3aqgCM",
     id: "uKA0N3aqgCM",
     title: "SPEAK THE BLESSINGS OF GOD INTO YOUR DECEMBER",
     collection: "prayers",
@@ -3294,6 +3623,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Beloved, I want you to stand on your feet wherever you are. I want you to lift up your hands right now because the spirit of the living God is in this atmosphere. And I sense in my spirit that",
   },
   "prayers__n8kiPuyMoEM": {
+    key: "prayers__n8kiPuyMoEM",
     id: "n8kiPuyMoEM",
     title: "SPEAK THIS OVER YOUR MONDAY MORNING BEFORE 7AM ACTIVATE DIVINE FAVOUR ALL WEEK LONG",
     collection: "prayers",
@@ -3304,6 +3634,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Hallelujah. Glory, glory, glory to the most high God. Oh, we worship you this morning. We worship you ancient of days. We worship you the one who was and is and is to come. You are Yahweh. You are Yahweh.",
   },
   "prayers__xmSFEU1ykT4": {
+    key: "prayers__xmSFEU1ykT4",
     id: "xmSFEU1ykT4",
     title: "SPEAK THIS OVER YOUR MORNING BEFORE THE ENEMY PLANTS HIS SEEDS",
     collection: "prayers",
@@ -3314,6 +3645,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "There is a presence in this place. I can feel it. The Holy Ghost is already here. Before we started, he was waiting. Before you connected, he was preparing. This is not ordinary. This is not by accident. You are",
   },
   "prayers__KCil0wNQg3E": {
+    key: "prayers__KCil0wNQg3E",
     id: "KCil0wNQg3E",
     title: "SPEAK UNLIMITED BLESSINGS INTO THE NEW MONTH",
     collection: "prayers",
@@ -3324,6 +3656,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Beloved, before we go into this word and this prayer, I want you to do something for me right now. Share this with somebody. Share it with that friend who is standing at the threshold of a new month, not",
   },
   "prayers__AKCFsUsqNnw": {
+    key: "prayers__AKCFsUsqNnw",
     id: "AKCFsUsqNnw",
     title: "Special Prayer for Divine Breakthrough",
     collection: "prayers",
@@ -3334,6 +3667,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Before we pray today, let me tell you something. [Music] You may be in the fire right now. You may feel forgotten, betrayed, stripped of everything you once held dear. You may be looking at the ashes of what your",
   },
   "prayers__wtqQ-pp555s": {
+    key: "prayers__wtqQ-pp555s",
     id: "wtqQ-pp555s",
     title: "Start Your Day With This Powerful Prayer For Strength & Victory",
     collection: "prayers",
@@ -3344,6 +3678,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "This morning, before the noise of the world begins and the weight of responsibilities comes upon us, let us pause to remember one truth that never changes. The Lord will fight for you. You need only to be still. Exodus",
   },
   "prayers__lJZP7EIe69s": {
+    key: "prayers__lJZP7EIe69s",
     id: "lJZP7EIe69s",
     title: "START YOUR DAY WITH THIS POWERFUL PSALM 120 PRAYER — DON'T LEAVE HOME WITHOUT IT",
     collection: "prayers",
@@ -3354,6 +3689,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Stop whatever you are doing. I don't care if you are in the middle of making breakfast. I don't care if you are in your car one foot already out the door. I don't care if this is coming through",
   },
   "prayers__OiBtZHSNXs8": {
+    key: "prayers__OiBtZHSNXs8",
     id: "OiBtZHSNXs8",
     title: "STOP EVERYTHING AND PRAY THIS NOW",
     collection: "prayers",
@@ -3364,6 +3700,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Here is a sound in the heavens right now. Can you hear it? It is the sound of shifting. [music] It is the sound of plates moving in the spirit realm. Tectonic plates. The very foundation of your situation is",
   },
   "prayers__f5DYgai5d-Q": {
+    key: "prayers__f5DYgai5d-Q",
     id: "f5DYgai5d-Q",
     title: "STOP LOOKING BACK, GOD HAS MORE AHEAD",
     collection: "prayers",
@@ -3374,6 +3711,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "I want you to bow your heads wherever you are. Father, we thank you for the [music] gift of life. We thank you for your mercies that are new every morning. Great is your faithfulness, oh God. We bless your",
   },
   "prayers__9T5B4kZsiQY": {
+    key: "prayers__9T5B4kZsiQY",
     id: "9T5B4kZsiQY",
     title: "Stop Sleeping! What Happens in the Spirit Between 1AM and 3AM",
     collection: "prayers",
@@ -3384,6 +3722,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Stop sleeping. Stop scrolling. Stop dismissing what happens in the dark hours of the night. What you are about to receive is not theory. What you are about to encounter is not a religious lecture. This is a war briefing.",
   },
   "prayers__mdo7WOe3SYk": {
+    key: "prayers__mdo7WOe3SYk",
     id: "mdo7WOe3SYk",
     title: "Success Is Not Luck: These 5 Principles Govern Every Outcome ",
     collection: "prayers",
@@ -3394,6 +3733,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "that make things work. THERE ARE LAWS THAT CAN CAUSE A student to lead in his class to excel. There are laws. Now, most believers know that it is God's will for them to succeed. But they do not know",
   },
   "prayers__WmYHuitRkY4": {
+    key: "prayers__WmYHuitRkY4",
     id: "WmYHuitRkY4",
     title: "TAKE AUTHORITY OVER YOUR MONDAY POWERFUL DECLARATION TO START YOUR WEEK",
     collection: "prayers",
@@ -3404,6 +3744,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Shondala, shondala, kondalashi, shalakondara, ishtakondalashi. Hallelujah. Don't move. Don't move. Something just shifted in the spirit. I felt it. Heaven opened. Right here, right now, in this moment, before I say a single word of teaching, I need you to",
   },
   "prayers__-mHM3hlsSrk": {
+    key: "prayers__-mHM3hlsSrk",
     id: "-mHM3hlsSrk",
     title: "THE 4AM PRAYER THAT SHIFTS THE ATMOSPHERE OVER YOUR ENTIRE HOUSEHOLD",
     collection: "prayers",
@@ -3414,6 +3755,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Glory to Jesus Christ. Somebody give the Lord a hand. We are gathered here in the name of the almighty God. This is not accident. The spirit of the Lord is moving. What God is about to do in the",
   },
   "prayers__kLoMBgm9yfQ": {
+    key: "prayers__kLoMBgm9yfQ",
     id: "kLoMBgm9yfQ",
     title: "The 5 Signs You’re Becoming a Spiritually Weak Christian Without Knowing It ",
     collection: "prayers",
@@ -3424,6 +3766,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "I'm teaching on the apostolic Christian. The apostolic Christian. I want to bring you a pathway through the word that transitions you from church membership to become a kingdom enforcer. I'm hoping that tonight's teaching will help to continue that",
   },
   "prayers__rI5p5ERuUeY": {
+    key: "prayers__rI5p5ERuUeY",
     id: "rI5p5ERuUeY",
     title: "THE 6AM PRAYER THAT MAKES DEMONS FLEE BEFORE SUNRISE",
     collection: "prayers",
@@ -3434,6 +3777,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Hallelujah. Somebody help me worship him tonight. Just lift your voice and worship the King of Kings, the Lion of the Tribe of Judah, the ancient of days, the one who was, who is, and who is to come. Hallelujah.",
   },
   "prayers__RtKXlwwzwTE": {
+    key: "prayers__RtKXlwwzwTE",
     id: "RtKXlwwzwTE",
     title: "THE BEAUTY OF RELYING ON GOD [WHEN YOU LET GO, GOD TAKES OVER]",
     collection: "prayers",
@@ -3444,6 +3788,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "I want you to [music] open your Bible with me to the book of Proverbs chapter 3 from verse 5. The Bible says, \"Trust in the [music] Lord with all thine heart and lean not unto thine own understanding. In",
   },
   "prayers__Dmjlw3WYi5w": {
+    key: "prayers__Dmjlw3WYi5w",
     id: "Dmjlw3WYi5w",
     title: "The Dangerous Reason Your Prayers Aren’t Working (It’s Not What You Think) ",
     collection: "prayers",
@@ -3454,6 +3799,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Now, number three. God is a god of patterns. Understand the structure of my communication tonight. Number one, I said to receive from God, you must be conscious of his goodness. Still remember? And that the goodness of God is",
   },
   "prayers__g_rI5-jDbT8": {
+    key: "prayers__g_rI5-jDbT8",
     id: "g_rI5-jDbT8",
     title: "THE ENEMY WILL NOT TOUCH THIS WEEK",
     collection: "prayers",
@@ -3464,6 +3810,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "You are standing at the threshold. The week has not yet begun. Monday has not yet opened its first hour. The days are unwritten. The appointments are unmet. The conversations have not yet been spoken. The decisions have not yet",
   },
   "prayers__wBT9WXr6O_c": {
+    key: "prayers__wBT9WXr6O_c",
     id: "wBT9WXr6O_c",
     title: "THE FIRST 10 MINUTES OF YOUR MORNING CAN CHANGE EVERYTHING",
     collection: "prayers",
@@ -3474,6 +3821,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Glory, glory, glory to the most high God. Somebody lift your voice right where you are and begin to bless the name of the Lord. Begin to magnify the King of Kings. Begin to exalt the one who sits on",
   },
   "prayers__8nwxoAdKuyo": {
+    key: "prayers__8nwxoAdKuyo",
     id: "8nwxoAdKuyo",
     title: "THE GOD WHO NEVER FAILS",
     collection: "prayers",
@@ -3484,6 +3832,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Beloved, I greet you in the matchless name of our Lord Jesus Christ. >> [music] >> I want you to understand that you are not here by accident this morning. The spirit of the living God has orchestrated this divine",
   },
   "prayers__Kze2Cr6fqLg": {
+    key: "prayers__Kze2Cr6fqLg",
     id: "Kze2Cr6fqLg",
     title: "THE LORD HAS INSTRUCTED YOU TO PRAY THIS BEFORE 9AM",
     collection: "prayers",
@@ -3494,6 +3843,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Before we say anything else this morning, I want us to simply lift our voices, not in a rushed way, not in a performance way, but the way a child runs into a room where their father is sitting. Not",
   },
   "prayers__BKHmpvIsmdM": {
+    key: "prayers__BKHmpvIsmdM",
     id: "BKHmpvIsmdM",
     title: "THE MOST DANGEROUS PRAYER THE ENEMY DOESN'T WANT YOU TO PRAY— BLOOD OF JESUS ARISE",
     collection: "prayers",
@@ -3504,6 +3854,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Stop everything right now. Before one song, before one announcement, before anything else in this service tonight, I need everybody in this building to stretch their right hand forward and close your eyes. Don't look around. Don't worry about who",
   },
   "prayers__M9_f37kyBsI": {
+    key: "prayers__M9_f37kyBsI",
     id: "M9_f37kyBsI",
     title: "THE PRAYER YOUR ENEMIES DON'T WANT YOU TO PRAY AT 3AM",
     collection: "prayers",
@@ -3514,6 +3865,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Hallelujah. Hallelujah. Hallelujah. Glory to God. Thank you, Lord Jesus. Thank you, Holy Spirit. We worship you tonight. We give you praise. We give you all the glory. There is none like you, Lord. There is none like you. Before",
   },
   "prayers__REzay22bFtw": {
+    key: "prayers__REzay22bFtw",
     id: "REzay22bFtw",
     title: "THIS 1 HOUR WARFARE MORNING PRAYER DESTROYS EVERY ATTACK PLANNED AGAINST YOUR WEEK",
     collection: "prayers",
@@ -3524,6 +3876,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Hallelujah. Hallelujah. Hallelujah. Glory be to the most high God. We worship you, Father. We worship you. We bless your name. We honor you. There is nobody like you. There is nobody like you in all the earth. You are",
   },
   "prayers__FA98pfuM-5U": {
+    key: "prayers__FA98pfuM-5U",
     id: "FA98pfuM-5U",
     title: "This 18-Minute Prayer Is For Anyone Facing Delay Right Now ",
     collection: "prayers",
@@ -3534,6 +3887,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "telling strength every row every place waiting for that stirring of the water. >> [music] >> Are you ready? Seven Hallelujah by the spirit of God. I will give you the counting and you will shout. At the seventh time",
   },
   "prayers__S5AHyoMm8CU": {
+    key: "prayers__S5AHyoMm8CU",
     id: "S5AHyoMm8CU",
     title: "THIS 4AM PRAYER WILL TERRORIZE THE KINGDOM OF DARKNESS THIS MORNING",
     collection: "prayers",
@@ -3544,6 +3898,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "It is 4 in the morning. The city is asleep. The streets are empty. The world has not yet decided what today will be. The sun has not given its permission for the day to begin. And in the kingdom",
   },
   "prayers__VpX1yLHadLM": {
+    key: "prayers__VpX1yLHadLM",
     id: "VpX1yLHadLM",
     title: "This is Why You Are Facing Demonic Battles and Delays ",
     collection: "prayers",
@@ -3554,6 +3909,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Every part of a prophetic service like this is important. You may have heard me teach that there are at least five channels through which God flows in any service to bless his people. Number one, the prayer channel. When",
   },
   "prayers__1dnfipqCb4w": {
+    key: "prayers__1dnfipqCb4w",
     id: "1dnfipqCb4w",
     title: "THIS IS WHY YOU MUST PRAY BETWEEN 5AM AND 6AM",
     collection: "prayers",
@@ -3564,6 +3920,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Somebody lift your hands right where you are and just begin to bless the name of Jesus. Bless him. Bless the name of the Lord. He's worthy. He's worthy of all the praise, all the glory, all the honor. Everything",
   },
   "prayers__LAm6-SH3RKI": {
+    key: "prayers__LAm6-SH3RKI",
     id: "LAm6-SH3RKI",
     title: "THIS IS YOUR LAST MORNING OF STAGNATION, PRAY THIS TILL THE END OF THE VIDEO",
     collection: "prayers",
@@ -3574,6 +3931,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Lift your hands wherever you are. Don't type yet. Don't rush. Just lift your hands. Something is already happening. There are moments when God does not need noise to move. There are moments when heaven is waiting for alignment, not",
   },
   "prayers__Doc2wNfctA0": {
+    key: "prayers__Doc2wNfctA0",
     id: "Doc2wNfctA0",
     title: "THIS MONTH, FATHER I NEED A MIRACLE IN MY LIFE",
     collection: "prayers",
@@ -3584,6 +3942,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Somebody shout glory. I feel something right now. I feel something right now that I cannot explain with grammar. There is an intervention that is authorized in this place tonight. And I want you to open your spirit. Not just",
   },
   "prayers__h-8dpjIcRA0": {
+    key: "prayers__h-8dpjIcRA0",
     id: "h-8dpjIcRA0",
     title: "THIS MORNING I SILENCE EVERY VOICE THAT CONTRADICTS THE WORD OF GOD OVER MY LIFE",
     collection: "prayers",
@@ -3594,6 +3953,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "number. This morning I silence every voice that contradicts the word of God over my life. There is a hush that falls before heaven speaks. Can you feel it? Something is shifting in this atmosphere right now before I even",
   },
   "prayers__Vy7Nj1xyviI": {
+    key: "prayers__Vy7Nj1xyviI",
     id: "Vy7Nj1xyviI",
     title: "THIS MORNING PRAYER ATTRACTS MIRACLES LIKE A MAGNET",
     collection: "prayers",
@@ -3604,6 +3964,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Stop whatever you are doing, stop scrolling, stop multitasking, stop dividing your attention. What is about to happen in the next few moments is not entertainment, it is not content, it is not background noise. What is about to happen",
   },
   "prayers__PyDuHQhjWtg": {
+    key: "prayers__PyDuHQhjWtg",
     id: "PyDuHQhjWtg",
     title: "THIS MORNING PRAYER RELEASES ANGELS TO GO BEFORE YOU",
     collection: "prayers",
@@ -3614,6 +3975,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Hallelujah. Hallelujah. Hallelujah. Oh, thank you, Jesus. Thank you, Lord. Thank you, Father. Glory to your name. Lord, we give you praise. We give you honor. We give you adoration this morning. Somebody lift your voice and begin to worship",
   },
   "prayers__XRTnO3rTVOA": {
+    key: "prayers__XRTnO3rTVOA",
     id: "XRTnO3rTVOA",
     title: "VIOLENT MONDAY MORNING PRAYERS TO COMMAND THE WEEK",
     collection: "prayers",
@@ -3624,6 +3986,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Hallelujah. Glory to God. Glory to God. Just lift your hands right where you are. Don't wait for anybody. Don't wait for anybody. The presence of God is already here. I can feel the weight of his glory. Something is",
   },
   "prayers__Zv3ABGuke7k": {
+    key: "prayers__Zv3ABGuke7k",
     id: "Zv3ABGuke7k",
     title: "VIOLENT MORNING PRAYERS TO COMMAND THE NEW WEEK",
     collection: "prayers",
@@ -3634,6 +3997,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Glory to the name of Jesus Christ. Before we even dive into what the spirit of God wants to communicate to you this evening, I want you to understand something foundational. There are people who will hear what we minister,",
   },
   "prayers__uT4-y9b0CFM": {
+    key: "prayers__uT4-y9b0CFM",
     id: "uT4-y9b0CFM",
     title: "WAKE UP AND DECLARE WAR — THIS VIOLENT MORNING PRAYER CHANGES EVERYTHING",
     collection: "prayers",
@@ -3644,6 +4008,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Hallelujah. Hallelujah. Hallelujah. Oh, we worship you this morning, Father. We worship you. There is no one like you. There is no one beside you. You are the alpha. You are the omega. You are the beginning and you are",
   },
   "prayers__PpLW4_sH2Ck": {
+    key: "prayers__PpLW4_sH2Ck",
     id: "PpLW4_sH2Ck",
     title: "WAKE UP AND FIGHT 45 MINUTES EARLY MORNING PRAYER TO SET YOUR DAY ON FIRE FOR GOD",
     collection: "prayers",
@@ -3654,6 +4019,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Wake up, not from physical sleep. You are already awake. Wake up from the passive version of yourself that was about to walk into today. The same way it walked into yesterday. The version that opens its eyes and immediately",
   },
   "prayers__hkVJNuS53G0": {
+    key: "prayers__hkVJNuS53G0",
     id: "hkVJNuS53G0",
     title: "WAKE UP AND PRAY BEFORE ENEMY SET THIS AGENDA",
     collection: "prayers",
@@ -3664,6 +4030,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Father, we thank you. We come before your throne right now in the authority of the blood of Jesus Christ. And I want to tell someone the spirit of God is moving right now. There are watchers assigned to your",
   },
   "prayers__FcW2E0YY9zE": {
+    key: "prayers__FcW2E0YY9zE",
     id: "FcW2E0YY9zE",
     title: "WAKE UP AND PRAY THIS FIRST – YOUR ENEMIES ALREADY STARTED EARLY",
     collection: "prayers",
@@ -3674,6 +4041,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Hallelujah. There is a staring in my spirit right now. Even before I say anything else, I sense that the Holy Spirit has been waiting for this moment. Lift your hands wherever you are. Don't rush. Don't analyze. Just lift",
   },
   "prayers__3KmCRj6IRd0": {
+    key: "prayers__3KmCRj6IRd0",
     id: "3KmCRj6IRd0",
     title: "WAKE UP AND SAY THIS IMMEDIATELY — WHAT GOD DOES NEXT WILL LEAVE YOU SPEECHLESS",
     collection: "prayers",
@@ -3684,6 +4052,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Hallelujah. Hallelujah. Hallelujah. Oh, we worship you, Lord. We worship you tonight. We worship you, ancient of days. You are the one who sits above the circle of the earth. You are the one whose train fills the temple. And",
   },
   "prayers__J4X82kADiKw": {
+    key: "prayers__J4X82kADiKw",
     id: "J4X82kADiKw",
     title: "WHAT GOD CANNOT DO DOES NOT EXIST",
     collection: "prayers",
@@ -3694,6 +4063,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Listen to me carefully. This is a word you cannot afford to hoard. Somebody connected to you is one step away from giving up. Somebody you know is about to lay down their faith and say it is over. But",
   },
   "prayers__vLqw9xhTSoo": {
+    key: "prayers__vLqw9xhTSoo",
     id: "vLqw9xhTSoo",
     title: "WHAT GOD SHOWED ME WOULD HAPPEN IN 2026 ! AAPOSTLE JOSHUA SELMAN",
     collection: "prayers",
@@ -3704,6 +4074,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "I want you to understand something very clearly tonight. When God begins to open spiritual dimensions to you, [music] when he begins to show you things that are yet to come, it is not for entertainment. The spirit of prophecy,",
   },
   "prayers__u0O1Yy5rMCc": {
+    key: "prayers__u0O1Yy5rMCc",
     id: "u0O1Yy5rMCc",
     title: "WHEN GOD GOES SILENT: The Truth Behind Your Unanswered Prayers This Year. ",
     collection: "prayers",
@@ -3714,6 +4085,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Number one, please listen. I'm teaching you prophetically, people of God, believers, South Africa. It's impossible. Once you have received that burden, you are in one of the seasons. The first season that this burden leads you into is called",
   },
   "prayers__yacPXzilCSU": {
+    key: "prayers__yacPXzilCSU",
     id: "yacPXzilCSU",
     title: "When God Is Ready to Restore You, These Signs Appear ",
     collection: "prayers",
@@ -3724,6 +4096,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Is someone learning already? Key number one that can help a man experience beauty for ashes is that you must remain conscious of the love of God towards you. I wrote something here and I want you to listen still",
   },
   "prayers__ZZasXWwC9CM": {
+    key: "prayers__ZZasXWwC9CM",
     id: "ZZasXWwC9CM",
     title: "When God Trains You In Pain, This Is What Happens Next — Apostle Joshua Selman",
     collection: "prayers",
@@ -3734,6 +4107,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "It is true that there are times God can be silent as far as revealing his will over your life and destiny is concerned. I was led of the spirit to teach you this because I believe that there are",
   },
   "prayers__ZUyNdmAlm8M": {
+    key: "prayers__ZUyNdmAlm8M",
     id: "ZUyNdmAlm8M",
     title: "When Life Gets Hard, Do This ",
     collection: "prayers",
@@ -3744,6 +4118,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "teach on the subject I have been dishing out the mysteries of the kingdom and the laws of the kingdom. And these are the mysteries by which the saints become confident, become empowered, and make structured progress in life. And",
   },
   "prayers__KCTNXWVNU_Q": {
+    key: "prayers__KCTNXWVNU_Q",
     id: "KCTNXWVNU_Q",
     title: "WHEN LIFE GETS HARD, DO THIS FIRST ",
     collection: "prayers",
@@ -3754,6 +4129,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "There is a guarantee that you will have this and that. Tribulation. He says, \"But be of good cheer, I have overcome the world.\" Hallelujah. There are five biblical keys that the Bible gives the believer as the keys that",
   },
   "prayers__WATviOZ5w44": {
+    key: "prayers__WATviOZ5w44",
     id: "WATviOZ5w44",
     title: "Why Most Christians Read the Bible for Years Without Real Transformation ",
     collection: "prayers",
@@ -3764,6 +4140,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "The scripture was not written for English speaking people or any language. The scripture was written for spiritual people. There is a capture of all of these dimensions, but that in themselves they cannot profit the believer. The spirit of",
   },
   "prayers__LTsB2rrEt8Q": {
+    key: "prayers__LTsB2rrEt8Q",
     id: "LTsB2rrEt8Q",
     title: "Why Your Spiritual Growth May Have Stopped ",
     collection: "prayers",
@@ -3774,6 +4151,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Church and state part two. We're looking at restoring the king priest dominion strategy. Two scriptures very quickly. Revelation 5 and verse 10. Revelations 5 and verse 10. Let's read together in concert. Ready? 1 2 go. And has made",
   },
   "prayers__3eQ9TignWOE": {
+    key: "prayers__3eQ9TignWOE",
     id: "3eQ9TignWOE",
     title: "You Will Stop Missing God's Voice After Watching This ",
     collection: "prayers",
@@ -3784,6 +4162,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "There are two things about God you need to know. The Bible says we should know God. But the desire to know God alone does not make you know him. You have to understand the aspects of God that you",
   },
   "prayers__JfAZZqFKFPY": {
+    key: "prayers__JfAZZqFKFPY",
     id: "JfAZZqFKFPY",
     title: "YOUR MORNING DETERMINES YOUR DESTINY",
     collection: "prayers",
@@ -3794,6 +4173,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Lift your hands right where you are. Lift your hands. Father, we acknowledge you. We acknowledge that you are the reason we are gathered. We acknowledge that every word spoken today [music] is not the word of a man. It",
   },
   "prayers__eNCz4Y6I46U": {
+    key: "prayers__eNCz4Y6I46U",
     id: "eNCz4Y6I46U",
     title: "🔴 LIVE Break the Spirit of Stagnation and Enter Your Season of Rest",
     collection: "prayers",
@@ -3804,6 +4184,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Fire of God, fall [snorts] right now. This is midnight fire. This is not a casual prayer. This is not background noise. What is happening right now over your life is a divine interruption. [music] God has pulled you into",
   },
   "prayers__zXgCCs1u8j8": {
+    key: "prayers__zXgCCs1u8j8",
     id: "zXgCCs1u8j8",
     title: "🔴 LIVE: Financial Breakthrough Prayer—Destroy Famine and Debt",
     collection: "prayers",
@@ -3814,6 +4195,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Father God, your life is being repositioned [music] right now. Every decree spoken in this place is landing on your situation like fire from heaven. You did not stumble onto this prayer by accident. Your steps were ordered by the",
   },
   "teachings__l2wIx5Bqy0k": {
+    key: "teachings__l2wIx5Bqy0k",
     id: "l2wIx5Bqy0k",
     title: "10 Areas of Society To Work In ",
     collection: "teachings",
@@ -3824,6 +4206,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[music] I'm going to give everybody a job now. Ready? Write it. Get a pen. This is your job. Find one of these areas to work in. I call them the pillars of influence in your society. Number one, politics.",
   },
   "teachings__kwt9fSj8OYo": {
+    key: "teachings__kwt9fSj8OYo",
     id: "kwt9fSj8OYo",
     title: "10 Essential Time Management Strategies By Dr. Myles Munroe ",
     collection: "teachings",
@@ -3834,6 +4217,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "i want to remind you that we are about to lose a year it's finished it's gone and i want to leave a few thoughts with you and also give you a few thoughts to go forward i want us",
   },
   "teachings__nw2qhUS4_Ts": {
+    key: "teachings__nw2qhUS4_Ts",
     id: "nw2qhUS4_Ts",
     title: "10 Laws of Success ",
     collection: "teachings",
@@ -3844,6 +4228,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] here's the 10 laws first law number one this is the key it's a law you must discover your purpose we can deal with that number two you must cultivate perception they all stop at p so you can",
   },
   "teachings__49inPfZaemY": {
+    key: "teachings__49inPfZaemY",
     id: "49inPfZaemY",
     title: "10 Marks of A Secure Leader ",
     collection: "teachings",
@@ -3854,6 +4239,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] 10 marks of a secure leader 10 mark of secure leader number one think beyond your leadership this is imperative if you are going to be a leader that mentor your successor you must first think beyond your leadership",
   },
   "teachings__k1LZgkpZFI8": {
+    key: "teachings__k1LZgkpZFI8",
     id: "k1LZgkpZFI8",
     title: "10 Qualities of A Kingdom Father ",
     collection: "teachings",
@@ -3864,6 +4250,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Thank you for joining us for another power-p packed message provided by Monroe Global Incorporated and monroglobal.com. We transform followers into leaders and leaders into agents of change. We hope that this message is a blessing to you as you",
   },
   "teachings__RF0R9Lyg1HU": {
+    key: "teachings__RF0R9Lyg1HU",
     id: "RF0R9Lyg1HU",
     title: "10 Responsibilities of Freedom ",
     collection: "teachings",
@@ -3874,6 +4261,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] you must appreciate the gifts and the talents and the abilities and the potential and the capacity that the sponsor has invested in you now he's demanding a response ability from you he sponsored you with ability and strength",
   },
   "teachings__EDMVRk1Kyx4": {
+    key: "teachings__EDMVRk1Kyx4",
     id: "EDMVRk1Kyx4",
     title: "10 Things That Can Take You Off Course In Life ",
     collection: "teachings",
@@ -3884,6 +4272,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] father's didn't get advantage of you you don't know what he's trying to do so i figured out some things i got 20 of them in one of the books up there called the power vision 20 things say",
   },
   "teachings__r-63eqvea4Y": {
+    key: "teachings__r-63eqvea4Y",
     id: "r-63eqvea4Y",
     title: "15 Principles For Effective Witnessing Part 1 ",
     collection: "teachings",
@@ -3894,6 +4283,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global calm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__HgPUINet014": {
+    key: "teachings__HgPUINet014",
     id: "HgPUINet014",
     title: "15 Principles for Effective Witnessing Part 2 ",
     collection: "teachings",
@@ -3904,6 +4294,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__bihDzEH1U8s": {
+    key: "teachings__bihDzEH1U8s",
     id: "bihDzEH1U8s",
     title: "3 Phases To Responsibility Development ",
     collection: "teachings",
@@ -3914,6 +4305,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] i mentioned that there are three phases to responsibility development the first one is egypt the second one is wilderness and the third one is freedom which is canaan but can i submit to you if you return with",
   },
   "teachings__SZ7GasMDTuk": {
+    key: "teachings__SZ7GasMDTuk",
     id: "SZ7GasMDTuk",
     title: "4 Essential Keys For Personal Success & Prosperity Part 1 - Dr. Myles Munroe ",
     collection: "teachings",
@@ -3924,6 +4316,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "foreign thank you for joining us for another Power packed Message from Dr Miles Monroe provided by Monroe Global Incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__11U9fJ2Hg10": {
+    key: "teachings__11U9fJ2Hg10",
     id: "11U9fJ2Hg10",
     title: "5 Benefits of Fasting ",
     collection: "teachings",
@@ -3934,6 +4327,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] the effects of fasting real quick fasting changes us it doesn't change god you don't fast to change god fasting changes the one who's fasting number two fasting moves you into better positioning number three fasting increases your spiritual",
   },
   "teachings__EVeYzTmKGZk": {
+    key: "teachings__EVeYzTmKGZk",
     id: "EVeYzTmKGZk",
     title: "5 Important Questions For Your Success ",
     collection: "teachings",
@@ -3944,6 +4338,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] most of us don't know our own purpose on earth so i want to give you five questions to write down that you must answer if you are going to be successful on this planet five questions write them",
   },
   "teachings__GApwu16KQWA": {
+    key: "teachings__GApwu16KQWA",
     id: "GApwu16KQWA",
     title: "5 Questions To Mental Freedom ",
     collection: "teachings",
@@ -3954,6 +4349,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] many of the things that i teach sometimes you may not even know why i teach them but this is what drives me this is what motivates me this is the five questions that make me wake up in",
   },
   "teachings__Bl0mZle5sEc": {
+    key: "teachings__Bl0mZle5sEc",
     id: "Bl0mZle5sEc",
     title: "7 Key Spheres Of Wealth For Financial Success - Dr. Myles Munroe ",
     collection: "teachings",
@@ -3964,6 +4360,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] thank you for joining us for another power packed message from dr miles monroe provided by monroe global incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__Nx3qr_wVUcY": {
+    key: "teachings__Nx3qr_wVUcY",
     id: "Nx3qr_wVUcY",
     title: "A King Sets The Standard ",
     collection: "teachings",
@@ -3974,6 +4371,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "I got the word King king first of all means ruler anybody grew up with those little plastic rulers in your bag we just going to school or the wooden one nobody wouldn't one they dig they call them rulers",
   },
   "teachings__R4zCjN66sSA": {
+    key: "teachings__R4zCjN66sSA",
     id: "R4zCjN66sSA",
     title: "A Leader Is A Reader ",
     collection: "teachings",
@@ -3984,6 +4382,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] anyone ever saw the word read written down carefully come on you gotta be careful what you read even when you read read is a deep word when you read you what you re add that's a better word",
   },
   "teachings__sgIU4ue_2QI": {
+    key: "teachings__sgIU4ue_2QI",
     id: "sgIU4ue_2QI",
     title: "A Lesson on Legacy Building ",
     collection: "teachings",
@@ -3994,6 +4393,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "hi this is miles jr. and I want to share with you this gem that I found from my dad some of you heard my story of me graduating with my MBA and looking for a job and my dad",
   },
   "teachings__lTrsq9WYkAY": {
+    key: "teachings__lTrsq9WYkAY",
     id: "lTrsq9WYkAY",
     title: "A Lion In Sheep Clothing ",
     collection: "teachings",
@@ -4004,6 +4404,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] the kingdom demands a new mentality from lion to sheep and then from sheep to lion you fell from lion to sheep sheep is not your permanent state sheep is not your original identity let me prove it isaiah",
   },
   "teachings__QhGW7NH-DpQ": {
+    key: "teachings__QhGW7NH-DpQ",
     id: "QhGW7NH-DpQ",
     title: "A Man and His Sex Life Part 2 ",
     collection: "teachings",
@@ -4014,6 +4415,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] thank you for joining us for another power packed message from dr miles monroe provided by monroe global incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__MODNAOEHThE": {
+    key: "teachings__MODNAOEHThE",
     id: "MODNAOEHThE",
     title: "A Message To All Leaders ",
     collection: "teachings",
@@ -4024,6 +4426,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "we need leaders who are not afraid to mentor it is my hope that out of this conference this week shall emerge great women and men who have a different concept of leadership greatness it's my hope that you will",
   },
   "teachings___n6wa23ujT0": {
+    key: "teachings___n6wa23ujT0",
     id: "_n6wa23ujT0",
     title: "A Parasite With A Title ",
     collection: "teachings",
@@ -4034,6 +4437,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "to true leadership measures its success by the diminishing dependency of its followers this is a very subtle statement read it carefully write it down true leadership is measured as being successful when the dependency of its followers diminishes in",
   },
   "teachings__j-j3HJdKdJg": {
+    key: "teachings__j-j3HJdKdJg",
     id: "j-j3HJdKdJg",
     title: "A Revelation On WORD ",
     collection: "teachings",
@@ -4044,6 +4448,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "this found in Matthew chapter 7 this is what I thought I thought I knew then I realized I didn't know it but I knew it but I did not thought about the thought I thought while I thought about",
   },
   "teachings__6WCxMF8gJiQ": {
+    key: "teachings__6WCxMF8gJiQ",
     id: "6WCxMF8gJiQ",
     title: "Achieve Financial Freedom: Management Tips By Myles Munroe To Become Debt-Free ",
     collection: "teachings",
@@ -4054,6 +4459,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Thank you for joining us for another power packed message from Dr. Myles Monroe provided by Monroe Global Incorporated and Monroeglobal.com. We transform followers into leaders and leaders into agents of change. We hope that this message is a blessing",
   },
   "teachings__BGmjwNAJavM": {
+    key: "teachings__BGmjwNAJavM",
     id: "BGmjwNAJavM",
     title: "Attitude vs Skill ",
     collection: "teachings",
@@ -4064,6 +4470,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "the lion is not the tallest animal in the jungle he's not the strongest he's not the biggest he is not the most powerful and he's not the most intelligent and yet he's the leader why is the lion the",
   },
   "teachings__kXTxO4tD49E": {
+    key: "teachings__kXTxO4tD49E",
     id: "kXTxO4tD49E",
     title: "Beat Fear & Embrace Future: Dr. Myles Munroe's Guide To Living Confidently ",
     collection: "teachings",
@@ -4074,6 +4481,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__Wnwdx0SNpTo": {
+    key: "teachings__Wnwdx0SNpTo",
     id: "Wnwdx0SNpTo",
     title: "Becoming An Agent of Change Pt. 1 ",
     collection: "teachings",
@@ -4084,6 +4492,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another powerp packed Message from Dr Miles Monroe provided by Monroe Global Incorporated and Monro global.com we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__L-Q8wojV-RQ": {
+    key: "teachings__L-Q8wojV-RQ",
     id: "L-Q8wojV-RQ",
     title: "Becoming An Agent of Change Pt. 2 ",
     collection: "teachings",
@@ -4094,6 +4503,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global.com we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__mleJg2Ut5MM": {
+    key: "teachings__mleJg2Ut5MM",
     id: "mleJg2Ut5MM",
     title: "Becoming An Agent Of Change Pt. 3 ",
     collection: "teachings",
@@ -4104,6 +4514,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is",
   },
   "teachings__bXOPftOd7pw": {
+    key: "teachings__bXOPftOd7pw",
     id: "bXOPftOd7pw",
     title: "Being Baptized In The Holy Spirit ",
     collection: "teachings",
@@ -4114,6 +4525,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] thank you for joining us for another power packed message from dr miles monroe provided by monroe global incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__ubxDM0qImmQ": {
+    key: "teachings__ubxDM0qImmQ",
     id: "ubxDM0qImmQ",
     title: "Being Born Again Does Not Change Your Mentality ",
     collection: "teachings",
@@ -4124,6 +4536,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] being born again doesn't change your mentality being born again does not change your mentality being born again does not change your mentality being born again is not changing your mentality being born again does not change your mentality",
   },
   "teachings__v9r_9T7vx-o": {
+    key: "teachings__v9r_9T7vx-o",
     id: "v9r_9T7vx-o",
     title: "Believe In The Silence of God ",
     collection: "teachings",
@@ -4134,6 +4547,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] crisis is the source of growth and development it's where growth comes from you only grow when you have to isn't that sad we only move and we have to that's why life will shake us sometime to the",
   },
   "teachings__GxyZz06ic2U": {
+    key: "teachings__GxyZz06ic2U",
     id: "GxyZz06ic2U",
     title: "Benefits of The Kings Presence ",
     collection: "teachings",
@@ -4144,6 +4558,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power packed message provided by monroe global incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as you",
   },
   "teachings__1giMPyvlPSY": {
+    key: "teachings__1giMPyvlPSY",
     id: "1giMPyvlPSY",
     title: "Breaking The Law of Sin and Death ",
     collection: "teachings",
@@ -4154,6 +4569,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Thank you for joining us for another power packed message from Dr. Myles Monroe provided by Monroe Global Incorporated and Monroeglobal.com. We transform followers into leaders and leaders into agents of change. We hope that this message is a blessing",
   },
   "teachings__d8xKeeTdhP8": {
+    key: "teachings__d8xKeeTdhP8",
     id: "d8xKeeTdhP8",
     title: "Bringing The Kingdom To The Workplace Part 1 ",
     collection: "teachings",
@@ -4164,6 +4580,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__O15TKH5lvQM": {
+    key: "teachings__O15TKH5lvQM",
     id: "O15TKH5lvQM",
     title: "Bringing The Kingdom To The Workplace Part 2 ",
     collection: "teachings",
@@ -4174,6 +4591,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__afzO1wBaZ7A": {
+    key: "teachings__afzO1wBaZ7A",
     id: "afzO1wBaZ7A",
     title: "Building Living From The Homefront ",
     collection: "teachings",
@@ -4184,6 +4602,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] okay so we're going to talk tonight briefly about building lasting relationships living from the home front because your leadership is as good as your home you're going to build a strong organization you've got to have a strong",
   },
   "teachings__bfU-s69cxjU": {
+    key: "teachings__bfU-s69cxjU",
     id: "bfU-s69cxjU",
     title: "Building Strong Families: Dr. Myles Munroe's Guide To Male Leadership ",
     collection: "teachings",
@@ -4194,6 +4613,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power packed message from dr miles monroe provided by monroe global incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing",
   },
   "teachings__d3smX65BjOE": {
+    key: "teachings__d3smX65BjOE",
     id: "d3smX65BjOE",
     title: "Can your Faith withstand the test? ",
     collection: "teachings",
@@ -4204,6 +4624,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "if you believe then you act like you believe the fight is for your belief tell your neighbor it ain't working he can't touch my belief my faith is in God my faith is in the Rock come on give",
   },
   "teachings__nYM2fXflCiU": {
+    key: "teachings__nYM2fXflCiU",
     id: "nYM2fXflCiU",
     title: "Change Happens For Improvement & Advancement ",
     collection: "teachings",
@@ -4214,6 +4635,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] Ezekiel says with 34 says I will bless them and the place surrounding the hill I will send down showers and seasons and there will be showers of blessings you know we believe that we supposed to be blessed",
   },
   "teachings__iOIdfBaiOu4": {
+    key: "teachings__iOIdfBaiOu4",
     id: "iOIdfBaiOu4",
     title: "Church 2000 - The 21st Century Church ",
     collection: "teachings",
@@ -4224,6 +4646,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] thank you for joining us for another powerp packed Message from Dr Miles Monroe provided by Monroe Global Incorporated and Monro global.com we transform followers into leaders and leaders into agents of change we hope that this message is",
   },
   "teachings__bsT3O7eEiT4": {
+    key: "teachings__bsT3O7eEiT4",
     id: "bsT3O7eEiT4",
     title: "Civil Rights vs Human Rights ",
     collection: "teachings",
@@ -4234,6 +4657,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] responsibility means that you are in the place where god promised you you know that's why oppressed people confuse deliverance with freedom i think about my friends watching this program all over the united states right now you know",
   },
   "teachings__48Az5Mh0wKA": {
+    key: "teachings__48Az5Mh0wKA",
     id: "48Az5Mh0wKA",
     title: "Contrast in Kingdoms ",
     collection: "teachings",
@@ -4244,6 +4668,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global.com we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings___AGUk1W5xvE": {
+    key: "teachings___AGUk1W5xvE",
     id: "_AGUk1W5xvE",
     title: "Crisis Comes To Destroy Traditions ",
     collection: "teachings",
@@ -4254,6 +4679,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] tradition is the greatest enemy of change i read the story about samson he was in the desert he meant a thousand philistines they came to kill him samson is standing there in the heat of the sun the",
   },
   "teachings__lcThaa7zJjs": {
+    key: "teachings__lcThaa7zJjs",
     id: "lcThaa7zJjs",
     title: "Crisis Comes To Destroy Traditions ",
     collection: "teachings",
@@ -4264,6 +4690,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] tradition is the greatest enemy of change I read the story about Samson he was in the desert he meant a thousand Philistines they came to kill him Samson is standing there in the heat of the Sun the",
   },
   "teachings__QesfO0Fv454": {
+    key: "teachings__QesfO0Fv454",
     id: "QesfO0Fv454",
     title: "Crisis Creates Opportunity ",
     collection: "teachings",
@@ -4274,6 +4701,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] all of life is a series of crises i like what the the asians do when they have a crisis if you ever wonder why the chinese and the japanese always emerge out of crisis victoriously why because in",
   },
   "teachings__a_tN2O2MQnw": {
+    key: "teachings__a_tN2O2MQnw",
     id: "a_tN2O2MQnw",
     title: "Crisis Will Not Last Forever ",
     collection: "teachings",
@@ -4284,6 +4712,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] a crisis is an experience an event a circumstance that affects you or your environment over which you have no control crises began in the Garden of Eden when Adam and Eve disobeyed God the whole program fell apart",
   },
   "teachings__QOTD6zSf-OI": {
+    key: "teachings__QOTD6zSf-OI",
     id: "QOTD6zSf-OI",
     title: "Cultivating The Attitudes That Affect Human Action Part 1 ",
     collection: "teachings",
@@ -4294,6 +4723,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power packed message from dr miles monroe provided by monroe global incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing",
   },
   "teachings__kHqVZSGUW_s": {
+    key: "teachings__kHqVZSGUW_s",
     id: "kHqVZSGUW_s",
     title: "Cultivating The Attitudes That Affect Human Action Part 2 ",
     collection: "teachings",
@@ -4304,6 +4734,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Thank you for joining us for another power packed message from Dr. Myles Monroe provided by Monroe Global Incorporated and Monroeglobal.com. We transform followers into leaders and leaders into agents of change. We hope that this message is a blessing",
   },
   "teachings__3HdTtT8q524": {
+    key: "teachings__3HdTtT8q524",
     id: "3HdTtT8q524",
     title: "Defining and Understanding Law Part 1 ",
     collection: "teachings",
@@ -4314,6 +4745,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power packed message from dr miles monroe provided by monroe global incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing",
   },
   "teachings__-65jxGAxMco": {
+    key: "teachings__-65jxGAxMco",
     id: "-65jxGAxMco",
     title: "Defining The Husband's Role In Relationship: Dr. Myles Munroe On Marriage ",
     collection: "teachings",
@@ -4324,6 +4756,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] i want to write the word husband down we got to be careful with this i was looking at this word the other day and i realized that the power of a man in the family is the key",
   },
   "teachings__Z95QYWAuM6E": {
+    key: "teachings__Z95QYWAuM6E",
     id: "Z95QYWAuM6E",
     title: "Defining The Keys of The Kingdom Part 1 ",
     collection: "teachings",
@@ -4334,6 +4767,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__cUFLv5zDS00": {
+    key: "teachings__cUFLv5zDS00",
     id: "cUFLv5zDS00",
     title: "Defining The Keys of The Kingdom Part 2 ",
     collection: "teachings",
@@ -4344,6 +4778,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__d5TPCd6Tah4": {
+    key: "teachings__d5TPCd6Tah4",
     id: "d5TPCd6Tah4",
     title: "Defining True Leadership ",
     collection: "teachings",
@@ -4354,6 +4789,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power packed message from dr miles monroe provided by monroe global incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing",
   },
   "teachings__XRXcN6UDX_A": {
+    key: "teachings__XRXcN6UDX_A",
     id: "XRXcN6UDX_A",
     title: "Discovering The Principles of Effective Fathering ",
     collection: "teachings",
@@ -4364,6 +4800,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__GeQsjUzBUhE": {
+    key: "teachings__GeQsjUzBUhE",
     id: "GeQsjUzBUhE",
     title: "Discovering Your Kingdom Destiny ",
     collection: "teachings",
@@ -4374,6 +4811,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__y8hNb4LxZeU": {
+    key: "teachings__y8hNb4LxZeU",
     id: "y8hNb4LxZeU",
     title: "Discovering Your Kingdom Leadership ",
     collection: "teachings",
@@ -4384,6 +4822,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is",
   },
   "teachings__Eq2KdTNkzIw": {
+    key: "teachings__Eq2KdTNkzIw",
     id: "Eq2KdTNkzIw",
     title: "Discovering Your Leadership Gift ",
     collection: "teachings",
@@ -4394,6 +4833,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] thank you for joining us for another power packed message from dr miles monroe provided by monroe global incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__ueA073Q6a88": {
+    key: "teachings__ueA073Q6a88",
     id: "ueA073Q6a88",
     title: "Discovering Your Personal Leadership ",
     collection: "teachings",
@@ -4404,6 +4844,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] Thank you for joining us for another power-p packed message from Dr. Miles Monroe provided by Monro Global Incorporated and monroglobal.com. We transform followers into leaders and leaders into agents of change. We hope that this message is a",
   },
   "teachings__zZS-KtI0XAM": {
+    key: "teachings__zZS-KtI0XAM",
     id: "zZS-KtI0XAM",
     title: "Discovering Your Personal Leadership Potential ",
     collection: "teachings",
@@ -4414,6 +4855,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] thank you for joining us for another power packed message from dr miles monroe provided by monroe global incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__3yv7phw5m3g": {
+    key: "teachings__3yv7phw5m3g",
     id: "3yv7phw5m3g",
     title: "Do You Defend Your Boss ",
     collection: "teachings",
@@ -4424,6 +4866,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "when people talk about your boss or your pastor what do you say to them when people gossip about your boss or your pastor what do you say do you join in or do you defend them don't you talk",
   },
   "teachings__O0_MFe6ZH9A": {
+    key: "teachings__O0_MFe6ZH9A",
     id: "O0_MFe6ZH9A",
     title: "Do You Have Multiple Gifts? Watch This! ",
     collection: "teachings",
@@ -4434,6 +4877,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] all of us probably are gifted some of us got too many gifts like me i could play piano very well i have a degree in music i am an artist i have a degree in art i paint",
   },
   "teachings__Rra20Q_Ert4": {
+    key: "teachings__Rra20Q_Ert4",
     id: "Rra20Q_Ert4",
     title: "Don't Die Old Die Empty ",
     collection: "teachings",
@@ -4444,6 +4888,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] i've concluded that the wealthy spot on earth is not the oil fields of iran or iraq or kuwait or saudi arabia the wealthiest spot on earth is not the diamond mines of south africa the weather spot on",
   },
   "teachings__vQFAhcRaYnc": {
+    key: "teachings__vQFAhcRaYnc",
     id: "vQFAhcRaYnc",
     title: "Don't Leave The Place God Gave You To Manage ",
     collection: "teachings",
@@ -4454,6 +4899,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] whatever you mismanage you lose what did i say whatever you mismanage you will lose that's a principle of the kingdom of god you mismanage your marriage you'll lose your marriage you mismanage your body it'll kill you you",
   },
   "teachings__pYsxYpVbLUY": {
+    key: "teachings__pYsxYpVbLUY",
     id: "pYsxYpVbLUY",
     title: "Don't Make Your Position Synonymous With Your Value ",
     collection: "teachings",
@@ -4464,6 +4910,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "now the the average insecure leader today not you the one sitting behind you our attitudes are different how to do this I ain't going nowhere you might as well just forget this part you ain't coming here I been",
   },
   "teachings__d4RyiwbU5RA": {
+    key: "teachings__d4RyiwbU5RA",
     id: "d4RyiwbU5RA",
     title: "Don't Worry, Plan ",
     collection: "teachings",
@@ -4474,6 +4921,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] write this down please money is pursued people pursue money riches is accumulated but wealth is different wealth is created and they are different god doesn't want you to pursue money and he doesn't want you to accumulate things",
   },
   "teachings__o6EIWJOQ7qY": {
+    key: "teachings__o6EIWJOQ7qY",
     id: "o6EIWJOQ7qY",
     title: "Dr. Myles Munroe Explains The Kingdom Of God: A Must-Watch ",
     collection: "teachings",
@@ -4484,6 +4932,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "we're going to talk about the kingdom because nobody explains and really can can minister to us about the kingdom of God like Pastor miles Monroe now if you you've written some amazing books actually three of them I think",
   },
   "teachings__78mmcvrb3s4": {
+    key: "teachings__78mmcvrb3s4",
     id: "78mmcvrb3s4",
     title: "Dr. Myles Munroe's Guide To Kingdom Theology In The Bible ",
     collection: "teachings",
@@ -4494,6 +4943,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] today i want to do something very interesting i want to talk about what they never talk about in bible schools and in seminaries i have a degree in theology from a university a very famous one here in",
   },
   "teachings__Vuisn5JZ418": {
+    key: "teachings__Vuisn5JZ418",
     id: "Vuisn5JZ418",
     title: "El Poder De La Cultura Del Reino Parte 1 (The Power of Kingdom Culture Part 1) ",
     collection: "teachings",
@@ -4504,6 +4954,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Please write. The cultural power of the kingdom or the culture of the kingdom. The power of the kingdom's culture. I want to talk about the power of Jesus' message. What did Jesus preach? Is the church preaching what Jesus",
   },
   "teachings__JBbWS2s_hn0": {
+    key: "teachings__JBbWS2s_hn0",
     id: "JBbWS2s_hn0",
     title: "El Poder De La Cultura Del Reino Parte 2 (The Power of Kingdom Culture Part 2) ",
     collection: "teachings",
@@ -4514,6 +4965,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Thank you for joining us for another powerful message from Dr. Miles Munro, brought to you by Munro Global Limited and Munro Global.com. We turn followers into leaders , and leaders into agents of change. We hope this message will",
   },
   "teachings__rB3B43fbKYA": {
+    key: "teachings__rB3B43fbKYA",
     id: "rB3B43fbKYA",
     title: "Employment vs Deployment ",
     collection: "teachings",
@@ -4524,6 +4976,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] there's a difference between being employed and being deployed let me read this it says your job is what you were trained to do but your work is what you were born to do your job is your career",
   },
   "teachings__M8-wJ_95-Zw": {
+    key: "teachings__M8-wJ_95-Zw",
     id: "M8-wJ_95-Zw",
     title: "Empowering Love: Dr. Myles Munroe On Kingdom Influence & Culture ",
     collection: "teachings",
@@ -4534,6 +4987,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another powerp packed message provided by Monroe Global Incorporated and Monroe global.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__RNr8KrIEwSo": {
+    key: "teachings__RNr8KrIEwSo",
     id: "RNr8KrIEwSo",
     title: "Entering and Experiencing Kingdom Citizenship Part 1 ",
     collection: "teachings",
@@ -4544,6 +4998,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "foreign [Music] religion postpones the kingdom to a future experience write that down this is the problem with religion and that's why we have to talk about entering the kingdom now Christianity is a religion it's not the kingdom and",
   },
   "teachings__ky0yCnPO9rw": {
+    key: "teachings__ky0yCnPO9rw",
     id: "ky0yCnPO9rw",
     title: "Everything You Are Looking For Is Right Where You Are ",
     collection: "teachings",
@@ -4554,6 +5009,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Everything possesses the seed of his destiny, including you. And God hides everything inside of it. In other words, you possess your future, not tomorrow, and yet it's not ahead of you. It's within you now, which means you don't",
   },
   "teachings__gwdMgi-B9IY": {
+    key: "teachings__gwdMgi-B9IY",
     id: "gwdMgi-B9IY",
     title: "Expect Crisis To Occur ",
     collection: "teachings",
@@ -4564,6 +5020,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] a person faces a situation that we call a crisis your interpretation of a crisis is what makes it a crisis you know paul the apostle said something important paul says all things work together for my good now",
   },
   "teachings__83fLrgMc69o": {
+    key: "teachings__83fLrgMc69o",
     id: "83fLrgMc69o",
     title: "Experience Miracles In Your Life: The Secret Power Of Praying In Jesus' Name - Dr. Myles Munroe",
     collection: "teachings",
@@ -4574,6 +5031,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power packed message from dr miles monroe provided by monroe global incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing",
   },
   "teachings__0uTEidTwObE": {
+    key: "teachings__0uTEidTwObE",
     id: "0uTEidTwObE",
     title: "Financing The Truth ",
     collection: "teachings",
@@ -4584,6 +5042,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] hi listeners thank you for selecting to listen to this amazing teaching entitled financing the truth we want to apologize for the poor quality of the audio for the first 27 minutes we did our best to try and",
   },
   "teachings__4E8HZZzSOVo": {
+    key: "teachings__4E8HZZzSOVo",
     id: "4E8HZZzSOVo",
     title: "Find Your True Purpose: The Power Of Understanding With Dr. Myles Munroe ",
     collection: "teachings",
@@ -4594,6 +5053,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power packed message from dr miles monroe provided by monroe global incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing",
   },
   "teachings__GrzeDNU8rds": {
+    key: "teachings__GrzeDNU8rds",
     id: "GrzeDNU8rds",
     title: "Finding The Kingdom Of God Part 1: Essential Teachings By Dr. Myles Munroe ",
     collection: "teachings",
@@ -4604,6 +5064,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "foreign [Music] we are going to be looking briefly at understanding how to seek the kingdom that's your topic for today understanding how to seek the kingdom everybody say how it's very difficult to do something that you don't know",
   },
   "teachings__qiUjpxuBjiA": {
+    key: "teachings__qiUjpxuBjiA",
     id: "qiUjpxuBjiA",
     title: "For Exclusive Content From Dr. Myles Munroe",
     collection: "teachings",
@@ -4614,6 +5075,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "what's important tonight is what's within you now and god has placed in you everything you need to become all you were born to be and you are carrying it right now and therefore the word of god said it",
   },
   "teachings__6ApPQjD7lOA": {
+    key: "teachings__6ApPQjD7lOA",
     id: "6ApPQjD7lOA",
     title: "For Men Only ",
     collection: "teachings",
@@ -4624,6 +5086,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global.com we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__O6guBwtT82s": {
+    key: "teachings__O6guBwtT82s",
     id: "O6guBwtT82s",
     title: "Foundational Principles For Male and Female Relationships ",
     collection: "teachings",
@@ -4634,6 +5097,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] please get your bibles and turn with me to the book of matthew chapter 19. [Music] this chapter we've been exploring an answer that was given to an important question one out of every three marriages in this country",
   },
   "teachings__HFJlpkB3NRg": {
+    key: "teachings__HFJlpkB3NRg",
     id: "HFJlpkB3NRg",
     title: "Freedom Demands A Fight ",
     collection: "teachings",
@@ -4644,6 +5108,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "In chapter five of Joshua, it says on the evening of the fourth day, verse 10, while they were camped at Gilgal in the plains of where? Jericho. Now, I want you to look at me a second. Let me",
   },
   "teachings__lRbfWl4xDnk": {
+    key: "teachings__lRbfWl4xDnk",
     id: "lRbfWl4xDnk",
     title: "Freedom Demands Mental Transformation ",
     collection: "teachings",
@@ -4654,6 +5119,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] you can be set free from the whip but not free from the control i think about our third world countries some of us have been independent for 20 30 years and we still colonialized why because independence doesn't",
   },
   "teachings__k-wCDijZUv8": {
+    key: "teachings__k-wCDijZUv8",
     id: "k-wCDijZUv8",
     title: "Freedom Requires Self-Visitation ",
     collection: "teachings",
@@ -4664,6 +5130,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] jesus told a story about the kingdom one time he said there was a man a father a very rich man who had two sons one of them came to him and says give me what is mine now",
   },
   "teachings__RW-8yXeUX7s": {
+    key: "teachings__RW-8yXeUX7s",
     id: "RW-8yXeUX7s",
     title: "Genesis 1:26 Explained ",
     collection: "teachings",
@@ -4674,6 +5141,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] let us make man the word man here is the word ish i say write it down in hebrew ish it's a plural word which means that god wasn't making a person he was making a specie all of",
   },
   "teachings__t5NbMYRtv1I": {
+    key: "teachings__t5NbMYRtv1I",
     id: "t5NbMYRtv1I",
     title: "Genesis 1:26 Explained ",
     collection: "teachings",
@@ -4684,6 +5152,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] let us make man the word man here is the word ish i say write it down in hebrew ish it's a plural word which means that god wasn't making a person he was making a specie all of",
   },
   "teachings__Rq3caJh3l-A": {
+    key: "teachings__Rq3caJh3l-A",
     id: "Rq3caJh3l-A",
     title: "Gifts of The Holy Spirit ",
     collection: "teachings",
@@ -4694,6 +5163,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] thank you for joining us for another power packed message from dr miles monroe provided by monroe global incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__ARv-U1s_lYM": {
+    key: "teachings__ARv-U1s_lYM",
     id: "ARv-U1s_lYM",
     title: "God's Attributes Changes The Way You Live ",
     collection: "teachings",
@@ -4704,6 +5174,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] tell your neighbor i believe in god do you do you believe in god okay tell you never believe god there's a difference you can believe that there's a god and it never affects your life but you cannot",
   },
   "teachings__U_U39BtWuZU": {
+    key: "teachings__U_U39BtWuZU",
     id: "U_U39BtWuZU",
     title: "God's Original Idea Part 2 ",
     collection: "teachings",
@@ -4714,6 +5185,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Thank you for joining us for another power packed message from Dr. Myles Monroe provided by Monroe Global Incorporated and Monroeglobal.com. We transform followers into leaders and leaders into agents of change. We hope that this message is a blessing",
   },
   "teachings__cAzh1E256hw": {
+    key: "teachings__cAzh1E256hw",
     id: "cAzh1E256hw",
     title: "God's Original Intent ",
     collection: "teachings",
@@ -4724,6 +5196,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__kUnCCsxoNok": {
+    key: "teachings__kUnCCsxoNok",
     id: "kUnCCsxoNok",
     title: "God’s Divine Project Part 1 ",
     collection: "teachings",
@@ -4734,6 +5207,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] thank you for joining us for another power packed message from dr miles monroe provided by monroe global incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__LoPSUq1ezdk": {
+    key: "teachings__LoPSUq1ezdk",
     id: "LoPSUq1ezdk",
     title: "God’s Divine Project Part 2 ",
     collection: "teachings",
@@ -4744,6 +5218,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] thank you for joining us for another power packed message from dr miles monroe provided by monroe global incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__8h17zbK3K68": {
+    key: "teachings__8h17zbK3K68",
     id: "8h17zbK3K68",
     title: "God’s Original Idea Part 1 ",
     collection: "teachings",
@@ -4754,6 +5229,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] thank you for joining us for another power packed message from dr miles monroe provided by monroe global incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__ZCNegfZbEGw": {
+    key: "teachings__ZCNegfZbEGw",
     id: "ZCNegfZbEGw",
     title: "Grace Does Not Cancel Law ",
     collection: "teachings",
@@ -4764,6 +5240,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] some people say to me pastor mouse law is bondage okay open your bibles turn in chapter five matthew chapter five take a deep breath please jesus knew that you would be here thinking that kind of foolishness he",
   },
   "teachings__dJwIkpDEkZk": {
+    key: "teachings__dJwIkpDEkZk",
     id: "dJwIkpDEkZk",
     title: "Greatest Power Of Woman: Myles Munroe On How Female Strength Transforms The World ",
     collection: "teachings",
@@ -4774,6 +5251,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "I want I want to talk about this this topic. The power of woman. The power of woman. The power of woman. This This statement is still not understood properly by women or by men. We're going to be focusing",
   },
   "teachings__j8_7Jtvo8Ak": {
+    key: "teachings__j8_7Jtvo8Ak",
     id: "j8_7Jtvo8Ak",
     title: "Holy Spirit Dynamite ",
     collection: "teachings",
@@ -4784,6 +5262,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] thank you for joining us for another power packed message from dr miles monroe provided by monroe global incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__vKZf53M45TU": {
+    key: "teachings__vKZf53M45TU",
     id: "vKZf53M45TU",
     title: "Holy Spirit Him Or It ",
     collection: "teachings",
@@ -4794,6 +5273,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] thank you for joining us for another power packed message from dr miles monroe provided by monroe global incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__RmRfg9083qQ": {
+    key: "teachings__RmRfg9083qQ",
     id: "RmRfg9083qQ",
     title: "How Change Changes Things ",
     collection: "teachings",
@@ -4804,6 +5284,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] ezekiel says verse chapter 34 says i will bless them and the place surrounding the hill i will send down showers and seasons and there will be showers or blessings you know we believe that we're supposed to be",
   },
   "teachings__05JzCangzu0": {
+    key: "teachings__05JzCangzu0",
     id: "05JzCangzu0",
     title: "How Fasting Positively Affects You ",
     collection: "teachings",
@@ -4814,6 +5295,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] what happens when you fast first of all fasting changes you now why did i say that because number two is a contradiction fasting does not change god god never changes ain't nothing wrong with god god ain't clogged",
   },
   "teachings__NlRZzVQIHi4": {
+    key: "teachings__NlRZzVQIHi4",
     id: "NlRZzVQIHi4",
     title: "How Fathers Earn Honor ",
     collection: "teachings",
@@ -4824,6 +5306,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as you",
   },
   "teachings__SCFOXEfK-Wc": {
+    key: "teachings__SCFOXEfK-Wc",
     id: "SCFOXEfK-Wc",
     title: "How Principles Protect Purpose and Potential ",
     collection: "teachings",
@@ -4834,6 +5317,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] how principles protect purpose and potential i repeat how principles protect purpose and potential i want to give you a subtitle for this session and that is principles the key to life and effective living principles the key to",
   },
   "teachings__mDx0LHq-_4o": {
+    key: "teachings__mDx0LHq-_4o",
     id: "mDx0LHq-_4o",
     title: "How The Economy of The Kingdom Works: Dr. Myles Munroe on Kingdom Economy ",
     collection: "teachings",
@@ -4844,6 +5328,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] thank you for joining us for another powerp packed message provided by Monroe Global Incorporated and Monro global.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you",
   },
   "teachings__hAqKTlIfg8Q": {
+    key: "teachings__hAqKTlIfg8Q",
     id: "hAqKTlIfg8Q",
     title: "How To Achieve Success & Prosperity: Dr. Myles Munroe's Guide Part 2 ",
     collection: "teachings",
@@ -4854,6 +5339,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__ArHzFz5zO0k": {
+    key: "teachings__ArHzFz5zO0k",
     id: "ArHzFz5zO0k",
     title: "How To Achieve Success: 10 Life-Changing Tips From Dr. Myles Munroe ",
     collection: "teachings",
@@ -4864,6 +5350,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__PcLUksQ3nZY": {
+    key: "teachings__PcLUksQ3nZY",
     id: "PcLUksQ3nZY",
     title: "How To Activate Heaven On Earth ",
     collection: "teachings",
@@ -4874,6 +5361,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] the word of god says forever any two shall touch and agree concerning anything on the earth it shall be done of our father who is where in heaven but you got to touch where on earth heaven waits",
   },
   "teachings__58-hRnfwfFI": {
+    key: "teachings__58-hRnfwfFI",
     id: "58-hRnfwfFI",
     title: "How To Be An Influence: Dr. Myles Munroe on Kingdom Influence ",
     collection: "teachings",
@@ -4884,6 +5372,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Thank you for joining us for another power packed message provided by Monroe Global Incorporated and Monroeglobal.com. We transform followers into leaders and leaders into agents of change. We hope that this message is a blessing to you as you",
   },
   "teachings__b93DKltfXBk": {
+    key: "teachings__b93DKltfXBk",
     id: "b93DKltfXBk",
     title: "How To Be Great ",
     collection: "teachings",
@@ -4894,6 +5383,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] servant leadership is not lowering yourself to other people's desires servant leadership is is a lofty thing it is serving yourself to the world but first you got to discover yourself your gift is the key to your leadership",
   },
   "teachings__ZE1ndbsDYZY": {
+    key: "teachings__ZE1ndbsDYZY",
     id: "ZE1ndbsDYZY",
     title: "How To Be Responsible ",
     collection: "teachings",
@@ -4904,6 +5394,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] i want you to rewrite the word responsibility and here's what it means this word is defined as trustworthiness trustworthiness it also means reliable a responsible person is a reliable person so responsibility means reliability it also means dependability",
   },
   "teachings__xIHMzOxDoiw": {
+    key: "teachings__xIHMzOxDoiw",
     id: "xIHMzOxDoiw",
     title: "How To Become A Leader ",
     collection: "teachings",
@@ -4914,6 +5405,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] leadership is defined as the capacity to influence others through inspiration which is motivated and generated by a passion motivated by a vision that a person has which is birth from a conviction that is produced by a sense",
   },
   "teachings__V9jjthcZWcM": {
+    key: "teachings__V9jjthcZWcM",
     id: "V9jjthcZWcM",
     title: "How To Become A Person of Value ",
     collection: "teachings",
@@ -4924,6 +5416,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] i was asked a question years ago the question was how do you become successful my answer goes like this you might want to write this down if you want to be a success do not seek success seek",
   },
   "teachings__PhRhhnw1tLs": {
+    key: "teachings__PhRhhnw1tLs",
     id: "PhRhhnw1tLs",
     title: "How To Become An Influence ",
     collection: "teachings",
@@ -4934,6 +5427,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Thank you for joining us for [music] another power-p packed message provided by Monro Global Incorporated and monroglobal.com. We transform followers into leaders and leaders [music] into agents of change. We hope that this message is a blessing to you",
   },
   "teachings__YLZ0Tkpls94": {
+    key: "teachings__YLZ0Tkpls94",
     id: "YLZ0Tkpls94",
     title: "How To Become An Influential Leader: Best Strategy By Myles Munroe For Success ",
     collection: "teachings",
@@ -4944,6 +5438,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Thank you for joining us for another power-packed message from Dr. Myles Monroe provided by Monroe Global Incorporated and Monroeglobal.com. We transform followers into leaders and leaders into agents of change. We hope that this message is a blessing to",
   },
   "teachings__sKiu4H1RtW8": {
+    key: "teachings__sKiu4H1RtW8",
     id: "sKiu4H1RtW8",
     title: "How To Believe God's Truth About You ",
     collection: "teachings",
@@ -4954,6 +5449,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] being born again does not change your attitude uh so i have come to say it in a very simple way but it's very complicated and that is the greatest discovery in life is self-discovery discovering yourself and i",
   },
   "teachings__82AD-HxA-a8": {
+    key: "teachings__82AD-HxA-a8",
     id: "82AD-HxA-a8",
     title: "How To Build A Strong Belief System: Key Lessons By Dr. Myles Munroe ",
     collection: "teachings",
@@ -4964,6 +5460,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] thank you for joining us for another power packed message from dr miles monroe provided by monroe global incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__OfwUV_6SK7Q": {
+    key: "teachings__OfwUV_6SK7Q",
     id: "OfwUV_6SK7Q",
     title: "How To Choose A Successor ",
     collection: "teachings",
@@ -4974,6 +5471,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power packed message from dr miles monroe provided by monroe global incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing",
   },
   "teachings__G3cZugH3CJ4": {
+    key: "teachings__G3cZugH3CJ4",
     id: "G3cZugH3CJ4",
     title: "How To Define A Crisis ",
     collection: "teachings",
@@ -4984,6 +5482,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] the whole world today is talking about crisis and of course this is a global crisis it's a matter of fact I think that the real crisis in the world today is globalization when a country had an economic",
   },
   "teachings__3YI6zUajiR8": {
+    key: "teachings__3YI6zUajiR8",
     id: "3YI6zUajiR8",
     title: "How To Discover and Release Your Gift To Impact The World ",
     collection: "teachings",
@@ -4994,6 +5493,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] please write this topic down discovering and releasing your gift to impact the world our focus today is going to be on understanding the principle of self manifestation write that down self manifestation people are not looking for you",
   },
   "teachings__dVl5ZSZQXsI": {
+    key: "teachings__dVl5ZSZQXsI",
     id: "dVl5ZSZQXsI",
     title: "How To Discover The Leader in You ",
     collection: "teachings",
@@ -5004,6 +5504,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] if god created you to dominate then the capacity to dominate is in you do you get the principle okay so whatever you were born to do is built in so here's what i want you to take a",
   },
   "teachings__T5ty_EJp7QU": {
+    key: "teachings__T5ty_EJp7QU",
     id: "T5ty_EJp7QU",
     title: "How To Discover Your Purpose ",
     collection: "teachings",
@@ -5014,6 +5515,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] all right how do you know what your destiny is write this down i'ma tell you right now number one go out and buy my book called authority number two go and buy my book called the power of",
   },
   "teachings__pOxnIW1QOrg": {
+    key: "teachings__pOxnIW1QOrg",
     id: "pOxnIW1QOrg",
     title: "How To Face The Future With Fearless Confidence Part 2 ",
     collection: "teachings",
@@ -5024,6 +5526,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global calm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__GOWXWS5Vx9E": {
+    key: "teachings__GOWXWS5Vx9E",
     id: "GOWXWS5Vx9E",
     title: "How To Face The Future With Fearless Confidence Part 3 ",
     collection: "teachings",
@@ -5034,6 +5537,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__qgr1ZdRRXu4": {
+    key: "teachings__qgr1ZdRRXu4",
     id: "qgr1ZdRRXu4",
     title: "How To Face The Future With Fearless Confidence Part 4 ",
     collection: "teachings",
@@ -5044,6 +5548,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__1TO3yVW0X18": {
+    key: "teachings__1TO3yVW0X18",
     id: "1TO3yVW0X18",
     title: "How To Fast And Pray Effectively: Consecration Secrets With Dr. Myles Munroe ",
     collection: "teachings",
@@ -5054,6 +5559,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__ozLKAQMOayM": {
+    key: "teachings__ozLKAQMOayM",
     id: "ozLKAQMOayM",
     title: "How To Keep The Faith ",
     collection: "teachings",
@@ -5064,6 +5570,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] never respond permanently to a temporary problem never respond permanently to a temporary problem your life is never finished so don't throw your hands up and say that's it it's over i never gonna make it you're trying to",
   },
   "teachings__gTgcGlnK1kk": {
+    key: "teachings__gTgcGlnK1kk",
     id: "gTgcGlnK1kk",
     title: "How To Know The Purpose Of Your Life: Find Direction With Dr. Myles Munroe ",
     collection: "teachings",
@@ -5074,6 +5581,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power packed message provided by monroe global incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as you",
   },
   "teachings__PMoArWzXaUA": {
+    key: "teachings__PMoArWzXaUA",
     id: "PMoArWzXaUA",
     title: "How To Know The Truth About You ",
     collection: "teachings",
@@ -5084,6 +5592,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Thank you for joining us for another power packed message from Dr. Miles Monroe, provided by Monroe Global Incorporated [music] and monroeglobal.com. We transform followers into leaders and leaders into agents of change. We hope that this message is [music]",
   },
   "teachings__5z66SQ4H3uI": {
+    key: "teachings__5z66SQ4H3uI",
     id: "5z66SQ4H3uI",
     title: "How To Live Beyond A Crisis ",
     collection: "teachings",
@@ -5094,6 +5603,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__lqrSLgDiXbI": {
+    key: "teachings__lqrSLgDiXbI",
     id: "lqrSLgDiXbI",
     title: "How To Live Effectively In Time ",
     collection: "teachings",
@@ -5104,6 +5614,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "foreign but I want to speak tonight on the purpose and power of time but I want to focus on this subject write this down please and that is understanding how to live effectively in time when a year goes",
   },
   "teachings__j19f_Nm_1TI": {
+    key: "teachings__j19f_Nm_1TI",
     id: "j19f_Nm_1TI",
     title: "How To Love Your Wife ",
     collection: "teachings",
@@ -5114,6 +5625,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global.com we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__VDkeOeR7yik": {
+    key: "teachings__VDkeOeR7yik",
     id: "VDkeOeR7yik",
     title: "How To Manage Crisis ",
     collection: "teachings",
@@ -5124,6 +5636,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] if you are able to expect change and then prepare to manage it when it comes change we'll never catch you of God and destroy in this book in Chapter 7 we talk about how to manage crisis first",
   },
   "teachings__xXoV40joDIY": {
+    key: "teachings__xXoV40joDIY",
     id: "xXoV40joDIY",
     title: "How To Manage Crisis ",
     collection: "teachings",
@@ -5134,6 +5647,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] if you are able to expect change and then prepare to manage it when it comes change will never catch you of god and destroy in this book in chapter seven we talk about how to manage crisis first",
   },
   "teachings__a167Vg3WlqA": {
+    key: "teachings__a167Vg3WlqA",
     id: "a167Vg3WlqA",
     title: "How To Overcome Crisis: Dr. Myles Munroe's Guide On Resilience & Success ",
     collection: "teachings",
@@ -5144,6 +5658,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__gleenkNSshk": {
+    key: "teachings__gleenkNSshk",
     id: "gleenkNSshk",
     title: "How To Overcome Your Fear ",
     collection: "teachings",
@@ -5154,6 +5669,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] fear is wonderful now let me explain what i mean god will never give you anything to do that will not frighten you if what you are dreaming of doing doesn't make you afraid it is not from god",
   },
   "teachings__f7BIIqUuL6Y": {
+    key: "teachings__f7BIIqUuL6Y",
     id: "f7BIIqUuL6Y",
     title: "How To Plan Your Life For Success & Handle Change P1: Dr. Myles Munroe's Strategy ",
     collection: "teachings",
@@ -5164,6 +5680,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] thank you for joining us for another powerp packed Message from Dr Miles Monroe provided by Monroe Global Incorporated and monr global.com we transform followers into leaders and leaders into agents of change we hope that this message is",
   },
   "teachings__WVhSFbLF2ZE": {
+    key: "teachings__WVhSFbLF2ZE",
     id: "WVhSFbLF2ZE",
     title: "How To Pray ",
     collection: "teachings",
@@ -5174,6 +5691,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "This is how I pray. I got it from the Bible. First you start prayer with Thanksgiving. You never go in to the courtroom of God demanding things first. You thank him for what he's already done. Are you with",
   },
   "teachings__a9HPsrN-eew": {
+    key: "teachings__a9HPsrN-eew",
     id: "a9HPsrN-eew",
     title: "How To Pray ",
     collection: "teachings",
@@ -5184,6 +5702,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "this is how I pray I got us from the Bible first you start private Thanksgiving you never go in to the courtroom of God demanding things first you thank him for what he's already done are you with me",
   },
   "teachings__ZVIAE__9jhY": {
+    key: "teachings__ZVIAE__9jhY",
     id: "ZVIAE__9jhY",
     title: "How To Rebuild Your Character: Dr. Myles Munroe Guide To Personal Transformation ",
     collection: "teachings",
@@ -5194,6 +5713,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__oSa4e-0hsDE": {
+    key: "teachings__oSa4e-0hsDE",
     id: "oSa4e-0hsDE",
     title: "How To Recognize It's Time For Change ",
     collection: "teachings",
@@ -5204,6 +5724,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] I do an old chapter the book on that what how to recognize seasons of change number one when what you are doing is no longer effective it's time to change when the people around you begin to become",
   },
   "teachings__rozjv5cen7s": {
+    key: "teachings__rozjv5cen7s",
     id: "rozjv5cen7s",
     title: "How To Shelter Yourself From Crisis ",
     collection: "teachings",
@@ -5214,6 +5735,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] i'll tell you something that changed my life i was reading the old testament one day and i'm reading and the lord says you are my citizen i said yes lord he said no you don't understand [Music] he",
   },
   "teachings__jCKTbXwNDGI": {
+    key: "teachings__jCKTbXwNDGI",
     id: "jCKTbXwNDGI",
     title: "How To Unlock Your Success ",
     collection: "teachings",
@@ -5224,6 +5746,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] keys represent principles a principle is a precept that becomes a law by the way the word prince means first principle means first rule the first rule that was laid down that's why it's called a principle a principle",
   },
   "teachings___J1DJKHcAyk": {
+    key: "teachings___J1DJKHcAyk",
     id: "_J1DJKHcAyk",
     title: "How To Use Money Wisely: Unlock Financial Freedom With Myles Munroe ",
     collection: "teachings",
@@ -5234,6 +5757,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] thank you for joining us for another powerp packed Message from Dr Miles Monroe provided by Monroe Global Incorporated and Monro global.com we transform followers into leaders and leaders into agents of change we hope that this message is",
   },
   "teachings__a4LOMvyJJ_w": {
+    key: "teachings__a4LOMvyJJ_w",
     id: "a4LOMvyJJ_w",
     title: "How To Write & Publish A Book Pt. 1 ",
     collection: "teachings",
@@ -5244,6 +5768,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global.com we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__aJtHcoYKvvc": {
+    key: "teachings__aJtHcoYKvvc",
     id: "aJtHcoYKvvc",
     title: "How Worship Gives God Access ",
     collection: "teachings",
@@ -5254,6 +5779,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Thank you for joining us for another power-p packed message from Dr. Miles Monroe provided by Monroe Global Incorporated and monroglobal.com. We transform followers into leaders and leaders into agents of change. We hope that this message is a blessing",
   },
   "teachings__CF4cxiZbYHA": {
+    key: "teachings__CF4cxiZbYHA",
     id: "CF4cxiZbYHA",
     title: "In The Kingdom You Own Nothing ",
     collection: "teachings",
@@ -5264,6 +5790,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] a kingdom is completely different from a democracy for example a king owns his country personally this is important what did i say just now yeah let me tell you why that's important if jesus is king he owns",
   },
   "teachings__vvJ24HgWXrM": {
+    key: "teachings__vvJ24HgWXrM",
     id: "vvJ24HgWXrM",
     title: "Influencing and Impacting Without Imposing ",
     collection: "teachings",
@@ -5274,6 +5801,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Thank you for joining us for another power packed message provided by Monroe Global Incorporated and monroeglobal.com. We transform followers into leaders and leaders into agents of change. We hope that this message is a blessing to you as you",
   },
   "teachings__6POaVJBI5so": {
+    key: "teachings__6POaVJBI5so",
     id: "6POaVJBI5so",
     title: "Influencing vs Controlling People ",
     collection: "teachings",
@@ -5284,6 +5812,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "more important for you to influence than to control people an influence supposed to be so easy it's supposed to be like uh yeast in Dough Boy yeast is dangerous eh by the time the dough wakes up is already",
   },
   "teachings__pCaza-3Xu_I": {
+    key: "teachings__pCaza-3Xu_I",
     id: "pCaza-3Xu_I",
     title: "Intro To Success and National Influence ",
     collection: "teachings",
@@ -5294,6 +5823,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__CmoSY4MTrzw": {
+    key: "teachings__CmoSY4MTrzw",
     id: "CmoSY4MTrzw",
     title: "Jesus and Kingdom Ambassadorship ",
     collection: "teachings",
@@ -5304,6 +5834,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power packed message provided by monroe global incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as you",
   },
   "teachings__kVkW5Nt9YHE": {
+    key: "teachings__kVkW5Nt9YHE",
     id: "kVkW5Nt9YHE",
     title: "Key Dating Advice From Dr. Myles Munroe You Need To Hear ",
     collection: "teachings",
@@ -5314,6 +5845,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] when you read the first marriage in history it's found in the constitution of our country section genesis subsection 2 article 24. here's what it says first of all it says god took the man and put him in",
   },
   "teachings__eByidZQwfPM": {
+    key: "teachings__eByidZQwfPM",
     id: "eByidZQwfPM",
     title: "Key Life Principles You Should Never Change - Dr. Myles Munroe ",
     collection: "teachings",
@@ -5324,6 +5856,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global.com we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__Rxp_EHOgbPY": {
+    key: "teachings__Rxp_EHOgbPY",
     id: "Rxp_EHOgbPY",
     title: "Keys To Building Character ",
     collection: "teachings",
@@ -5334,6 +5867,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another powerp packed Message from Dr Miles Monroe provided by Monroe Global Incorporated and Monro global.com we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__bRyH7JiXN7M": {
+    key: "teachings__bRyH7JiXN7M",
     id: "bRyH7JiXN7M",
     title: "Keys To Exalting A Nation ",
     collection: "teachings",
@@ -5344,6 +5878,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__XNtuQH_1ZSk": {
+    key: "teachings__XNtuQH_1ZSk",
     id: "XNtuQH_1ZSk",
     title: "Keys To Exalting A Nation Part 1 ",
     collection: "teachings",
@@ -5354,6 +5889,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing",
   },
   "teachings__4VCJ1cul4ko": {
+    key: "teachings__4VCJ1cul4ko",
     id: "4VCJ1cul4ko",
     title: "Keys To Exalting A Nation Part 2 ",
     collection: "teachings",
@@ -5364,6 +5900,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing",
   },
   "teachings__YN9BL--Eh-g": {
+    key: "teachings__YN9BL--Eh-g",
     id: "YN9BL--Eh-g",
     title: "Keys To Living Above The Storm ",
     collection: "teachings",
@@ -5374,6 +5911,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Thank you for joining us for another power-p packed message from Dr. Miles Monroe provided by Monro Global [music] Incorporated and monroglobal.com. We transform followers into leaders and leaders into agents of change. We hope that this message is a",
   },
   "teachings__WkkJoYbG5a4": {
+    key: "teachings__WkkJoYbG5a4",
     id: "WkkJoYbG5a4",
     title: "Kingdom and Culture: How Kingdom Culture Looks On Earth ",
     collection: "teachings",
@@ -5384,6 +5922,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Thank you for joining us for another power packed message from Dr. Myles Monroe provided by Monroe Global Incorporated and Monroeglobal.com. We transform followers into leaders and leaders into agents of change. We hope that this message is a blessing",
   },
   "teachings__L2Oo7uUpm4M": {
+    key: "teachings__L2Oo7uUpm4M",
     id: "L2Oo7uUpm4M",
     title: "Kingdom Authority ",
     collection: "teachings",
@@ -5394,6 +5933,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "I want to quickly share with you what I'm going to attempt to do in the next four sessions. Tonight, tomorrow morning, tomorrow night, and Saturday morning. I'm going to teach you so much in four sessions, you're going to",
   },
   "teachings__c9g-lDkZL0M": {
+    key: "teachings__c9g-lDkZL0M",
     id: "c9g-lDkZL0M",
     title: "Kingdom Citizenship Success Laws of Marriage ",
     collection: "teachings",
@@ -5404,6 +5944,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Thank you for joining us for another powerful message from Dr. Miles Monro, brought to you by Monroe Global Limited and monroglobal.com. We turn followers into leaders, and leaders into agents of change. We hope this message will be a",
   },
   "teachings__GMmK0ow1DQM": {
+    key: "teachings__GMmK0ow1DQM",
     id: "GMmK0ow1DQM",
     title: "Kingdom Culture Influence of Relationships Part 1 ",
     collection: "teachings",
@@ -5414,6 +5955,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__OOSKQEPzb0E": {
+    key: "teachings__OOSKQEPzb0E",
     id: "OOSKQEPzb0E",
     title: "Kingdom Culture Influence of Relationships Part 2 ",
     collection: "teachings",
@@ -5424,6 +5966,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__RukOPPTypSA": {
+    key: "teachings__RukOPPTypSA",
     id: "RukOPPTypSA",
     title: "Kingdom Culture Influence of Relationships Part 3 ",
     collection: "teachings",
@@ -5434,6 +5977,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__vFEeriOWdUI": {
+    key: "teachings__vFEeriOWdUI",
     id: "vFEeriOWdUI",
     title: "Kingdom Keys To Insulating Yourself In Times of Crisis ",
     collection: "teachings",
@@ -5444,6 +5988,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__Z9yageR96HA": {
+    key: "teachings__Z9yageR96HA",
     id: "Z9yageR96HA",
     title: "Kingdom Keys To Thriving In Times of Crisis Part 1 ",
     collection: "teachings",
@@ -5454,6 +5999,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] thank you for joining us for another power packed message from dr miles monroe provided by monroe global incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__q6OLPhSWMKc": {
+    key: "teachings__q6OLPhSWMKc",
     id: "q6OLPhSWMKc",
     title: "Kingdom Keys To Thriving In Times of Crisis Part 2 ",
     collection: "teachings",
@@ -5464,6 +6010,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] thank you for joining us for another power packed message from dr miles monroe provided by monroe global incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__q0bl75fsRtk": {
+    key: "teachings__q0bl75fsRtk",
     id: "q0bl75fsRtk",
     title: "Kingdom Keys To Thriving In Times of Crisis Part 3 ",
     collection: "teachings",
@@ -5474,6 +6021,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] thank you for joining us for another power packed message from dr miles monroe provided by monroe global incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__sH25KuEdN_s": {
+    key: "teachings__sH25KuEdN_s",
     id: "sH25KuEdN_s",
     title: "Kingdom Keys To Thriving In Times of Crisis Part 4 ",
     collection: "teachings",
@@ -5484,6 +6032,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] thank you for joining us for another power packed message from dr miles monroe provided by monroe global incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__aTVSwhd_QBo": {
+    key: "teachings__aTVSwhd_QBo",
     id: "aTVSwhd_QBo",
     title: "Kingdom Laws For The Home ",
     collection: "teachings",
@@ -5494,6 +6043,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global calm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__HN8ubr8cPAU": {
+    key: "teachings__HN8ubr8cPAU",
     id: "HN8ubr8cPAU",
     title: "Law Abiding Citizen ",
     collection: "teachings",
@@ -5504,6 +6054,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] this concept of Law Abiding Citizen has being missed I want you to write this down the country of Heaven A term you need to get used to first of all the Bible is not about a religion the",
   },
   "teachings__3v7PPviuYMk": {
+    key: "teachings__3v7PPviuYMk",
     id: "3v7PPviuYMk",
     title: "Laws and Principles For Success In Life ",
     collection: "teachings",
@@ -5514,6 +6065,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Thank you for joining [music] us for another power-p packed message from Dr. Miles Monroe provided by Monro Global Incorporated and monro Global.com. We transform followers into leaders and leaders into agents of change. We hope that this message is",
   },
   "teachings__8X2_Og2v4gM": {
+    key: "teachings__8X2_Og2v4gM",
     id: "8X2_Og2v4gM",
     title: "Leadership Has Nothing To Do With People ",
     collection: "teachings",
@@ -5524,6 +6076,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] if you are depressed by the departure of people from your organization you are not a true leader because leadership has nothing to do with people if you want to be great he says you don't focus on people",
   },
   "teachings__LQQtNDekKK8": {
+    key: "teachings__LQQtNDekKK8",
     id: "LQQtNDekKK8",
     title: "Leadership, Law and Morality ",
     collection: "teachings",
@@ -5534,6 +6087,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__A29oCveoQyM": {
+    key: "teachings__A29oCveoQyM",
     id: "A29oCveoQyM",
     title: "Leading Beyond Imposed Expectations Part 1 ",
     collection: "teachings",
@@ -5544,6 +6098,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] my topic is leading beyond imposed expectations and part 1 of that topic is expect the unexpected so my Chow and I were talking about the conference and we're like tell your story how do you even begin to",
   },
   "teachings__OiPtvRVMXAk": {
+    key: "teachings__OiPtvRVMXAk",
     id: "OiPtvRVMXAk",
     title: "Learning Wisdom For Witnessing From Jesus Part 1 ",
     collection: "teachings",
@@ -5554,6 +6109,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__Pzr98lgPHis": {
+    key: "teachings__Pzr98lgPHis",
     id: "Pzr98lgPHis",
     title: "Learning Wisdom For Witnessing From Jesus Part 2 ",
     collection: "teachings",
@@ -5564,6 +6120,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__YcYpLNHEiZk": {
+    key: "teachings__YcYpLNHEiZk",
     id: "YcYpLNHEiZk",
     title: "Life Lessons From The Incarnation ",
     collection: "teachings",
@@ -5574,6 +6131,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another powerp packed message provided by Monroe Global Incorporated and Monroe global.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__IMl_A_VM-zE": {
+    key: "teachings__IMl_A_VM-zE",
     id: "IMl_A_VM-zE",
     title: "Life of An Ambassador ",
     collection: "teachings",
@@ -5584,6 +6142,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power packed message provided by monroe global incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as you",
   },
   "teachings__53nuAnFzIEE": {
+    key: "teachings__53nuAnFzIEE",
     id: "53nuAnFzIEE",
     title: "Life-Changing Benefits Of Fasting: Spiritual Awakening Guide By Dr. Myles Munroe ",
     collection: "teachings",
@@ -5594,6 +6153,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__xJW5FuHtJSU": {
+    key: "teachings__xJW5FuHtJSU",
     id: "xJW5FuHtJSU",
     title: "Living Beyond Your Grave ",
     collection: "teachings",
@@ -5604,6 +6164,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "succession is about life beyond your leadership living beyond yourself true leadership measures its success by this concept again of diminishing dependency and therefore your pretas contribution is to outlive yourself how do you outlive yourself by transferring yourself to",
   },
   "teachings__7Q_P8GmRJJ0": {
+    key: "teachings__7Q_P8GmRJJ0",
     id: "7Q_P8GmRJJ0",
     title: "Make Your Life Right Now ",
     collection: "teachings",
@@ -5614,6 +6175,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] if you know what you need to do god spoke to you in the last 25 30 minutes let's come forward neither this altar and say god forgive me make it right in this place i'm not going to",
   },
   "teachings__mh6yARXme3s": {
+    key: "teachings__mh6yARXme3s",
     id: "mh6yARXme3s",
     title: "Mastering Kingdom Concept Of Authority: A Guided Journey With Dr. Myles Munroe ",
     collection: "teachings",
@@ -5624,6 +6186,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] thank you for joining us for another power packed message from dr miles monroe provided by monroe global incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__bYkWy9XIxH4": {
+    key: "teachings__bYkWy9XIxH4",
     id: "bYkWy9XIxH4",
     title: "Mastering Wealth: Dr. Myles Munroe's Business Success Principles ",
     collection: "teachings",
@@ -5634,6 +6197,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] thank you for joining us for another power packed message from dr miles monroe provided by monroe global incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__QQFk9jErb9k": {
+    key: "teachings__QQFk9jErb9k",
     id: "QQFk9jErb9k",
     title: "Maximizing Your Faith: Key Lessons From Dr. Myles Munroe ",
     collection: "teachings",
@@ -5644,6 +6208,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing",
   },
   "teachings__tP02L78EeQ4": {
+    key: "teachings__tP02L78EeQ4",
     id: "tP02L78EeQ4",
     title: "Mentors Set You Up For Development ",
     collection: "teachings",
@@ -5654,6 +6219,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "the mentee must accept that the mentor is acting in the best interests of the mentee this is very important because the mentee has to believe that whatever the mentor recommends or instructs or advises is in the mentees best",
   },
   "teachings__AwRRPEIpQuA": {
+    key: "teachings__AwRRPEIpQuA",
     id: "AwRRPEIpQuA",
     title: "Money Is Not Your Problem ",
     collection: "teachings",
@@ -5664,6 +6230,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] are you listening to me i'm giving you the secret to coming out of poverty in your country you must stop looking for money money is not the problem the kingdom of god is not built on money it's",
   },
   "teachings__D7MIpRzyqd4": {
+    key: "teachings__D7MIpRzyqd4",
     id: "D7MIpRzyqd4",
     title: "Myles Munroe Jr.'s Testimony",
     collection: "teachings",
@@ -5674,6 +6241,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] here's no fan of the late doctor - androids Monroe has traveled with his parents around the world has his bachelor's in international business and its masters and entrepreneurial studies please welcome Mel 2016 speakers - Monroe jr. mr.",
   },
   "teachings__CWzBCgAiHcw": {
+    key: "teachings__CWzBCgAiHcw",
     id: "CWzBCgAiHcw",
     title: "Natural and Supernatural Law ",
     collection: "teachings",
@@ -5684,6 +6252,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power packed message from dr miles monroe provided by monroe global incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing",
   },
   "teachings__7jt3nNx4v2M": {
+    key: "teachings__7jt3nNx4v2M",
     id: "7jt3nNx4v2M",
     title: "Never Find Your Value In Your Position ",
     collection: "teachings",
@@ -5694,6 +6263,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "you know if you get your value from what you do and who you are as a position you better never lose your position if your significance comes from your title you better never get fired a leader has found",
   },
   "teachings__1AWvb0juKKs": {
+    key: "teachings__1AWvb0juKKs",
     id: "1AWvb0juKKs",
     title: "No Shortcuts ",
     collection: "teachings",
@@ -5704,6 +6274,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "the longest way to success is a shortcut [Music] shortcuts means you violate laws the Bible call this trespassing you know if you cut across somebody's yard instead of going around the main road you call it a shortcut don't",
   },
   "teachings__RqjmBKlAtLE": {
+    key: "teachings__RqjmBKlAtLE",
     id: "RqjmBKlAtLE",
     title: "Obedience Protects Your Future ",
     collection: "teachings",
@@ -5714,6 +6285,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] i saw about seven people coming just plant a seed here when the holy spirit speaks it's very interesting you know i took my credit card today and did something if you got a business today god said plan",
   },
   "teachings__bkzLc1hQvYQ": {
+    key: "teachings__bkzLc1hQvYQ",
     id: "bkzLc1hQvYQ",
     title: "Passing It On ",
     collection: "teachings",
@@ -5724,6 +6296,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another powerp packed message provided by Monroe Global Incorporated and Monroe global.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__v53m9uQnEu0": {
+    key: "teachings__v53m9uQnEu0",
     id: "v53m9uQnEu0",
     title: "Power Reveals Corruption ",
     collection: "teachings",
@@ -5734,6 +6307,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "God created you and you were given the mandate to dominate Earth with God's character. It's not a difficult thing. You are a king. Just like your father. But your territory is Earth. Therefore, image is the first thing God",
   },
   "teachings__Wis1u4i9cBI": {
+    key: "teachings__Wis1u4i9cBI",
     id: "Wis1u4i9cBI",
     title: "Prayer & Fasting: Dr. Myles Munroe's Guide To Spiritual Influence On Earth ",
     collection: "teachings",
@@ -5744,6 +6318,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] thank you for joining us for another powerp packed Message from Dr Miles Monroe provided by Monroe Global Incorporated and monr global.com we transform followers into leaders and leaders into agents of change we hope that this message is",
   },
   "teachings__znkn5xuo8qE": {
+    key: "teachings__znkn5xuo8qE",
     id: "znkn5xuo8qE",
     title: "Preserving The Next Generation ",
     collection: "teachings",
@@ -5754,6 +6329,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Thank you for joining us for another power-p packed message provided by Monro Global Incorporated and monroglobal.com. We transform followers into leaders and leaders into agents of change. We hope that this message is a blessing to you as you",
   },
   "teachings__Hp2sFr5grNU": {
+    key: "teachings__Hp2sFr5grNU",
     id: "Hp2sFr5grNU",
     title: "Principles For Building Relationships ",
     collection: "teachings",
@@ -5764,6 +6340,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] the more principles you learn from the word of god the less you pray about what to do your prayer then shifts to the kingdom of god being established oh boy okay you have a car made by a",
   },
   "teachings__rucxfy4C9-E": {
+    key: "teachings__rucxfy4C9-E",
     id: "rucxfy4C9-E",
     title: "Principles, Laws, Traditions and Commands Part 1 ",
     collection: "teachings",
@@ -5774,6 +6351,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power packed message from dr miles monroe provided by monroe global incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing",
   },
   "teachings__cqX1wAUpxS0": {
+    key: "teachings__cqX1wAUpxS0",
     id: "cqX1wAUpxS0",
     title: "Principles, Laws, Traditions and Commands Part 2 ",
     collection: "teachings",
@@ -5784,6 +6362,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power packed message from dr miles monroe provided by monroe global incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing",
   },
   "teachings__lh4GJ45So6I": {
+    key: "teachings__lh4GJ45So6I",
     id: "lh4GJ45So6I",
     title: "Re-Membering Him ",
     collection: "teachings",
@@ -5794,6 +6373,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__1DpmlL4cR_Y": {
+    key: "teachings__1DpmlL4cR_Y",
     id: "1DpmlL4cR_Y",
     title: "Rediscovering Kingdom Prayer: Dr. Myles Munroe Guide On Purpose & Power ",
     collection: "teachings",
@@ -5804,6 +6384,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Thank you for joining us for another power packed message from Dr. Myles Monroe provided by Monroe Global Incorporated and Monroeglobal.com. We transform followers into leaders and leaders into agents of change. We hope that this message is a blessing",
   },
   "teachings__re6tvEvzgsc": {
+    key: "teachings__re6tvEvzgsc",
     id: "re6tvEvzgsc",
     title: "Rediscovering The Concept of The King ",
     collection: "teachings",
@@ -5814,6 +6395,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__lNMDHB1FIZs": {
+    key: "teachings__lNMDHB1FIZs",
     id: "lNMDHB1FIZs",
     title: "Rediscovering The Kingdom ",
     collection: "teachings",
@@ -5824,6 +6406,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__d0t5hQBCeFU": {
+    key: "teachings__d0t5hQBCeFU",
     id: "d0t5hQBCeFU",
     title: "Rediscovering The Kingdom Change Mandate ",
     collection: "teachings",
@@ -5834,6 +6417,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global.com we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__H70Dh0kL6qs": {
+    key: "teachings__H70Dh0kL6qs",
     id: "H70Dh0kL6qs",
     title: "Rediscovering The Kingdom Template Of Prayer Petition ",
     collection: "teachings",
@@ -5844,6 +6428,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power packed message from dr miles monroe provided by monroe global incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing",
   },
   "teachings__Qlo4jCDMS68": {
+    key: "teachings__Qlo4jCDMS68",
     id: "Qlo4jCDMS68",
     title: "Rediscovering The Leadership Attitude of Kings Part 1 ",
     collection: "teachings",
@@ -5854,6 +6439,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Thank you for joining us for another power packed message from Dr. Myles Monroe provided by Monroe Global Incorporated and Monroeglobal.com. We transform followers into leaders and leaders into agents of change. We hope that this message is a blessing",
   },
   "teachings__ttIql3Yu-7k": {
+    key: "teachings__ttIql3Yu-7k",
     id: "ttIql3Yu-7k",
     title: "Rediscovering The Leadership Attitude of Kings Part 2 ",
     collection: "teachings",
@@ -5864,6 +6450,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Thank you for joining us for another power packed message from Dr. Myles Monroe provided by Monroe Global Incorporated and Monroeglobal.com. We transform followers into leaders and leaders into agents of change. We hope that this message is a blessing",
   },
   "teachings__uku-xvhT9Lg": {
+    key: "teachings__uku-xvhT9Lg",
     id: "uku-xvhT9Lg",
     title: "Rediscovering The Mission of The Church ",
     collection: "teachings",
@@ -5874,6 +6461,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power packed message provided by monroe global incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as you",
   },
   "teachings__rSYATfBnjT0": {
+    key: "teachings__rSYATfBnjT0",
     id: "rSYATfBnjT0",
     title: "Rediscovering The Original Assignment and Message of The Church ",
     collection: "teachings",
@@ -5884,6 +6472,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__1iZT3I5dtJU": {
+    key: "teachings__1iZT3I5dtJU",
     id: "1iZT3I5dtJU",
     title: "Rediscovering The Original Purpose and Assignment of Jesus ",
     collection: "teachings",
@@ -5894,6 +6483,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__roWebdV5MxI": {
+    key: "teachings__roWebdV5MxI",
     id: "roWebdV5MxI",
     title: "Rediscovering The Original Role and Purpose of The Church ",
     collection: "teachings",
@@ -5904,6 +6494,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__ogX0OKdkAS8": {
+    key: "teachings__ogX0OKdkAS8",
     id: "ogX0OKdkAS8",
     title: "Rediscovering The Prayer Life of Jesus ",
     collection: "teachings",
@@ -5914,6 +6505,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power packed message from dr miles monroe provided by monroe global incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing",
   },
   "teachings__FNSutgC-Sd4": {
+    key: "teachings__FNSutgC-Sd4",
     id: "FNSutgC-Sd4",
     title: "Rediscovering The Principle of Kingdom Commonwealth ",
     collection: "teachings",
@@ -5924,6 +6516,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power packed message from dr miles monroe provided by monroe global incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing",
   },
   "teachings__WvZmD_ERzuo": {
+    key: "teachings__WvZmD_ERzuo",
     id: "WvZmD_ERzuo",
     title: "Rediscovering The Principle of Kingdom Commonwealth ",
     collection: "teachings",
@@ -5934,6 +6527,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power packed message from dr miles monroe provided by monroe global incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing",
   },
   "teachings__aZ7B3amr-hw": {
+    key: "teachings__aZ7B3amr-hw",
     id: "aZ7B3amr-hw",
     title: "Rediscovering The Priority of Law For Kingdom Living Part 1 ",
     collection: "teachings",
@@ -5944,6 +6538,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing",
   },
   "teachings__WJCJXVsa1bs": {
+    key: "teachings__WJCJXVsa1bs",
     id: "WJCJXVsa1bs",
     title: "Rediscovering The Priority of Law For Kingdom Living Part 2 ",
     collection: "teachings",
@@ -5954,6 +6549,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__Z60u6-YFOGk": {
+    key: "teachings__Z60u6-YFOGk",
     id: "Z60u6-YFOGk",
     title: "Rediscovering The Priority of Law For Kingdom Living Part 3 ",
     collection: "teachings",
@@ -5964,6 +6560,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing",
   },
   "teachings__61dPhOCAs_U": {
+    key: "teachings__61dPhOCAs_U",
     id: "61dPhOCAs_U",
     title: "Rediscovering The Priority of Law For Kingdom Living Part 4 ",
     collection: "teachings",
@@ -5974,6 +6571,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing",
   },
   "teachings__psZRYmG5S2g": {
+    key: "teachings__psZRYmG5S2g",
     id: "psZRYmG5S2g",
     title: "Rediscovering The Priority of Law For Kingdom Living Part 5 ",
     collection: "teachings",
@@ -5984,6 +6582,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing",
   },
   "teachings__QrvDy_xHtXA": {
+    key: "teachings__QrvDy_xHtXA",
     id: "QrvDy_xHtXA",
     title: "Reduce Yourself To Your First Name ",
     collection: "teachings",
@@ -5994,6 +6593,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] the more effective you are the less titles you need write it down an effective person doesn't need titles nelson mandela is good enough that's why all the great men and women in the bible have no titles we",
   },
   "teachings__vK2RVZ795uE": {
+    key: "teachings__vK2RVZ795uE",
     id: "vK2RVZ795uE",
     title: "Repent ",
     collection: "teachings",
@@ -6004,6 +6604,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] everybody say repent let me just give you something to remember everybody say pant if you take the prefix away from the word then the word is paint paint is a word write the word paint down pet means",
   },
   "teachings__yaCTZnaw7uc": {
+    key: "teachings__yaCTZnaw7uc",
     id: "yaCTZnaw7uc",
     title: "Restoring The Culture of The Kingdom of Heaven ",
     collection: "teachings",
@@ -6014,6 +6615,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__89cFsdvcMAU": {
+    key: "teachings__89cFsdvcMAU",
     id: "89cFsdvcMAU",
     title: "Restoring The Kingdom Atmosphere ",
     collection: "teachings",
@@ -6024,6 +6626,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Thank you for joining us for another power packed message provided by Monroe Global Incorporated and Monroeglobal.com. We transform followers into leaders and leaders into agents of change. We hope that this message is a blessing to you as you",
   },
   "teachings__0qwVdJbHYNE": {
+    key: "teachings__0qwVdJbHYNE",
     id: "0qwVdJbHYNE",
     title: "Revelation For Your Marriage ",
     collection: "teachings",
@@ -6034,6 +6637,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] the more you know the less mistakes you make and marriage is not a mystery it's very predictable you can decide to have a successful marriage men if you don't have a vision for your life i want to",
   },
   "teachings__c4Pl3BQObPc": {
+    key: "teachings__c4Pl3BQObPc",
     id: "c4Pl3BQObPc",
     title: "Ritual Law VS Creation Law ",
     collection: "teachings",
@@ -6044,6 +6648,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] law is the key to life there are two kinds of major laws three but i will deal with two now for clarity first of all there's ritual laws write this down ritual laws what are ritual laws ritual",
   },
   "teachings__wMwSHv1g_GA": {
+    key: "teachings__wMwSHv1g_GA",
     id: "wMwSHv1g_GA",
     title: "Setting Your Climate Control In Times of Crisis ",
     collection: "teachings",
@@ -6054,6 +6659,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__f3bxFtd5-3A": {
+    key: "teachings__f3bxFtd5-3A",
     id: "f3bxFtd5-3A",
     title: "Something Is Exactly What You Call It ",
     collection: "teachings",
@@ -6064,6 +6670,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] i was in washington my driver says have you seen the new downtown i said no so he said i'll pick you up today at two o'clock take you to the tour i said fine he picked me up",
   },
   "teachings__9U960z9XOBY": {
+    key: "teachings__9U960z9XOBY",
     id: "9U960z9XOBY",
     title: "Stop Sleeping On Your Day Dreams ",
     collection: "teachings",
@@ -6074,6 +6681,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] god says look there's no god like me i'm the only manufacturer who finishes things first and then i backed up when i started which means i don't begin with the beginning i begin with the end i don't",
   },
   "teachings__1ZhSWBmZlUk": {
+    key: "teachings__1ZhSWBmZlUk",
     id: "1ZhSWBmZlUk",
     title: "Succession As A Measure of Leadership Success ",
     collection: "teachings",
@@ -6084,6 +6692,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__Ya0WAxhSypM": {
+    key: "teachings__Ya0WAxhSypM",
     id: "Ya0WAxhSypM",
     title: "Succession Is Not Automatic ",
     collection: "teachings",
@@ -6094,6 +6703,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "you know gamma doesn't automatically call your children if you study succession in the Bible for example no one who has family got the business no one Joshua was not related to Moses he cut the business Peter wasn't related",
   },
   "teachings__WhXTR7S45rw": {
+    key: "teachings__WhXTR7S45rw",
     id: "WhXTR7S45rw",
     title: "Succession: The Greatest Leadership Failure ",
     collection: "teachings",
@@ -6104,6 +6714,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__j_YWwm_5KXE": {
+    key: "teachings__j_YWwm_5KXE",
     id: "j_YWwm_5KXE",
     title: "The 10 Laws of Success ",
     collection: "teachings",
@@ -6114,6 +6725,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] here's 10 laws first law number one this is the key to law you must discover your purpose we can deal with that number two you must cultivate perception they all stop at p so you can remember them",
   },
   "teachings__htjrjNALqow": {
+    key: "teachings__htjrjNALqow",
     id: "htjrjNALqow",
     title: "The 10 Secrets of Leadership Succession ",
     collection: "teachings",
@@ -6124,6 +6736,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__VpVY8v4zOJg": {
+    key: "teachings__VpVY8v4zOJg",
     id: "VpVY8v4zOJg",
     title: "The 4 Essential Business Laws Explained By Dr. Myles Munroe - Keys To Success ",
     collection: "teachings",
@@ -6134,6 +6747,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] the four laws of business number one be fruitful okay this is where business begins the word fruitful in hebrew means productive it doesn't mean to have children i was shocked when i discovered that uh the first command",
   },
   "teachings__JkypuyT5VGI": {
+    key: "teachings__JkypuyT5VGI",
     id: "JkypuyT5VGI",
     title: "The 4 Kingdom Laws For Overcoming Crisis ",
     collection: "teachings",
@@ -6144,6 +6758,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__muZ3_2esQuQ": {
+    key: "teachings__muZ3_2esQuQ",
     id: "muZ3_2esQuQ",
     title: "The 5 Kingdom Keys For Business Success ",
     collection: "teachings",
@@ -6154,6 +6769,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power packed message from dr miles monroe provided by monroe global incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing",
   },
   "teachings__4Mzad3csrIo": {
+    key: "teachings__4Mzad3csrIo",
     id: "4Mzad3csrIo",
     title: "The 5 Sources of Wealth ",
     collection: "teachings",
@@ -6164,6 +6780,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] i call it the secret to wealth now this is some of the keys that jesus was trying to tell us about that we missed in the beginning god told this to adam he's talking adam he says the",
   },
   "teachings__zFUM_Dya7U8": {
+    key: "teachings__zFUM_Dya7U8",
     id: "zFUM_Dya7U8",
     title: "The Advantage of Being Single Part 1 ",
     collection: "teachings",
@@ -6174,6 +6791,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "So let's take a look at this very important subject of the myth of singleness as we deal with this issue of intra personal relationship. I'm going to be talking about understanding the advantage of being single. Everybody say that.",
   },
   "teachings__DUr-5BeuaeM": {
+    key: "teachings__DUr-5BeuaeM",
     id: "DUr-5BeuaeM",
     title: "The Advantage of Being Single Part 2 ",
     collection: "teachings",
@@ -6184,6 +6802,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] please write in your notes this is our topic tonight part two the myth of singleness the what the myth of singleness singleness is a myth what you've been taught about singleness is the source of your problem because",
   },
   "teachings__chgibNf6vIs": {
+    key: "teachings__chgibNf6vIs",
     id: "chgibNf6vIs",
     title: "The Advantage of Kingdom Citizenship ",
     collection: "teachings",
@@ -6194,6 +6813,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "foreign the Bible says that Jesus the Messiah and all the prophecies talk about this is that the Messiah will be a righteous King now let me explain how deep that is that means the king himself has to be",
   },
   "teachings__d3thPh8y84Y": {
+    key: "teachings__d3thPh8y84Y",
     id: "d3thPh8y84Y",
     title: "The Advantage of Kingdom Citizenship ",
     collection: "teachings",
@@ -6204,6 +6824,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] in a kingdom it's opposite to democracy democracy is built on two things freedom of the individual and private ownership completely opposite to a kingdom in a kingdom you are property of the king and that's not a bad",
   },
   "teachings__yYJ2BfvJ4OE": {
+    key: "teachings__yYJ2BfvJ4OE",
     id: "yYJ2BfvJ4OE",
     title: "The Authority of Kingdom Ambassadors ",
     collection: "teachings",
@@ -6214,6 +6835,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power packed message provided by monroe global incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as you",
   },
   "teachings__KmzmgJsZU2U": {
+    key: "teachings__KmzmgJsZU2U",
     id: "KmzmgJsZU2U",
     title: "The Benefit of Seasons ",
     collection: "teachings",
@@ -6224,6 +6846,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] there is a benefit to seasons please write this down nothing is permanent accept god and his promises say that with me say it loud it to your neighbor say it to your other neighbor on the other side",
   },
   "teachings__9xLJ04__qN8": {
+    key: "teachings__9xLJ04__qN8",
     id: "9xLJ04__qN8",
     title: "The Benefits of Kingdom Citizenship ",
     collection: "teachings",
@@ -6234,6 +6857,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] the benefits of a kingdom citizenship life okay i want to begin first of all with i want to focus today on living under a king we're going to focus on that today i have isolated 20 specific components",
   },
   "teachings__lM9ZcChzZHk": {
+    key: "teachings__lM9ZcChzZHk",
     id: "lM9ZcChzZHk",
     title: "The Benevolent King ",
     collection: "teachings",
@@ -6244,6 +6868,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Thank you for joining us for another power-p packed message provided by Monro Global Incorporated and monroglobal.com. We transform followers into leaders and leaders into agents of change. We hope that this message is a blessing to you as you",
   },
   "teachings__LBT-X3Wt-LA": {
+    key: "teachings__LBT-X3Wt-LA",
     id: "LBT-X3Wt-LA",
     title: "The Best Kept Secret: Your Greatest Discovery ",
     collection: "teachings",
@@ -6254,6 +6879,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] the best kept secret that's the topic the best kept secret when i was a few hours ago in the beautiful city but i was in last it was a strange experience i i drove past a beautiful cemetery",
   },
   "teachings__Vn-K840Fllg": {
+    key: "teachings__Vn-K840Fllg",
     id: "Vn-K840Fllg",
     title: "The Characteristics of A King Part 1 ",
     collection: "teachings",
@@ -6264,6 +6890,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__N-gvD6fOyC8": {
+    key: "teachings__N-gvD6fOyC8",
     id: "N-gvD6fOyC8",
     title: "The Characteristics of A King Part 2 ",
     collection: "teachings",
@@ -6274,6 +6901,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing",
   },
   "teachings__OOf72Jvs2vQ": {
+    key: "teachings__OOf72Jvs2vQ",
     id: "OOf72Jvs2vQ",
     title: "The Characteristics of Kingdom Ambassadors ",
     collection: "teachings",
@@ -6284,6 +6912,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power packed message provided by monroe global incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as you",
   },
   "teachings__j8XhlosEfO0": {
+    key: "teachings__j8XhlosEfO0",
     id: "j8XhlosEfO0",
     title: "The Characteristics Of The Kingdom ",
     collection: "teachings",
@@ -6294,6 +6923,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global calm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__CfXgfgBRwMI": {
+    key: "teachings__CfXgfgBRwMI",
     id: "CfXgfgBRwMI",
     title: "The Church of The Kingdom ",
     collection: "teachings",
@@ -6304,6 +6934,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as you",
   },
   "teachings__dhTuZQ-_cJw": {
+    key: "teachings__dhTuZQ-_cJw",
     id: "dhTuZQ-_cJw",
     title: "The Clash of 2 Worlds On One Earth Part 1 ",
     collection: "teachings",
@@ -6314,6 +6945,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Thank you for joining us for another [music] power-p packed message provided by Monrog Global Incorporated and monroglobal.com. We transform followers into leaders and leaders into agents of change. We hope that this message is a blessing to you as",
   },
   "teachings__krtH0S1_ys4": {
+    key: "teachings__krtH0S1_ys4",
     id: "krtH0S1_ys4",
     title: "The Concepts and Characteristics of The Kingdom Part 1 ",
     collection: "teachings",
@@ -6324,6 +6956,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings___rSiXhoLt_8": {
+    key: "teachings___rSiXhoLt_8",
     id: "_rSiXhoLt_8",
     title: "The Concepts and Characteristics of The Kingdom Part 2 ",
     collection: "teachings",
@@ -6334,6 +6967,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__yUhM8wjf-3c": {
+    key: "teachings__yUhM8wjf-3c",
     id: "yUhM8wjf-3c",
     title: "The Corporate Purpose of God ",
     collection: "teachings",
@@ -6344,6 +6978,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] we want to talk about now god's corporate purpose his purpose for himself our root scripture that we use we're going to go back to it for a moment in proverbs chapter 19 verse 21. i always state that",
   },
   "teachings__hNP7wrEx7u4": {
+    key: "teachings__hNP7wrEx7u4",
     id: "hNP7wrEx7u4",
     title: "The Danger of Power Without Principle ",
     collection: "teachings",
@@ -6354,6 +6989,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] delivered people do not need freedom they need training i'm going to say this again god has shown that delivered people do not need freedom they need training first delivered people should not be given power they need to",
   },
   "teachings__EJiVU-Cc0vc": {
+    key: "teachings__EJiVU-Cc0vc",
     id: "EJiVU-Cc0vc",
     title: "The Danger of Uncontrolled Change ",
     collection: "teachings",
@@ -6364,6 +7000,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global.com we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__Qck2NZFDpdU": {
+    key: "teachings__Qck2NZFDpdU",
     id: "Qck2NZFDpdU",
     title: "The Danger of Unregulated Change ",
     collection: "teachings",
@@ -6374,6 +7011,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global.com we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__KpGCGqGJvw4": {
+    key: "teachings__KpGCGqGJvw4",
     id: "KpGCGqGJvw4",
     title: "The Difference Between Poor, Rich, and Wealthy People ",
     collection: "teachings",
@@ -6384,6 +7022,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] there are three types of people in the world let's see which one you are there's poor people there's rich people and there's wealthy people poor people always thinking about money rich people think about things it's my car",
   },
   "teachings__bnFCDZNq4f4": {
+    key: "teachings__bnFCDZNq4f4",
     id: "bnFCDZNq4f4",
     title: "The Discipline Of Vision: Dr. Myles Munroe's Strategic Approach ",
     collection: "teachings",
@@ -6394,6 +7033,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] i want to speak on what is vision but i'm going to be focusing on a little bit more of the discipline of vision the discipline of vision and i want to do a slight review for those who",
   },
   "teachings__SRI67uv62Ao": {
+    key: "teachings__SRI67uv62Ao",
     id: "SRI67uv62Ao",
     title: "The Discovery of Personal Purpose In Leadership ",
     collection: "teachings",
@@ -6404,6 +7044,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] the discovery of personal purpose in leadership if you were to ask me what is the most important aspect of a person becoming an effective leader i would tell you it is purpose it is always at the top",
   },
   "teachings__Azcf1122PMA": {
+    key: "teachings__Azcf1122PMA",
     id: "Azcf1122PMA",
     title: "The Doctrine of God Part 1 ",
     collection: "teachings",
@@ -6414,6 +7055,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "of God. I want you to get a your your notes again and keep a notebook just for this series because this is going to be the foundation for your whole belief as a Christian. And if you don't have",
   },
   "teachings__m8o7Y7epjbU": {
+    key: "teachings__m8o7Y7epjbU",
     id: "m8o7Y7epjbU",
     title: "The Doctrine of Man ",
     collection: "teachings",
@@ -6424,6 +7066,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "foreign this month is the doctrine of man and this is the first session on this particular topic Psalm 8. it's an important Psalm in the Bible and I want you to take a look at it this Psalm is",
   },
   "teachings__D26_H9UzlX8": {
+    key: "teachings__D26_H9UzlX8",
     id: "D26_H9UzlX8",
     title: "The Doctrine of The Trinity ",
     collection: "teachings",
@@ -6434,6 +7077,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] the mystery of the trinity i want to open this session with a couple of comments that we need in order to set our minds as humans in the right framework the greatest mistake that any man could ever",
   },
   "teachings__bBmDPLF6wS0": {
+    key: "teachings__bBmDPLF6wS0",
     id: "bBmDPLF6wS0",
     title: "The Dominion Mandate of Leadership ",
     collection: "teachings",
@@ -6444,6 +7088,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is",
   },
   "teachings__mAziek5GOs8": {
+    key: "teachings__mAziek5GOs8",
     id: "mAziek5GOs8",
     title: "The Duties of A Father To His Children ",
     collection: "teachings",
@@ -6454,6 +7099,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global.com we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__3bdJB9lyV4c": {
+    key: "teachings__3bdJB9lyV4c",
     id: "3bdJB9lyV4c",
     title: "The Earth vs The World ",
     collection: "teachings",
@@ -6464,6 +7110,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] i want to remind all of you maybe for the first time you may discover that there's a difference between the earth and the world never confuse the two there's nothing wrong with the earth the earth is innocent",
   },
   "teachings__pyVeky_1yws": {
+    key: "teachings__pyVeky_1yws",
     id: "pyVeky_1yws",
     title: "The Foundation of National Culture Part 1 ",
     collection: "teachings",
@@ -6474,6 +7121,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Thank you for joining us for another power-p packed message provided by Monro Global Incorporated and monroglobal.com. We transform followers into leaders and leaders into agents of change. We hope that this message is a blessing to you as you",
   },
   "teachings__kCCIlWP6O2U": {
+    key: "teachings__kCCIlWP6O2U",
     id: "kCCIlWP6O2U",
     title: "The Foundations Of Kingdom Life: Key Insights By Dr. Myles Munroe Part 1 ",
     collection: "teachings",
@@ -6484,6 +7132,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another powerp packed Message from Dr Miles Monroe provided by Monroe Global Incorporated and Monro global.com we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__0xPyyoA4QIs": {
+    key: "teachings__0xPyyoA4QIs",
     id: "0xPyyoA4QIs",
     title: "The Generational Power of Fathers ",
     collection: "teachings",
@@ -6494,6 +7143,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global calm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__TNy3-f6xgmY": {
+    key: "teachings__TNy3-f6xgmY",
     id: "TNy3-f6xgmY",
     title: "The Heart of Leadership ",
     collection: "teachings",
@@ -6504,6 +7154,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing",
   },
   "teachings__imxaXmr7eeQ": {
+    key: "teachings__imxaXmr7eeQ",
     id: "imxaXmr7eeQ",
     title: "The Higher You Go The More We See ",
     collection: "teachings",
@@ -6514,6 +7165,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "I found out something years ago, you know, when you rise to the top, everybody can see under. You better have clean clothes. Under clothes I'm talking about. The higher you go, THE MORE YOU SEE. YOU GOT CORRUPTION, THAT",
   },
   "teachings__3pzGxN1WY84": {
+    key: "teachings__3pzGxN1WY84",
     id: "3pzGxN1WY84",
     title: "The Highest Level of Covenant ",
     collection: "teachings",
@@ -6524,6 +7176,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] do you know when you get married do you know why you have a meal all through the bible it's a very common thing because every time you cut a covenant with someone you seal it with a meal",
   },
   "teachings__RJdI0FEIXic": {
+    key: "teachings__RJdI0FEIXic",
     id: "RJdI0FEIXic",
     title: "The Holy Spirit's Power, Purpose, & Person Part 2: Insights By Dr. Myles Munroe ",
     collection: "teachings",
@@ -6534,6 +7187,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__1e9CZfQm2RU": {
+    key: "teachings__1e9CZfQm2RU",
     id: "1e9CZfQm2RU",
     title: "The Holy Spirit's Purpose, Power, And Person: Insights By Dr. Myles Munroe ",
     collection: "teachings",
@@ -6544,6 +7198,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global calm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__kZOPrzbIzz0": {
+    key: "teachings__kZOPrzbIzz0",
     id: "kZOPrzbIzz0",
     title: "The Holy Spirit: Emotion and Release ",
     collection: "teachings",
@@ -6554,6 +7209,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] thank you for joining us for another power packed message from dr miles monroe provided by monroe global incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__Gy_tHy6_KHc": {
+    key: "teachings__Gy_tHy6_KHc",
     id: "Gy_tHy6_KHc",
     title: "The Husband and Wife’s Role In Marriage ",
     collection: "teachings",
@@ -6564,6 +7220,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] failure to clarify the husbands and wife role in a relationship is a major cause of marital disruption as a couple when you're married you will be involved in an almost endless number of activities and responsibilities and each",
   },
   "teachings__qm9o0gqlJc4": {
+    key: "teachings__qm9o0gqlJc4",
     id: "qm9o0gqlJc4",
     title: "The Importance of Attitude ",
     collection: "teachings",
@@ -6574,6 +7231,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] uh there are two animals that god identified himself with both of them are leaders one is the eagle the other is the lion i was wondering why god did this but he created them so he knows their",
   },
   "teachings__XP_sI7b25o8": {
+    key: "teachings__XP_sI7b25o8",
     id: "XP_sI7b25o8",
     title: "The Key To Benefitting From Crisis ",
     collection: "teachings",
@@ -6584,6 +7242,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__Fa6iGvZjD_I": {
+    key: "teachings__Fa6iGvZjD_I",
     id: "Fa6iGvZjD_I",
     title: "The Key To Kingdom Citizenship Authority Part 1 ",
     collection: "teachings",
@@ -6594,6 +7253,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Thank you for joining us for another power-p packed message from Dr. Miles Monroe provided by Monro Global [music] Incorporated and monroglobal.com. We transform followers into leaders and leaders into agents of change. We hope that this message is a",
   },
   "teachings__5-3ILOmPqGo": {
+    key: "teachings__5-3ILOmPqGo",
     id: "5-3ILOmPqGo",
     title: "The Key To Kingdom Influence In A Community ",
     collection: "teachings",
@@ -6604,6 +7264,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Thank you for joining us for another power-p packed message from Dr. Miles Monroe provided by Monro Global Incorporated and monroglobal.com. We transform followers into leaders and leaders into agents of change. We hope that this message is a blessing",
   },
   "teachings__sjUL0o2iG7I": {
+    key: "teachings__sjUL0o2iG7I",
     id: "sjUL0o2iG7I",
     title: "The Key To Living Your Future ",
     collection: "teachings",
@@ -6614,6 +7275,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another powerp packed Message from Dr Miles Monroe provided by Monroe Global Incorporated and Monro global.com we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__LNr-IULt-jU": {
+    key: "teachings__LNr-IULt-jU",
     id: "LNr-IULt-jU",
     title: "The Key To Successful Communication ",
     collection: "teachings",
@@ -6624,6 +7286,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] this is why i am convinced that nothing on earth is more powerful than an idea because ideas exist in the head ideas deal with finnish pictures the shoe on your feet used to be an idea the clothing",
   },
   "teachings__Q9OcElE8e2o": {
+    key: "teachings__Q9OcElE8e2o",
     id: "Q9OcElE8e2o",
     title: "The Key To Successful Leadership Succession ",
     collection: "teachings",
@@ -6634,6 +7297,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[music] I'm going to speak on the subject the key to successful leadership succession. The key to successful leadership succession. I have had the privilege of meeting many leaders in every category. I have sat with the president of Israel.",
   },
   "teachings__CoknZGFnKpI": {
+    key: "teachings__CoknZGFnKpI",
     id: "CoknZGFnKpI",
     title: "The Keys of The Kingdom ",
     collection: "teachings",
@@ -6644,6 +7308,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] i want to briefly talk about keys for a minute please write this down keys are the principles or the laws or the precepts that affect change and function that's what keys are the bible talks about the keys",
   },
   "teachings__4LIoz_IBeOs": {
+    key: "teachings__4LIoz_IBeOs",
     id: "4LIoz_IBeOs",
     title: "The Keys To Accessing The Things of The Kingdom Part 1 ",
     collection: "teachings",
@@ -6654,6 +7319,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "foreign [Music] in this room are controlled by things you need deliverance from things and I want to show you in this series on the kingdom in this segment how Jesus describes the power of things over our lives so",
   },
   "teachings__jwv8XHKK_08": {
+    key: "teachings__jwv8XHKK_08",
     id: "jwv8XHKK_08",
     title: "The Keys To Entering Kingdom Citizenship ",
     collection: "teachings",
@@ -6664,6 +7330,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global calm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__9fonDhc3Hs8": {
+    key: "teachings__9fonDhc3Hs8",
     id: "9fonDhc3Hs8",
     title: "The Keys To The Keys of The Kingdom Part 1 ",
     collection: "teachings",
@@ -6674,6 +7341,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Thank you for joining us for another power-packed message provided by Monroe Global Incorporated and monroeglobal.com. We transform followers into leaders and leaders into agents of change. We hope that this message is a blessing to you as you advance",
   },
   "teachings__nnllqDZIAsU": {
+    key: "teachings__nnllqDZIAsU",
     id: "nnllqDZIAsU",
     title: "The Keys To The Keys of The Kingdom Part 2 ",
     collection: "teachings",
@@ -6684,6 +7352,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Thank you for joining us for another power packed message provided by Monroe Global Incorporated and Monroeglobal.com. We transform followers into leaders and leaders into agents of change. We hope that this message is a blessing to you as you",
   },
   "teachings__qPjAZa8L9Zo": {
+    key: "teachings__qPjAZa8L9Zo",
     id: "qPjAZa8L9Zo",
     title: "The King, The Keys, And The Kingdom Explained Part 2 By Dr. Myles Munroe ",
     collection: "teachings",
@@ -6694,6 +7363,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__MtkGfrwpwPY": {
+    key: "teachings__MtkGfrwpwPY",
     id: "MtkGfrwpwPY",
     title: "The Kingdom Ambassadorship of Jesus ",
     collection: "teachings",
@@ -6704,6 +7374,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Thank you for joining us for another power-packed message provided by Monroe Global Incorporated and Monroeglobal.com. We transform followers into leaders and leaders into agents of change. We hope that this message is a blessing to you as you advance",
   },
   "teachings__83cBiiyYdd0": {
+    key: "teachings__83cBiiyYdd0",
     id: "83cBiiyYdd0",
     title: "The Kingdom and The Church Part 1 ",
     collection: "teachings",
@@ -6714,6 +7385,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings___XofHku6yw0": {
+    key: "teachings___XofHku6yw0",
     id: "_XofHku6yw0",
     title: "The Kingdom and The Church Part 2 ",
     collection: "teachings",
@@ -6724,6 +7396,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global calm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__f4FkAi5bcuc": {
+    key: "teachings__f4FkAi5bcuc",
     id: "f4FkAi5bcuc",
     title: "The Kingdom and The Great Commission ",
     collection: "teachings",
@@ -6734,6 +7407,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power packed message provided by monroe global incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as you",
   },
   "teachings__mXOiZhXWzoU": {
+    key: "teachings__mXOiZhXWzoU",
     id: "mXOiZhXWzoU",
     title: "The Kingdom Assignment of Jesus ",
     collection: "teachings",
@@ -6744,6 +7418,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is",
   },
   "teachings__h8jiN3KCxmA": {
+    key: "teachings__h8jiN3KCxmA",
     id: "h8jiN3KCxmA",
     title: "The Kingdom Assignment of The Church ",
     collection: "teachings",
@@ -6754,6 +7429,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__PlXBBEmidJ8": {
+    key: "teachings__PlXBBEmidJ8",
     id: "PlXBBEmidJ8",
     title: "The Kingdom Concept and Principle of Transformation ",
     collection: "teachings",
@@ -6764,6 +7440,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global.com we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__zk7F3DE990I": {
+    key: "teachings__zk7F3DE990I",
     id: "zk7F3DE990I",
     title: "The Kingdom Concept of Lordship ",
     collection: "teachings",
@@ -6774,6 +7451,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Thank you for joining us for another power packed message provided by Monroe Global Incorporated and Monroeglobal.com. We transform followers into leaders and leaders into agents of change. We hope that this message is a blessing to you as you",
   },
   "teachings__l-ZzV1YhAK0": {
+    key: "teachings__l-ZzV1YhAK0",
     id: "l-ZzV1YhAK0",
     title: "The Kingdom Culture of Motherhood ",
     collection: "teachings",
@@ -6784,6 +7462,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__uwJVDdKlHQM": {
+    key: "teachings__uwJVDdKlHQM",
     id: "uwJVDdKlHQM",
     title: "The Kingdom Keys For Transforming A Nation ",
     collection: "teachings",
@@ -6794,6 +7473,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__xqlf4-NahTM": {
+    key: "teachings__xqlf4-NahTM",
     id: "xqlf4-NahTM",
     title: "The Kingdom of Servant Kings ",
     collection: "teachings",
@@ -6804,6 +7484,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__XQpFhdiRnSE": {
+    key: "teachings__XQpFhdiRnSE",
     id: "XQpFhdiRnSE",
     title: "The Kingdom Philosophy of Servant Leadership ",
     collection: "teachings",
@@ -6814,6 +7495,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "i want to speak on the subject the philosophy of servant leadership the kingdom philosophy of servant leadership i want to begin with a few statements that we've been talking about for the past 10 months i have been speaking",
   },
   "teachings__x0nZ2BBiCKw": {
+    key: "teachings__x0nZ2BBiCKw",
     id: "x0nZ2BBiCKw",
     title: "The Kingdom Power and Principle of Management ",
     collection: "teachings",
@@ -6824,6 +7506,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__4DccWsI5rAs": {
+    key: "teachings__4DccWsI5rAs",
     id: "4DccWsI5rAs",
     title: "The Kingdom Principle of Addition ",
     collection: "teachings",
@@ -6834,6 +7517,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "foreign [Music] Edition probably can be one of the most important sessions you're going to get because it's going to show you that your stress and your sickness and your diseases are all related to the pursuit of provisions let",
   },
   "teachings__FTrTuPjpbjs": {
+    key: "teachings__FTrTuPjpbjs",
     id: "FTrTuPjpbjs",
     title: "The Kingdom Principles of Keys Part 1 ",
     collection: "teachings",
@@ -6844,6 +7528,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing",
   },
   "teachings__Je1p1ToHRA4": {
+    key: "teachings__Je1p1ToHRA4",
     id: "Je1p1ToHRA4",
     title: "The Kingdom Principles of Keys Part 1 ",
     collection: "teachings",
@@ -6854,6 +7539,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Thank you for joining us for another power-packed message from Dr. Myles Monroe provided by Monroe Global Incorporated and Monroeglobal.com. We transform followers into leaders and leaders into agents of change. We hope that this message is a blessing to",
   },
   "teachings__EyVaw2XF3ng": {
+    key: "teachings__EyVaw2XF3ng",
     id: "EyVaw2XF3ng",
     title: "The Kingdom Principles of Keys Part 2 ",
     collection: "teachings",
@@ -6864,6 +7550,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing",
   },
   "teachings__hlsyPbkiXcs": {
+    key: "teachings__hlsyPbkiXcs",
     id: "hlsyPbkiXcs",
     title: "The Kingdom Principles of Keys Part 3 ",
     collection: "teachings",
@@ -6874,6 +7561,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Thank you for joining us for another power-packed message from Dr. Myles Monroe provided by Monroe Global Incorporated and Monroeglobal.com. We transform followers into leaders and leaders into agents of change. We hope that this message is a blessing to",
   },
   "teachings__l3B8eVIDZrM": {
+    key: "teachings__l3B8eVIDZrM",
     id: "l3B8eVIDZrM",
     title: "The Kingdom Solution To Political Corruption ",
     collection: "teachings",
@@ -6884,6 +7572,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Thank you for joining us for another power packed message from Dr. Myles Monroe provided by Monroe Global Incorporated and Monroeglobal.com. We transform followers into leaders and leaders into agents of change. We hope that this message is a blessing",
   },
   "teachings__Xktxz7RI378": {
+    key: "teachings__Xktxz7RI378",
     id: "Xktxz7RI378",
     title: "The Kingdom Success Key Part 1 ",
     collection: "teachings",
@@ -6894,6 +7583,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global calm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings___P1m1mJF_2w": {
+    key: "teachings___P1m1mJF_2w",
     id: "_P1m1mJF_2w",
     title: "The Kingdom Success Key Part 2 ",
     collection: "teachings",
@@ -6904,6 +7594,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__6mNkNgKB-aI": {
+    key: "teachings__6mNkNgKB-aI",
     id: "6mNkNgKB-aI",
     title: "The Kingdom Transformation Mandate ",
     collection: "teachings",
@@ -6914,6 +7605,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global.com we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__eMH_7uq_O1o": {
+    key: "teachings__eMH_7uq_O1o",
     id: "eMH_7uq_O1o",
     title: "The Law of Kingdom Citizenship ",
     collection: "teachings",
@@ -6924,6 +7616,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Write this down, please. The law of kingdom citizenship. Say that with me. The law of kingdom citizenship. Say it again. Citizenship is a result of law. So we want to focus tonight on the power of your citizenship. And",
   },
   "teachings__xblAD0kiO-s": {
+    key: "teachings__xblAD0kiO-s",
     id: "xblAD0kiO-s",
     title: "The Leadership Philosophy For National Leaders ",
     collection: "teachings",
@@ -6934,6 +7627,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] tonight we stand at what i call a historical convergence we are a generation that is trapped in a cubicle of tidal events that have overwhelmed the best among us there is no doubt that we are students of",
   },
   "teachings__ruRWs_ugG0U": {
+    key: "teachings__ruRWs_ugG0U",
     id: "ruRWs_ugG0U",
     title: "The Moral Force of Leadership ",
     collection: "teachings",
@@ -6944,6 +7638,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__9XGp8iPvXHM": {
+    key: "teachings__9XGp8iPvXHM",
     id: "9XGp8iPvXHM",
     title: "The Most Important Aspect of Leadership: Passing It On ",
     collection: "teachings",
@@ -6954,6 +7649,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Thank you for joining us for another power-packed message from Dr. Myles Monroe provided by Monroe Global Incorporated and Monroeglobal.com. We transform followers into leaders and leaders into agents of change. We hope that this message is a blessing to",
   },
   "teachings__mJudOF53zxU": {
+    key: "teachings__mJudOF53zxU",
     id: "mJudOF53zxU",
     title: "The Most Important Person on Earth ",
     collection: "teachings",
@@ -6964,6 +7660,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "there's nothing in earth more important than understanding so please write down if you will the power of understanding the power of understanding in the book of Matthew chapter 4 verse 17 Jesus introduces himself to the world his comments",
   },
   "teachings__lrK_EVAwENA": {
+    key: "teachings__lrK_EVAwENA",
     id: "lrK_EVAwENA",
     title: "The Most Important Quality of A True Leader ",
     collection: "teachings",
@@ -6974,6 +7671,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "now there are two animals that God identified himself with both of them are leaders one is the eagle the other is the lion I was wondering why God did this but he created them so he knows their qualities",
   },
   "teachings__ok6M05-FT90": {
+    key: "teachings__ok6M05-FT90",
     id: "ok6M05-FT90",
     title: "The Nature of Doctrines ",
     collection: "teachings",
@@ -6984,6 +7682,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "I want to speak to you this morning on the topic, AND PLEASE GET A BRAND NEW SHEET OF PAPER or a new notebook. We're going to begin our series on doctrines. And the session for our opening session is",
   },
   "teachings__kpTRjXw55Zc": {
+    key: "teachings__kpTRjXw55Zc",
     id: "kpTRjXw55Zc",
     title: "The Original Idea and Message of Jesus ",
     collection: "teachings",
@@ -6994,6 +7693,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] thank you for joining us for another power packed message from dr miles monroe provided by monroe global incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__ufVzeXXb9EY": {
+    key: "teachings__ufVzeXXb9EY",
     id: "ufVzeXXb9EY",
     title: "The Perfect Timing For God's Kingdom ",
     collection: "teachings",
@@ -7004,6 +7704,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] so here is god with a whole planet of people he's in heaven he's got this message that's important to them about who they are as a kingdom he sends himself in a body now chronologically speaking in this",
   },
   "teachings__1lfLpmYz7RQ": {
+    key: "teachings__1lfLpmYz7RQ",
     id: "1lfLpmYz7RQ",
     title: "The Potential Principal ",
     collection: "teachings",
@@ -7014,6 +7715,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] the potential principle is introduced in the first book of the bible first chapter i want you to turn there i'll show it to you it's found in verse 11 god says i have placed the seed of everything",
   },
   "teachings__lYEdva76pok": {
+    key: "teachings__lYEdva76pok",
     id: "lYEdva76pok",
     title: "The Power and Purpose of The Family ",
     collection: "teachings",
@@ -7024,6 +7726,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Thank you for joining [music] us for another power-p packed message from Dr. Miles Monroe provided by Monro Global Incorporated and monroglobal.com. We transform followers into leaders and leaders into agents of change. We hope that this message is [music]",
   },
   "teachings__ZqMVp6eS2oA": {
+    key: "teachings__ZqMVp6eS2oA",
     id: "ZqMVp6eS2oA",
     title: "The Power of Community In Kingdom Colonization Part 1 ",
     collection: "teachings",
@@ -7034,6 +7737,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Thank you for joining us for another power-p packed message from Dr. Miles Monroe provided by Monro Global Incorporated and monro Global.com. We transform followers into leaders and leaders into agents of change. We hope that this message is a",
   },
   "teachings__sKVoiy-8WQ8": {
+    key: "teachings__sKVoiy-8WQ8",
     id: "sKVoiy-8WQ8",
     title: "The Power of Ideas ",
     collection: "teachings",
@@ -7044,6 +7748,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] he said i will give you the keys of the kingdom of heaven first of all keys are precepts a precept is a thought it was a thought but precept means original thought matter of fact the word sept",
   },
   "teachings___JuLzxZg7nM": {
+    key: "teachings___JuLzxZg7nM",
     id: "_JuLzxZg7nM",
     title: "The Power of Keys ",
     collection: "teachings",
@@ -7054,6 +7759,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Keys are principles and laws established by the creator of a product necessary for successful function. That's a key. When you buy a lock, the key comes with with the with the lock, doesn't it? Right? Then you never buy",
   },
   "teachings__Vt0iQtsosz0": {
+    key: "teachings__Vt0iQtsosz0",
     id: "Vt0iQtsosz0",
     title: "The Power of Kingdom Ambassadors ",
     collection: "teachings",
@@ -7064,6 +7770,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power packed message provided by monroe global incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as you",
   },
   "teachings__6VJ5BqAXVEM": {
+    key: "teachings__6VJ5BqAXVEM",
     id: "6VJ5BqAXVEM",
     title: "The Power of Mentoring & Succession: How To Secure Your Legacy ",
     collection: "teachings",
@@ -7074,6 +7781,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "and I want to share with you then on the power of mentoring and succession the power of mentoring and succession we're going to focus on how to secure your legacy how to live beyond the grave one of the",
   },
   "teachings__KNGcuXFdSKA": {
+    key: "teachings__KNGcuXFdSKA",
     id: "KNGcuXFdSKA",
     title: "The Power of Planning and Change Part 2 ",
     collection: "teachings",
@@ -7084,6 +7792,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global.com we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__EKm_YKyr-AE": {
+    key: "teachings__EKm_YKyr-AE",
     id: "EKm_YKyr-AE",
     title: "The Power of Planning and Change Part 3 ",
     collection: "teachings",
@@ -7094,6 +7803,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global.com we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__GTJNxmDRSJc": {
+    key: "teachings__GTJNxmDRSJc",
     id: "GTJNxmDRSJc",
     title: "The Power of Purpose Part 1 ",
     collection: "teachings",
@@ -7104,6 +7814,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Thank you for joining us for another powerful message from Dr. Miles Monroe, brought to you by Monroe Global Incorporated and MonroeGlobal.com. We transform followers into leaders and leaders into agents of change. We hope this message will be a",
   },
   "teachings__vIEg0R8qEk8": {
+    key: "teachings__vIEg0R8qEk8",
     id: "vIEg0R8qEk8",
     title: "The Power of Purpose Part 2 ",
     collection: "teachings",
@@ -7114,6 +7825,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] Front between 20 and 30 let's go in seven months Blackman i n no and yes [Music] Goldstein 0 on this line 3 are equal [Applause] for me and it's that my blueberry nothing more this and many times",
   },
   "teachings__DKkcmBSA3Lc": {
+    key: "teachings__DKkcmBSA3Lc",
     id: "DKkcmBSA3Lc",
     title: "The Power of Seed ",
     collection: "teachings",
@@ -7124,6 +7836,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__xYXqu-nHduo": {
+    key: "teachings__xYXqu-nHduo",
     id: "xYXqu-nHduo",
     title: "The Power of The Media ",
     collection: "teachings",
@@ -7134,6 +7847,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] uh please write this down in your notes the media mandate of the kingdom the media mandate of the kingdom let's begin focusing on a very simple topic and that is understanding the power and purpose of the kingdom",
   },
   "teachings__JpAGJY6FOig": {
+    key: "teachings__JpAGJY6FOig",
     id: "JpAGJY6FOig",
     title: "The Power of Visionary Leadership ",
     collection: "teachings",
@@ -7144,6 +7858,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] thank you for joining us for another power packed message from dr miles monroe provided by monroe global incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__im5sw4-iXwA": {
+    key: "teachings__im5sw4-iXwA",
     id: "im5sw4-iXwA",
     title: "The Power of Your Potential ",
     collection: "teachings",
@@ -7154,6 +7869,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] thank you for joining us for another Power packed Message from Dr Miles Monroe provided by Monroe Global Incorporated and monroegglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__o-ru4PreS6Q": {
+    key: "teachings__o-ru4PreS6Q",
     id: "o-ru4PreS6Q",
     title: "The Practical Approach To Seeking The Kingdom ",
     collection: "teachings",
@@ -7164,6 +7880,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] but today we're going to be focusing on the subject how to seek the kingdom our theme for this series is rediscovering the priority of God 's priority is very simple and that is the kingdom of God we're",
   },
   "teachings__Jp3-9q1fUFg": {
+    key: "teachings__Jp3-9q1fUFg",
     id: "Jp3-9q1fUFg",
     title: "The Practical Contemporary Kingdom Life ",
     collection: "teachings",
@@ -7174,6 +7891,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global calm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__bV8SNzyEkEw": {
+    key: "teachings__bV8SNzyEkEw",
     id: "bV8SNzyEkEw",
     title: "The Prayer Template Of Jesus Explained By Dr. Myles Munroe ",
     collection: "teachings",
@@ -7184,6 +7902,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power packed message from dr miles monroe provided by monroe global incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing",
   },
   "teachings__ZPDqA2S8vo8": {
+    key: "teachings__ZPDqA2S8vo8",
     id: "ZPDqA2S8vo8",
     title: "The Principle of Kingdom Law and Righteousness ",
     collection: "teachings",
@@ -7194,6 +7913,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing",
   },
   "teachings__TYCeLls6iWc": {
+    key: "teachings__TYCeLls6iWc",
     id: "TYCeLls6iWc",
     title: "The Principle of Self-Education ",
     collection: "teachings",
@@ -7204,6 +7924,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] every human being was born to born to be a leader but the majority of them will die as followers and that's because our culture is designed to suffocate your leadership potential and convince you that you are a",
   },
   "teachings__4dR3yThavWQ": {
+    key: "teachings__4dR3yThavWQ",
     id: "4dR3yThavWQ",
     title: "The Principle of The Resurrection ",
     collection: "teachings",
@@ -7214,6 +7935,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Thank you for joining us for another power [music] packed message from Dr. Myles Monroe provided by Monroe Global Incorporated and Monroeglobal.com. >> [music] >> We transform followers into leaders and leaders into agents of change. We hope that this",
   },
   "teachings__luzfHXzoY0c": {
+    key: "teachings__luzfHXzoY0c",
     id: "luzfHXzoY0c",
     title: "The Principle of Value ",
     collection: "teachings",
@@ -7224,6 +7946,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] a few years ago when i was in university i studied my master's degree in business administration i was in an economics class keep holding hands we don't let go and the professor walked in the class he said",
   },
   "teachings__znzVhndSBK0": {
+    key: "teachings__znzVhndSBK0",
     id: "znzVhndSBK0",
     title: "The Principles and Process of Generational Transition ",
     collection: "teachings",
@@ -7234,6 +7957,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global.com we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__IG4j7708hPA": {
+    key: "teachings__IG4j7708hPA",
     id: "IG4j7708hPA",
     title: "The Priority of Character In Leadership ",
     collection: "teachings",
@@ -7244,6 +7968,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing",
   },
   "teachings__-u7DAZykKrE": {
+    key: "teachings__-u7DAZykKrE",
     id: "-u7DAZykKrE",
     title: "The Priority of Community In Kingdoms ",
     collection: "teachings",
@@ -7254,6 +7979,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another powerp packed message provided by Monroe Global Incorporated and Monroe global.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__0pGFlYy_k7I": {
+    key: "teachings__0pGFlYy_k7I",
     id: "0pGFlYy_k7I",
     title: "The Priority of Community In Kingdoms Part 2 ",
     collection: "teachings",
@@ -7264,6 +7990,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another powerp packed message provided by Monroe Global Incorporated and Monroe global.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__FIizwRafgfE": {
+    key: "teachings__FIizwRafgfE",
     id: "FIizwRafgfE",
     title: "The Priority of Culture In Relationships Part 1 ",
     collection: "teachings",
@@ -7274,6 +8001,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__nmAP12VR-0g": {
+    key: "teachings__nmAP12VR-0g",
     id: "nmAP12VR-0g",
     title: "The Priority of Culture In Relationships Part 2 ",
     collection: "teachings",
@@ -7284,6 +8012,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__1Kiax9bdgm4": {
+    key: "teachings__1Kiax9bdgm4",
     id: "1Kiax9bdgm4",
     title: "The Priority of Culture In Relationships Part 3 ",
     collection: "teachings",
@@ -7294,6 +8023,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global calm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__1buZLnom8ZU": {
+    key: "teachings__1buZLnom8ZU",
     id: "1buZLnom8ZU",
     title: "The Priority of the Kingdom of God ",
     collection: "teachings",
@@ -7304,6 +8034,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__tkQ4nt0FGTE": {
+    key: "teachings__tkQ4nt0FGTE",
     id: "tkQ4nt0FGTE",
     title: "The Priority of Worship ",
     collection: "teachings",
@@ -7314,6 +8045,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Thank you for joining us for another power-p packed message provided by Monro Global Incorporated and monroglobal.com. We transform followers into leaders and leaders into agents of change. We hope that this message is a blessing to you as you",
   },
   "teachings__huAOxNMSJ3M": {
+    key: "teachings__huAOxNMSJ3M",
     id: "huAOxNMSJ3M",
     title: "The Process and Privileges of Seeking The Kingdom Part 1 ",
     collection: "teachings",
@@ -7324,6 +8056,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "foreign [Music] I'd like for you to write this in your notes please the process and the Privileges of kingdom seeking the process and the Privileges of seeking the kingdom first our subtitle is the advantage of living in the",
   },
   "teachings__klE6IkLD0aM": {
+    key: "teachings__klE6IkLD0aM",
     id: "klE6IkLD0aM",
     title: "The Process of Entering The Kingdom ",
     collection: "teachings",
@@ -7334,6 +8067,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "foreign [Music] but one of the things that I wanted to deal with today is how do you enter the kingdom of God and what is the focus of this whole process of entering the kingdom of God what do",
   },
   "teachings__Y9G4Dxa5Jfs": {
+    key: "teachings__Y9G4Dxa5Jfs",
     id: "Y9G4Dxa5Jfs",
     title: "The Purpose and Power of A Kingdom Woman ",
     collection: "teachings",
@@ -7344,6 +8078,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global calm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__C00_f0ISFCo": {
+    key: "teachings__C00_f0ISFCo",
     id: "C00_f0ISFCo",
     title: "The Purpose and Power of Fathers ",
     collection: "teachings",
@@ -7354,6 +8089,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global calm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__wCSOFe_0EMM": {
+    key: "teachings__wCSOFe_0EMM",
     id: "wCSOFe_0EMM",
     title: "The Purpose and Principle of Mentoring and Succession ",
     collection: "teachings",
@@ -7364,6 +8100,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing",
   },
   "teachings__5JG0S9jTp78": {
+    key: "teachings__5JG0S9jTp78",
     id: "5JG0S9jTp78",
     title: "The Purpose and Priority of Singleness ",
     collection: "teachings",
@@ -7374,6 +8111,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "we have been driven by our culture to learn to relate to other people matter of fact our parents have literally taught us how not to be single our parents emphasize the idea that we should get along with people",
   },
   "teachings__sublhGdGHgI": {
+    key: "teachings__sublhGdGHgI",
     id: "sublhGdGHgI",
     title: "The Purpose For Prayer ",
     collection: "teachings",
@@ -7384,6 +8122,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another powerp packed Message from Dr Miles Monroe provided by Monroe Global Incorporated and Monro global.com we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__NEsch6BbwAc": {
+    key: "teachings__NEsch6BbwAc",
     id: "NEsch6BbwAc",
     title: "The Purpose Power and Person of The Holy Spirit Part 3 ",
     collection: "teachings",
@@ -7394,6 +8133,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__dPAlvXk4NA4": {
+    key: "teachings__dPAlvXk4NA4",
     id: "dPAlvXk4NA4",
     title: "The Rebirth of Kingdom Influence ",
     collection: "teachings",
@@ -7404,6 +8144,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "foreign [Music] I want you to turn to the book of Acts the book of Acts begins in Luke chapter one surprise the book of Acts begins where in Luke chapter one we're going to talk about discovering the kingdom",
   },
   "teachings__YFVBlI3eL-k": {
+    key: "teachings__YFVBlI3eL-k",
     id: "YFVBlI3eL-k",
     title: "The Release of The Governor ",
     collection: "teachings",
@@ -7414,6 +8155,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Thank you for joining us for another power-packed message provided by Monroe Global Incorporated and monroeglobal.com. We transform followers into leaders and leaders into agents of change. We hope that this message is a blessing to you as you advance",
   },
   "teachings__a7N4theSZ6k": {
+    key: "teachings__a7N4theSZ6k",
     id: "a7N4theSZ6k",
     title: "The Responsibilities of A Perfect Father ",
     collection: "teachings",
@@ -7424,6 +8166,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__ckiKz-5n7Js": {
+    key: "teachings__ckiKz-5n7Js",
     id: "ckiKz-5n7Js",
     title: "The Role of Fatherhood In Family & Community Building ",
     collection: "teachings",
@@ -7434,6 +8177,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__67qGpuLBLqg": {
+    key: "teachings__67qGpuLBLqg",
     id: "67qGpuLBLqg",
     title: "The Role of The Governor In Kingdom Administration ",
     collection: "teachings",
@@ -7444,6 +8188,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__D7hoEwy7Vco": {
+    key: "teachings__D7hoEwy7Vco",
     id: "D7hoEwy7Vco",
     title: "The Roles of A Perfect Father Part 1 ",
     collection: "teachings",
@@ -7454,6 +8199,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__V9c8Ekjm0D4": {
+    key: "teachings__V9c8Ekjm0D4",
     id: "V9c8Ekjm0D4",
     title: "The Roles of A Perfect Father Part 2 ",
     collection: "teachings",
@@ -7464,6 +8210,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__KOCByM38ewo": {
+    key: "teachings__KOCByM38ewo",
     id: "KOCByM38ewo",
     title: "The Salt of The Earth ",
     collection: "teachings",
@@ -7474,6 +8221,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "do you know the word salt mean see we read this Jesus comes in the world and he says first message in the first message he gives the Beatitudes as he attitudes to be we're gonna teach you in that",
   },
   "teachings__7K-amUNP79o": {
+    key: "teachings__7K-amUNP79o",
     id: "7K-amUNP79o",
     title: "The Secret of The Keys of The Kingdom ",
     collection: "teachings",
@@ -7484,6 +8232,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__b3josPeXvOw": {
+    key: "teachings__b3josPeXvOw",
     id: "b3josPeXvOw",
     title: "The Seven Power Keys For Planning Change ",
     collection: "teachings",
@@ -7494,6 +8243,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global.com we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__4sLsec2KDds": {
+    key: "teachings__4sLsec2KDds",
     id: "4sLsec2KDds",
     title: "The Seven Principles For Planning Change Part 1 ",
     collection: "teachings",
@@ -7504,6 +8254,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Thank you for joining us for another power packed message from Dr. Myles Monroe provided by Monroe Global Incorporated and Monroeglobal.com. We transform followers into leaders and leaders into agents of change. We hope that this message is a blessing",
   },
   "teachings__bcaXHEBT2o4": {
+    key: "teachings__bcaXHEBT2o4",
     id: "bcaXHEBT2o4",
     title: "The Seven Principles For Planning Change Part 2 ",
     collection: "teachings",
@@ -7514,6 +8265,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global.com we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__1wu1XcyNJ3U": {
+    key: "teachings__1wu1XcyNJ3U",
     id: "1wu1XcyNJ3U",
     title: "The Spirit of God and The Spirit of Man ",
     collection: "teachings",
@@ -7524,6 +8276,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] thank you for joining us for another power packed message from dr miles monroe provided by monroe global incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__BGuqSfDzxx4": {
+    key: "teachings__BGuqSfDzxx4",
     id: "BGuqSfDzxx4",
     title: "The Trinity Explained ",
     collection: "teachings",
@@ -7534,6 +8287,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] the bible says the lord our god is what one and yet he is elohim it's three but it's the same god now on my right is a picture of water that is the original state of god for",
   },
   "teachings__YSteRH3fWEw": {
+    key: "teachings__YSteRH3fWEw",
     id: "YSteRH3fWEw",
     title: "The Untapped Leader In You ",
     collection: "teachings",
@@ -7544,6 +8298,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] if god created you to dominate then the capacity to dominate is in you do you get the principle okay so whatever you were born to do is built in so here's what i want you to take a",
   },
   "teachings__z1qQe9yZcOw": {
+    key: "teachings__z1qQe9yZcOw",
     id: "z1qQe9yZcOw",
     title: "The Value of Law For Kingdom Living Part 1 ",
     collection: "teachings",
@@ -7554,6 +8309,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing",
   },
   "teachings__Q0jxSdAB9Z8": {
+    key: "teachings__Q0jxSdAB9Z8",
     id: "Q0jxSdAB9Z8",
     title: "The Value of Law For Kingdom Living Part 2 ",
     collection: "teachings",
@@ -7564,6 +8320,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing",
   },
   "teachings__OuJa3k3SOeI": {
+    key: "teachings__OuJa3k3SOeI",
     id: "OuJa3k3SOeI",
     title: "The Wife’s Husband: Head or Boss ",
     collection: "teachings",
@@ -7574,6 +8331,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global.com we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__oRp1ufyJNxA": {
+    key: "teachings__oRp1ufyJNxA",
     id: "oRp1ufyJNxA",
     title: "Thrive In Crisis: Dr. Myles Munroe's Timeless Kingdom Strategies ",
     collection: "teachings",
@@ -7584,6 +8342,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__8QbH_88eD-w": {
+    key: "teachings__8QbH_88eD-w",
     id: "8QbH_88eD-w",
     title: "Thriving In Times of Crisis and Change ",
     collection: "teachings",
@@ -7594,6 +8353,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__JxDS5Nq1wvg": {
+    key: "teachings__JxDS5Nq1wvg",
     id: "JxDS5Nq1wvg",
     title: "Tips To Be A Perfect Lady By Dr. Myles Munroe: Become Your Best Self ",
     collection: "teachings",
@@ -7604,6 +8364,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global.com we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__BFko15cgDqc": {
+    key: "teachings__BFko15cgDqc",
     id: "BFko15cgDqc",
     title: "Understanding God’s Original Purpose ",
     collection: "teachings",
@@ -7614,6 +8375,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] and so it's a paradox to me that the church who represents Jesus doesn't preach his message we preach about Jesus but we don't preach about what he preached about in other words we basically preach the Gospel of",
   },
   "teachings__6f-UY4PD1E0": {
+    key: "teachings__6f-UY4PD1E0",
     id: "6f-UY4PD1E0",
     title: "Understanding God’s Priority and Primary Interest Part 1 ",
     collection: "teachings",
@@ -7624,6 +8386,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Please write in your notes on a clean sheet of paper this topic, Rediscovering God's priority. Kingdom first. We're going to be looking at understanding God's priority and primary interest. What is God's primary interest? What is his number one",
   },
   "teachings__MHrm6QIOpFA": {
+    key: "teachings__MHrm6QIOpFA",
     id: "MHrm6QIOpFA",
     title: "Understanding God’s Priority and Primary Interest Part 2 ",
     collection: "teachings",
@@ -7634,6 +8397,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] let's turn our bibles to matthew chapter six and i want you to write in your notes rediscovering god's priority kingdom first this is part two we started part one last week and this is part two understanding god's",
   },
   "teachings__uMx0kn9_z6k": {
+    key: "teachings__uMx0kn9_z6k",
     id: "uMx0kn9_z6k",
     title: "Understanding How The Kingdom Keys Work ",
     collection: "teachings",
@@ -7644,6 +8408,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__x4xZVhne9UI": {
+    key: "teachings__x4xZVhne9UI",
     id: "x4xZVhne9UI",
     title: "Understanding Kingdom Colonization Part 1 ",
     collection: "teachings",
@@ -7654,6 +8419,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "foreign thank you for joining us for another Power packed message provided by Monroe Global Incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__Y46c_vZG3vs": {
+    key: "teachings__Y46c_vZG3vs",
     id: "Y46c_vZG3vs",
     title: "Understanding Kingdom Colonization Part 2 ",
     collection: "teachings",
@@ -7664,6 +8430,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "foreign thank you for joining us for another Power packed message provided by Monroe Global Incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__e_YOcaQMDbs": {
+    key: "teachings__e_YOcaQMDbs",
     id: "e_YOcaQMDbs",
     title: "Understanding Kingdom Law and Righteousness Part 1 ",
     collection: "teachings",
@@ -7674,6 +8441,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__BJH1mHoYyEY": {
+    key: "teachings__BJH1mHoYyEY",
     id: "BJH1mHoYyEY",
     title: "Understanding Kingdom Law and Righteousness Part 2 ",
     collection: "teachings",
@@ -7684,6 +8452,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__XTfm7N8I_wQ": {
+    key: "teachings__XTfm7N8I_wQ",
     id: "XTfm7N8I_wQ",
     title: "Understanding Kingdom Migration Part 1 ",
     collection: "teachings",
@@ -7694,6 +8463,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__9OAWZ9QMCoA": {
+    key: "teachings__9OAWZ9QMCoA",
     id: "9OAWZ9QMCoA",
     title: "Understanding Kingdom Migration Part 2 ",
     collection: "teachings",
@@ -7704,6 +8474,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__OU-mwgiKg50": {
+    key: "teachings__OU-mwgiKg50",
     id: "OU-mwgiKg50",
     title: "Understanding Kingdom Migration Part 3 ",
     collection: "teachings",
@@ -7714,6 +8485,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__7MyZba__QK8": {
+    key: "teachings__7MyZba__QK8",
     id: "7MyZba__QK8",
     title: "Understanding National Freedom, Independence & Sovereignty ",
     collection: "teachings",
@@ -7724,6 +8496,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Thank you for joining us for another power-p packed message from Dr. Miles Monroe provided by Monro Global Incorporated and monroglobal.com. We transform followers into leaders and leaders into agents of change. We hope that this message is a blessing",
   },
   "teachings__VlPp6KVs0ZQ": {
+    key: "teachings__VlPp6KVs0ZQ",
     id: "VlPp6KVs0ZQ",
     title: "Understanding The 4 Types of Laws ",
     collection: "teachings",
@@ -7734,6 +8507,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power packed message from dr miles monroe provided by monroe global incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing",
   },
   "teachings__S0-VZF8Pj4I": {
+    key: "teachings__S0-VZF8Pj4I",
     id: "S0-VZF8Pj4I",
     title: "Understanding The Glory, The Word & Power of The King ",
     collection: "teachings",
@@ -7744,6 +8518,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__UKABK6aJnjQ": {
+    key: "teachings__UKABK6aJnjQ",
     id: "UKABK6aJnjQ",
     title: "Understanding The Goal of The Resurrection ",
     collection: "teachings",
@@ -7754,6 +8529,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__EwcXWV8yvU8": {
+    key: "teachings__EwcXWV8yvU8",
     id: "EwcXWV8yvU8",
     title: "Understanding The Governor of The Kingdom Part 1 ",
     collection: "teachings",
@@ -7764,6 +8540,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Thank you for joining us for another power packed message from Dr. Myles Monroe provided by Monroe Global Incorporated and Monroeglobal.com. We transform followers into leaders and leaders into agents of change. We hope that this message is a blessing",
   },
   "teachings__6-2rnAIDojI": {
+    key: "teachings__6-2rnAIDojI",
     id: "6-2rnAIDojI",
     title: "Understanding The Governor of The Kingdom Part 2 ",
     collection: "teachings",
@@ -7774,6 +8551,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power packed message from dr miles monroe provided by monroe global incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing",
   },
   "teachings__Tm7NAqKaLK8": {
+    key: "teachings__Tm7NAqKaLK8",
     id: "Tm7NAqKaLK8",
     title: "Understanding The Governor of The Kingdom Part 3 ",
     collection: "teachings",
@@ -7784,6 +8562,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] thank you for joining us for another power packed message from dr miles monroe provided by monroe global incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__n5y8taw6cpE": {
+    key: "teachings__n5y8taw6cpE",
     id: "n5y8taw6cpE",
     title: "Understanding The Keys Of The Kingdom ",
     collection: "teachings",
@@ -7794,6 +8573,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__QJtthc3cyZs": {
+    key: "teachings__QJtthc3cyZs",
     id: "QJtthc3cyZs",
     title: "Understanding The Kingdom Principle of Fatherhood ",
     collection: "teachings",
@@ -7804,6 +8584,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__tzWf0iD1fG8": {
+    key: "teachings__tzWf0iD1fG8",
     id: "tzWf0iD1fG8",
     title: "Understanding The Nature and Discipline of Vision Part 1 ",
     collection: "teachings",
@@ -7814,6 +8595,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] let's always remind ourselves why we exist why we are doing what we're doing and what we are trying to accomplish so please everyone take notes because you're going to learn a lot of things personally this morning to",
   },
   "teachings__e9T0jXYfGeA": {
+    key: "teachings__e9T0jXYfGeA",
     id: "e9T0jXYfGeA",
     title: "Understanding The Nature of Law ",
     collection: "teachings",
@@ -7824,6 +8606,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing",
   },
   "teachings__MWwTmIO5Jzo": {
+    key: "teachings__MWwTmIO5Jzo",
     id: "MWwTmIO5Jzo",
     title: "Understanding The Nature of The Kingdom ",
     collection: "teachings",
@@ -7834,6 +8617,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__Rp5UXvzsoaM": {
+    key: "teachings__Rp5UXvzsoaM",
     id: "Rp5UXvzsoaM",
     title: "Understanding The Power of Fatherhood ",
     collection: "teachings",
@@ -7844,6 +8628,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Thank you for joining us for another power-p packed message from Dr. Miles Monroe provided by Monro Global [music] Incorporated and monroglobal.com. We transform followers into leaders and leaders into agents of change. We hope that this message is a",
   },
   "teachings__IPOujXIUYak": {
+    key: "teachings__IPOujXIUYak",
     id: "IPOujXIUYak",
     title: "Understanding The Power of Kingdom Righteousness Part 1 ",
     collection: "teachings",
@@ -7854,6 +8639,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] on the subject write this down please in your notes let's begin understanding the power of kingdom righteousness understanding the power of kingdom righteousness now first of all let me remind you of god's priority matthew chapter 6 verse",
   },
   "teachings__-UHVygHcoB4": {
+    key: "teachings__-UHVygHcoB4",
     id: "-UHVygHcoB4",
     title: "Understanding The Principle of Construction and Development ",
     collection: "teachings",
@@ -7864,6 +8650,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] uh I have appointments now to speak to over 17 Fortune 500 companies and uh 12 corporate companies that deal with management development and training and they all want training from the biblical perspective which is very interesting why",
   },
   "teachings__cibgGscb8CM": {
+    key: "teachings__cibgGscb8CM",
     id: "cibgGscb8CM",
     title: "Understanding The Principle of Giving To A King ",
     collection: "teachings",
@@ -7874,6 +8661,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__ZII92m4E3EE": {
+    key: "teachings__ZII92m4E3EE",
     id: "ZII92m4E3EE",
     title: "Understanding The Principle of The Resurrection ",
     collection: "teachings",
@@ -7884,6 +8672,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global calm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__jaqe5NL0hNU": {
+    key: "teachings__jaqe5NL0hNU",
     id: "jaqe5NL0hNU",
     title: "Understanding The Principles of The Kingdom ",
     collection: "teachings",
@@ -7894,6 +8683,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "foreign [Music] the principles of the Kingdom and I believe it might be good for me to begin talking briefly about religion and the kingdom the kingdom is an idea it's a concept that needs to be understood and the",
   },
   "teachings__BeCma8ebGUU": {
+    key: "teachings__BeCma8ebGUU",
     id: "BeCma8ebGUU",
     title: "Understanding The Process Of Fasting ",
     collection: "teachings",
@@ -7904,6 +8694,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing",
   },
   "teachings__GDfkosrRimo": {
+    key: "teachings__GDfkosrRimo",
     id: "GDfkosrRimo",
     title: "Understanding The Reputation and The Name of Kings ",
     collection: "teachings",
@@ -7914,6 +8705,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing",
   },
   "teachings__vm4OwvgeujY": {
+    key: "teachings__vm4OwvgeujY",
     id: "vm4OwvgeujY",
     title: "Understanding True Manhood ",
     collection: "teachings",
@@ -7924,6 +8716,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another powerp packed message provided by Monroe Global Incorporated and Monroe global.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__o0zi2e3C6pI": {
+    key: "teachings__o0zi2e3C6pI",
     id: "o0zi2e3C6pI",
     title: "Understanding What Love Is Part 1 ",
     collection: "teachings",
@@ -7934,6 +8727,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] most couples say that they are marrying because they love their fiances uh and that's usually why people say they they get married i love you will you marry me and the person who answers to that particular proposal",
   },
   "teachings__V2Kg-VCcqAM": {
+    key: "teachings__V2Kg-VCcqAM",
     id: "V2Kg-VCcqAM",
     title: "Use Your Storm To Rest ",
     collection: "teachings",
@@ -7944,6 +8738,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] you know i used to wonder why god identified himself at only two animals and the lion and the eagle last year i spoke on the lion you remember that but the eagle is a strange bird the eagle",
   },
   "teachings__1PT7_5OuAs8": {
+    key: "teachings__1PT7_5OuAs8",
     id: "1PT7_5OuAs8",
     title: "What Are The Rare Qualities Of A Truly Good Woman - Dr. Myles Munroe ",
     collection: "teachings",
@@ -7954,6 +8749,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] thank you for joining us for another power packed message from dr miles monroe provided by monroe global incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__tWOyNdSZS58": {
+    key: "teachings__tWOyNdSZS58",
     id: "tWOyNdSZS58",
     title: "What Is Fasting ",
     collection: "teachings",
@@ -7964,6 +8760,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] what is fasting write this down can define it for you fasting is the willful abstaining from natural pleasures for a spiritual purpose please write that down please fasting is not just abstaining from food it's from any willful",
   },
   "teachings__JodZm4ZTpbw": {
+    key: "teachings__JodZm4ZTpbw",
     id: "JodZm4ZTpbw",
     title: "What Is Law Part 1 ",
     collection: "teachings",
@@ -7974,6 +8771,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power packed message from dr miles monroe provided by monroe global incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing",
   },
   "teachings__Ch6AKffUpbs": {
+    key: "teachings__Ch6AKffUpbs",
     id: "Ch6AKffUpbs",
     title: "What Is Law Part 2 ",
     collection: "teachings",
@@ -7984,6 +8782,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power packed message from dr miles monroe provided by monroe global incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing",
   },
   "teachings__uXzmwysmmPs": {
+    key: "teachings__uXzmwysmmPs",
     id: "uXzmwysmmPs",
     title: "What Is Potential ",
     collection: "teachings",
@@ -7994,6 +8793,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] what is potential write this down potential is untapped power potential is dormant ability potential is hidden strength potential is unused success potential is concealed power potential is who you are but nobody knows it yet potential is what",
   },
   "teachings__aZUC-JB5Avk": {
+    key: "teachings__aZUC-JB5Avk",
     id: "aZUC-JB5Avk",
     title: "What Is Success ",
     collection: "teachings",
@@ -8004,6 +8804,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] success is not what you've done compared to what other people have done sometimes we think success is a competition competition is a sign of insecurity successful people have no competition if you study them they're not interested in",
   },
   "teachings__5X9ZZ02VD_o": {
+    key: "teachings__5X9ZZ02VD_o",
     id: "5X9ZZ02VD_o",
     title: "What Is The Blood Covenant? The Key To Understanding The Bible - Dr. Myles Munroe ",
     collection: "teachings",
@@ -8014,6 +8815,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global comm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings___p47nDaGcx0": {
+    key: "teachings___p47nDaGcx0",
     id: "_p47nDaGcx0",
     title: "What Is The Role of The Mentee Or Successor ",
     collection: "teachings",
@@ -8024,6 +8826,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power packed message from dr miles monroe provided by monroe global incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing",
   },
   "teachings__O7cFDIB158U": {
+    key: "teachings__O7cFDIB158U",
     id: "O7cFDIB158U",
     title: "What Is Vision ",
     collection: "teachings",
@@ -8034,6 +8837,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] i want to define for you now what vision is number one vision is a conceptual view of the future now this word conceptual sounds like a big word it simply means picture picture vision is a picture of",
   },
   "teachings__7u2dMKucJyk": {
+    key: "teachings__7u2dMKucJyk",
     id: "7u2dMKucJyk",
     title: "What It Means To Be The Salt of The Earth ",
     collection: "teachings",
@@ -8044,6 +8848,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] do you know what the word salt mean see we read this jesus comes into the world and he says first message in a first message he gives the beatitudes that the attitudes to be we're going to teach",
   },
   "teachings__-IoBw5j1ltY": {
+    key: "teachings__-IoBw5j1ltY",
     id: "-IoBw5j1ltY",
     title: "What It Means To Fast ",
     collection: "teachings",
@@ -8054,6 +8859,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] fasting is the willful abstaining from natural pleasures for a spiritual purpose write that down that's what fasting is very important to write that down fasting is the willful abstaining from natural pleasures for a spiritual purpose emphasis on",
   },
   "teachings__V87dxBksoGI": {
+    key: "teachings__V87dxBksoGI",
     id: "V87dxBksoGI",
     title: "What it means to Hide God’s Word in your Heart ",
     collection: "teachings",
@@ -8064,6 +8870,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "first of all let's deal with your statement hiding God's word in your heart okay what does that mean it doesn't mean to memorize text how many folks can call scripture but living like the devil do you know any",
   },
   "teachings__AUWWGptQjKo": {
+    key: "teachings__AUWWGptQjKo",
     id: "AUWWGptQjKo",
     title: "What To Do When Change Happens To You ",
     collection: "teachings",
@@ -8074,6 +8881,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] in the spoke he can just become because of this and check this is the happen to you can called you resist his now can I have those congrats and that you can the object is the pose like",
   },
   "teachings__q7_EBcLEVp4": {
+    key: "teachings__q7_EBcLEVp4",
     id: "q7_EBcLEVp4",
     title: "Whatever You Expect Will Never Depress You ",
     collection: "teachings",
@@ -8084,6 +8892,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] your faith is only as strong as the test it survives so no matter how much you brag on how much faith you have the test that you're going through now will prove it and this is why in",
   },
   "teachings__OAoYWw9zysc": {
+    key: "teachings__OAoYWw9zysc",
     id: "OAoYWw9zysc",
     title: "When Is The Right Time To Marry? Dr. Myles Munroe's Secret To Perfect Timing ",
     collection: "teachings",
@@ -8094,6 +8903,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] god said it's not good for the man to be only one of his kind so he made him another kind like him and made that kind a receiver therefore singleness is a state to be pursued not avoided",
   },
   "teachings__ZPmXXxBCJqg": {
+    key: "teachings__ZPmXXxBCJqg",
     id: "ZPmXXxBCJqg",
     title: "Who You Really Are Is The Thing You Thought of First ",
     collection: "teachings",
@@ -8104,6 +8914,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] god will never put the future ahead of anything why because he's finished your future is trapped within you you came with your end in your beginning now he says i make known from ancient times what is yet",
   },
   "teachings__Vo7C_SYXdkE": {
+    key: "teachings__Vo7C_SYXdkE",
     id: "Vo7C_SYXdkE",
     title: "Why Change Is Good ",
     collection: "teachings",
@@ -8114,6 +8925,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] change is one thing that is permanent in life and yet people are afraid of it the only thing you can guarantee in life is change there's nothing as permanent or sure has changed change is actually inevitable so",
   },
   "teachings__oZcM5rv2nF0": {
+    key: "teachings__oZcM5rv2nF0",
     id: "oZcM5rv2nF0",
     title: "Why Change Is Good ",
     collection: "teachings",
@@ -8124,6 +8936,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] change is one thing that is permanent in life and yet people are afraid of it the only thing you can guarantee in life is change there's nothing as permanent or sure as change change is actually inevitable so",
   },
   "teachings__WWLGwAAny2Q": {
+    key: "teachings__WWLGwAAny2Q",
     id: "WWLGwAAny2Q",
     title: "Why Character Is Necessary ",
     collection: "teachings",
@@ -8134,6 +8947,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "my friends there's some examples of character that you need to write down now why do we call for example the alphabet characters because a is always a B is B at 2 am in the morning C is still",
   },
   "teachings__VOrGqEfigRI": {
+    key: "teachings__VOrGqEfigRI",
     id: "VOrGqEfigRI",
     title: "Why Christmas Matters: Understanding Its Impact & Importance By Dr. Myles Munroe ",
     collection: "teachings",
@@ -8144,6 +8958,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] thank you for joining us for another powerp packed Message from Dr Miles Monroe provided by Monroe Global Incorporated and monr global.com we transform followers into leaders and leaders into agents of change we hope that this message is",
   },
   "teachings__9TLCD2sF5tU": {
+    key: "teachings__9TLCD2sF5tU",
     id: "9TLCD2sF5tU",
     title: "Why Do We Honor Fathers? ",
     collection: "teachings",
@@ -8154,6 +8969,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "write this down important verse Ephesians 6:13 says children now I wanted to bring this in quickly because there's some of you sitting there going if you knew my father you would never honor him but I got some news",
   },
   "teachings__ccQQGRI0HZk": {
+    key: "teachings__ccQQGRI0HZk",
     id: "ccQQGRI0HZk",
     title: "Why God Created Man ",
     collection: "teachings",
@@ -8164,6 +8980,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] the reason why god put us his kids on the earth is to extend his kingdom here his rulership here the father never wanted to live here did you believe that he wanted to stay in heaven and let",
   },
   "teachings__asXBMXDKFlY": {
+    key: "teachings__asXBMXDKFlY",
     id: "asXBMXDKFlY",
     title: "Why It Is Important To Discover Your Purpose ",
     collection: "teachings",
@@ -8174,6 +8991,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Your greatest discovery in life really is discovering your personal purpose. Because purpose distinguishes you from everybody else. If you don't know your purpose in life, that means you're clear picture in life, then life has no true meaning for",
   },
   "teachings__EKRzXgo4mZU": {
+    key: "teachings__EKRzXgo4mZU",
     id: "EKRzXgo4mZU",
     title: "Why Leaders Don't Mentor ",
     collection: "teachings",
@@ -8184,6 +9002,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message from dr. Myles Munroe provided by Monroe global incorporated and Monroe global.com we transform followers into leaders and leaders into agents of change we hope that this message is a blessing",
   },
   "teachings__Oe9igHdixHo": {
+    key: "teachings__Oe9igHdixHo",
     id: "Oe9igHdixHo",
     title: "Why Life Isn't Just A Game: Truth To Overcome Life Challenges - Dr. Myles Munroe ",
     collection: "teachings",
@@ -8194,6 +9013,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] thank you for joining us for another powerp packed Message from Dr Miles Monroe provided by Monroe Global Incorporated and monr global.com we transform followers into leaders and leaders into agents of change we hope that this message is",
   },
   "teachings__GRFTwTiaZlA": {
+    key: "teachings__GRFTwTiaZlA",
     id: "GRFTwTiaZlA",
     title: "Why Men Really Need Sex And Intimacy? Insights From Dr. Myles Munroe ",
     collection: "teachings",
@@ -8204,6 +9024,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] so god produced a giver i mean all the mail is designed to do 24 hours anywhere any day in the kitchen in the car on the floor it's the gift you know it's true built to give come",
   },
   "teachings__XF6i2e9K-UM": {
+    key: "teachings__XF6i2e9K-UM",
     id: "XF6i2e9K-UM",
     title: "Why Most Leaders Feel Lonely ",
     collection: "teachings",
@@ -8214,6 +9035,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "whenever you decide to become yourself you become lonely right because everyone around you want you to be like them or they want you to be them so when you discover that you are unique you are special you are",
   },
   "teachings__eJWICS3KuhE": {
+    key: "teachings__eJWICS3KuhE",
     id: "eJWICS3KuhE",
     title: "Why People of The World Are So Wealthy ",
     collection: "teachings",
@@ -8224,6 +9046,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] i asked god a question years ago i said god how come these charismatic people are always quoting the wealth of the wicked is later for the righteous i said god why why do we quote that he said",
   },
   "teachings__eqVWosMWzfM": {
+    key: "teachings__eqVWosMWzfM",
     id: "eqVWosMWzfM",
     title: "Why Speak In Tongues ",
     collection: "teachings",
@@ -8234,6 +9057,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] thank you for joining us for another power packed message from dr miles monroe provided by monroe global incorporated and monroeglobal.com we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__Z6I3tikBNUk": {
+    key: "teachings__Z6I3tikBNUk",
     id: "Z6I3tikBNUk",
     title: "Why Was Jesus Resurrected? Dr. Myles Munroe Explains The Purpose & Significance ",
     collection: "teachings",
@@ -8244,6 +9068,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Thank you for joining us for another power packed message provided by Monroe Global Incorporated and Monroe global.com. We transform followers into leaders and leaders into agents of change. We hope that this message is a blessing to you as",
   },
   "teachings__JJIIcPvtcGw": {
+    key: "teachings__JJIIcPvtcGw",
     id: "JJIIcPvtcGw",
     title: "Why Women Need Love ",
     collection: "teachings",
@@ -8254,6 +9079,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] so when god took the feet the male the male out of the male he did some reconstruction so that she can become a receiver so if you study a woman there's no place for her to give [Applause]",
   },
   "teachings__cFY2gXUT-UY": {
+    key: "teachings__cFY2gXUT-UY",
     id: "cFY2gXUT-UY",
     title: "Why You Matter: Secret To Finding Your Existence's True Meaning - Myles Munroe ",
     collection: "teachings",
@@ -8264,6 +9090,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "I want to focus for the next few moments on understanding the meaning for your existence no human being on Earth 7.1 billion of us is a mistake not one of us is a mistake we were s here specifically",
   },
   "teachings__xEnrg1VM26s": {
+    key: "teachings__xEnrg1VM26s",
     id: "xEnrg1VM26s",
     title: "Why You Should Expect Crisis To Occur ",
     collection: "teachings",
@@ -8274,6 +9101,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] chicken pfai are make you feel out ridiculous crisis is someone else kies kies Air have polyposis are from PornHD of Tanks stink mouth be more of everything all everything all delete delete or go to nothing problem pixels",
   },
   "teachings__WFFqoCi7LCI": {
+    key: "teachings__WFFqoCi7LCI",
     id: "WFFqoCi7LCI",
     title: "Why Your Ignorance Is Blocking Your Success  ",
     collection: "teachings",
@@ -8284,6 +9112,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another powerp packed Message from Dr Miles Monroe provided by Monroe Global Incorporated and Monro global.com we transform followers into leaders and leaders into agents of change we hope that this message is a",
   },
   "teachings__zkgc9PPFwy0": {
+    key: "teachings__zkgc9PPFwy0",
     id: "zkgc9PPFwy0",
     title: "Why Your Success Is Good For God ",
     collection: "teachings",
@@ -8294,6 +9123,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] laws are important because laws make life predictable but they also simplify life and this is why i have such an exciting life because god designed all of creation to be successful this is why god created laws what",
   },
   "teachings__GadQ8MC_mds": {
+    key: "teachings__GadQ8MC_mds",
     id: "GadQ8MC_mds",
     title: "Wisdom For Women ",
     collection: "teachings",
@@ -8304,6 +9134,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Thank you for joining us for another power-packed message from Dr. Myles Monroe provided by Monroe Global Incorporated and Monroeglobal.com. We transform followers into leaders and leaders into agents of change. We hope that this message is a blessing to",
   },
   "teachings__qb4t4HzqSYI": {
+    key: "teachings__qb4t4HzqSYI",
     id: "qb4t4HzqSYI",
     title: "Women and National Influence ",
     collection: "teachings",
@@ -8314,6 +9145,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "thank you for joining us for another power-packed message provided by monroe global incorporated and monroe global calm we transform followers into leaders and leaders into agents of change we hope that this message is a blessing to you as",
   },
   "teachings__N7E_pUbZ8Mc": {
+    key: "teachings__N7E_pUbZ8Mc",
     id: "N7E_pUbZ8Mc",
     title: "You Are As Poor Or As Rich As Your Ideas ",
     collection: "teachings",
@@ -8324,6 +9156,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] you are as poor as your ideas you are as rich as your ideas jesus christ created all things okay ideas create say it so the bible says all things were made by who him him who the word",
   },
   "teachings__afFQ4E_Zh58": {
+    key: "teachings__afFQ4E_Zh58",
     id: "afFQ4E_Zh58",
     title: "You Are Not From Earth ",
     collection: "teachings",
@@ -8334,6 +9167,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] you live on earth but you are not from here if there was one principle that is causing humans to misunderstand god this is one of the big ones and that is we believe we are from earth the",
   },
   "teachings__LI7H02U_0pA": {
+    key: "teachings__LI7H02U_0pA",
     id: "LI7H02U_0pA",
     title: "You Are Not Poor, You Are Thinking Wrong ",
     collection: "teachings",
@@ -8344,6 +9178,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] how do you think there was a lady that came to my office and this lady listened this woman real story she came over she was weeping and she told my secretary i have to see dr monroe now",
   },
   "teachings__dhlsr1Yx68I": {
+    key: "teachings__dhlsr1Yx68I",
     id: "dhlsr1Yx68I",
     title: "You May Not Finish What You Started ",
     collection: "teachings",
@@ -8354,6 +9189,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "Our creator is a generational creator. I did a little study on his attitude years ago, and I discovered that he never speaks to you. I know that sound weird, but whenever he speaks, he ain't talking to you. He's",
   },
   "teachings__NY-3AuE0C7s": {
+    key: "teachings__NY-3AuE0C7s",
     id: "NY-3AuE0C7s",
     title: "You Set The Standard ",
     collection: "teachings",
@@ -8364,6 +9200,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] look at the word king king first of all means ruler anybody grew up with uh those little plastic rulers in your bag when it's going to school or the wooden one remember the wooden one they call them",
   },
   "teachings__OTerBX2CKLo": {
+    key: "teachings__OTerBX2CKLo",
     id: "OTerBX2CKLo",
     title: "You Were Born With A Business ",
     collection: "teachings",
@@ -8374,6 +9211,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] the original mandate of god was a business mandate did you know that god is a god of business everything is about business regardless you were created to dominate in an area of gifting not to dominate people so",
   },
   "teachings__bjGQS9N6uXo": {
+    key: "teachings__bjGQS9N6uXo",
     id: "bjGQS9N6uXo",
     title: "You Were Built For Problems ",
     collection: "teachings",
@@ -8384,6 +9222,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] see in the kingdom of god we're not afraid of problems because we're built for them the average charismatic christian is not built for problems they are built for blessings i promise you you will see a massive collapse",
   },
   "teachings__AEQ14fYOY18": {
+    key: "teachings__AEQ14fYOY18",
     id: "AEQ14fYOY18",
     title: "You Were Created For Success - It's Built In ",
     collection: "teachings",
@@ -8394,6 +9233,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] every human wants to be successful i have never met any human who said i plan to fail tomorrow no human wants to fail am i right everybody wants to succeed but i have some good news for you",
   },
   "teachings__NwS6CZCWo08": {
+    key: "teachings__NwS6CZCWo08",
     id: "NwS6CZCWo08",
     title: "You Were Created To Dominate ",
     collection: "teachings",
@@ -8404,6 +9244,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "it says in Genesis chapter 1 verse 26 and God said let us make man in our own image and in our likeness and let them have dominion over the fish of the sea editor and the birds of the",
   },
   "teachings__sTJrBVS0RSc": {
+    key: "teachings__sTJrBVS0RSc",
     id: "sTJrBVS0RSc",
     title: "You Were Created To Dominate ",
     collection: "teachings",
@@ -8414,6 +9255,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] it says in genesis chapter 1 verse 26 and god said let us make man in our own image and in our likeness and let them have dominion over the fish of the sea hit it sir and the",
   },
   "teachings__Ynal02ZrqRc": {
+    key: "teachings__Ynal02ZrqRc",
     id: "Ynal02ZrqRc",
     title: "You Were Not Born A Mistake ",
     collection: "teachings",
@@ -8424,6 +9266,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "You are not a mistake. He was saying that your mom and my mom had five children and she said I was the one they didn't want. Well, no, that's not true. God wanted you. You are a perfect destined",
   },
   "teachings__mc4E6nyrJTM": {
+    key: "teachings__mc4E6nyrJTM",
     id: "mc4E6nyrJTM",
     title: "Your Character Is As Strong As The Temptation It Survives ",
     collection: "teachings",
@@ -8434,6 +9277,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] characters god's prerequisite for dominion and rulership character is god's foundation for leadership because look before i give you power let me give you the most important thing here's image what is image characteristics you are stable just like",
   },
   "teachings__vMT6cDJUfPI": {
+    key: "teachings__vMT6cDJUfPI",
     id: "vMT6cDJUfPI",
     title: "Your Desire To Dominate Is Natural ",
     collection: "teachings",
@@ -8444,6 +9288,7 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
     excerpt: "[Music] there's a difference i want to give you different between two things and it's found in the book all right i want to recommend this book to you because i cannot teach this in three days it took me",
   },
   "teachings__n9jwTX1g3_Q": {
+    key: "teachings__n9jwTX1g3_Q",
     id: "n9jwTX1g3_Q",
     title: "Your Job vs Your Work ",
     collection: "teachings",
@@ -8456,5 +9301,6 @@ export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {
 };
 
 export const LIBRARY_TRANSCRIPT_COUNT = Object.keys(LIBRARY_TRANSCRIPTS).length;
+export const CHRISTIAN_HOUSE_TRANSCRIPT_COUNT = Object.values(LIBRARY_TRANSCRIPTS).filter((t) => t.collection === "christian-house").length;
 export const PRAYERS_TRANSCRIPT_COUNT = Object.values(LIBRARY_TRANSCRIPTS).filter((t) => t.collection === "prayers").length;
 export const TEACHINGS_TRANSCRIPT_COUNT = Object.values(LIBRARY_TRANSCRIPTS).filter((t) => t.collection === "teachings").length;

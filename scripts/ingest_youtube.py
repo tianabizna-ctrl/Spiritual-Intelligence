@@ -117,22 +117,38 @@ def main() -> int:
 
     files = [n for n in sorted(os.listdir(args.src)) if n.endswith(".json")]
     print(f"harvest directory: {args.src} ({len(files)} json files)")
+    if not files:
+        # harvest.py only writes a json for status == ok, so an empty directory
+        # means the runner could not fetch any caption this time.
+        print(
+            "no harvested json files: the runner got no usable caption tracks "
+            "(see the harvest step's own status summary above)",
+            file=sys.stderr,
+        )
+        return 1
 
     statuses: dict[str, int] = {}
     written = skipped = 0
     for name in files:
         if not name.endswith(".json"):
             continue
-        raw = json.load(open(os.path.join(args.src, name), encoding="utf-8"))
+        try:
+            raw = json.load(open(os.path.join(args.src, name), encoding="utf-8"))
+        except Exception as exc:  # a truncated file must not sink the whole run
+            statuses["unreadable"] = statuses.get("unreadable", 0) + 1
+            print(f"skip {name}: unreadable ({exc})", file=sys.stderr)
+            continue
         st = raw.get("status", "missing-status")
         statuses[st] = statuses.get(st, 0) + 1
         if st != "ok":
             skipped += 1
+            print(f"skip {name}: status={st}")
             continue
 
         text = clean_text(raw.get("text") or "")
         if len(text) < 300:
             skipped += 1
+            print(f"skip {name}: too short after cleaning ({len(text)} chars)")
             continue
 
         vid = raw["id"]

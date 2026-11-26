@@ -1,45 +1,6 @@
 export type LanguageMode = 'en' | 'fr' | 'mg' | 'both';
 export type UILang = 'en' | 'fr' | 'mg';
 
-export interface TranscriptChapter {
-  id: string;
-  number: string;
-  timestamp: string;
-  title_en: string;
-  title_fr: string;
-  scriptures: string[];
-  en_text: string;
-  fr_text: string;
-  declaration_en: string;
-  declaration_fr: string;
-}
-
-export interface VideoResource {
-  id: string;
-  videoNumber: number;
-  youtubeId: string;
-  url: string;
-  playlistId: string;
-  playlistUrl: string;
-  title_en: string;
-  title_fr: string;
-  speaker: string;
-  channel: string;
-  channelHandle: string;
-  duration: string;
-  uploadedAt: string;
-  thumbnail: string;
-  watchCategory_en: string;
-  watchCategory_fr: string;
-  tagline_en: string;
-  tagline_fr: string;
-  overview_en: string;
-  overview_fr: string;
-  docxFile: string;
-  keyScriptures: string[];
-  chapters: TranscriptChapter[];
-}
-
 export interface PrayerCardItem {
   id: string;
   videoRefId: string;
@@ -91,409 +52,6 @@ export interface ScriptureEntry {
   videoIds: string[];
 }
 
-export const VIDEOS_DATA: VideoResource[] = [
-  {
-    id: '4YElIs15_Ak',
-    videoNumber: 1,
-    youtubeId: '4YElIs15_Ak',
-    url: 'https://www.youtube.com/watch?v=4YElIs15_Ak&list=PLaptSPguGlRafSbwyTRdhKBc9axh9znP7',
-    playlistId: 'PLaptSPguGlRafSbwyTRdhKBc9axh9znP7',
-    playlistUrl: 'https://www.youtube.com/playlist?list=PLaptSPguGlRafSbwyTRdhKBc9axh9znP7',
-    title_en: '[POWERFUL 🔥] COMMAND YOUR DAY IN TOTAL VICTORY BY DECLARING THESE POWERFUL PRAYER | JOSHUA SELMAN',
-    title_fr: '[PUISSANT 🔥] COMMANDEZ VOTRE JOURNÉE DANS UNE VICTOIRE TOTALE EN DÉCLARANT CES PUISSANTES PRIÈRES | JOSHUA SELMAN',
-    speaker: 'Apostle Joshua Selman',
-    channel: 'Prayer By Grace',
-    channelHandle: '@PrayerByGrace',
-    duration: '1:24:44',
-    uploadedAt: '2026-11-14',
-    thumbnail: 'https://i.ytimg.com/vi/4YElIs15_Ak/maxresdefault.jpg',
-    watchCategory_en: 'Dawn Command & Midnight Warfare',
-    watchCategory_fr: 'Commandement de l’Aube & Veille de Minuit',
-    tagline_en: 'Taking charge of the gate of the morning and returning every arrow of darkness back to sender.',
-    tagline_fr: 'Prendre autorité à la porte du matin et renvoyer chaque flèche des ténèbres à l’envoyeur.',
-    overview_en:
-      'A comprehensive 84-minute prophetic prayer manual divided into two major movements: Part I commands the morning watch before sunrise (Job 38:12-13, Psalm 5:3, Exodus 14:24), destroying yokes by the anointing, consuming evil altars, blotting out ancestral ordinances, exposing household wickedness, recovering stolen glory, and sealing the household in a wall of fire. Part II enters the Midnight Watch ("Back to Sender" & Total Recovery) rooted in Esther 7:10, Psalm 7:15-16, Isaiah 54:17, and Obadiah 1:17.',
-    overview_fr:
-      'Un manuel complet de prière prophétique de 84 minutes structuré en deux grands mouvements : la Partie I commande la veille du matin avant le lever du soleil (Job 38:12-13, Psaume 5:4, Exode 14:24), brisant les jougs par l’onction, consumant les autels maléfiques, effaçant les actes ancestraux, exposant la méchanceté domestique, récupérant la gloire volée et entourant la famille d’une muraille de feu. La Partie II ouvre la veille de minuit (« Retour à l’envoyeur » et récupération totale) fondée sur Esther 7:10, Psaume 7:16-17, Ésaïe 54:17 et Abdias 1:17.',
-    docxFile: 'downloads/Video_1_Command_Your_Day_Joshua_Selman_EN_FR.docx',
-    keyScriptures: [
-      'Job 38:12-13',
-      'Psalm 5:3',
-      'Psalm 121',
-      'Exodus 14:24',
-      'Isaiah 10:27',
-      'Isaiah 49:24-26',
-      'Colossians 2:14-15',
-      'Galatians 3:13',
-      'Micah 7:6-8',
-      'Psalm 68:1-2',
-      'Psalm 91:5-8',
-      'Obadiah 1:15-17',
-      'Isaiah 60:1',
-      'Lamentations 3:22-23',
-      'Malachi 3:11',
-      'Psalm 24:7',
-      'Deuteronomy 28:7,12',
-      'Jeremiah 30:17',
-      'Isaiah 40:31',
-      'Psalm 34:7',
-      'Joel 2:25',
-      'Zechariah 2:5',
-      'Isaiah 54:15-17',
-      'Luke 10:19',
-      'Esther 7:10',
-      'Psalm 124:7',
-    ],
-    chapters: [
-      {
-        id: 'v1-ch1',
-        number: 'I',
-        timestamp: '00:00 – 07:30',
-        title_en: 'Commanding the Gate of the Morning & Shaking Out the Wicked',
-        title_fr: 'Commander la Porte du Matin et Secouer les Méchants',
-        scriptures: ['Job 38:12-13', 'Psalm 5:3', 'Psalm 121', 'Exodus 14:24'],
-        en_text:
-          'Get up from that bed right now. Before the sun fully rises, somebody has to take charge of this day. Will it be you or the enemy? In Job 38:12-13, God asks Job: "Have you commanded the morning since your days, and caused the dayspring to know his place, that it might take hold of the ends of the earth, that the wicked might be shaken out of it?" The morning has ends, and those ends can be grabbed and shaken. Every morning the day comes waiting for instructions. Psalm 5:3 says, "My voice shalt thou hear in the morning, O Lord; in the morning will I direct my prayer unto thee, and will look up." And in Exodus 14:24, in the morning watch, the Lord looked unto the host of the Egyptians through the pillar of fire and of the cloud, and troubled the host of the Egyptians.',
-        fr_text:
-          'Lève-toi de ce lit maintenant même. Avant que le soleil ne se lève pleinement, quelqu’un doit prendre le contrôle de cette journée. Sera-ce toi ou l’ennemi ? Dans Job 38:12-13, Dieu demande à Job : « Depuis que tu existes, as-tu commandé au matin ? As-tu montré sa place à l’aurore, pour qu’elle saisisse les extrémités de la terre, et que les méchants en soient secoués ? » Le matin a des extrémités que l’on peut saisir et secouer. Chaque matin, le jour attend des instructions. Le Psaume 5:4 dit : « Éternel ! le matin tu entends ma voix ; le matin je me tourne vers toi, et je regarde. » Et selon Exode 14:24, à la veille du matin, l’Éternel, de la colonne de feu et de nuée, regarda le camp des Égyptiens et les mit en déroute.',
-        declaration_en:
-          'This morning belongs to God and this morning belongs to me! Father, in the name of Jesus, I take hold of the ends of this morning and the corners of this day. Every wicked arrangement, bad news, accident, or disappointment scheduled for today—I shake you out by fire! Sun and moon, you will not smite me. Lord, look at my pursuers through the pillar of fire and trouble their camp!',
-        declaration_fr:
-          'Ce matin appartient à Dieu et ce matin m’appartient ! Père, au nom de Jésus, je saisis les extrémités de ce matin et les quatre coins de ce jour. Tout arrangement maléfique, mauvaise nouvelle, accident ou déception programmé pour aujourd’hui — je te secoue par le feu ! Soleil et lune, vous ne me frapperez point. Seigneur, regarde mes poursuivants à travers la colonne de feu et trouble leur camp !',
-      },
-      {
-        id: 'v1-ch2',
-        number: 'II',
-        timestamp: '07:31 – 14:20',
-        title_en: 'Destroying Yokes by the Anointing & Delivering the Lawful Captive',
-        title_fr: 'Briser les Jougs par l’Onction et Délivrer le Captif Légitime',
-        scriptures: ['Isaiah 10:27', 'Isaiah 49:24-26'],
-        en_text:
-          'Isaiah 10:27 says: "The burden shall be taken away from off thy shoulder, and the yoke from off thy neck, and the yoke shall be destroyed because of the anointing." It does not say the yoke will be adjusted or loosened a little—it says destroyed! Every yoke of slow progress, of "almost there," of laboring without harvest, of running fast and staying in the same place, of borrowing, begging, and shame must break. And in Isaiah 49:24-26, the Lord says: "Even the captives of the mighty shall be taken away, and the prey of the terrible shall be delivered: for I will contend with him that contendeth with thee, and I will save thy children."',
-        fr_text:
-          'Ésaïe 10:27 déclare : « En ce jour, son fardeau sera ôté de dessus ton épaule, et son joug de dessus ton cou ; et la graisse (l’onction) fera éclater le joug. » Il n’est pas dit que le joug sera ajusté ou légèrement desserré — il est dit détruit ! Tout joug de lenteur, du « presque arrivé », de labeur sans moisson, de course sur place, d’emprunt, de mendicité et de honte doit se briser. Et dans Ésaïe 49:24-26, l’Éternel dit : « Oui, la capture du puissant lui sera enlevée, et le butin du tyran lui échappera ; je combattrai tes ennemis, et je sauverai tes fils. »',
-        declaration_en:
-          'Every yoke of limitation on my neck, be destroyed by the anointing! Chain of delay around my legs, my hands, my mouth, and my mind—snap by the sword of the Spirit! Lord, contend with those who contend with me this morning; every strong man holding my portion as prey, release it now!',
-        declaration_fr:
-          'Tout joug de limitation sur mon cou, sois détruit par l’onction ! Chaîne de retard autour de mes jambes, de mes mains, de ma bouche et de mon esprit — romps-toi par l’épée de l’Esprit ! Seigneur, combats ceux qui me combattent ce matin ; tout homme fort qui retient ma portion en otage, relâche-la maintenant !',
-      },
-      {
-        id: 'v1-ch3',
-        number: 'III',
-        timestamp: '14:21 – 21:40',
-        title_en: 'Calling Fire on Evil Altars & Blotting Out Ancestral Covenants',
-        title_fr: 'Appeler le Feu sur les Autels Maléfiques et Effacer les Alliances Ancestrales',
-        scriptures: ['1 Kings 18:38', 'Hebrews 12:24', 'Colossians 2:14-15', 'Galatians 3:13'],
-        en_text:
-          'Every morning before you wake up, someone may have spoken your name over an altar. In the early morning, God’s answer is fire! The blood of goats and bulls cannot overpower the blood of the Lamb; Hebrews says the blood of Jesus speaks better things than the blood of Abel. Colossians 2:14-15 declares that He blotted out the handwriting of ordinances that was against us, nailing it to His cross, and spoiled principalities and powers openly. And Galatians 3:13 affirms: "Christ hath redeemed us from the curse of the law, being made a curse for us."',
-        fr_text:
-          'Chaque matin avant ton réveil, quelqu’un a pu prononcer ton nom sur un autel. Dès l’aube, la réponse de Dieu est le feu ! Le sang des boucs et des taureaux ne peut vaincre le sang de l’Agneau ; le sang de Jésus parle mieux que celui d’Abel. Colossiens 2:14-15 déclare qu’Il a effacé l’acte dont les ordonnances nous condamnaient en le clouant à la croix, dépouillant publiquement les dominations et les autorités. Et Galates 3:13 affirme : « Christ nous a rachetés de la malédiction de la loi, étant devenu malédiction pour nous. »',
-        declaration_en:
-          'Every altar raised against my life in my father’s village, under any tree, or in any river—catch fire! Blood of Jesus, speak louder than every altar and every curse! Every handwriting signed by my ancestors before I was born, be blotted out by the blood of Jesus. Generational curse, you stop at my door: from this morning, I am the beginning of a new lineage!',
-        declaration_fr:
-          'Tout autel élevé contre ma vie dans le village de mon père, sous un arbre ou dans une rivière — prends feu ! Sang de Jésus, parle plus fort que tout autel et toute malédiction ! Tout acte signé par mes ancêtres avant ma naissance, sois effacé par le sang de Jésus. Malédiction générationnelle, tu t’arrêtes à ma porte : dès ce matin, je suis le commencement d’une nouvelle lignée !',
-      },
-      {
-        id: 'v1-ch4',
-        number: 'IV',
-        timestamp: '21:41 – 27:30',
-        title_en: 'Exposing Household Wickedness & Canceling Evil Night Dreams',
-        title_fr: 'Exposer la Méchanceté Domestique et Annuler les Rêves Nocturnes',
-        scriptures: ['Micah 7:6', 'Psalm 68:1-2', 'Psalm 91:5-6'],
-        en_text:
-          'Micah 7:6 says, "A man’s enemies are the men of his own house." We do not pray against people; we pray against the spirits using people and monitoring your star. Psalm 68:1-2 cries out: "Let God arise, let his enemies be scattered... as smoke is driven away, so drive them away: as wax melteth before the fire, so let the wicked perish at the presence of God." We also cancel every night operation: being fed in the dream, spirit spouses, masquerades, serpents, and dreams of backwardness (going back to old schools, villages, or old houses). Psalm 91:5-6 covers you from midnight to midday.',
-        fr_text:
-          'Michée 7:6 dit : « L’homme a pour ennemis les gens de sa maison. » Nous ne prions pas contre les personnes, mais contre les esprits qui utilisent les gens et surveillent votre étoile. Le Psaume 68:2-3 proclame : « Dieu se lève, ses ennemis se dispersent... comme la fumée se dissipe, tu les dissipes ; comme la cire se fond au feu, les méchants disparaissent devant Dieu. » Nous annulons aussi toute opération nocturne : nourriture nocturne, maris ou femmes de nuit, serpents et rêves de régression. Le Psaume 91:5-6 vous couvre de minuit à midi.',
-        declaration_en:
-          'Let God arise in my house, my bedroom, my office, and let every monitoring spirit scatter like smoke and melt like wax! Every night operation against my life is cancelled: every food eaten in the dream, be flushed out by the blood of Jesus; every spirit spouse, I divorce you; every dream of backwardness, I cancel you—I will go forward!',
-        declaration_fr:
-          'Que Dieu se lève dans ma maison, ma chambre et mon bureau, et que tout esprit de surveillance se dissipe comme la fumée et fonde comme la cire ! Toute opération nocturne contre ma vie est annulée : toute nourriture mangée en rêve, sois évacuée par le sang de Jésus ; tout conjoint spirituel, je divorce d’avec toi ; tout rêve de régression, je t’annule — j’avancerai !',
-      },
-      {
-        id: 'v1-ch5',
-        number: 'V',
-        timestamp: '27:31 – 36:50',
-        title_en: 'Possessing Possessions, Restoring Glory, New Mercies & Family Salvation',
-        title_fr: 'Posséder ses Possessions, Restaurer la Gloire, Miséricordes Nouvelles & Salut Familial',
-        scriptures: ['Obadiah 1:17', 'Matthew 16:19', 'Isaiah 60:1', 'Lamentations 3:22-23', 'Isaiah 49:25'],
-        en_text:
-          'Obadiah 1:17 declares: "But upon Mount Zion shall be deliverance, and there shall be holiness; and the house of Jacob shall possess their possessions." Deliverance is not the end—possession is the end! Like David at Ziklag, pursue, overtake, and recover all. Isaiah 60:1 commands: "Arise, shine; for thy light is come, and the glory of the Lord is risen upon thee." Lamentations 3:22-23 reminds us that His compassions fail not; they are new every morning—yesterday’s failure has no jurisdiction over today’s mercy. And in Isaiah 49:25, God promises: "I will save thy children."',
-        fr_text:
-          'Abdias 1:17 déclare : « Mais le salut sera sur la montagne de Sion, elle sera sainte, et la maison de Jacob reprendra ses possessions. » La délivrance n’est pas la fin — la prise de possession est la fin ! Comme David à Tsiklag, poursuis, atteins et récupère tout. Ésaïe 60:1 ordonne : « Lève-toi, sois éclairée, car ta lumière arrive, et la gloire de l’Éternel se lève sur toi. » Lamentations 3:22-23 nous rappelle que Ses compassions se renouvellent chaque matin. Et dans Ésaïe 49:25, Dieu promet : « Je sauverai tes fils. »',
-        declaration_en:
-          'Everything the enemy stole from me—my glory, my star, my opportunities, my contracts, my joy, and my finances—I recover it sevenfold! My glory is restored: from this morning I will be seen, found, chosen, and celebrated. Lord, I receive new mercy that shuts every door my mistakes opened, and I decree that my entire household and children are saved and taught of the Lord!',
-        declaration_fr:
-          'Tout ce que l’ennemi m’a volé — ma gloire, mon étoile, mes opportunités, mes contrats, ma joie et mes finances — je le récupère au septuple ! Ma gloire est restaurée : dès ce matin je serai vu, trouvé, choisi et célébré. Seigneur, je reçois une miséricorde nouvelle, et je décrète que toute ma maison et mes enfants sont sauvés et enseignés de l’Éternel !',
-      },
-      {
-        id: 'v1-ch6',
-        number: 'VI',
-        timestamp: '36:51 – 46:30',
-        title_en: 'Marital Breakthrough, Rebuking the Financial Devourer & Divine Healing',
-        title_fr: 'Percée Conjugale, Réprimande du Dévoreur Financier & Guérison Divine',
-        scriptures: ['Genesis 2:18', 'Exodus 23:25-26', 'Haggai 1:6', 'Malachi 3:11', 'Psalm 24:7', 'Deuteronomy 28:12', 'Jeremiah 30:17', 'Isaiah 40:31'],
-        en_text:
-          'Genesis 2:18 says it is not good for man to be alone, and Exodus 23:25-26 promises no barrenness or miscarriage. For your finances, Haggai 1:6 speaks of wages in a bag with holes, while Malachi 3:11 promises: "I will rebuke the devourer for your sakes." Psalm 24:7 commands the gates of finance, contracts, and international doors to lift up their heads, and Deuteronomy 28:12 opens heaven’s good treasure so you lend and do not borrow. For your body, Jeremiah 30:17 promises: "I will restore health unto thee, and I will heal thee of thy wounds," and Isaiah 40:31 renews your strength like the eagle’s.',
-        fr_text:
-          'Genèse 2:18 dit qu’il n’est pas bon que l’homme soit seul, et Exode 23:25-26 promet qu’il n’y aura ni femme qui avorte ni femme stérile. Pour vos finances, Aggée 1:6 parle d’un sac percé, tandis que Malachie 3:11 promet : « Pour vous je menacerai celui qui dévore. » Le Psaume 24:7 ordonne aux portes des finances et des contrats d’élever leurs linteaux, et Deutéronome 28:12 ouvre le bon trésor du ciel. Pour votre corps, Jérémie 30:17 promet : « Je te guérirai, je panserai tes plaies », et Ésaïe 40:31 renouvelle vos forces comme celles de l’aigle.',
-        declaration_en:
-          'Every veil blocking my marital breakthrough is torn, and every bleeding marriage is restored into a sanctuary of peace! Devourer of my finances, the Lord rebukes you; every hole in my pocket is sealed by fire! Gates of finance and destiny helpers, open to me now! Every sickness, growth, high blood pressure, pain, and infirmity in my body—dry up from the root; by His stripes I am healed and renewed in strength!',
-        declaration_fr:
-          'Tout voile bloquant ma percée conjugale est déchiré, et tout foyer blessé redevient un sanctuaire de paix ! Dévoreur de mes finances, l’Éternel te réprimande ; tout trou dans ma poche est scellé par le feu ! Portes de finances et aides de destinée, ouvrez-vous maintenant ! Toute maladie, tumeur, hypertension, douleur et infirmité dans mon corps — sèche depuis la racine ; par Ses meurtrissures je suis guéri et renouvelé en force !',
-      },
-      {
-        id: 'v1-ch7',
-        number: 'VII',
-        timestamp: '46:31 – 56:15',
-        title_en: 'Warring Angels, Restoring Wasted Years & Sealing the Day in a Wall of Fire',
-        title_fr: 'Anges de Guerre, Restauration des Années Perdues & Muraille de Feu',
-        scriptures: ['Psalm 34:7', '2 Kings 19:35', 'Psalm 35:5-6', 'Exodus 15:3', 'Numbers 23:23', 'Joel 2:25', 'Psalm 90:14', 'Zechariah 2:5', 'Revelation 12:11', 'Isaiah 54:17', 'Luke 10:19', 'Psalm 46:5', 'Psalm 30:5'],
-        en_text:
-          'In 2 Kings 19:35, one angel struck 185,000 Assyrians in a single night. Psalm 34:7 and Psalm 35:5-6 deploy the angel of the Lord to encamp around you and chase your enemies. Numbers 23:23 declares there is no enchantment against Jacob nor divination against Israel. Joel 2:25 promises: "I will restore to you the years that the locust hath eaten." What took others ten years will take you one! Finally, Zechariah 2:5 surrounds you with a wall of fire, Luke 10:19 gives you authority over serpents and scorpions, Psalm 46:5 promises God helps you right early, and Psalm 30:5 ushers in morning joy.',
-        fr_text:
-          'Dans 2 Rois 19:35, un seul ange frappa 185 000 Assyriens en une seule nuit. Les Psaumes 34:8 et 35:5-6 déploient l’ange de l’Éternel pour camper autour de vous et chasser vos ennemis. Nombres 23:23 proclame que l’enchantement ne peut rien contre Jacob. Joël 2:25 promet : « Je vous remplacerai les années qu’ont dévorées la sauterelle. » Ce qui a pris dix ans aux autres vous en prendra un ! Enfin, Zacharie 2:5 vous entoure d’une muraille de feu, Luc 10:19 vous donne pouvoir sur toute la puissance de l’ennemi, et le Psaume 30:6 fait éclater l’allégresse du matin.',
-        declaration_en:
-          'Father, release warring angels, angels of provision, and angels of healing into my life today! Restore my wasted years with divine speed and acceleration. Lord, be a wall of fire around me, my family, my journeys, and my work today. I speak to this day: you will favor me, bring good news, and carry divine appointments. Victory! Victory! Victory!',
-        declaration_fr:
-          'Père, relâche Tes anges de guerre, de provision et de guérison dans ma vie aujourd’hui ! Restaure mes années perdues avec une vitesse et une accélération divines. Seigneur, sois une muraille de feu autour de moi, de ma famille, de mes trajets et de mon travail aujourd’hui. Je parle à ce jour : tu me favoriseras et porteras de bonnes nouvelles. Victoire ! Victoire ! Victoire !',
-      },
-      {
-        id: 'v1-ch8',
-        number: 'VIII',
-        timestamp: '56:16 – 1:24:44',
-        title_en: 'Part II: Midnight Warfare — Back to Sender & Total Recovery',
-        title_fr: 'Partie II : Combat de Minuit — Retour à l’Envoyeur & Récupération Totale',
-        scriptures: ['Esther 7:10', 'Psalm 7:15-16', 'Isaiah 54:17', 'Psalm 124:7', 'Proverbs 26:27', 'Psalm 9:16', 'Matthew 12:29', 'Obadiah 1:15-17', 'Galatians 6:17', 'Psalm 113:9', 'Deuteronomy 2:3', 'Revelation 3:7', '2 Kings 6:17', 'Daniel 6:24', 'Isaiah 43:18-19', 'Deuteronomy 28:7', 'Isaiah 59:19', 'Psalm 18:37-40', 'Psalm 57:6'],
-        en_text:
-          'While men slept, the enemy came and sowed tares—not tonight! Esther 7:10 shows Haman hanged on the gallows he prepared for Mordecai, and Psalm 7:15-16 declares he falls into the ditch he made. Every evil delivery of sickness, poverty, sorrow, and untimely death is returned unopened to its sender. Psalm 124:7 proclaims: "The snare is broken, and we are escaped!" Proverbs 26:27 rolls every stone back upon the one pushing it. Matthew 12:29 binds the strong man and spoils his house. Joseph’s pit becomes your platform to the palace; Galatians 6:17 places the marks of Jesus upon you; Revelation 3:7 opens doors with the Key of David; 2 Kings 6:17 surrounds you with horses and chariots of fire; and Psalm 57:6 seals the victory.',
-        fr_text:
-          'Pendant que les hommes dormaient, l’ennemi est venu semer l’ivraie — pas cette nuit ! Esther 7:10 montre Haman pendu au bois qu’il avait préparé pour Mardochée, et le Psaume 7:16-17 déclare qu’il tombe dans la fosse qu’il a creusée. Tout colis maléfique de maladie, de pauvreté, de chagrin et de mort prématurée est retourné non ouvert à son expéditeur. Le Psaume 124:7 proclame : « Le filet s’est rompu, et nous nous sommes échappés ! » Proverbes 26:27 fait rouler chaque pierre sur celui qui la pousse. Matthieu 12:29 lie l’homme fort et pille sa maison. La fosse de Joseph devient votre tremplin vers le palais ; Galates 6:17 place sur vous les marques de Jésus ; Apocalypse 3:7 ouvre les portes avec la clé de David ; et 2 Rois 6:17 vous entoure de chevaux et de chars de feu.',
-        declaration_en:
-          'Every gallows raised for my life, carry your builder! Every pit dug for my feet, swallow your digger! Every arrow fired at my destiny from childhood until tonight—Back to Sender! The snare is broken and I have escaped! I bind the strong man, I spoil his house, I possess my possessions, and I seal my deliverance, healing, breakthrough, and family with the blood of Jesus. Back to sender—it is finished in Jesus’ mighty name, Amen!',
-        declaration_fr:
-          'Que toute potence dressée contre ma vie porte son constructeur ! Que toute fosse creusée pour mes pieds engloutisse son fossoyeur ! Toute flèche tirée contre ma destinée depuis mon enfance jusqu’à cette nuit — Retour à l’envoyeur ! Le filet est rompu et je me suis échappé ! Je lie l’homme fort, je pille sa maison, je possède mes possessions et je scelle ma délivrance, ma guérison, ma percée et ma famille par le sang de Jésus. Tout est accompli au nom puissant de Jésus, Amen !',
-      },
-    ],
-  },
-  {
-    id: 'XWBUBtEv70A',
-    videoNumber: 2,
-    youtubeId: 'XWBUBtEv70A',
-    url: 'https://www.youtube.com/watch?v=XWBUBtEv70A&list=PLK2jIf_WJT5V87ZUiLy8Q0GKet4T-AzRz&index=2',
-    playlistId: 'PLK2jIf_WJT5V87ZUiLy8Q0GKet4T-AzRz',
-    playlistUrl: 'https://www.youtube.com/playlist?list=PLK2jIf_WJT5V87ZUiLy8Q0GKet4T-AzRz',
-    title_en: 'Call on the Name of Jesus and Watch God Work Today | Morning Prayer',
-    title_fr: 'Invoquez le Nom de Jésus et Regardez Dieu Agir Aujourd’hui | Prière du Matin',
-    speaker: 'Grace Enclave Devotional Voice',
-    channel: 'Grace Enclave',
-    channelHandle: '@graceenclave',
-    duration: '09:02',
-    uploadedAt: '2025-08-09',
-    thumbnail: 'https://i.ytimg.com/vi/XWBUBtEv70A/maxresdefault.jpg',
-    watchCategory_en: 'Contemplative Dawn Devotional',
-    watchCategory_fr: 'Dévotion Contemplative de l’Aube',
-    tagline_en: 'A heartfelt morning prayer of gratitude, surrender, intercession, and abiding in the True Vine.',
-    tagline_fr: 'Une prière matinale fervente de gratitude, d’abandon, d’intercession et de communion avec le Cep véritable.',
-    overview_en:
-      'A serene, deeply scriptural 9-minute morning devotional prayer that guides the believer through six sacred movements: (1) Awakening in Mercy & Gratitude for Unseen Protection; (2) Wise Stewardship of Time & Generosity; (3) Heart Examination, Confession & Cleansing; (4) Total Surrender of Daily Plans & Trusting God’s Wisdom (Proverbs 3:5-6); (5) Compassionate Intercession for Family, Friends, the Suffering & the Needy; and (6) Eternal Perspective, Christlike Humility & Abiding in the Vine (John 15:5).',
-    overview_fr:
-      'Une prière matinale contemplative et profondément biblique de 9 minutes qui guide le croyant à travers six mouvements sacrés : (1) Éveil dans la miséricorde et gratitude pour la protection invisible ; (2) Intendance sage du temps et générosité ; (3) Examen du cœur, confession et purification ; (4) Abandon total des projets du jour et confiance en la sagesse divine (Proverbes 3:5-6) ; (5) Intercession compatissante pour la famille, les amis, les malades et les démunis ; et (6) Perspective éternelle, humilité et demeure en Christ, le Cep véritable (Jean 15:5).',
-    docxFile: 'downloads/Video_2_Call_On_The_Name_Of_Jesus_Morning_Prayer_EN_FR.docx',
-    keyScriptures: [
-      'Matthew 5:45',
-      'Lamentations 3:22-23',
-      'Psalm 121:3-4',
-      'Psalm 90:12',
-      'Psalm 139:23-24',
-      '1 John 1:9',
-      'Proverbs 3:5-6',
-      '2 Corinthians 5:7',
-      '2 Timothy 1:7',
-      'Philippians 3:20',
-      'Philippians 2:3',
-      'Colossians 4:6',
-      'John 15:5',
-      'Psalm 5:3',
-    ],
-    chapters: [
-      {
-        id: 'v2-ch1',
-        number: 'I',
-        timestamp: '00:00 – 02:10',
-        title_en: 'Awakening in Mercy, Unseen Protection & Wise Stewardship of the Day',
-        title_fr: 'Éveil dans la Miséricorde, Protection Invisible & Intendance Sage du Jour',
-        scriptures: ['Matthew 5:45', 'Lamentations 3:22-23', 'Psalm 121:3-4', 'Psalm 90:12'],
-        en_text:
-          'Father in heaven, I come before you at the dawn of this new day with a heart that longs to be near you. As the light begins to touch the earth, I am reminded that you are the one who causes the sun to rise on the just and the unjust, that every day is birthed in your mercy, and that even now as I speak, your hand is sustaining all creation. I breathe in deeply and remember that my very breath is a gift from you—that I woke not by chance but by your will. Lord, you have brought me through the night, keeping me when I could not keep myself, guarding my soul as a shepherd watches his sheep. I rise today not as one who owns the day, but as a steward of the hours you have given me. I thank you for the simple blessings: the strength of my body, the ability to think and speak, food, water, shelter, and clothing. May my gratitude spill over into generosity.',
-        fr_text:
-          'Père céleste, je viens devant Toi à l’aube de ce jour nouveau avec un cœur qui soupire après Ta présence. Alors que la lumière commence à effleurer la terre, il m’est rappelé que c’est Toi qui fais lever le soleil sur les méchants et sur les bons, que chaque jour naît de Ta miséricorde et que Ta main soutient toute la création. J’inspire profondément et je me souviens que mon souffle même est un don qui vient de Toi — que je ne me suis pas réveillé par hasard, mais par Ta volonté. Seigneur, Tu m’as fait traverser la nuit, veillant sur mon âme comme un berger veille sur ses brebis. Je me lève aujourd’hui non pas comme celui à qui appartient la journée, mais comme un intendant des heures que Tu m’as confiées. Je Te rends grâce pour les bénédictions simples : la vigueur de mon corps, la capacité de penser et de parler, la nourriture, l’eau, le toit et les vêtements. Que ma gratitude déborde en générosité.',
-        declaration_en:
-          'My breath is a sacred gift from God. I rise today as a faithful steward of every hour, walking in wisdom and overflowing with gratitude and generosity.',
-        declaration_fr:
-          'Mon souffle est un don sacré de Dieu. Je me lève aujourd’hui comme un intendant fidèle de chaque heure, marchant dans la sagesse et débordant de gratitude et de générosité.',
-      },
-      {
-        id: 'v2-ch2',
-        number: 'II',
-        timestamp: '02:11 – 04:25',
-        title_en: 'Heart Examination, Cleansing, Surrender & Walking by Faith',
-        title_fr: 'Examen du Cœur, Purification, Abandon & Marche par la Foi',
-        scriptures: ['Psalm 139:23-24', '1 John 1:9', 'Proverbs 3:5-6', '2 Corinthians 5:7', '2 Timothy 1:7'],
-        en_text:
-          'Search me, Lord. Look into my heart and see if there is any thought or motive that does not honor you. Forgive me for careless words, thoughts of doubt or pride, and times I sought my own comfort over obedience. Wash me clean today; make me sensitive to the whispers of your Spirit. As I stand on the edge of this day, I place it entirely in your hands—my plans, my meetings, my work, my conversations, all of it is yours. You have promised in Proverbs 3:5-6 that if I trust in you with all my heart and lean not on my own understanding, and in all my ways acknowledge you, you will make my paths straight. Grant me strength to approach responsibilities as opportunities to serve you, to be a light in someone’s darkness, and to walk in the Spirit of power, love, and a sound mind.',
-        fr_text:
-          'Sonde-moi, Seigneur. Regarde au fond de mon cœur et vois s’il s’y trouve quelque pensée ou quelque motif qui ne T’honore pas. Pardonne-moi mes paroles imprudentes, mes pensées de doute ou d’orgueil, et les moments où j’ai recherché mon propre confort plutôt que l’obéissance. Purifie-moi aujourd’hui et rends-moi sensible aux murmures de Ton Esprit. Au seuil de cette journée, je la remets entièrement entre Tes mains : mes projets, mes rencontres, mon travail, mes conversations — tout T’appartient. Selon Ta promesse dans Proverbes 3:5-6, je me confie en Toi de tout mon cœur sans m’appuyer sur ma sagesse, et Tu aplaniras mes sentiers. Accorde-moi la sagesse d’En-Haut et un esprit de force, d’amour et de sagesse.',
-        declaration_en:
-          'I place my plans, my work, and my conversations entirely in the Lord’s hands. I trust in Him with all my heart; He makes my paths straight and fills me with power, love, and a sound mind.',
-        declaration_fr:
-          'Je remets mes projets, mon travail et mes conversations entièrement entre les mains du Seigneur. Je me confie en Lui de tout mon cœur ; Il aplanit mes sentiers et me remplit de force, d’amour et de sagesse.',
-      },
-      {
-        id: 'v2-ch3',
-        number: 'III',
-        timestamp: '04:26 – 06:35',
-        title_en: 'Intercession for Loved Ones & the Needy, Eternal Perspective & Humility',
-        title_fr: 'Intercession pour les Proches & les Démunis, Perspective Éternelle & Humilité',
-        scriptures: ['Philippians 3:20', 'Philippians 2:3', 'Colossians 4:6'],
-        en_text:
-          'Father, I lift before you those I love—family, friends, and all who cross my path. Surround them with your favor as with a shield. Bring healing to the ill, comfort to the grieving, cords of kindness to those far from you, and clarity to those making decisions. I pray also for the poor, the hungry, the oppressed, the lonely, and the brokenhearted: send laborers into the fields and make me willing to be part of the answer. Keep me mindful of the eternal in the midst of the temporary, remembering that my citizenship is in heaven and my hope is in Christ alone. Help me to walk in genuine love, cheerful service, and words seasoned with grace. When I grow weary, be my strength; when discouraged, my hope; when uncertain, my anchor; when tempted, my escape.',
-        fr_text:
-          'Père, j’élève devant Toi ceux que j’aime — ma famille, mes amis et tous ceux qui croiseront ma route. Entoure-les de Ta faveur comme d’un bouclier. Apporte la guérison aux malades, la consolation aux endeuillés, des cordages d’amour à ceux qui sont éloignés, et la clarté à ceux qui prennent des décisions. Je prie aussi pour les pauvres, les affamés, les opprimés, les personnes seules et les cœurs brisés : fais de moi une réponse à ces prières. Garde-moi attentif à l’éternel au milieu du temporaire, car ma citoyenneté est dans les cieux. Que mes paroles soient accompagnées de grâce. Quand je me lasse, sois ma force ; quand je me décourage, mon espérance ; quand je doute, mon ancre.',
-        declaration_en:
-          'The favor of the Lord surrounds my loved ones like a shield. My citizenship is in heaven; my love is genuine, my words are seasoned with grace, and Christ is my strength, my hope, and my anchor.',
-        declaration_fr:
-          'La faveur de l’Éternel entoure mes proches comme un bouclier. Ma citoyenneté est dans les cieux ; mon amour est sincère, mes paroles sont pleines de grâce, et Christ est ma force, mon espérance et mon ancre.',
-      },
-      {
-        id: 'v2-ch4',
-        number: 'IV',
-        timestamp: '06:36 – 09:02',
-        title_en: 'Abiding in the True Vine & Deeper Hunger for Communion with God',
-        title_fr: 'Demeurer dans le Cep Véritable & Faim Profonde de Communion avec Dieu',
-        scriptures: ['John 15:5', '1 Thessalonians 5:17'],
-        en_text:
-          'As the hours unfold, give me a spirit of prayer that lingers throughout the day. Teach me to abide in you so closely that your desires become my desires, your heart my heart, your ways my ways. For you have said: "I am the vine, you are the branches. If you remain in me and I in you, you will bear much fruit; apart from me you can do nothing" (John 15:5). Draw me into the depths of your word, the richness of communion in prayer, the joy of obedience, and the peace of surrender. Let me know you more tomorrow than I do today, and more today than I did yesterday. Take my mind, my heart, my hands, my voice—and at the close of this day, may I look back and see your fingerprints on every moment. In the name of Jesus, my Savior, my Lord, my Friend, my Life. Amen.',
-        fr_text:
-          'Au fil des heures qui s’ouvrent, donne-moi un esprit de prière qui demeure tout au long du jour. Enseigne-moi à demeurer en Toi si étroitement que Tes désirs deviennent mes désirs, Ton cœur mon cœur, Tes voies mes voies. Car Tu as dit : « Je suis le cep, vous êtes les sarments. Celui qui demeure en moi et en qui je demeure porte beaucoup de fruit, car sans moi vous ne pouvez rien faire » (Jean 15:5). Attire-moi dans les profondeurs de Ta Parole, dans la richesse de la communion avec Toi, dans la joie de l’obéissance et la paix de l’abandon. Prends mon intelligence, mon cœur, mes mains, ma voix — et au soir de cette journée, puissé-je contempler Tes empreintes sur chaque instant. Au nom de Jésus, mon Sauveur, mon Seigneur, mon Ami, ma Vie. Amen.',
-        declaration_en:
-          'I abide in Christ the True Vine, and His life bears abundant fruit in me. At the close of this day, I will see God’s fingerprints on every moment. Amen!',
-        declaration_fr:
-          'Je demeure en Christ, le Cep véritable, et Sa vie porte en moi un fruit abondant. Au soir de cette journée, je contemplerai les empreintes de Dieu sur chaque instant. Amen !',
-      },
-    ],
-  },
-  {
-    id: '45wUm7wffBQ',
-    videoNumber: 3,
-    youtubeId: '45wUm7wffBQ',
-    url: 'https://www.youtube.com/watch?v=45wUm7wffBQ&list=PL-7eNLWzLZIDACNgNtZWapz_j-TBF4bqs',
-    playlistId: 'PL-7eNLWzLZIDACNgNtZWapz_j-TBF4bqs',
-    playlistUrl: 'https://www.youtube.com/watch?v=45wUm7wffBQ&list=PL-7eNLWzLZIDACNgNtZWapz_j-TBF4bqs',
-    title_en: '6:45 AM #prayer 10 POWERFUL MORNING DECLARATIONS WITH APOSTLE JOSHUA SELMAN',
-    title_fr: '6h45 #prière 10 PUISSANTES DÉCLARATIONS MATINALES AVEC L’APÔTRE JOSHUA SELMAN',
-    speaker: 'Apostle Joshua Selman',
-    channel: 'OVERCOMING DAILY',
-    channelHandle: '@therealovercomingdaily',
-    duration: '29:12',
-    uploadedAt: '2023-09-11',
-    thumbnail: 'https://i.ytimg.com/vi/45wUm7wffBQ/maxresdefault.jpg',
-    watchCategory_en: '6:45 AM Apostolic Declarations',
-    watchCategory_fr: 'Déclarations Apostoliques de 6h45',
-    tagline_en: 'Praying like believers with Spiritual Intelligence: 10 prophetic decrees that create reality.',
-    tagline_fr: 'Prier comme des croyants dotés d’Intelligence Spirituelle : 10 décrets prophétiques qui créent la réalité.',
-    overview_en:
-      'A high-impact 29-minute apostolic prayer session where Apostle Joshua Selman leads believers through 10 scriptural declarations—teaching directly that "our assignment is to pray like believers with spiritual intelligence" and that "prophetic words don’t only reveal; they create—they call things that be not and make them appear." Covers supernatural lifting, breaking the Iron Gate of visibility, Elijah speed, covenant immunity with creation, peace by all means, strangers feeding your flocks (Mephibosheth), priestly intercession for the nation, Jabez expansion, guarding joy against offense, and the transferable mantle of honor.',
-    overview_fr:
-      'Une session apostolique percutante de 29 minutes au cours de laquelle l’Apôtre Joshua Selman conduit les croyants dans 10 déclarations bibliques — enseignant que « notre mission est de prier comme des croyants dotés d’intelligence spirituelle » et que « les paroles prophétiques ne font pas que révéler : elles créent et appellent à l’existence ce qui n’est pas ». Couvre l’élévation surnaturelle, le brisement de la Porte de Fer de la visibilité, la vitesse d’Élie, l’alliance avec les pierres des champs, la paix de toute manière, les étrangers au service de votre destinée (Mephiboscheth), l’intercession sacerdotale pour la nation, l’élargissement de Jaebets, la sauvegarde de la joie contre l’offense et le manteau d’honneur.',
-    docxFile: 'downloads/Video_3_10_Powerful_Morning_Declarations_Joshua_Selman_EN_FR.docx',
-    keyScriptures: [
-      'Psalm 3:1-3',
-      'Acts 12:4-10',
-      'Isaiah 45:2',
-      'Matthew 25:1-5',
-      '1 Kings 18:46',
-      'Psalm 125:3',
-      'Job 5:19-23',
-      '2 Thessalonians 3:16',
-      'Isaiah 61:1-5',
-      '2 Samuel 9:1-11',
-      'Psalm 122:6',
-      'Esther 4:13-16',
-      'Romans 4:17',
-      '1 Chronicles 4:9-10',
-      'Zechariah 12:10',
-      'Isaiah 12:3',
-      'Psalm 1:3',
-      'Numbers 27:18-20',
-    ],
-    chapters: [
-      {
-        id: 'v3-ch1',
-        number: 'I',
-        timestamp: '00:00 – 03:30',
-        title_en: 'Declarations 1 & 2: The Lifter of My Head & Breaking the Iron Gate of Visibility',
-        title_fr: 'Déclarations 1 & 2 : Celui qui Relève ma Tête & Briser la Porte de Fer de la Visibilité',
-        scriptures: ['Psalm 3:1-3', 'Acts 12:4-10', 'Isaiah 45:2'],
-        en_text:
-          'Declaration 1 — Psalm 3:1-3: "But thou, O Lord, art a shield for me; my glory, and the lifter up of mine head." Nothing keeps your head down in this season! Declaration 2 — Acts 12:4-10: When the angel brought Peter out of Herod’s prison, they passed the first ward and the second ward, and came unto the Iron Gate that leadeth unto the city, which opened to them of its own accord. The Iron Gate is the gate that stops visibility and controls influence. Your business or gift can be genuine, yet hidden behind an iron gate. When that gate breaks, the next thing you see is the city!',
-        fr_text:
-          'Déclaration 1 — Psaume 3:2-4 : « Mais toi, ô Éternel ! tu es mon bouclier, tu es ma gloire, et tu relèves ma tête. » Rien ne maintiendra votre tête baissée en cette saison ! Déclaration 2 — Actes 12:4-10 : Lorsque l’ange fit sortir Pierre de la prison d’Hérode, ils passèrent la première et la seconde garde et arrivèrent à la Porte de Fer qui mène à la ville, laquelle s’ouvrit d’elle-même. La Porte de Fer est celle qui bloque la visibilité et contrôle l’influence. Lorsque cette porte se brise, la chose suivante que vous voyez est la ville !',
-        declaration_en:
-          'In the name of Jesus, nothing keeps my head down in this season—I am lifted supernaturally! Every Iron Gate standing in my way of visibility and influence, be broken right now! He has broken the gates of brass and cut the bars of iron in sunder!',
-        declaration_fr:
-          'Au nom de Jésus, rien ne maintient ma tête baissée en cette saison — je suis élevé surnaturellement ! Toute Porte de Fer qui se dresse sur mon chemin de visibilité et d’influence, sois brisée maintenant ! Il a brisé les portes d’airain et mis en pièces les verrous de fer !',
-      },
-      {
-        id: 'v3-ch2',
-        number: 'II',
-        timestamp: '03:31 – 09:40',
-        title_en: 'Declarations 3, 4 & 5: Supernatural Speed, Breaking the Wicked Rod & Covenant with Creation',
-        title_fr: 'Déclarations 3, 4 & 5 : Vitesse Surnaturelle, Sceptre Brisé & Alliance avec la Création',
-        scriptures: ['Matthew 25:1-5', '1 Kings 18:46', 'Psalm 125:3', 'Job 5:19-23'],
-        en_text:
-          'Declaration 3 — Against Delay (Matthew 25:5 & 1 Kings 18:46): It was the delay of the bridegroom that made the oil of the foolish virgins finish. The unit of destiny is time, and the hand of the Lord came upon Elijah so that he ran barefoot and overtook the chariots of Ahab down to Jezreel. Declaration 4 — Psalm 125:3: "For the rod of the wicked shall not rest upon the lot of the righteous." Command every finger of darkness over your family to give way. Declaration 5 — Job 5:19-23: "He shall deliver thee in six troubles: yea, in seven there shall no evil touch thee... For thou shalt be in league [covenant] with the stones of the field." Because you have dominion over creation, no one can use sand, water, or earth to make enchantments against your destiny!',
-        fr_text:
-          'Déclaration 3 — Contre le Retard (Matthieu 25:5 & 1 Rois 18:46) : C’est le retard de l’époux qui épuisa l’huile des vierges. L’unité de la destinée est le temps, et la main de l’Éternel fut sur Élie de sorte qu’il devança les chars d’Achab jusqu’à Jizreel. Déclaration 4 — Psaume 125:3 : « Le sceptre de la méchanceté ne restera pas sur le lot des justes. » Déclaration 5 — Job 5:19-23 : « Six fois il te délivrera de l’angoisse, et sept fois le mal ne t’atteindra pas... Car tu feras alliance avec les pierres des champs. » Parce que vous avez reçu la domination sur la création, nul ne peut utiliser le sable, l’eau ou la terre pour faire des enchantements contre votre destinée !',
-        declaration_en:
-          'Lord, bring supernatural speed to my life and destiny like Elijah! The rod of the wicked shall not rest upon my lot! By the power of the Holy Spirit, I am in covenant with the stones of the field—no enchantment or divination against my life shall thrive!',
-        declaration_fr:
-          'Seigneur, accorde une vitesse surnaturelle à ma vie et à ma destinée comme à Élie ! Le sceptre de la méchanceté ne reposera pas sur mon lot ! Par la puissance du Saint-Esprit, je suis en alliance avec les pierres des champs — aucun enchantement ni aucune divination contre ma vie ne prospérera !',
-      },
-      {
-        id: 'v3-ch3',
-        number: 'III',
-        timestamp: '09:41 – 18:50',
-        title_en: 'Declarations 6, 7 & 8: Peace By All Means, Strangers Feeding Your Flocks & Priestly Intercession',
-        title_fr: 'Déclarations 6, 7 & 8 : Paix de Toute Manière, Étrangers à Votre Service & Intercession Sacerdotale',
-        scriptures: ['2 Thessalonians 3:16', 'Isaiah 61:1-5', '2 Samuel 9:1-11', 'Psalm 122:6', 'Esther 4:13-16'],
-        en_text:
-          'Declaration 6 — 2 Thessalonians 3:16: "Now the Lord of peace himself give you peace always by all means"—even if it means clearing troublemakers out of the way! Declaration 7 — Isaiah 61:1-5 & 2 Samuel 9: "And strangers shall stand and feed your flocks, and the sons of the alien shall be your plowmen." Just as King David summoned Mephibosheth out of Lo-debar and assigned Ziba’s fifteen sons to plow his land while Mephibosheth ate continually at the king’s table, stop limiting God to the uncle or person you know—let God direct strangers to bless you! Declaration 8 — Priestly Intercession with Spiritual Intelligence (Psalm 122:6 & Esther 4:13-16): Our assignment is to pray like believers with spiritual intelligence, laying aside selfishness to stand as priests who midwife deliverance and peace over our nation.',
-        fr_text:
-          'Déclaration 6 — 2 Thessaloniciens 3:16 : « Que le Seigneur de la paix vous donne lui-même la paix, en tout temps, de toute manière ! » Déclaration 7 — Ésaïe 61:1-5 & 2 Samuel 9 : « Des étrangers se tiendront là et feront paître vos troupeaux ; des fils de l’étranger seront vos laboureurs. » Tout comme David fit sortir Mephiboscheth de Lodebar et ordonna aux quinze fils de Tsiba de cultiver ses terres pendant que Mephiboscheth mangeait à la table du roi, ne limitez plus Dieu aux personnes que vous connaissez ! Déclaration 8 — Intercession Sacerdotale avec Intelligence Spirituelle (Psaume 122:6 & Esther 4:13-16) : Notre mission est de prier comme des croyants dotés d’intelligence spirituelle, nous tenant comme des sacrificateurs qui enfantent la paix et la délivrance pour notre nation.',
-        declaration_en:
-          'Lord of peace, give me peace always and by all means! In this season, strangers shall stand and feed my flocks, and helpers of destiny are rising for me from everywhere! As a royal priest praying with spiritual intelligence, I decree angelic protection, safety, and peace over our nation!',
-        declaration_fr:
-          'Seigneur de la paix, donne-moi la paix en tout temps et de toute manière ! En cette saison, des étrangers se lèvent pour paître mes troupeaux, et des aides de destinée surgissent de toutes parts ! En tant que sacrificateur priant avec intelligence spirituelle, je décrète la protection angélique, la sécurité et la paix sur notre nation !',
-      },
-      {
-        id: 'v3-ch4',
-        number: 'IV',
-        timestamp: '18:51 – 29:12',
-        title_en: 'Declarations 9 & 10: Prophetic Creation, Jabez Expansion, Unspeakable Joy & The Mantle of Honor',
-        title_fr: 'Déclarations 9 & 10 : Création Prophétique, Élargissement de Jaebets, Joie Ineffable & Manteau d’Honneur',
-        scriptures: ['Romans 4:17', '1 Chronicles 4:9-10', 'Zechariah 12:10', 'Isaiah 12:3', 'Psalm 1:3', 'Numbers 27:18-20'],
-        en_text:
-          'Prophetic words don’t only reveal—they create! They call things that be not and make them appear. Declaration 9 — Open Doors, Breaking Family Patterns, Jabez Expansion & System-Shifting Favor (1 Chronicles 4:9-10): Every door that refused to open, open now! Every negative family pattern is broken by the rod of a higher priesthood! Like Jabez, expand to the east, north, south, west, and overseas, and return with a fearful testimony of favor! Declaration 10 — Spiritual Hunger, Guarding Joy Against Offense, Business Wonders & The Mantle of Honor (Zechariah 12:10, Isaiah 12:3, Psalm 1:3, Numbers 27:18-20): Receive a fresh spirit of prayer and supplication. Refuse the trap of offense when new seasons open, for with joy you draw water from the wells of salvation. Watch wonders happen in your business. Finally, honor is a transferable grace (as Moses put his honor upon Joshua) and the cure for shame and reproach.',
-        fr_text:
-          'Les paroles prophétiques ne font pas que révéler — elles créent ! Elles appellent les choses qui ne sont point comme si elles étaient. Déclaration 9 — Portes Ouvertes, Rupture des Cycles Familiaux, Élargissement de Jaebets & Faveur (1 Chroniques 4:9-10) : Toute porte fermée s’ouvre maintenant ! Tout schéma familial négatif est brisé par la verge d’un sacerdoce supérieur ! Comme Jaebets, étendez-vous à l’est, au nord, au sud, à l’ouest et au-delà des mers ! Déclaration 10 — Faim Spirituelle, Joie contre l’Offense, Prodiges dans les Affaires & Manteau d’Honneur (Zacharie 12:10, Ésaïe 12:3, Psaume 1:3, Nombres 27:18-20) : Recevez un esprit nouveau de prière et de supplication. Refusez le piège de l’offense, car c’est avec joie que vous puiserez aux sources du salut. Voyez des prodiges dans vos affaires, et recevez le manteau d’honneur qui guérit de la honte et vous distingue parmi vos contemporains !',
-        declaration_en:
-          'By the power that raised Christ from the dead, every closed door over my destiny opens now! I expand to the north, south, east, west, and overseas! I receive a fresh spirit of prayer, I guard my unspeakable joy against every trap of offense, whatsoever I do prospers, and the transferable Mantle of Honor rests upon my life now!',
-        declaration_fr:
-          'Par la puissance qui a ressuscité Christ d’entre les morts, toute porte fermée sur ma destinée s’ouvre maintenant ! Je m’étends au nord, au sud, à l’est, à l’ouest et au-delà des mers ! Je reçois un esprit nouveau de prière, je garde ma joie ineffable contre tout piège d’offense, tout ce que je fais prospère, et le Manteau d’Honneur repose sur ma vie maintenant !',
-      },
-    ],
-  },
-];
 
 export const PRAYER_ALTAR_CARDS: PrayerCardItem[] = [
   {
@@ -983,125 +541,66 @@ export interface DocxPackageItem {
 
 export const DOCX_PACKAGES_LIST: DocxPackageItem[] = [
   {
-    id: 'pkg-master-en-fr',
-    title_en: 'Complete Trilingual Master Package (9 structured sessions — EN / FR / MG)',
-    title_fr: 'Pack Maître Trilingue Complet (9 sessions structurées — EN / FR / MG)',
+    id: 'pkg-prayers',
+    title_en: 'Prayer Library — Complete Transcripts (377 volumes in one .DOCX)',
+    title_fr: 'Bibliothèque de Prières — Transcriptions Complètes (377 volumes en un .DOCX)',
     description_en:
-      'The complete Microsoft Word (.docx) volume containing all 9 video transcriptions in English, French and Malagasy, devotional summaries, and Scripture concordances.',
+      'Every harvested prayer transcript in a single Microsoft Word document, with word counts and the source link for each entry.',
     description_fr:
-      'Le volume Microsoft Word (.docx) complet réunissant les 9 transcriptions vidéo intégrales en anglais, en français et en malgache, les synthèses dévotionnelles et les références bibliques.',
-    filename: 'Spiritual_Intelligence_Complete_Transcriptions_EN_FR.docx',
-    href: 'downloads/Spiritual_Intelligence_Complete_Transcriptions_EN_FR.docx',
-    badge_en: 'Recommended Master DOCX',
-    badge_fr: 'DOCX Maître Recommandé',
-    sizeLabel: '126 KB • .DOCX',
-    languages: 'English + Français',
+      'Toutes les transcriptions de prière récoltées dans un seul document Microsoft Word, avec le nombre de mots et le lien source pour chaque entrée.',
+    filename: 'Spiritual_Intelligence_PRAYERS_Complete_Transcriptions.docx',
+    href: 'downloads/Spiritual_Intelligence_PRAYERS_Complete_Transcriptions.docx',
+    badge_en: 'Prayer Library',
+    badge_fr: 'Bibliothèque de Prières',
+    sizeLabel: '4.7 MB • .DOCX',
+    languages: 'English (EN)',
     isPrimary: true,
   },
   {
-    id: 'pkg-zip-all',
-    title_en: 'Complete All-in-One DOCX Archive Bundle (7 .DOCX Files in .ZIP)',
-    title_fr: 'Archive Complète de Tous les Fichiers DOCX (7 Fichiers .DOCX en .ZIP)',
+    id: 'pkg-teachings',
+    title_en: 'Myles Munroe Teaching Library — Complete Transcripts (464 volumes)',
+    title_fr: 'Bibliothèque d’Enseignements Myles Munroe — Transcriptions Complètes (464 volumes)',
     description_en:
-      'A single downloadable ZIP package containing the Master Bilingual DOCX, English Edition DOCX, French Edition DOCX, and all 3 individual video DOCX manuals.',
+      'Every harvested Dr. Myles Munroe teaching transcript in one Microsoft Word document.',
     description_fr:
-      'Une archive ZIP téléchargeable regroupant le DOCX Maître Bilingue, l’Édition Anglaise, l’Édition Française et les 3 manuels DOCX individuels par vidéo.',
-    filename: 'Spiritual_Intelligence_DOCX_Transcriptions_Package.zip',
-    href: 'downloads/Spiritual_Intelligence_DOCX_Transcriptions_Package.zip',
-    badge_en: 'Full Bundle (.ZIP of 7 .DOCX)',
-    badge_fr: 'Pack Intégral (.ZIP de 7 .DOCX)',
-    sizeLabel: '476 KB • .ZIP',
-    languages: 'EN + FR + MG (7 Documents)',
+      'Toutes les transcriptions d’enseignement du Dr. Myles Munroe récoltées, dans un seul document Word.',
+    filename: 'Spiritual_Intelligence_TEACHINGS_Complete_Transcriptions.docx',
+    href: 'downloads/Spiritual_Intelligence_TEACHINGS_Complete_Transcriptions.docx',
+    badge_en: 'Myles Munroe',
+    badge_fr: 'Myles Munroe',
+    sizeLabel: '4.4 MB • .DOCX',
+    languages: 'English (EN)',
     isPrimary: true,
   },
   {
-    id: 'pkg-en-only',
-    title_en: 'English Complete Transcriptions Edition (All 3 Videos — EN)',
-    title_fr: 'Édition Complète des Transcriptions en Anglais (Les 3 Vidéos — EN)',
+    id: 'pkg-christian-house',
+    title_en: 'Christian House — Complete Transcripts (Apostle Joshua Selman)',
+    title_fr: 'Christian House — Transcriptions Complètes (Apôtre Joshua Selman)',
     description_en:
-      'All three complete video transcriptions, prophetic declarations, and scripture references in English only.',
+      'Harvested Christian House playlist transcripts. The package grows as the rest of the playlist is transcribed.',
     description_fr:
-      'Les trois transcriptions vidéo intégrales, déclarations prophétiques et références bibliques uniquement en anglais.',
-    filename: 'Spiritual_Intelligence_Transcriptions_EN.docx',
-    href: 'downloads/Spiritual_Intelligence_Transcriptions_EN.docx',
-    badge_en: 'English Edition',
-    badge_fr: 'Édition Anglaise',
-    sizeLabel: '74 KB • .DOCX',
+      'Transcriptions récoltées de la playlist Christian House. Le pack s’enrichit au fur et à mesure de la transcription du reste de la playlist.',
+    filename: 'Spiritual_Intelligence_CHRISTIAN_HOUSE_Complete_Transcriptions.docx',
+    href: 'downloads/Spiritual_Intelligence_CHRISTIAN_HOUSE_Complete_Transcriptions.docx',
+    badge_en: 'Christian House',
+    badge_fr: 'Christian House',
+    sizeLabel: '0.1 MB • .DOCX',
     languages: 'English (EN)',
   },
   {
-    id: 'pkg-fr-only',
-    title_en: 'French Complete Transcriptions Edition (9 structured sessions — FR)',
-    title_fr: 'Édition Complète des Transcriptions en Français (9 sessions structurées — FR)',
+    id: 'pkg-zip-all',
+    title_en: 'Complete Archive Bundle (all collections in one .ZIP)',
+    title_fr: 'Archive Complète (toutes les collections en un .ZIP)',
     description_en:
-      'All complete video transcriptions, prophetic declarations, and Louis Segond scripture references in French only.',
+      'A single downloadable ZIP containing every per-collection .DOCX package above.',
     description_fr:
-      'Les transcriptions vidéo intégrales, déclarations prophétiques et références bibliques Louis Segond uniquement en français.',
-    filename: 'Spiritual_Intelligence_Transcriptions_FR.docx',
-    href: 'downloads/Spiritual_Intelligence_Transcriptions_FR.docx',
-    badge_en: 'French Edition',
-    badge_fr: 'Édition Française',
-    sizeLabel: '58 KB • .DOCX',
-    languages: 'Français (FR)',
-  },
-  {
-    id: 'pkg-mg-only',
-    title_en: 'Malagasy Complete Transcriptions Edition (9 structured sessions — MG)',
-    title_fr: 'Édition Complète des Transcriptions en Malgache (9 sessions structurées — MG)',
-    description_en:
-      'All complete video transcriptions, prophetic declarations, and Malagasy Bible scripture references in Malagasy (Teny Malagasy).',
-    description_fr:
-      'Toutes les transcriptions vidéo intégrales, déclarations prophétiques et références bibliques en langue malgache (Teny Malagasy).',
-    filename: 'Spiritual_Intelligence_Transcriptions_MG.docx',
-    href: 'downloads/Spiritual_Intelligence_Transcriptions_MG.docx',
-    badge_en: 'Malagasy Edition (MG)',
-    badge_fr: 'Édition Malgache (MG)',
-    sizeLabel: '62 KB • .DOCX',
-    languages: 'Malagasy (MG)',
-  },
-  {
-    id: 'pkg-v1',
-    title_en: 'Video 1 DOCX: Command Your Day in Total Victory | Joshua Selman (EN & FR)',
-    title_fr: 'DOCX Vidéo 1 : Commandez Votre Journée dans une Victoire Totale | Joshua Selman (EN & FR)',
-    description_en:
-      'Dedicated bilingual (English & French) transcription and prayer manual for Video 1 (4YElIs15_Ak — 1:24:44).',
-    description_fr:
-      'Manuel de prière et transcription bilingue (anglais et français) dédié à la Vidéo 1 (4YElIs15_Ak — 1:24:44).',
-    filename: 'Video_1_Command_Your_Day_Joshua_Selman_EN_FR.docx',
-    href: 'downloads/Video_1_Command_Your_Day_Joshua_Selman_EN_FR.docx',
-    badge_en: 'Video 1 • 1:24:44',
-    badge_fr: 'Vidéo 1 • 1:24:44',
-    sizeLabel: '75 KB • .DOCX',
-    languages: 'English + Français',
-  },
-  {
-    id: 'pkg-v2',
-    title_en: 'Video 2 DOCX: Call on the Name of Jesus | Morning Prayer (EN & FR)',
-    title_fr: 'DOCX Vidéo 2 : Invoquez le Nom de Jésus | Prière du Matin (EN & FR)',
-    description_en:
-      'Dedicated bilingual (English & French) transcription and devotional manual for Video 2 (XWBUBtEv70A — 09:02).',
-    description_fr:
-      'Manuel dévotionnel et transcription bilingue (anglais et français) dédié à la Vidéo 2 (XWBUBtEv70A — 09:02).',
-    filename: 'Video_2_Call_On_The_Name_Of_Jesus_Morning_Prayer_EN_FR.docx',
-    href: 'downloads/Video_2_Call_On_The_Name_Of_Jesus_Morning_Prayer_EN_FR.docx',
-    badge_en: 'Video 2 • 09:02',
-    badge_fr: 'Vidéo 2 • 09:02',
-    sizeLabel: '44 KB • .DOCX',
-    languages: 'English + Français',
-  },
-  {
-    id: 'pkg-v3',
-    title_en: 'Video 3 DOCX: 6:45 AM 10 Powerful Morning Declarations | Joshua Selman (EN & FR)',
-    title_fr: 'DOCX Vidéo 3 : 6h45 — 10 Puissantes Déclarations Matinales | Joshua Selman (EN & FR)',
-    description_en:
-      'Dedicated bilingual (English & French) transcription and declaration manual for Video 3 (45wUm7wffBQ — 29:12).',
-    description_fr:
-      'Manuel de déclarations et transcription bilingue (anglais et français) dédié à la Vidéo 3 (45wUm7wffBQ — 29:12).',
-    filename: 'Video_3_10_Powerful_Morning_Declarations_Joshua_Selman_EN_FR.docx',
-    href: 'downloads/Video_3_10_Powerful_Morning_Declarations_Joshua_Selman_EN_FR.docx',
-    badge_en: 'Video 3 • 29:12',
-    badge_fr: 'Vidéo 3 • 29:12',
-    sizeLabel: '49 KB • .DOCX',
-    languages: 'English + Français',
+      'Une archive ZIP unique contenant chaque pack .DOCX par collection ci-dessus.',
+    filename: 'Spiritual_Intelligence_DOCX_Transcriptions_Package.zip',
+    href: 'downloads/Spiritual_Intelligence_DOCX_Transcriptions_Package.zip',
+    badge_en: 'Full Bundle (.ZIP)',
+    badge_fr: 'Pack Intégral (.ZIP)',
+    sizeLabel: '9.2 MB • .ZIP',
+    languages: 'EN (all collections)',
+    isPrimary: true,
   },
 ];

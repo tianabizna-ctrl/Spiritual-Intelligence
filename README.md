@@ -1,6 +1,8 @@
 # ✦ Spiritual Intelligence — Faharanitan-tsaina Ara-panahy (EN / FR / MG)
 
-A trilingual (**English, French & Malagasy**) web application and devotional sanctuary featuring complete video transcriptions for all **9 sessions**, prophetic declarations, interactive prayer watches, a trilingual Scripture concordance, and downloadable **Microsoft Word (`.docx`)** transcription packages in `EN`, `FR` and `MG`.
+A trilingual (**English, French & Malagasy**) web application and devotional sanctuary built on a harvested transcript library — **844 real transcripts** (377 prayers, 464 Dr. Myles Munroe teachings, 3 Christian House) — with prophetic declarations, interactive prayer watches, a trilingual Scripture concordance, a Collections index, and downloadable **Microsoft Word (`.docx`)** packages generated from that corpus.
+
+There are no hand-authored session structures: every reading surface shows harvested transcript text, and every count in the UI is derived from the data.
 
 ---
 
@@ -111,16 +113,18 @@ Full texts are **not** inlined into the JavaScript. Each transcript is written t
 
 All pre-built Microsoft Word (`.docx`) transcription documents are available in [`/downloads`](./downloads) and served directly in the web application under `/downloads/`:
 
-- **`Spiritual_Intelligence_Complete_Transcriptions_EN_FR.docx`** — Complete Trilingual Master Package (all 9 videos in English, French & Malagasy, devotional overviews, and Scripture references)
-- **`Spiritual_Intelligence_Transcriptions_EN.docx`** — Complete English Edition (all 9 videos in English)
-- **`Spiritual_Intelligence_Transcriptions_FR.docx`** — Complete French Edition (all 9 videos in French)
-- **`Spiritual_Intelligence_Transcriptions_MG.docx`** — Complete Malagasy Edition (all 9 videos in Malagasy)
+- **`Spiritual_Intelligence_PRAYERS_Complete_Transcriptions.docx`** — all 377 prayer transcripts
+- **`Spiritual_Intelligence_TEACHINGS_Complete_Transcriptions.docx`** — all 464 Myles Munroe teaching transcripts
+- **`Spiritual_Intelligence_CHRISTIAN_HOUSE_Complete_Transcriptions.docx`** — the Christian House playlist transcripts harvested so far
+- **`Spiritual_Intelligence_DOCX_Transcriptions_Package.zip`** — every package above in one archive
+
+Regenerate them from the corpus with `python3 scripts/generate_docx_packages.py` (or pass a collection key to build just one).
 - **`Video_1_Command_Your_Day_Joshua_Selman_EN_FR.docx`** — Video 1 Bilingual Edition (`1:24:44`)
 - **`Video_2_Call_On_The_Name_Of_Jesus_Morning_Prayer_EN_FR.docx`** — Video 2 Bilingual Edition (`09:02`)
 - **`Video_3_10_Powerful_Morning_Declarations_Joshua_Selman_EN_FR.docx`** — Video 3 Bilingual Edition (`29:12`)
 - **`Spiritual_Intelligence_DOCX_Transcriptions_Package.zip`** — Complete `.zip` archive containing all 7 `.docx` manuals
 
-Plain-text raw English, French & Malagasy transcripts are also stored in [`/data/raw_transcripts`](./data/raw_transcripts).
+Every transcript is stored as JSON in [`/data/transcripts`](./data/transcripts) and served to the app from `public/transcripts`. The hand-authored plain-text files that used to live in `data/raw_transcripts` went with the nine removed sessions.
 
 ---
 

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Download, ExternalLink, Library, Menu, Settings as SettingsIcon, Sparkles } from 'lucide-react';
-import { UILang, VIDEOS_DATA } from './data/spiritualData';
-import { ALL_VIDEOS_DATA } from './data/compendiumData';
+import { UILang } from './data/spiritualData';
 import { TranscriptionsView } from './components/TranscriptionsView';
 import { PrayersAltarView } from './components/PrayersAltarView';
 import {
@@ -11,6 +10,7 @@ import {
 import { DocxDownloadsView } from './components/DocxDownloadsView';
 import { MasterCompendiumView } from './components/MasterCompendiumView';
 import { LibraryView } from './components/LibraryView';
+import { CollectionsView } from './components/CollectionsView';
 import { LIBRARY_TOTAL_VIDEOS, MUNROE_LIBRARY } from './data/libraryCatalog';
 import { Sidebar, type Section } from './components/Sidebar';
 import { SettingsPanel } from './components/SettingsPanel';
@@ -42,6 +42,7 @@ const SHELL_TEXT: Record<
       devotionals: 'Devotionals',
       compendium: 'All Titles',
       library: 'Full Library',
+      collections: 'Collections',
       downloads: 'DOCX Downloads',
     },
     download: 'Download .DOCX',
@@ -63,6 +64,7 @@ const SHELL_TEXT: Record<
       devotionals: 'Méditations',
       compendium: 'Tous les Titres',
       library: 'Bibliothèque',
+      collections: 'Collections',
       downloads: 'DOCX Downloads',
     },
     download: 'Télécharger .DOCX',
@@ -84,6 +86,7 @@ const SHELL_TEXT: Record<
       devotionals: 'Fanadihadiana',
       compendium: 'Lohateny Rehetra',
       library: 'Tranomboky',
+      collections: 'Fanangonana',
       downloads: 'DOCX Downloads',
     },
     download: 'Alaivo ny .DOCX',
@@ -128,7 +131,8 @@ const DEFAULT_BOOKMARKS: SavedBookmarkItem[] = [
 
 export function App() {
   const [activeSection, setActiveSection] = useState<ActiveSection>('transcriptions');
-  const [selectedReaderVideoId, setSelectedReaderVideoId] = useState<string>(VIDEOS_DATA[0].id);
+  // Empty means "let the reader pick its own first entry" (prayers first).
+  const [selectedReaderVideoId, setSelectedReaderVideoId] = useState<string>('');
   const [navOpen, setNavOpen] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
 
@@ -351,7 +355,6 @@ export function App() {
           <TranscriptionsView
             uiLang={uiLang}
             languageMode={languageMode}
-            setLanguageMode={(mode) => update('languageMode', mode)}
             darkMode={darkMode}
             bookmarkedIds={savedBookmarks.map((b) => b.id)}
             onToggleBookmark={handleToggleBookmark}
@@ -398,6 +401,10 @@ export function App() {
           <LibraryView uiLang={uiLang} darkMode={darkMode} />
         )}
 
+        {activeSection === 'collections' && (
+          <CollectionsView uiLang={uiLang} darkMode={darkMode} />
+        )}
+
         {activeSection === 'downloads' && (
           <DocxDownloadsView uiLang={uiLang} darkMode={darkMode} />
         )}
@@ -442,21 +449,26 @@ export function App() {
                 </span>
               </button>
               <ul className="space-y-1 text-xs">
-                {ALL_VIDEOS_DATA.map((v) => (
-                  <li key={v.id}>
-                    <a
-                      href={v.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 hover:text-[#B48327] transition"
-                    >
-                      <ExternalLink className="w-3 h-3 shrink-0 text-[#B48327]" />
-                      <span className="truncate max-w-[16rem]">
-                        Video {v.videoNumber}: {v.title_en} ({v.duration})
-                      </span>
-                    </a>
-                  </li>
-                ))}
+                <li>
+                  <button
+                    type="button"
+                    onClick={() => handleNavigateTab('collections')}
+                    className="inline-flex items-center gap-1.5 hover:text-[#B48327] transition"
+                  >
+                    <ExternalLink className="w-3 h-3 shrink-0 text-[#B48327]" />
+                    <span>{strings.nav.collections}</span>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    type="button"
+                    onClick={() => handleNavigateTab('transcriptions')}
+                    className="inline-flex items-center gap-1.5 hover:text-[#B48327] transition"
+                  >
+                    <ExternalLink className="w-3 h-3 shrink-0 text-[#B48327]" />
+                    <span>{strings.nav.transcriptions}</span>
+                  </button>
+                </li>
               </ul>
             </div>
 

@@ -81,6 +81,16 @@ def main() -> None:
     bad = [m["id"] for m in manifest if not os.path.exists(os.path.join(a.out, f"{m['id']}.json"))]
     if bad:
         print(f"{len(bad)} without a transcript:", " ".join(bad[:20]))
+    # Written to a file too, so a CI run can publish it in the job summary even
+    # when step logs are not readable.
+    total = sum(counts.values()) or 1
+    try:
+        with open("/tmp/harvest-summary.txt", "w") as f:
+            f.write(f"status counts: {dict(counts)}\n")
+            f.write(f"ok: {counts.get('ok', 0) + counts.get('cached', 0)} of {total}\n")
+            f.write(f"without a transcript: {len(bad)}\n")
+    except OSError:
+        pass
 
 
 if __name__ == "__main__":

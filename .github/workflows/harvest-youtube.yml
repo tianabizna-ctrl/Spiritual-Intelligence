@@ -109,7 +109,13 @@ jobs:
           if ! python3 scripts/ingest_youtube.py \
                  --collection "$COLLECTION" --src transcripts --manifest manifest.json \
                  2> /tmp/ingest.err; then
-            echo "::error::ingest failed: $(tail -6 /tmp/ingest.err | tr '\n' ' ' | cut -c1-700)"
+            detail=$(tr '\n' ' ' < /tmp/harvest-summary.txt 2>/dev/null | cut -c1-400)
+            if [ -f cookies.txt ]; then
+              cookie_state="YT_COOKIES present"
+            else
+              cookie_state="no YT_COOKIES secret"
+            fi
+            echo "::error::ingest failed ($cookie_state): $(tail -4 /tmp/ingest.err | tr '\n' ' ' | cut -c1-300) :: ${detail:-no harvest summary}"
             echo "---- first lines of a harvested file ----"
             head -c 400 "$(ls transcripts/*.json | head -1)" || true
             exit 1
@@ -118,12 +124,49 @@ jobs:
       - name: Regenerate the app index
         run: python3 scripts/harvest_drive.py --build-ts
 
+      # The .docx packages are derived from the corpus, so rebuild them whenever
+      # new transcripts land; otherwise their labels drift.
+      - name: Rebuild the DOCX packages
+        run: |
+          pip install --quiet python-docx
+          python3 scripts/generate_docx_packages.py
+
+      # Step logs and artifacts are served from blob storage, which not every
+      # client can read. The job summary is served from the API, so the reason a
+      # run produced nothing is written here where it can always be read back.
+      - name: Publish the run summary
+        if: always()
+        run: |
+          {
+            echo '### harvest-youtube'
+            echo ''
+            echo '```'
+            echo "json files written: $(ls transcripts/*.json 2>/dev/null | wc -l)"
+            cat /tmp/harvest-summary.txt 2>/dev/null || echo '(no harvest summary file)'
+            grep -E 'summary:|without a transcript' /tmp/harvest.log 2>/dev/null | head -5
+            echo '--- ingest ---'
+            tail -25 /tmp/ingest.err 2>/dev/null || echo '(no ingest stderr)'
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Keep the harvest log as an artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: harvest-log
+          path: |
+            /tmp/harvest.log
+            /tmp/ingest.err
+            manifest.json
+          if-no-files-found: ignore
+
       - name: Commit results
         run: |
           set -e
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -f data/transcripts data/catalog public/transcripts src/data/libraryTranscripts.ts
+          git add -f data/transcripts data/catalog public/transcripts src/data/libraryTranscripts.ts \
+            public/downloads downloads
           if git diff --cached --quiet; then
             echo "nothing new to commit"
             exit 0
