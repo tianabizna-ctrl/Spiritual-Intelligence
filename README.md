@@ -124,6 +124,27 @@ Regenerate them from the corpus with `python3 scripts/generate_docx_packages.py`
 - **`Video_3_10_Powerful_Morning_Declarations_Joshua_Selman_EN_FR.docx`** — Video 3 Bilingual Edition (`29:12`)
 - **`Spiritual_Intelligence_DOCX_Transcriptions_Package.zip`** — Complete `.zip` archive containing all 7 `.docx` manuals
 
+## Importing transcripts harvested elsewhere
+
+Harvesting needs a machine where YouTube is reachable. CI cannot reach it (bot
+wall on the runner IP) and the agent sandbox has no YouTube egress at all, so the
+harvest runs on a workstation and the JSON is brought in:
+
+```bash
+python3 scripts/yt/playlist.py "<playlist url>" -o manifest.json
+python3 scripts/yt/harvest.py manifest.json -o transcripts --workers 4
+
+python3 scripts/import_transcripts.py --src transcripts --collection christian-house
+python3 scripts/harvest_drive.py --build-ts
+python3 scripts/generate_docx_packages.py
+```
+
+`import_transcripts.py` accepts the toolkit's raw `{"id","status":"ok","text"}`
+output or an already-built app record, applies the SKILL.md §6 cleaning rules,
+splits paragraphs, and writes `data/transcripts/<collection>/<id>.json` with
+`collectionSlug` (source group) and `author` (who actually spoke) preserved — so a
+teaching library can hold several speakers without mislabelling them.
+
 Every transcript is stored as JSON in [`/data/transcripts`](./data/transcripts) and served to the app from `public/transcripts`. The hand-authored plain-text files that used to live in `data/raw_transcripts` went with the nine removed sessions.
 
 ---

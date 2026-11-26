@@ -225,11 +225,18 @@ def build_ts():
             out_name = f"{collection_key}__{data['id']}.json"
             with open(os.path.join(public_dir, out_name), "w", encoding="utf-8") as f:
                 json.dump(data, f, ensure_ascii=False)
+            # collectionSlug is the real source group ("christian-house"); the
+            # record's own collection field is the app-side kind. Prefer the slug
+            # so a playlist keeps its own identity, and carry the per-item author
+            # so one teaching library can hold several speakers.
+            slug = data.get("collectionSlug") or collection_key
             entries.append(
                 {
                     "id": data["id"],
                     "title": data.get("title", ""),
                     "collection": collection_key,
+                    "collectionSlug": slug,
+                    "author": (data.get("author") or data.get("channel") or "").strip(),
                     "channel": data.get("channel", ""),
                     "playlistId": data.get("playlistId") or None,
                     "duration": str(data.get("duration") or ""),
@@ -257,7 +264,12 @@ def build_ts():
         # collections when one video appears in more than one playlist.
         f.write("  key: string;\n")
         f.write(f"  id: string;\n  title: string;\n  collection: {union};\n")
-        f.write("  channel: string;\n  playlistId: string | null;\n  duration: string;\n")
+        f.write("  channel: string;\n")
+        f.write("  /** Real source group, e.g. christian-house. */\n")
+        f.write("  collectionSlug: string;\n")
+        f.write("  /** Who actually spoke, so one library can hold several speakers. */\n")
+        f.write("  author: string;\n")
+        f.write("  playlistId: string | null;\n  duration: string;\n")
         f.write("  wordCount: number;\n  excerpt: string;\n}\n\n")
         f.write("export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {\n")
         for e in sorted(entries, key=lambda x: (x["collection"], x["title"].lower())):
@@ -268,6 +280,8 @@ def build_ts():
             f.write(f"    title: {json.dumps(e['title'], ensure_ascii=False)},\n")
             f.write(f"    collection: {json.dumps(e['collection'])},\n")
             f.write(f"    channel: {json.dumps(e['channel'], ensure_ascii=False)},\n")
+            f.write(f"    collectionSlug: {json.dumps(e['collectionSlug'])},\n")
+            f.write(f"    author: {json.dumps(e['author'], ensure_ascii=False)},\n")
             f.write(f"    playlistId: {json.dumps(e['playlistId'])},\n")
             f.write(f"    duration: {json.dumps(e['duration'])},\n")
             f.write(f"    wordCount: {e['wordCount']},\n")
