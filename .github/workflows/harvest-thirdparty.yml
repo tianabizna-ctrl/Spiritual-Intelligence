@@ -74,11 +74,26 @@ jobs:
           python3 scripts/yt/playlist.py "$PLAYLIST_URL" -o manifest.json
           echo "videos in manifest: $(python3 -c "import json;print(len(json.load(open('manifest.json'))))")"
 
+      # Try the direct caption path first. If the runner's IP is not bot-walled
+      # this gives the original caption track, which is better text than a
+      # third-party service. A failure here is expected and not fatal: the
+      # service step below is the fallback.
+      - name: Try direct captions (may be bot-walled)
+        run: |
+          set +e
+          python3 scripts/yt/harvest.py manifest.json -o transcripts \
+            --limit "${LIMIT:-0}" --workers 2 2>&1 | tail -20
+          echo "direct exit=$?"
+          echo "direct files: $(ls transcripts/*.json 2>/dev/null | wc -l)"
+          exit 0
+
       - name: Harvest through the transcript service
         run: |
           set +e
+          mkdir -p harvest-report
           python3 scripts/harvest_thirdparty.py manifest.json -o transcripts \
             --limit "${LIMIT:-0}" --workers 2 --delay 1.5 --dump-html /tmp/html \
+            --report harvest-report/latest.json \
             2>&1 | tee /tmp/harvest.log
           echo "exit=${PIPESTATUS[0]}"
           exit 0
@@ -118,13 +133,33 @@ jobs:
           if-no-files-found: ignore
 
       - name: Fail if nothing was harvested
+        id: check
         run: |
           set -euo pipefail
           n=$(ls transcripts/*.json 2>/dev/null | wc -l)
+          echo "harvested=$n" >> "$GITHUB_OUTPUT"
           if [ "$n" -eq 0 ]; then
-            echo "::error::no transcripts harvested — see the job summary for parser diagnostics"
+            echo "::error::no transcripts harvested — diagnostics commit follows"
             exit 1
           fi
+
+      # Run logs and artifacts live in blob storage that not every client can
+      # read. Committing the diagnostics report is the only path that reliably
+      # survives, and it carries the reason for every failure.
+      - name: Commit diagnostics on failure
+        if: failure()
+        run: |
+          set -e
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -f harvest-report || true
+          if git diff --cached --quiet; then
+            echo "no report to commit"
+            exit 0
+          fi
+          git commit -m "chore(harvest): diagnostics — harvest produced nothing [skip ci]"
+          git pull --rebase --autostash
+          git push
 
       - name: Import into the app
         run: |

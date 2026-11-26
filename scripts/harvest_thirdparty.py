@@ -77,24 +77,14 @@ def _strip_tags(block: str) -> str:
     return html_lib.unescape(block)
 
 
-def extract_transcript(html: str) -> str | None:
-    """Pull the spoken text out of a transcript page, or None if absent."""
-    # The transcript sits between the "Transcript" heading and the footer link.
-    m = re.search(
-        r"<h2\b[^>]*>\s*Transcript\s*</h2>(.*?)(?:Back To Top|Back to top)",
-        html, re.S | re.I,
-    )
-    if not m:
-        return None
-
-    text = _strip_tags(m.group(1))
-
+def _lines_from(block: str) -> list[str]:
+    """Strip tags + page chrome from a transcript block, returning spoken lines."""
+    text = _strip_tags(block)
     out: list[str] = []
     for raw_line in text.splitlines():
         line = raw_line.strip()
         if not line:
             continue
-        # Trailing page furniture glued onto the last caption line.
         line = re.sub(r"\s*(Back To Top|AI Features|Summarize)\s*$", "", line, flags=re.I).strip()
 
         # Strip leading chrome repeatedly: "Copy Timestamp OFF Translate Prayer…"
@@ -114,21 +104,96 @@ def extract_transcript(html: str) -> str | None:
                     break
         if not line:
             continue
-        # Caption markers arrive as "&gt;&gt;" once unescaped; drop them.
+        # Caption markers arrive as ">>" / ">\>" once unescaped; drop them.
         line = re.sub(r"^[>\s\\]+", "", line).strip()
         if not line:
             continue
         out.append(line)
+    return out
 
-    if not out:
+
+def _join(lines: list[str]) -> str | None:
+    if not lines:
         return None
     # Caption lines are hard-wrapped at the caption boundary, so join with
     # spaces and let import_transcripts.paragraphise() re-break at sentences.
-    return re.sub(r"\s+", " ", " ".join(out)).strip()
+    joined = re.sub(r"\s+", " ", " ".join(lines)).strip()
+    return joined or None
 
 
-def fetch_one(vid: str, timeout: int = 45, dump_dir: str | None = None) -> tuple[str, str, str]:
-    """Return (videoId, status, text)."""
+def _x_heading_span(html: str) -> str | None:
+    """Transcript between the <h2>Transcript</h2> heading and the footer."""
+    m = re.search(
+        r"<h2\b[^>]*>\s*Transcript\s*</h2>(.*?)(?:Back To Top|Back to top)",
+        html, re.S | re.I,
+    )
+    return _join(_lines_from(m.group(1))) if m else None
+
+
+def _x_transcript_div(html: str) -> str | None:
+    """Fallback: the div the site uses for its transcript container."""
+    m = re.search(r'<div[^>]+id="transcript(?:-content)?"[^>]*>(.*?)</div>\s*</div>', html, re.S | re.I)
+    if not m:
+        m = re.search(r'<div[^>]+class="[^"]*transcript[^"]*"[^>]*>(.*?)</div>', html, re.S | re.I)
+    return _join(_lines_from(m.group(1))) if m else None
+
+
+def _x_any_paragraph(html: str) -> str | None:
+    """Last resort: every <p> long enough to be speech, skipping chrome words."""
+    blocks = re.findall(r"<p\b[^>]*>(.*?)</p>", html, re.S | re.I)
+    lines: list[str] = []
+    for b in blocks:
+        lines.extend(_lines_from(b))
+    joined = " ".join(lines)
+    return _join([joined]) if len(joined) >= MIN_CHARS else None
+
+
+EXTRACTORS = (_x_heading_span, _x_transcript_div, _x_any_paragraph)
+
+
+def extract_transcript(html: str, explain: dict | None = None) -> str | None:
+    """Pull the spoken text out of a transcript page, or None if absent.
+
+    Three strategies in order of precision. `explain`, when passed, is filled in
+    with what each strategy saw so a failure on a runner can be diagnosed from a
+    committed log instead of guessing at the markup.
+    """
+    for fn in EXTRACTORS:
+        try:
+            text = fn(html)
+        except Exception as exc:  # a malformed page must not sink the run
+            text = None
+            if explain is not None:
+                explain[fn.__name__] = f"error: {exc}"
+            continue
+        if text:
+            if explain is not None:
+                explain[fn.__name__] = f"ok {len(text)} chars"
+            return text
+        if explain is not None:
+            explain[fn.__name__] = "no match"
+    return None
+
+
+def describe_page(html: str) -> dict:
+    """Facts about a page that failed to parse, small enough to commit."""
+    m = re.search(r"<title[^>]*>(.*?)</title>", html, re.S | re.I)
+    title = html_lib.unescape(m.group(1)).strip()[:200] if m else ""
+    body = re.sub(r"<(script|style)\b[^>]*>.*?</\1>", " ", html, flags=re.S | re.I)
+    text = re.sub(r"\s+", " ", _strip_tags(body)).strip()
+    return {
+        "bytes": len(html),
+        "title": title,
+        "has_h2_transcript": bool(re.search(r"<h2[^>]*>\s*Transcript", html, re.I)),
+        "has_transcript_word": "transcript" in html.lower(),
+        "p_count": len(re.findall(r"<p\b", html, re.I)),
+        "text_head": text[:900],
+        "html_head": html[:700],
+    }
+
+
+def fetch_one(vid: str, timeout: int = 45, dump_dir: str | None = None) -> tuple[str, str, dict]:
+    """Return (videoId, status, diagnostics)."""
     url = ENDPOINT.format(vid=vid)
     req = urllib.request.Request(url, headers=HEADERS)
     try:
@@ -137,25 +202,44 @@ def fetch_one(vid: str, timeout: int = 45, dump_dir: str | None = None) -> tuple
     except urllib.error.HTTPError as exc:
         if dump_dir:
             _dump(dump_dir, vid, f"http{exc.code}")
-        return vid, "blocked", ""
-    except Exception:
-        return vid, "blocked", ""
+        return vid, "blocked", {"http": exc.code, "url": url}
+    except Exception as exc:
+        return vid, "blocked", {"error": str(exc)[:200], "url": url}
 
     if dump_dir:
         _dump(dump_dir, vid, "ok", body)
 
-    text = extract_transcript(body)
+    explain: dict = {}
+    text = extract_transcript(body, explain)
     if text is None:
-        return vid, "no-transcript", ""
+        return vid, "no-transcript", {"extractors": explain, "page": describe_page(body)}
     if len(text) < MIN_CHARS:
-        return vid, "too-short", ""
-    return vid, "ok", text
+        return vid, "too-short", {"chars": len(text), "extractors": explain}
+    return vid, "ok", {"chars": len(text), "extractors": explain, "_text": text}
 
 
 def _dump(dump_dir: str, vid: str, suffix: str, body: str = "") -> None:
     os.makedirs(dump_dir, exist_ok=True)
     with open(os.path.join(dump_dir, f"{vid}.{suffix}.html"), "w", encoding="utf-8") as f:
         f.write(body)
+
+
+def _write_report(path: str, counts: Counter, diag: dict) -> None:
+    """Commit-friendly diagnostics: why each video failed, and a harmless excerpt.
+
+    Full pages are far too large to commit, so the report keeps a short text
+    head. That is enough to tell "page has no transcript section" from "page
+    structure changed" without shipping megabytes into git.
+    """
+    os.makedirs(os.path.dirname(path) or ".", exist_ok=True)
+    payload = {
+        "generatedAt": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "counts": dict(counts),
+        "videos": {k: {kk: vv for kk, vv in v.items() if kk != "_text"} for k, v in diag.items()},
+    }
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(payload, f, ensure_ascii=False, indent=1)
+    print(json.dumps(payload["counts"]))
 
 
 def main() -> int:
@@ -167,6 +251,7 @@ def main() -> int:
     ap.add_argument("--workers", type=int, default=2, help="parallel requests (be polite: 2)")
     ap.add_argument("--delay", type=float, default=1.5, help="seconds between requests per worker")
     ap.add_argument("--dump-html", help="save raw pages here (debugging a parse failure)")
+    ap.add_argument("--report", help="write a JSON diagnostics report here")
     args = ap.parse_args()
 
     with open(args.manifest, "r", encoding="utf-8") as f:
@@ -181,15 +266,17 @@ def main() -> int:
     print(f"{len(items)} in manifest, {len(todo)} to fetch")
 
     counts: Counter = Counter()
+    diag: dict = {}
 
     def run(item: dict) -> None:
         vid = item["id"]
         time.sleep(args.delay)
-        status, text = fetch_one(vid, dump_dir=args.dump_html)
+        status, text, info = fetch_one(vid, dump_dir=args.dump_html)
         with lock:
             counts[status] += 1
+            diag[vid] = {"status": status, **info}
             if status != "ok":
-                print(f"  {status:<14} {vid}")
+                print(f"  {status:<14} {vid}  {info.get('page', {}) and 'page captured'}")
                 return
             record = {
                 "id": vid,
@@ -197,19 +284,22 @@ def main() -> int:
                 "title": item.get("title") or "",
                 "duration": item.get("duration"),
                 "order": item.get("order", 0),
-                "text": text,
+                "text": info.get("_text") or "",
                 "source": "youtubetotranscript.com",
                 "fetchedAt": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
             }
             with open(os.path.join(args.out, f"{vid}.json"), "w", encoding="utf-8") as f:
                 json.dump(record, f, ensure_ascii=False)
-            print(f"  ok             {vid}  {len(text):>7,} chars")
+            print(f"  ok             {vid}  {info.get('chars', 0):>7,} chars")
 
     with ThreadPoolExecutor(max_workers=max(1, args.workers)) as pool:
         futures = [pool.submit(run, it) for it in todo]
         for fut in as_completed(futures):
             fut.result()
 
+    if args.report:
+        _write_report(args.report, counts, diag)
+        print(f"report -> {args.report}")
     print(f"\nsummary: {dict(counts)}")
     return 0 if counts.get("ok") else 1
 
