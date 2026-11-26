@@ -11,6 +11,7 @@ import {
 import { DocxDownloadsView } from './components/DocxDownloadsView';
 import { MasterCompendiumView } from './components/MasterCompendiumView';
 import { LibraryView } from './components/LibraryView';
+import { CollectionsView } from './components/CollectionsView';
 import { LIBRARY_TOTAL_VIDEOS, MUNROE_LIBRARY } from './data/libraryCatalog';
 import { Sidebar, type Section } from './components/Sidebar';
 import { SettingsPanel } from './components/SettingsPanel';
@@ -42,6 +43,7 @@ const SHELL_TEXT: Record<
       devotionals: 'Devotionals',
       compendium: 'All Titles',
       library: 'Full Library',
+      collections: 'Collections',
       downloads: 'DOCX Downloads',
     },
     download: 'Download .DOCX',
@@ -63,6 +65,7 @@ const SHELL_TEXT: Record<
       devotionals: 'Méditations',
       compendium: 'Tous les Titres',
       library: 'Bibliothèque',
+      collections: 'Collections',
       downloads: 'DOCX Downloads',
     },
     download: 'Télécharger .DOCX',
@@ -84,6 +87,7 @@ const SHELL_TEXT: Record<
       devotionals: 'Fanadihadiana',
       compendium: 'Lohateny Rehetra',
       library: 'Tranomboky',
+      collections: 'Fanangonana',
       downloads: 'DOCX Downloads',
     },
     download: 'Alaivo ny .DOCX',
@@ -396,6 +400,10 @@ export function App() {
 
         {activeSection === 'library' && (
           <LibraryView uiLang={uiLang} darkMode={darkMode} />
+        )}
+
+        {activeSection === 'collections' && (
+          <CollectionsView uiLang={uiLang} darkMode={darkMode} />
         )}
 
         {activeSection === 'downloads' && (

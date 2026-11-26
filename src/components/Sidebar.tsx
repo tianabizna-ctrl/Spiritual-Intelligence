@@ -6,6 +6,7 @@ import {
   FileText,
   Flame,
   Layers,
+  LayoutGrid,
   Library,
   Settings as SettingsIcon,
   Sparkles,
@@ -19,6 +20,7 @@ export type Section =
   | 'prayers'
   | 'devotionals'
   | 'library'
+  | 'collections'
   | 'compendium'
   | 'downloads';
 
@@ -50,6 +52,7 @@ const NAV_TEXT: Record<
       prayers: 'Prayer Altar',
       devotionals: 'Devotionals',
       library: 'Full Library',
+      collections: 'Collections',
       compendium: 'All Titles',
       downloads: 'DOCX Downloads',
     },
@@ -64,6 +67,7 @@ const NAV_TEXT: Record<
       prayers: 'Autel de Prière',
       devotionals: 'Méditations',
       library: 'Bibliothèque',
+      collections: 'Collections',
       compendium: 'Tous les Titres',
       downloads: 'Téléchargements .DOCX',
     },
@@ -78,6 +82,7 @@ const NAV_TEXT: Record<
       prayers: 'Alitara Vavaka',
       devotionals: 'Fanadihadiana',
       library: 'Tranomboky',
+      collections: 'Fanangonana',
       compendium: 'Lohateny Rehetra',
       downloads: 'Fampidirana .DOCX',
     },
@@ -101,6 +106,7 @@ const GROUPS: { key: 'read' | 'study' | 'outputs'; items: { id: Section; icon: R
       key: 'study',
       items: [
         { id: 'library', icon: <Library className="w-4 h-4" /> },
+        { id: 'collections', icon: <LayoutGrid className="w-4 h-4" /> },
         { id: 'compendium', icon: <Layers className="w-4 h-4" /> },
       ],
     },
