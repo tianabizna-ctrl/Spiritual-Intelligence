@@ -115,12 +115,18 @@ def main() -> int:
         print(f"error: no harvest directory at {args.src}", file=sys.stderr)
         return 1
 
+    files = [n for n in sorted(os.listdir(args.src)) if n.endswith(".json")]
+    print(f"harvest directory: {args.src} ({len(files)} json files)")
+
+    statuses: dict[str, int] = {}
     written = skipped = 0
-    for name in sorted(os.listdir(args.src)):
+    for name in files:
         if not name.endswith(".json"):
             continue
         raw = json.load(open(os.path.join(args.src, name), encoding="utf-8"))
-        if raw.get("status") != "ok":
+        st = raw.get("status", "missing-status")
+        statuses[st] = statuses.get(st, 0) + 1
+        if st != "ok":
             skipped += 1
             continue
 
@@ -156,10 +162,15 @@ def main() -> int:
             json.dump(record, f, ensure_ascii=False)
         written += 1
 
+    print(f"statuses seen: {statuses}")
     print(f"ingested {written} transcripts into {os.path.relpath(out_dir, ROOT_DIR)}")
     print(f"skipped {skipped} (not ok / too short)")
     print("\nNow run: python3 scripts/harvest_drive.py --build-ts")
-    return 0 if written else 1
+    if not written:
+        # Say why, on stderr, so a CI annotation carries the reason.
+        print(f"no usable transcripts; statuses={statuses}", file=sys.stderr)
+        return 1
+    return 0
 
 
 if __name__ == "__main__":
