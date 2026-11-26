@@ -46,13 +46,18 @@ jobs:
           cache: npm
 
       # ---- production build from main ----
+      # Built in a worktree, never by checking out in the workspace: the
+      # assembly step below needs this branch's scripts/ directory, which main
+      # does not have until this change lands.
       - name: Build main
         run: |
-          git checkout main
+          set -euo pipefail
+          git worktree add --detach /tmp/wt-main origin/main
+          cd /tmp/wt-main
           npm ci
           npm run build
-          mkdir -p ../root-build
-          cp -a dist/. ../root-build/
+          mkdir -p "$GITHUB_WORKSPACE/../root-build"
+          cp -a dist/. "$GITHUB_WORKSPACE/../root-build/"
 
       # ---- build every pull request that should have a preview ----
       - name: Collect open pull requests
@@ -85,20 +90,19 @@ jobs:
 
           while read -r number sha; do
             [ -z "${number:-}" ] && continue
-            dir="../previews/pr-$number"
+            dir="$(cd .. && pwd)/previews/pr-$number"
             echo "::group::PR #$number @ $sha"
             git worktree add --detach "/tmp/wt-$number" "$sha"
             (
               cd "/tmp/wt-$number"
-              # Reuse the already-installed node_modules where possible.
-              ln -s "$REPO_DIR/node_modules" node_modules
+              npm ci --no-audit --no-fund
               npm run build
               mkdir -p "$dir"
               cp -a dist/. "$dir/"
             ) || echo "::warning::PR #$number failed to build; skipping its preview"
             git worktree remove --force "/tmp/wt-$number" || true
             if [ -f "$dir/index.html" ]; then
-              echo "pr-$number:$dir" >> /tmp/extras.txt
+              echo "pr-$number:$(cd "$dir" && pwd)" >> /tmp/extras.txt
             fi
             echo "::endgroup::"
           done < /tmp/prs.txt
@@ -108,11 +112,13 @@ jobs:
           set -euo pipefail
           args=()
           while read -r entry; do
-            [ -n "$entry" ] && args+=(--extra "$entry")
+            [ -n "$entry" ] || continue
+            # extras.txt holds absolute paths written by the previous step
+            args+=(--extra "$entry")
           done < /tmp/extras.txt
-          bash scripts/build_pages_site.sh \
-            --out _site \
-            --root ../root-build \
+          bash "$GITHUB_WORKSPACE/scripts/build_pages_site.sh" \
+            --out "$GITHUB_WORKSPACE/_site" \
+            --root "$GITHUB_WORKSPACE/../root-build" \
             --prune transcripts \
             ${args[@]+"${args[@]}"}
 
