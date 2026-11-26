@@ -107,6 +107,14 @@ jobs:
             echo "::endgroup::"
           done < /tmp/prs.txt
 
+      - name: Smoke-test the pull request bundle
+        if: github.event_name == 'pull_request'
+        run: |
+          set -euo pipefail
+          npm ci --no-audit --no-fund
+          npm run build
+          npm run smoke:ui
+
       - name: Assemble the Pages site
         run: |
           set -euo pipefail
@@ -130,6 +138,10 @@ jobs:
 
   deploy:
     needs: build
+    # The github-pages environment only accepts deployments from main, so a
+    # pull_request run cannot deploy. It still builds and uploads the artifact,
+    # which proves the change compiles; deploying waits for the merge.
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
