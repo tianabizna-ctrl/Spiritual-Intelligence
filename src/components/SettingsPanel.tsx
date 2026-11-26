@@ -12,7 +12,16 @@ import {
   Database,
 } from 'lucide-react';
 import type { UILang } from '../data/spiritualData';
+
+// Derived from the index, not from catalog constants: a collection harvested
+// after the catalog was written must still be counted.
+const ALL_TRANSCRIPTS = Object.values(LIBRARY_TRANSCRIPTS);
+const HARVESTED_TOTAL = ALL_TRANSCRIPTS.length;
+const CHURCH_HOUSE_COUNT = ALL_TRANSCRIPTS.filter(
+  (x) => x.collectionSlug !== 'prayers' && x.collectionSlug !== 'teachings'
+).length;
 import { LIBRARY_TOTAL_VIDEOS, MUNROE_LIBRARY } from '../data/libraryCatalog';
+import { LIBRARY_TRANSCRIPTS } from '../data/libraryTranscripts';
 import {
   type AppSettings,
   type LineWidth,
@@ -60,6 +69,7 @@ const COPY: Record<
     library: string;
     prayers: string;
     teachings: string;
+    selman: string;
     total: string;
     data: string;
     bookmarks: string;
@@ -94,6 +104,7 @@ const COPY: Record<
     library: 'Library',
     prayers: 'Prayer transcripts',
     teachings: 'Myles Munroe teachings',
+    selman: 'Christian House',
     total: 'Total transcripts',
     data: 'Your data',
     bookmarks: 'Saved bookmarks',
@@ -126,6 +137,7 @@ const COPY: Record<
     rememberScrollHint: 'Revenir là où vous étiez.',
     library: 'Bibliothèque',
     prayers: 'Transcriptions de prières',
+    selman: 'Christian House',
     teachings: 'Enseignements Myles Munroe',
     total: 'Total des transcriptions',
     data: 'Vos données',
@@ -159,6 +171,7 @@ const COPY: Record<
     rememberScrollHint: 'Hiverina amin’ny toerana nisy anao.',
     library: 'Tranomboky',
     prayers: 'Fandikana vavaka',
+    selman: 'Christian House',
     teachings: 'Fampianarana Myles Munroe',
     total: 'Fandikana rehetra',
     data: 'Ny angonao',
@@ -425,7 +438,7 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
 
           {/* Library */}
           <Section icon={<Database className="w-3 h-3" />} label={t.library}>
-            <div className="grid grid-cols-3 gap-2 text-center">
+            <div className="grid grid-cols-4 gap-2 text-center">
               <div>
                 <div className="font-mono font-bold text-base text-[#B48327]">{LIBRARY_TOTAL_VIDEOS}</div>
                 <div className={`text-[10px] leading-tight ${muted}`}>{t.prayers}</div>
@@ -438,7 +451,13 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
               </div>
               <div>
                 <div className="font-mono font-bold text-base text-[#B48327]">
-                  {LIBRARY_TOTAL_VIDEOS + MUNROE_LIBRARY.transcriptCount}
+                  {CHURCH_HOUSE_COUNT}
+                </div>
+                <div className={`text-[10px] leading-tight ${muted}`}>{t.selman}</div>
+              </div>
+              <div>
+                <div className="font-mono font-bold text-base text-[#B48327]">
+                  {HARVESTED_TOTAL}
                 </div>
                 <div className={`text-[10px] leading-tight ${muted}`}>{t.total}</div>
               </div>
