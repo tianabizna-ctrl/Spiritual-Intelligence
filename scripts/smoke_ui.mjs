@@ -148,6 +148,13 @@ const dupLang = [...doc.querySelectorAll('main button')].filter((b) =>
 );
 check('duplicate language pills removed from reader', dupLang.length === 0, `${dupLang.length} found`);
 
+// Regression guards for the stale "9 videos / 40 chapters" copy.
+const readerAfter = doc.querySelector('main')?.textContent || '';
+check('no "40 Chapters" claim', !/40 Chapters|40 Chapitres|Toko 40/.test(readerAfter));
+check('no "All 9 Videos" claim', !/All 9 Videos|Les 9 Vidéos/.test(readerAfter));
+check('no "/9" naked badge', !/Video \d+\/9\b/.test(readerAfter));
+check('scope note shows the real library size', /841/.test(readerAfter), readerAfter.slice(0, 80));
+
 check('no runtime errors', errors.length === 0, errors.slice(0, 3).join(' | '));
 
 console.log(`\n${failures === 0 ? 'ALL CHECKS PASSED' : `${failures} CHECK(S) FAILED`}`);

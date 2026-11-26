@@ -26,6 +26,7 @@ import {
 import { ALL_VIDEOS_DATA, COMPANION_VIDEOS_DATA } from '../data/compendiumData';
 import { RAW_TRANSCRIPTS } from '../data/rawTranscripts';
 import { VIDEO_MG_MAP, CHAPTER_MG_MAP } from '../data/malagasyData';
+import { SCOPE_TEXT } from '../data/libraryScope';
 import {
   LINE_WIDTH_CLASS,
   READING_FONT_CLASS,
@@ -185,14 +186,10 @@ export const TranscriptionsView: React.FC<TranscriptionsViewProps> = ({
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
           <div className="flex items-center gap-2 flex-1 min-w-0">
             <span className="px-2.5 py-1 rounded-lg text-xs font-bold uppercase tracking-wider bg-[#7C2D12] text-amber-100 shrink-0">
-              {uiLang === 'mg'
-                ? `Video ${activeVideo.videoNumber}/9`
-                : uiLang === 'fr'
-                ? `Vidéo ${activeVideo.videoNumber}/9`
-                : `Video ${activeVideo.videoNumber}/9`}
+              {SCOPE_TEXT[uiLang].sessionShort(activeVideo.videoNumber)}
             </span>
 
-            {/* Instant Mobile/Desktop Select Dropdown to switch any of the 9 videos without scrolling */}
+            {/* Instant select dropdown — switch sessions without scrolling */}
             <select
               aria-label="Select Prayer Video Session"
               value={selectedVideoId}
@@ -251,16 +248,8 @@ export const TranscriptionsView: React.FC<TranscriptionsViewProps> = ({
               <LayoutGrid className="w-3.5 h-3.5" />
               <span>
                 {showVideoCatalogDrawer
-                  ? uiLang === 'mg'
-                    ? 'Afenina ny Karatra 9'
-                    : uiLang === 'fr'
-                    ? 'Masquer les 9 Cartes'
-                    : 'Hide 9 Video Cards'
-                  : uiLang === 'mg'
-                  ? 'Hijery ireo Video 9'
-                  : uiLang === 'fr'
-                  ? 'Parcourir les 9 Vidéos'
-                  : 'Browse All 9 Videos'}
+                  ? SCOPE_TEXT[uiLang].hideCards
+                  : SCOPE_TEXT[uiLang].browseSessions}
               </span>
               {showVideoCatalogDrawer ? (
                 <ChevronUp className="w-3.5 h-3.5" />
@@ -294,7 +283,7 @@ export const TranscriptionsView: React.FC<TranscriptionsViewProps> = ({
           </div>
         </div>
 
-        {/* Horizontal Quick-Switch Pills for the 9 Videos */}
+        {/* Horizontal quick-switch pills for the structured sessions */}
         <div className="flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar">
           {ALL_VIDEOS_DATA.map((v) => {
             const isSel = v.id === selectedVideoId;
@@ -317,7 +306,7 @@ export const TranscriptionsView: React.FC<TranscriptionsViewProps> = ({
           })}
         </div>
 
-        {/* Collapsible 9-Video Card Drawer (Only shown when user taps "Browse All 9 Videos") */}
+        {/* Collapsible session-card drawer */}
         {showVideoCatalogDrawer && (
           <div className="pt-3 border-t border-[#B48327]/20 space-y-4">
             <div className="flex items-center justify-between">
@@ -406,6 +395,11 @@ export const TranscriptionsView: React.FC<TranscriptionsViewProps> = ({
               {getVideoTitle(activeVideo)}
             </h2>
           </div>
+
+          {/* Makes clear the structured sessions are a subset of the whole library */}
+          <p className={`text-[11px] leading-snug pb-1 ${subText}`}>
+            {SCOPE_TEXT[uiLang].scopeNote}
+          </p>
 
           {/* Reader toolbar: scope filter + search (language/size live in Settings) */}
           <div className="flex flex-wrap items-center gap-2">
@@ -947,11 +941,7 @@ export const TranscriptionsView: React.FC<TranscriptionsViewProps> = ({
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#B48327]/15 pb-3">
               <div>
                 <span className="text-xs font-bold uppercase tracking-wider text-[#B48327]">
-                  {uiLang === 'mg'
-                    ? '✦ Ireo Fotoam-bavaka 9 (Tsindrio ny Video Hifindrana)'
-                    : uiLang === 'fr'
-                    ? '✦ Catalogue des 9 Sessions Vidéo (Cliquez pour Changer de Prière)'
-                    : '✦ All 9 Prayer Video Sessions (Tap Any Session to Switch & Read)'}
+                  {SCOPE_TEXT[uiLang].allSessions}
                 </span>
                 <h4 className="font-display text-lg sm:text-xl font-bold mt-0.5">
                   {uiLang === 'mg'

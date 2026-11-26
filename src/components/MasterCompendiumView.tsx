@@ -18,6 +18,7 @@ import {
   SCRIPTURE_TREASURY,
   UILang,
 } from '../data/spiritualData';
+import { SCOPE_TEXT } from '../data/libraryScope';
 import { ALL_VIDEOS_DATA, PLAYLIST_DIRECTORY } from '../data/compendiumData';
 import { RAW_TRANSCRIPTS } from '../data/rawTranscripts';
 import {
@@ -140,11 +141,7 @@ export const MasterCompendiumView: React.FC<MasterCompendiumViewProps> = ({
               onClick={expandAllVideos}
               className="px-3.5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-[#B48327] text-white hover:bg-[#9A6E1E] transition shadow-sm"
             >
-              {uiLang === 'mg'
-                ? 'Sokafy ireo Video 9'
-                : uiLang === 'fr'
-                ? 'Déplier les 9 Vidéos'
-                : 'Expand All 9 Videos'}
+              {SCOPE_TEXT[uiLang].expandAll}
             </button>
             <button
               onClick={collapseAllVideos}
@@ -160,22 +157,14 @@ export const MasterCompendiumView: React.FC<MasterCompendiumViewProps> = ({
         </div>
       </div>
 
-      {/* SECTION 1: ALL 9 TRANSCRIBED VIDEOS & CHAPTERS */}
+      {/* SECTION 1: the structured sessions and their chapters */}
       <section className="space-y-4">
         <div>
           <span className="text-xs font-bold uppercase tracking-widest text-[#B48327]">
-            {uiLang === 'mg'
-              ? 'Fizarana 1 • Ireo Video 9 sy Toko 40 Nadika Feno'
-              : uiLang === 'fr'
-              ? 'Section 1 • Les 9 Vidéos Transcrites & 40 Chapitres'
-              : 'Section 1 • All 9 Transcribed Videos & 40 Chapters'}
+            {`Section 1 • ${SCOPE_TEXT[uiLang].compendiumSection}`}
           </span>
           <h3 className="font-display text-xl sm:text-2xl font-bold mt-0.5">
-            {uiLang === 'mg'
-              ? 'Votoatin’ireo Fotoam-bavaka 9 (Teny Malagasy)'
-              : uiLang === 'fr'
-              ? 'Contenu Intégral des 9 Vidéos Transcrites (Français)'
-              : 'Complete Contents of All 9 Transcribed Videos (English)'}
+            {SCOPE_TEXT[uiLang].compendiumContents}
           </h3>
         </div>
 
