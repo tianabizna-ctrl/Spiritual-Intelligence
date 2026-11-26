@@ -271,7 +271,7 @@ def main() -> int:
     def run(item: dict) -> None:
         vid = item["id"]
         time.sleep(args.delay)
-        status, text, info = fetch_one(vid, dump_dir=args.dump_html)
+        _, status, info = fetch_one(vid, dump_dir=args.dump_html)
         with lock:
             counts[status] += 1
             diag[vid] = {"status": status, **info}

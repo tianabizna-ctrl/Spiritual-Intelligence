@@ -148,9 +148,22 @@ gh workflow run harvest-thirdparty.yml \
   -f collection=christian-house
 ```
 
-Use `-f limit=1` first. It harvests one video and, if the parser finds nothing,
-prints the raw page and its size in the job summary so the cause is visible
-rather than guessed at.
+Use `-f limit=1` first. If the parser finds nothing, the job commits
+`harvest-report/latest.json` — per-video status plus a short page excerpt — because
+run logs and artifacts live in blob storage that not every client can read.
+
+**Known limitation, measured.** Running that workflow on a GitHub runner returns
+`HTTP 403` from the transcript service for all 22 videos, and the direct caption
+path is bot-walled too. Datacenter IPs are refused by both. So CI cannot harvest
+this playlist, and no amount of retrying changes that — the report is what says so
+plainly. Run the harvest from a residential connection instead:
+
+```bash
+./scripts/harvest_playlist.sh "<playlist url>" christian-house
+```
+
+That path requests come from your own IP, which is the only one these services
+accept.
 
 On a workstation, one command does the whole chain — playlist, captions,
 import, index:
