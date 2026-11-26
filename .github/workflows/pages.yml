@@ -1,0 +1,133 @@
+name: pages
+
+# Publishes one GitHub Pages site that contains:
+#   /                     → the production build of main
+#   /pr-<number>/         → a live preview of every open pull request
+#
+# GitHub's built-in PR-preview support on actions/deploy-pages is alpha-only and
+# not publicly available, so previews are assembled as sibling directories of a
+# single static site. `base: './'` in vite.config.ts is what makes the nested
+# builds work. Transcript payloads are pruned from previews (identical between
+# builds, ~30MB) and resolved from the site root at runtime.
+#
+# One Pages environment means these share a single concurrency group: two
+# deploys cannot overlap, so the last one to run wins and always contains the
+# current full set of previews.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    types: [opened, reopened, synchronize, closed]
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      # ---- production build from main ----
+      - name: Build main
+        run: |
+          git checkout main
+          npm ci
+          npm run build
+          mkdir -p ../root-build
+          cp -a dist/. ../root-build/
+
+      # ---- build every pull request that should have a preview ----
+      - name: Collect open pull requests
+        id: prs
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          # The PR that triggered this run is excluded when it was just closed.
+          gh pr list --repo "$REPO" --state open --json number,headRefOid \
+            --jq '.[] | "\(.number) \(.headRefOid)"' > /tmp/prs.txt || echo -n > /tmp/prs.txt
+
+          if [ "${{ github.event_name }}" = "pull_request" ] && \
+             [ "${{ github.event.action }}" = "closed" ]; then
+            grep -v "^${{ github.event.pull_request.number }} " /tmp/prs.txt > /tmp/prs.filtered.txt || true
+            mv /tmp/prs.filtered.txt /tmp/prs.txt
+          fi
+
+          echo "pull requests to preview:"
+          cat /tmp/prs.txt
+
+      - name: Build each pull request
+        env:
+          REPO_DIR: ${{ github.workspace }}
+        run: |
+          set -euo pipefail
+          mkdir -p ../previews
+          : > /tmp/extras.txt
+
+          while read -r number sha; do
+            [ -z "${number:-}" ] && continue
+            dir="../previews/pr-$number"
+            echo "::group::PR #$number @ $sha"
+            git worktree add --detach "/tmp/wt-$number" "$sha"
+            (
+              cd "/tmp/wt-$number"
+              # Reuse the already-installed node_modules where possible.
+              ln -s "$REPO_DIR/node_modules" node_modules
+              npm run build
+              mkdir -p "$dir"
+              cp -a dist/. "$dir/"
+            ) || echo "::warning::PR #$number failed to build; skipping its preview"
+            git worktree remove --force "/tmp/wt-$number" || true
+            if [ -f "$dir/index.html" ]; then
+              echo "pr-$number:$dir" >> /tmp/extras.txt
+            fi
+            echo "::endgroup::"
+          done < /tmp/prs.txt
+
+      - name: Assemble the Pages site
+        run: |
+          set -euo pipefail
+          args=()
+          while read -r entry; do
+            [ -n "$entry" ] && args+=(--extra "$entry")
+          done < /tmp/extras.txt
+          bash scripts/build_pages_site.sh \
+            --out _site \
+            --root ../root-build \
+            --prune transcripts \
+            ${args[@]+"${args[@]}"}
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
