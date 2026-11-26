@@ -169,11 +169,15 @@ def harvest_one(entry: dict, spec: dict, seen: set[str], force: bool) -> tuple[s
 
     try:
         url = caption_url(vid)
-        if not url:
-            return vid, "no-english-track"
+    except Exception as exc:  # noqa: BLE001
+        return vid, f"meta-fail:{type(exc).__name__}:{str(exc)[:80]}"
+    if not url:
+        return vid, "no-english-track"
+
+    try:
         text = fetch_via_proxy(url)
-    except Exception as exc:  # noqa: BLE001 - report and continue
-        return vid, f"fail:{type(exc).__name__}"
+    except Exception as exc:  # noqa: BLE001
+        return vid, f"proxy-fail:{type(exc).__name__}:{str(exc)[:80]}"
 
     if len(text) < 300:
         return vid, "empty"
