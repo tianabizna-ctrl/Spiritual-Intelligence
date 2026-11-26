@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import {
   Download,
   FileText,
+  Search,
   FolderArchive,
   CheckCircle2,
   Sparkles,
@@ -13,8 +14,7 @@ import {
   LanguageMode,
   UILang,
 } from '../data/spiritualData';
-import { ALL_VIDEOS_DATA } from '../data/compendiumData';
-import { VIDEO_MG_MAP } from '../data/malagasyData';
+import { LIBRARY_TRANSCRIPTS, type LibraryTranscript } from '../data/libraryTranscripts';
 import { generateCustomDocxBlob } from '../utils/customDocxBuilder';
 
 interface DocxDownloadsViewProps {
@@ -27,11 +27,22 @@ export const DocxDownloadsView: React.FC<DocxDownloadsViewProps> = ({
   darkMode,
 }) => {
   const [customLang, setCustomLang] = useState<LanguageMode>(uiLang);
-  const [selectedVideos, setSelectedVideos] = useState<string[]>(
-    ALL_VIDEOS_DATA.map((v) => v.id)
+  const allTranscripts = useMemo<LibraryTranscript[]>(
+    () => Object.values(LIBRARY_TRANSCRIPTS).sort((a, b) => a.title.localeCompare(b.title)),
+    []
   );
-  const [includeChapters, setIncludeChapters] = useState<boolean>(true);
-  const [includeVerbatim, setIncludeVerbatim] = useState<boolean>(true);
+  // Default to a small, fast bundle rather than all 844 transcripts.
+  const [selectedVideos, setSelectedVideos] = useState<string[]>(
+    allTranscripts.slice(0, 3).map((t) => t.key)
+  );
+  const [videoQuery, setVideoQuery] = useState('');
+  const filteredTranscripts = useMemo(() => {
+    const q = videoQuery.trim().toLowerCase();
+    if (!q) return allTranscripts.slice(0, 300);
+    return allTranscripts
+      .filter((t) => t.title.toLowerCase().includes(q) || t.channel.toLowerCase().includes(q))
+      .slice(0, 300);
+  }, [allTranscripts, videoQuery]);
   const [includeScriptureTreasury, setIncludeScriptureTreasury] = useState<boolean>(true);
   const [isGenerating, setIsGenerating] = useState<boolean>(false);
   const [generatedStatus, setGeneratedStatus] = useState<string | null>(null);
@@ -53,8 +64,6 @@ export const DocxDownloadsView: React.FC<DocxDownloadsViewProps> = ({
       const { blob, filename } = await generateCustomDocxBlob({
         languageMode: customLang,
         selectedVideoIds: selectedVideos,
-        includeChapters,
-        includeVerbatim,
         includeScriptureTreasury,
       });
       const url = URL.createObjectURL(blob);
@@ -309,36 +318,47 @@ export const DocxDownloadsView: React.FC<DocxDownloadsViewProps> = ({
             <h4 className="font-display font-bold text-base sm:text-lg text-[#B48327]">
               2.{' '}
               {uiLang === 'mg'
-                ? 'Video Hampidirina (9 Sessions)'
+                ? `Transcription Hampidirina (${allTranscripts.length.toLocaleString()})`
                 : uiLang === 'fr'
-                ? 'Vidéos à Inclure (9 Sessions)'
-                : 'Videos to Include (9 Sessions)'}
+                ? `Transcriptions à Inclure (${allTranscripts.length.toLocaleString()})`
+                : `Transcripts to Include (${allTranscripts.length.toLocaleString()})`}
             </h4>
-            <div className="space-y-2 max-h-48 overflow-y-auto pr-1">
-              {ALL_VIDEOS_DATA.map((v) => {
-                const vTitle =
+            <div className={`flex items-center gap-2 px-2.5 py-1.5 rounded-lg border ${cardSurface}`}>
+              <Search className="w-3.5 h-3.5 text-[#B48327] shrink-0" />
+              <input
+                value={videoQuery}
+                onChange={(e) => setVideoQuery(e.target.value)}
+                placeholder={
                   uiLang === 'mg'
-                    ? VIDEO_MG_MAP[v.id]?.title_mg || v.title_en
+                    ? 'Karohy lohateny…'
                     : uiLang === 'fr'
-                    ? v.title_fr
-                    : v.title_en;
-                return (
-                  <label
-                    key={v.id}
-                    className="flex items-start gap-2.5 text-xs font-medium cursor-pointer"
-                  >
-                    <input
-                      type="checkbox"
-                      checked={selectedVideos.includes(v.id)}
-                      onChange={() => toggleVideoSelection(v.id)}
-                      className="mt-0.5 accent-[#B48327]"
-                    />
-                    <span className="line-clamp-2">
-                      <strong>Video {v.videoNumber}:</strong> {vTitle} ({v.duration})
-                    </span>
-                  </label>
-                );
-              })}
+                    ? 'Rechercher un titre…'
+                    : 'Search titles…'
+                }
+                className="flex-1 bg-transparent text-xs outline-none placeholder:opacity-60"
+              />
+            </div>
+            <p className="text-[11px] font-semibold text-[#B48327]">
+              {selectedVideos.length.toLocaleString()} selected
+            </p>
+            <div className="space-y-2 max-h-48 overflow-y-auto pr-1">
+              {filteredTranscripts.map((tr) => (
+                <label key={tr.key} className="flex items-start gap-2.5 text-xs font-medium cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={selectedVideos.includes(tr.key)}
+                    onChange={() => toggleVideoSelection(tr.key)}
+                    className="mt-0.5 accent-[#B48327]"
+                  />
+                  <span className="line-clamp-2">
+                    {tr.title}{' '}
+                    <span className="opacity-60">({tr.wordCount.toLocaleString()}w)</span>
+                  </span>
+                </label>
+              ))}
+              {filteredTranscripts.length === 0 && (
+                <p className="text-xs opacity-60">No transcript matches that search.</p>
+              )}
             </div>
           </div>
 
@@ -353,36 +373,6 @@ export const DocxDownloadsView: React.FC<DocxDownloadsViewProps> = ({
                 : 'Document Sections'}
             </h4>
             <div className="space-y-2">
-              <label className="flex items-center gap-2.5 text-xs font-medium cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={includeChapters}
-                  onChange={(e) => setIncludeChapters(e.target.checked)}
-                  className="accent-[#B48327]"
-                />
-                <span>
-                  {uiLang === 'mg'
-                    ? 'Toko Voarafitra sy Fanambarana Ara-paminaniana'
-                    : uiLang === 'fr'
-                    ? 'Chapitres Structurés & Décrets Prophétiques'
-                    : 'Structured Chapters & Prophetic Decrees'}
-                </span>
-              </label>
-              <label className="flex items-center gap-2.5 text-xs font-medium cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={includeVerbatim}
-                  onChange={(e) => setIncludeVerbatim(e.target.checked)}
-                  className="accent-[#B48327]"
-                />
-                <span>
-                  {uiLang === 'mg'
-                    ? 'Transcriptions Feno (Voambolana Rehetra)'
-                    : uiLang === 'fr'
-                    ? 'Transcriptions Verbatim Intégrales (Mot-à-Mot)'
-                    : 'Complete Unabridged Verbatim Transcripts'}
-                </span>
-              </label>
               <label className="flex items-center gap-2.5 text-xs font-medium cursor-pointer">
                 <input
                   type="checkbox"

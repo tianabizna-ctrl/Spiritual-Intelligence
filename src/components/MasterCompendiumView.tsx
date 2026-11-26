@@ -18,12 +18,8 @@ import {
   SCRIPTURE_TREASURY,
   UILang,
 } from '../data/spiritualData';
-import { SCOPE_TEXT } from '../data/libraryScope';
-import { ALL_VIDEOS_DATA, PLAYLIST_DIRECTORY } from '../data/compendiumData';
-import { RAW_TRANSCRIPTS } from '../data/rawTranscripts';
+import { PLAYLIST_DIRECTORY } from '../data/compendiumData';
 import {
-  VIDEO_MG_MAP,
-  CHAPTER_MG_MAP,
   PRAYER_CARD_MG_MAP,
   DEVOTIONAL_MG_MAP,
   SCRIPTURE_MG_MAP,
@@ -47,8 +43,6 @@ export const MasterCompendiumView: React.FC<MasterCompendiumViewProps> = ({
   onOpenVideoInReader,
   onNavigateTab,
 }) => {
-  const [expandedVideoIds, setExpandedVideoIds] = useState<string[]>(['4YElIs15_Ak', 'XWBUBtEv70A', '45wUm7wffBQ']);
-  const [showFullRawInCompendium, setShowFullRawInCompendium] = useState<Record<string, boolean>>({});
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
   const cardSurface = darkMode
@@ -61,23 +55,6 @@ export const MasterCompendiumView: React.FC<MasterCompendiumViewProps> = ({
 
   const subText = darkMode ? 'text-[#A8A29E]' : 'text-[#57534E]';
 
-  const toggleVideoExpand = (id: string) => {
-    setExpandedVideoIds((prev) =>
-      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
-    );
-  };
-
-  const expandAllVideos = () => {
-    setExpandedVideoIds(ALL_VIDEOS_DATA.map((v) => v.id));
-  };
-
-  const collapseAllVideos = () => {
-    setExpandedVideoIds([]);
-  };
-
-  const toggleRawTranscript = (id: string) => {
-    setShowFullRawInCompendium((prev) => ({ ...prev, [id]: !prev[id] }));
-  };
 
   const handleCopy = (id: string, text: string) => {
     navigator.clipboard.writeText(text);
@@ -94,17 +71,17 @@ export const MasterCompendiumView: React.FC<MasterCompendiumViewProps> = ({
             <span className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#B48327]/15 text-[#B48327]">
               <Layers className="w-3.5 h-3.5" />
               {uiLang === 'mg'
-                ? 'Fizahan-takelaka Feno • Lohateny sy Votoatiny Rehetra (MG)'
+                ? 'Fizahan-takelaka Feno • Lohateny sy Transcription Rehetra (MG)'
                 : uiLang === 'fr'
-                ? 'Répertoire Intégral • Tous les Titres & Contenus (FR)'
-                : 'Master Index • All Available Titles & Contents (EN)'}
+                ? 'Répertoire Intégral • Tous les Titres & Transcriptions (FR)'
+                : 'Master Index • All Available Titles & Transcripts (EN)'}
             </span>
             <h2 className="font-display text-xl sm:text-3xl font-bold">
               {uiLang === 'mg'
-                ? 'Lisitry ny Lohateny, Playlists, Toko sy Vavaka Rehetra'
+                ? 'Lisitry ny Lohateny, Playlists sy Transcription Rehetra'
                 : uiLang === 'fr'
-                ? 'Catalogue Complet des Titres, Playlists, Chapitres & Transcriptions'
-                : 'Complete Directory of All Titles, Playlists, Chapters & Contents'}
+                ? 'Catalogue Complet des Titres, Playlists & Transcriptions'
+                : 'Complete Directory of All Titles, Playlists & Transcripts'}
             </h2>
           </div>
 
@@ -137,294 +114,20 @@ export const MasterCompendiumView: React.FC<MasterCompendiumViewProps> = ({
               ))}
             </div>
 
-            <button
-              onClick={expandAllVideos}
-              className="px-3.5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-[#B48327] text-white hover:bg-[#9A6E1E] transition shadow-sm"
-            >
-              {SCOPE_TEXT[uiLang].expandAll}
-            </button>
-            <button
-              onClick={collapseAllVideos}
-              className={`px-3.5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider border transition ${
-                darkMode
-                  ? 'border-[#263246] text-[#A8A29E] hover:bg-[#1E293B]'
-                  : 'border-[#B48327]/30 text-[#57534E] hover:bg-[#EAE1D3]'
-              }`}
-            >
-              {uiLang === 'mg' ? 'Akombony' : uiLang === 'fr' ? 'Réduire' : 'Collapse All'}
-            </button>
           </div>
         </div>
       </div>
 
-      {/* SECTION 1: the structured sessions and their chapters */}
-      <section className="space-y-4">
-        <div>
-          <span className="text-xs font-bold uppercase tracking-widest text-[#B48327]">
-            {`Section 1 • ${SCOPE_TEXT[uiLang].compendiumSection}`}
-          </span>
-          <h3 className="font-display text-xl sm:text-2xl font-bold mt-0.5">
-            {SCOPE_TEXT[uiLang].compendiumContents}
-          </h3>
-        </div>
 
-        <div className="space-y-4">
-          {ALL_VIDEOS_DATA.map((video) => {
-            const isExpanded = expandedVideoIds.includes(video.id);
-            const raw = RAW_TRANSCRIPTS[video.id];
-            const showRaw = !!showFullRawInCompendium[video.id];
-            const vMg = VIDEO_MG_MAP[video.id];
-
-            const vTitle =
-              uiLang === 'mg'
-                ? vMg?.title_mg || video.title_en
-                : uiLang === 'fr'
-                ? video.title_fr
-                : video.title_en;
-            const vOverview =
-              uiLang === 'mg'
-                ? vMg?.overview_mg || video.overview_en
-                : uiLang === 'fr'
-                ? video.overview_fr
-                : video.overview_en;
-
-            const activeParagraphs = raw
-              ? uiLang === 'mg'
-                ? raw.mg_paragraphs
-                : uiLang === 'fr'
-                ? raw.fr_paragraphs
-                : raw.en_paragraphs
-              : [];
-
-            const activeFullRaw = raw
-              ? uiLang === 'mg'
-                ? raw.mg_raw
-                : uiLang === 'fr'
-                ? raw.fr_raw
-                : raw.en_raw
-              : '';
-
-            return (
-              <div
-                key={video.id}
-                className={`rounded-2xl border overflow-hidden transition ${mainSurface}`}
-              >
-                {/* Video Accordion Header */}
-                <div
-                  onClick={() => toggleVideoExpand(video.id)}
-                  role="button"
-                  tabIndex={0}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') toggleVideoExpand(video.id);
-                  }}
-                  className={`p-4 sm:p-5 cursor-pointer flex flex-col lg:flex-row lg:items-center justify-between gap-3 border-b border-[#B48327]/15 ${
-                    darkMode ? 'hover:bg-[#171F2C]' : 'hover:bg-[#F3EDE2]/70'
-                  }`}
-                >
-                  <div className="space-y-1">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <span className="px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#B48327] text-white">
-                        Video {video.videoNumber}
-                      </span>
-                      {video.videoNumber <= 3 && (
-                        <span className="px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#7C2D12] text-amber-100">
-                          {uiLang === 'mg'
-                            ? '★ Video Fototra'
-                            : uiLang === 'fr'
-                            ? '★ Vidéo Principale'
-                            : '★ Primary Video'}
-                        </span>
-                      )}
-                      <span className="px-2.5 py-0.5 rounded-full text-xs font-mono-code font-semibold bg-[#B48327]/15 text-[#B48327]">
-                        {video.duration}
-                      </span>
-                      <span className={`text-xs font-medium ${subText}`}>
-                        {video.speaker} • {video.channel}
-                      </span>
-                    </div>
-
-                    <h4 className="font-display text-base sm:text-xl font-bold leading-snug">
-                      {vTitle}
-                    </h4>
-                  </div>
-
-                  <div className="flex items-center gap-2 self-start lg:self-center" onClick={(e) => e.stopPropagation()}>
-                    <button
-                      onClick={() => onOpenVideoInReader(video.id)}
-                      className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold bg-[#B48327] text-white hover:bg-[#9A6E1E] transition"
-                    >
-                      <BookOpen className="w-3.5 h-3.5" />
-                      {uiLang === 'mg'
-                        ? 'Vakio ny Vavaka'
-                        : uiLang === 'fr'
-                        ? 'Ouvrir dans le Lecteur'
-                        : 'Read Prayers'}
-                    </button>
-                    <button
-                      onClick={() => toggleVideoExpand(video.id)}
-                      className={`p-2 rounded-xl border ${
-                        darkMode ? 'border-[#263246] text-[#D4AF37]' : 'border-[#B48327]/30 text-[#7C2D12]'
-                      }`}
-                    >
-                      {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-                    </button>
-                  </div>
-                </div>
-
-                {/* Expanded Video Contents */}
-                {isExpanded && (
-                  <div className="p-4 sm:p-6 space-y-5">
-                    {/* Overview */}
-                    <div className={`rounded-xl border p-4 ${cardSurface}`}>
-                      <p className="text-[11px] font-bold uppercase tracking-wider text-[#B48327] mb-1">
-                        {uiLang === 'mg'
-                          ? 'Famintinana (Malagasy)'
-                          : uiLang === 'fr'
-                          ? 'Synthèse Exécutive (Français)'
-                          : 'Executive Summary (English)'}
-                      </p>
-                      <p className="text-sm leading-relaxed">{vOverview}</p>
-                    </div>
-
-                    {/* All Chapters */}
-                    <div className="space-y-3">
-                      {video.chapters.map((ch) => {
-                        const mgCh = CHAPTER_MG_MAP[ch.id];
-                        const chTitle =
-                          uiLang === 'mg'
-                            ? mgCh?.title_mg || ch.title_en
-                            : uiLang === 'fr'
-                            ? ch.title_fr
-                            : ch.title_en;
-                        const chText =
-                          uiLang === 'mg'
-                            ? mgCh?.mg_text || ch.en_text
-                            : uiLang === 'fr'
-                            ? ch.fr_text
-                            : ch.en_text;
-                        const chDecree =
-                          uiLang === 'mg'
-                            ? mgCh?.declaration_mg || ch.declaration_en
-                            : uiLang === 'fr'
-                            ? ch.declaration_fr
-                            : ch.declaration_en;
-
-                        return (
-                          <div key={ch.id} className={`rounded-xl border p-4 ${cardSurface} space-y-2.5`}>
-                            <div className="flex flex-wrap items-center justify-between gap-2">
-                              <div className="flex items-center gap-2">
-                                <span className="px-2 py-0.5 rounded text-xs font-bold bg-[#B48327] text-white">
-                                  {ch.number}
-                                </span>
-                                <span className="text-xs font-mono-code font-semibold text-[#B48327]">
-                                  {ch.timestamp}
-                                </span>
-                              </div>
-                              <div className="flex flex-wrap gap-1">
-                                {ch.scriptures.map((s) => (
-                                  <span
-                                    key={s}
-                                    className="px-2 py-0.5 rounded text-[11px] font-medium bg-[#B48327]/15 text-[#B48327]"
-                                  >
-                                    {s}
-                                  </span>
-                                ))}
-                              </div>
-                            </div>
-
-                            <h6 className="font-display font-bold text-base sm:text-lg text-[#B48327]">
-                              {chTitle}
-                            </h6>
-                            <p className="font-serif-body text-sm sm:text-[15px] leading-relaxed">
-                              {chText}
-                            </p>
-                            <div className="p-3 rounded-lg bg-[#B48327]/10 border-l-4 border-[#B48327] text-xs sm:text-sm">
-                              <span className="font-bold uppercase tracking-wider text-[#B48327] block mb-0.5">
-                                {uiLang === 'mg'
-                                  ? 'Fanambarana Ara-paminaniana :'
-                                  : uiLang === 'fr'
-                                  ? 'Décret Prophétique :'
-                                  : 'Prophetic Decree:'}
-                              </span>
-                              <span className="italic">{chDecree}</span>
-                            </div>
-                          </div>
-                        );
-                      })}
-                    </div>
-
-                    {/* Full Unabridged Verbatim Transcript Toggle */}
-                    {raw && (
-                      <div className="pt-1">
-                        <div className="flex flex-wrap items-center justify-between gap-2">
-                          <button
-                            onClick={() => toggleRawTranscript(video.id)}
-                            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-[#B48327] text-white hover:bg-[#9A6E1E] transition"
-                          >
-                            <ScrollText className="w-4 h-4" />
-                            {showRaw
-                              ? uiLang === 'mg'
-                                ? 'Afenina ny Transcription Feno'
-                                : uiLang === 'fr'
-                                ? 'Masquer la Transcription Intégrale'
-                                : 'Hide Full Verbatim Transcript'
-                              : uiLang === 'mg'
-                              ? `Asehoy ny Transcription Feno (${activeParagraphs.length} Fizarana)`
-                              : uiLang === 'fr'
-                              ? `Afficher la Transcription Intégrale (${activeParagraphs.length} Paragraphes)`
-                              : `Display Full Verbatim Transcript (${activeParagraphs.length} Paragraphs)`}
-                          </button>
-
-                          <button
-                            onClick={() => handleCopy(`${video.id}-raw`, activeFullRaw)}
-                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold border border-[#B48327]/30 text-[#B48327] hover:bg-[#B48327]/10 transition"
-                          >
-                            {copiedId === `${video.id}-raw` ? (
-                              <Check className="w-3.5 h-3.5" />
-                            ) : (
-                              <Copy className="w-3.5 h-3.5" />
-                            )}
-                            {uiLang === 'mg'
-                              ? 'Adikao ny Teny Rehetra'
-                              : uiLang === 'fr'
-                              ? 'Copier Tout'
-                              : 'Copy Full Text'}
-                          </button>
-                        </div>
-
-                        {showRaw && (
-                          <div className={`rounded-xl border p-4 sm:p-5 max-h-[540px] overflow-y-auto mt-3 ${cardSurface}`}>
-                            <div className="space-y-3 font-serif-body text-sm sm:text-[15px] leading-relaxed">
-                              {activeParagraphs.map((p, idx) => (
-                                <p key={idx}>
-                                  <span className="font-mono-code text-[11px] text-[#B48327] mr-2">
-                                    [{uiLang.toUpperCase()} ¶{idx + 1}]
-                                  </span>
-                                  {p}
-                                </p>
-                              ))}
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                )}
-              </div>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* SECTION 2: ALL 3 YOUTUBE PLAYLISTS & ALL 18 VIDEO TITLES */}
+      {/* SECTION 1: every title, grouped by its source playlist */}
       <section className="space-y-4">
         <div>
           <span className="text-xs font-bold uppercase tracking-widest text-[#B48327]">
             {uiLang === 'mg'
-              ? 'Fizarana 2 • Ireo Playlists 3 sy Lohateny 18'
+              ? 'Fizarana 1 • Fanangonana miaraka amin’ny transcriptions'
               : uiLang === 'fr'
-              ? 'Section 2 • Répertoire des 3 Playlists & 18 Titres'
-              : 'Section 2 • 3 YouTube Playlists & All 18 Video Titles'}
+              ? 'Section 1 • Collections avec transcriptions'
+              : 'Section 1 • Collections with harvested transcripts'}
           </span>
           <h3 className="font-display text-xl sm:text-2xl font-bold mt-0.5">
             {uiLang === 'mg'
@@ -560,7 +263,7 @@ export const MasterCompendiumView: React.FC<MasterCompendiumViewProps> = ({
         </div>
       </section>
 
-      {/* SECTION 3: ALL 12 PRAYER ALTAR TITLES, 3 DEVOTIONALS & 15 SCRIPTURES */}
+      {/* SECTION 2: prayer altar titles, devotionals and scripture treasury */}
       <section className="grid grid-cols-1 lg:grid-cols-3 gap-5">
         {/* 12 Prayers */}
         <div className={`rounded-2xl border p-4 sm:p-5 space-y-3 ${mainSurface}`}>
@@ -679,7 +382,7 @@ export const MasterCompendiumView: React.FC<MasterCompendiumViewProps> = ({
         </div>
       </section>
 
-      {/* SECTION 4: DOCX PACKAGES */}
+      {/* SECTION 3: DOCX packages */}
       <section className={`rounded-2xl border p-4 sm:p-6 space-y-4 ${mainSurface}`}>
         <div className="flex items-center justify-between">
           <h3 className="font-display text-xl font-bold">

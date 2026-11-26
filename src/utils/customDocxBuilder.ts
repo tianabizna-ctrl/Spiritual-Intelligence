@@ -1,6 +1,5 @@
 import {
   AlignmentType,
-  BorderStyle,
   Document,
   HeadingLevel,
   Packer,
@@ -8,44 +7,51 @@ import {
   TextRun,
 } from 'docx';
 import { SCRIPTURE_TREASURY, LanguageMode } from '../data/spiritualData';
-import { ALL_VIDEOS_DATA } from '../data/compendiumData';
-import { RAW_TRANSCRIPTS } from '../data/rawTranscripts';
-import { VIDEO_MG_MAP, CHAPTER_MG_MAP, SCRIPTURE_MG_MAP } from '../data/malagasyData';
+import { SCRIPTURE_MG_MAP } from '../data/malagasyData';
+import { LIBRARY_TRANSCRIPTS } from '../data/libraryTranscripts';
+import { loadTranscript } from './transcriptText';
 
 export interface CustomDocxOptions {
   languageMode: LanguageMode; // 'both' | 'en' | 'fr' | 'mg'
+  /** Transcript ids from the harvested library. */
   selectedVideoIds: string[];
-  includeChapters: boolean;
-  includeVerbatim: boolean;
+  /**
+   * Kept so existing callers keep compiling. The harvested corpus has no
+   * hand-authored chapters or translations, so only real transcript text and the
+   * scripture treasury are exported.
+   */
+  includeChapters?: boolean;
+  includeVerbatim?: boolean;
   includeScriptureTreasury: boolean;
 }
 
 export async function generateCustomDocxBlob(
   options: CustomDocxOptions
 ): Promise<{ blob: Blob; filename: string }> {
-  const {
-    languageMode,
-    selectedVideoIds,
-    includeChapters,
-    includeVerbatim,
-    includeScriptureTreasury,
-  } = options;
+  const { languageMode, selectedVideoIds, includeScriptureTreasury } = options;
 
   const includeEn = languageMode === 'both' || languageMode === 'en';
   const includeFr = languageMode === 'both' || languageMode === 'fr';
   const includeMg = languageMode === 'both' || languageMode === 'mg';
 
-  const selectedVideos = ALL_VIDEOS_DATA.filter((v) => selectedVideoIds.includes(v.id));
+  const selected = selectedVideoIds
+    .map(
+      (id) =>
+        LIBRARY_TRANSCRIPTS[id] ??
+        Object.values(LIBRARY_TRANSCRIPTS).find((t) => t.id === id)
+    )
+    .filter((t): t is NonNullable<typeof t> => Boolean(t));
+
   const children: Paragraph[] = [];
 
-  // Title Header
+  // Title header
   children.push(
     new Paragraph({
       alignment: AlignmentType.CENTER,
       spacing: { after: 140 },
       children: [
         new TextRun({
-          text: '✦  SPIRITUAL INTELLIGENCE  •  INTELLIGENCE SPIRITUELLE  •  FAHARANITAN-TSAINA ARA-PANAHY  ✦',
+          text: '\u2726  SPIRITUAL INTELLIGENCE  \u2022  INTELLIGENCE SPIRITUELLE  \u2022  FAHARANITAN-TSAINA ARA-PANAHY  \u2726',
           bold: true,
           size: 20,
           color: 'B48327',
@@ -58,43 +64,7 @@ export async function generateCustomDocxBlob(
       spacing: { after: 120 },
       children: [
         new TextRun({
-          text:
-            languageMode === 'mg'
-              ? 'Tahirin-kevitra Masina momba ireo Vavaka Ara-paminaniana sy Transcriptions Video (Malagasy)'
-              : languageMode === 'fr'
-              ? 'Recueil Sacré des Transcriptions Vidéo, Prières Prophétiques & Méditations (Français)'
-              : languageMode === 'en'
-              ? 'Sacred Compendium of Video Transcriptions, Prophetic Prayers & Devotionals (English)'
-              : 'Trilingual Compendium of Video Transcriptions, Prayers & Devotionals (EN / FR / MG)',
-          bold: true,
-          size: 34,
-          color: '1C1917',
-          font: 'Georgia',
-        }),
-      ],
-    }),
-    new Paragraph({
-      alignment: AlignmentType.CENTER,
-      spacing: { after: 320 },
-      border: {
-        bottom: {
-          color: 'B48327',
-          space: 8,
-          style: BorderStyle.SINGLE,
-          size: 6,
-        },
-      },
-      children: [
-        new TextRun({
-          text: `Edition: ${
-            languageMode === 'both'
-              ? 'English, Français & Malagasy (EN / FR / MG)'
-              : languageMode === 'mg'
-              ? 'Malagasy (MG)'
-              : languageMode === 'fr'
-              ? 'Français (FR)'
-              : 'English (EN)'
-          }  •  Videos Included: ${selectedVideos.length}`,
+          text: `Harvested Transcripts  \u2022  Transcripts Collected: ${selected.length}`,
           italics: true,
           size: 22,
           color: '57534E',
@@ -104,71 +74,28 @@ export async function generateCustomDocxBlob(
     })
   );
 
-  for (const video of selectedVideos) {
-    const rawData = RAW_TRANSCRIPTS[video.id];
-    const vMg = VIDEO_MG_MAP[video.id];
-    const primaryHeadingTitle =
-      languageMode === 'mg'
-        ? vMg?.title_mg || video.title_en
-        : languageMode === 'fr'
-        ? video.title_fr
-        : video.title_en;
+  for (const entry of selected) {
+    const loaded = await loadTranscript(entry.collection, entry.id);
 
-    // Video Heading
     children.push(
       new Paragraph({
         heading: HeadingLevel.HEADING_1,
         spacing: { before: 360, after: 120 },
         children: [
           new TextRun({
-            text: `VIDEO ${video.videoNumber}: ${primaryHeadingTitle}`,
+            text: entry.title,
             bold: true,
             size: 28,
             color: '1E293B',
             font: 'Georgia',
           }),
         ],
-      })
-    );
-
-    if (languageMode === 'both') {
-      children.push(
-        new Paragraph({
-          spacing: { after: 80 },
-          children: [
-            new TextRun({
-              text: `Titre Français : ${video.title_fr}`,
-              bold: true,
-              italics: true,
-              size: 21,
-              color: '7C2D12',
-              font: 'Georgia',
-            }),
-          ],
-        }),
-        new Paragraph({
-          spacing: { after: 120 },
-          children: [
-            new TextRun({
-              text: `Lohateny Malagasy : ${vMg?.title_mg || video.title_en}`,
-              bold: true,
-              italics: true,
-              size: 21,
-              color: '7C2D12',
-              font: 'Georgia',
-            }),
-          ],
-        })
-      );
-    }
-
-    // Metadata
-    children.push(
+      }),
       new Paragraph({
         spacing: { after: 180 },
         children: [
           new TextRun({
-            text: `YouTube URL: ${video.url}\nChannel: ${video.channel} (${video.speaker})  •  Duration: ${video.duration}  •  Uploaded: ${video.uploadedAt}\nKey Scriptures: ${video.keyScriptures.join(' • ')}`,
+            text: `Channel: ${entry.channel}  \u2022  Transcript words: ${entry.wordCount.toLocaleString()}\nYouTube: https://www.youtube.com/watch?v=${entry.id}`,
             size: 19,
             color: '57534E',
             font: 'Georgia',
@@ -177,231 +104,50 @@ export async function generateCustomDocxBlob(
       })
     );
 
-    // Structured Chapters & Prophetic Declarations
-    if (includeChapters) {
+    if (!loaded) {
       children.push(
         new Paragraph({
-          heading: HeadingLevel.HEADING_2,
-          spacing: { before: 240, after: 120 },
+          spacing: { after: 120 },
           children: [
             new TextRun({
-              text:
-                languageMode === 'mg'
-                  ? 'Toko Voarafitra sy Fanambarana Ara-paminaniana'
-                  : languageMode === 'fr'
-                  ? 'Chapitres Structurés & Déclarations Prophétiques'
-                  : 'Structured Chapters & Prophetic Declarations',
-              bold: true,
-              size: 24,
-              color: 'B48327',
+              text: 'This transcript could not be loaded. It may not be published yet.',
+              italics: true,
+              size: 20,
+              color: '9A3412',
               font: 'Georgia',
             }),
           ],
         })
       );
-
-      for (const ch of video.chapters) {
-        const chMg = CHAPTER_MG_MAP[ch.id];
-        const chMainTitle =
-          languageMode === 'mg'
-            ? chMg?.title_mg || ch.title_en
-            : languageMode === 'fr'
-            ? ch.title_fr
-            : ch.title_en;
-
-        children.push(
-          new Paragraph({
-            spacing: { before: 180, after: 80 },
-            children: [
-              new TextRun({
-                text: `${ch.number}. [${ch.timestamp}] ${chMainTitle}`,
-                bold: true,
-                size: 22,
-                color: '1C1917',
-                font: 'Georgia',
-              }),
-            ],
-          }),
-          new Paragraph({
-            spacing: { after: 80 },
-            children: [
-              new TextRun({
-                text: `Scriptures: ${ch.scriptures.join(' • ')}`,
-                bold: true,
-                size: 19,
-                color: '7C2D12',
-                font: 'Georgia',
-              }),
-            ],
-          })
-        );
-
-        if (includeEn) {
-          children.push(
-            new Paragraph({
-              spacing: { after: 80 },
-              children: [
-                new TextRun({ text: '[EN] ', bold: true, size: 20, color: '1E293B', font: 'Georgia' }),
-                new TextRun({ text: ch.en_text, size: 21, color: '1C1917', font: 'Georgia' }),
-              ],
-            }),
-            new Paragraph({
-              spacing: { after: 100 },
-              children: [
-                new TextRun({ text: 'Prophetic Decree (EN): ', bold: true, size: 20, color: 'B48327', font: 'Georgia' }),
-                new TextRun({ text: ch.declaration_en, italics: true, size: 21, color: '1C1917', font: 'Georgia' }),
-              ],
-            })
-          );
-        }
-
-        if (includeFr) {
-          children.push(
-            new Paragraph({
-              spacing: { after: 80 },
-              children: [
-                new TextRun({ text: '[FR] ', bold: true, size: 20, color: '1E293B', font: 'Georgia' }),
-                new TextRun({ text: ch.fr_text, size: 21, color: '1C1917', font: 'Georgia' }),
-              ],
-            }),
-            new Paragraph({
-              spacing: { after: 100 },
-              children: [
-                new TextRun({ text: 'Décret Prophétique (FR) : ', bold: true, size: 20, color: 'B48327', font: 'Georgia' }),
-                new TextRun({ text: ch.declaration_fr, italics: true, size: 21, color: '1C1917', font: 'Georgia' }),
-              ],
-            })
-          );
-        }
-
-        if (includeMg && chMg) {
-          children.push(
-            new Paragraph({
-              spacing: { after: 80 },
-              children: [
-                new TextRun({ text: '[MG] ', bold: true, size: 20, color: '1E293B', font: 'Georgia' }),
-                new TextRun({ text: chMg.mg_text, size: 21, color: '1C1917', font: 'Georgia' }),
-              ],
-            }),
-            new Paragraph({
-              spacing: { after: 120 },
-              children: [
-                new TextRun({ text: 'Fanambarana Ara-paminaniana (MG) : ', bold: true, size: 20, color: 'B48327', font: 'Georgia' }),
-                new TextRun({ text: chMg.declaration_mg, italics: true, size: 21, color: '1C1917', font: 'Georgia' }),
-              ],
-            })
-          );
-        }
-      }
+      continue;
     }
 
-    // Full Verbatim Transcriptions
-    if (includeVerbatim && rawData) {
-      if (includeEn) {
-        children.push(
-          new Paragraph({
-            heading: HeadingLevel.HEADING_2,
-            spacing: { before: 280, after: 120 },
-            children: [
-              new TextRun({
-                text: `COMPLETE VERBATIM ENGLISH TRANSCRIPTION — VIDEO ${video.videoNumber}`,
-                bold: true,
-                size: 24,
-                color: '7C2D12',
-                font: 'Georgia',
-              }),
-            ],
-          })
-        );
+    children.push(
+      new Paragraph({
+        heading: HeadingLevel.HEADING_2,
+        spacing: { before: 240, after: 120 },
+        children: [
+          new TextRun({
+            text: 'Full Transcript (English)',
+            bold: true,
+            size: 24,
+            color: 'B48327',
+            font: 'Georgia',
+          }),
+        ],
+      })
+    );
 
-        for (const para of rawData.en_paragraphs) {
-          children.push(
-            new Paragraph({
-              spacing: { after: 110 },
-              children: [
-                new TextRun({
-                  text: para,
-                  size: 21,
-                  color: '1C1917',
-                  font: 'Georgia',
-                }),
-              ],
-            })
-          );
-        }
-      }
-
-      if (includeFr) {
-        children.push(
-          new Paragraph({
-            heading: HeadingLevel.HEADING_2,
-            spacing: { before: 280, after: 120 },
-            children: [
-              new TextRun({
-                text: `TRANSCRIPTION INTÉGRALE EN FRANÇAIS — VIDÉO ${video.videoNumber}`,
-                bold: true,
-                size: 24,
-                color: '7C2D12',
-                font: 'Georgia',
-              }),
-            ],
-          })
-        );
-
-        for (const para of rawData.fr_paragraphs) {
-          children.push(
-            new Paragraph({
-              spacing: { after: 110 },
-              children: [
-                new TextRun({
-                  text: para,
-                  size: 21,
-                  color: '1C1917',
-                  font: 'Georgia',
-                }),
-              ],
-            })
-          );
-        }
-      }
-
-      if (includeMg && rawData.mg_paragraphs) {
-        children.push(
-          new Paragraph({
-            heading: HeadingLevel.HEADING_2,
-            spacing: { before: 280, after: 120 },
-            children: [
-              new TextRun({
-                text: `TRANSCRIPTION FENO AMIN'NY TENY MALAGASY — VIDEO ${video.videoNumber}`,
-                bold: true,
-                size: 24,
-                color: '7C2D12',
-                font: 'Georgia',
-              }),
-            ],
-          })
-        );
-
-        for (const para of rawData.mg_paragraphs) {
-          children.push(
-            new Paragraph({
-              spacing: { after: 110 },
-              children: [
-                new TextRun({
-                  text: para,
-                  size: 21,
-                  color: '1C1917',
-                  font: 'Georgia',
-                }),
-              ],
-            })
-          );
-        }
-      }
+    for (const para of loaded.paragraphs) {
+      children.push(
+        new Paragraph({
+          spacing: { after: 110 },
+          children: [new TextRun({ text: para, size: 21, color: '1C1917', font: 'Georgia' })],
+        })
+      );
     }
   }
 
-  // Scripture Treasury
   if (includeScriptureTreasury) {
     children.push(
       new Paragraph({

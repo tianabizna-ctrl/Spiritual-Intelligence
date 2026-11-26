@@ -39,6 +39,19 @@ dom.window.matchMedia = (query) => ({
 dom.window.requestAnimationFrame = (cb) => setTimeout(() => cb(Date.now()), 0);
 dom.window.cancelAnimationFrame = (id) => clearTimeout(id);
 dom.window.scrollTo = () => {};
+
+// jsdom ships no fetch, so serve transcript payloads from dist/ exactly as the
+// deployed site would. Without this the reader's load path is never exercised.
+dom.window.fetch = async (url) => {
+  const rel = String(url).replace(/^[./]+/, '');
+  try {
+    const body = readFileSync(path.join(dist, rel), 'utf8');
+    return { ok: true, status: 200, json: async () => JSON.parse(body) };
+  } catch {
+    return { ok: false, status: 404, json: async () => ({}) };
+  }
+};
+globalThis.fetch = dom.window.fetch;
 dom.window.URL.createObjectURL = () => 'blob:mock';
 dom.window.URL.revokeObjectURL = () => {};
 
@@ -161,6 +174,70 @@ check(
   'scope note shows the real library size',
   expectedCount > 0 && readerAfter.includes(String(expectedCount)),
   `expected ${expectedCount} in UI; got: ${readerAfter.slice(0, 80)}`
+);
+
+// The nine hand-authored sessions were removed outright, not relabelled.
+for (const dead of ['../src/data/rawTranscripts.ts', '../src/data/libraryScope.ts']) {
+  let exists = true;
+  try {
+    statSync(new URL(dead, import.meta.url));
+  } catch {
+    exists = false;
+  }
+  check(`removed: ${dead.split('/').pop()}`, !exists);
+}
+
+const spiritualSrc = readFileSync(new URL('../src/data/spiritualData.ts', import.meta.url), 'utf8');
+check('no VIDEOS_DATA structure', !/export const VIDEOS_DATA/.test(spiritualSrc));
+check('no VideoResource type', !/export interface VideoResource/.test(spiritualSrc));
+
+const compendiumSrc = readFileSync(new URL('../src/data/compendiumData.ts', import.meta.url), 'utf8');
+check('no COMPANION_VIDEOS_DATA structure', !/export const COMPANION_VIDEOS_DATA/.test(compendiumSrc));
+check('no ALL_VIDEOS_DATA aggregate', !/export const ALL_VIDEOS_DATA/.test(compendiumSrc));
+
+// Collections is reachable and every badge equals that group's harvested count.
+const collectionsBtn = [...doc.querySelectorAll('nav button')].find((b) =>
+  b.textContent.includes('Collections')
+);
+collectionsBtn?.dispatchEvent(new dom.window.MouseEvent('click', { bubbles: true }));
+await new Promise((r) => setTimeout(r, 400));
+const collectionsText = doc.querySelector('main')?.textContent || '';
+check('navigates to Collections', /Collections/.test(collectionsText), collectionsText.slice(0, 60));
+
+const tsIndex = readFileSync(new URL('../src/data/libraryTranscripts.ts', import.meta.url), 'utf8');
+const playlistIds = [
+  'PLaptSPguGlRafSbwyTRdhKBc9axh9znP7',
+  'PLK2jIf_WJT5V87ZUiLy8Q0GKet4T-AzRz',
+  'PLFyTbdmIZAj4c9I6CJNvV2XHon1SUypTh',
+];
+const expectedBadges = [
+  ...playlistIds.map(
+    (id) => (tsIndex.match(new RegExp(`playlistId: "${id}"`, 'g')) || []).length
+  ),
+  (tsIndex.match(/collection: "teachings"/g) || []).length,
+];
+const missingBadges = expectedBadges.filter(
+  (n) => !collectionsText.includes(`${n} teaching`)
+);
+check(
+  'collection badges match harvested counts',
+  missingBadges.length === 0,
+  `missing ${missingBadges.join(', ')} of ${expectedBadges.join('/')}`
+);
+check('collection cards render cover art', doc.querySelectorAll('main img').length > 0);
+
+// The reader must render real transcript text, paragraph by paragraph.
+const backToReader = [...doc.querySelectorAll('nav button')].find(
+  (b) => b.textContent.trim() === 'Read Prayers'
+);
+backToReader?.dispatchEvent(new dom.window.MouseEvent('click', { bubbles: true }));
+await new Promise((r) => setTimeout(r, 600));
+const readerParas = [...doc.querySelectorAll('main article p')].map((p) => p.textContent.trim());
+check('reader renders transcript paragraphs', readerParas.length > 5, `${readerParas.length} paragraphs`);
+check(
+  'reader shows real transcript prose',
+  readerParas.some((p) => p.split(/\s+/).length > 40),
+  readerParas[0]?.slice(0, 80)
 );
 
 check('no runtime errors', errors.length === 0, errors.slice(0, 3).join(' | '));
