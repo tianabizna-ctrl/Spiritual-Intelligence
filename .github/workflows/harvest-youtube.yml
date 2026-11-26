@@ -130,6 +130,23 @@ jobs:
           pip install --quiet python-docx
           python3 scripts/generate_docx_packages.py
 
+      # Step logs and artifacts are served from blob storage, which not every
+      # client can read. The job summary is served from the API, so the reason a
+      # run produced nothing is written here where it can always be read back.
+      - name: Publish the run summary
+        if: always()
+        run: |
+          {
+            echo '### harvest-youtube'
+            echo ''
+            echo '```'
+            echo "json files written: $(ls transcripts/*.json 2>/dev/null | wc -l)"
+            grep -E 'summary:|without a transcript' /tmp/harvest.log 2>/dev/null || echo '(no harvest summary)'
+            echo '--- ingest ---'
+            tail -25 /tmp/ingest.err 2>/dev/null || echo '(no ingest stderr)'
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
       - name: Keep the harvest log as an artifact
         if: always()
         uses: actions/upload-artifact@v4
