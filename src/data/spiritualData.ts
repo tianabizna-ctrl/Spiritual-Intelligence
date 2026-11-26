@@ -984,8 +984,8 @@ export interface DocxPackageItem {
 export const DOCX_PACKAGES_LIST: DocxPackageItem[] = [
   {
     id: 'pkg-master-en-fr',
-    title_en: 'Complete Trilingual Master Package (All 9 Videos — EN / FR / MG)',
-    title_fr: 'Pack Maître Trilingue Complet (Les 9 Vidéos — EN / FR / MG)',
+    title_en: 'Complete Trilingual Master Package (9 structured sessions — EN / FR / MG)',
+    title_fr: 'Pack Maître Trilingue Complet (9 sessions structurées — EN / FR / MG)',
     description_en:
       'The complete Microsoft Word (.docx) volume containing all 9 video transcriptions in English, French and Malagasy, devotional summaries, and Scripture concordances.',
     description_fr:
@@ -1031,8 +1031,8 @@ export const DOCX_PACKAGES_LIST: DocxPackageItem[] = [
   },
   {
     id: 'pkg-fr-only',
-    title_en: 'French Complete Transcriptions Edition (All 9 Videos — FR)',
-    title_fr: 'Édition Complète des Transcriptions en Français (Les 9 Vidéos — FR)',
+    title_en: 'French Complete Transcriptions Edition (9 structured sessions — FR)',
+    title_fr: 'Édition Complète des Transcriptions en Français (9 sessions structurées — FR)',
     description_en:
       'All complete video transcriptions, prophetic declarations, and Louis Segond scripture references in French only.',
     description_fr:
@@ -1046,8 +1046,8 @@ export const DOCX_PACKAGES_LIST: DocxPackageItem[] = [
   },
   {
     id: 'pkg-mg-only',
-    title_en: 'Malagasy Complete Transcriptions Edition (All 9 Videos — MG)',
-    title_fr: 'Édition Complète des Transcriptions en Malgache (Les 9 Vidéos — MG)',
+    title_en: 'Malagasy Complete Transcriptions Edition (9 structured sessions — MG)',
+    title_fr: 'Édition Complète des Transcriptions en Malgache (9 sessions structurées — MG)',
     description_en:
       'All complete video transcriptions, prophetic declarations, and Malagasy Bible scripture references in Malagasy (Teny Malagasy).',
     description_fr:
