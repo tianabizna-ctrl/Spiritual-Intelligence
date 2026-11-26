@@ -408,7 +408,9 @@ export const LibraryView: React.FC<LibraryViewProps> = ({ uiLang, darkMode }) =>
                     {item.title}
                   </a>
                   <p className={`text-[11px] mt-0.5 ${subText}`}>
-                    {item.channel} • {item.duration} • {item.wordCount.toLocaleString()} {t.words}
+                    {[item.channel, item.duration, `${item.wordCount.toLocaleString()} ${t.words}`]
+                      .filter(Boolean)
+                      .join(' • ')}
                   </p>
                   <p className={`text-xs mt-1 ${subText}`}>
                     {openId === item.id

@@ -204,14 +204,37 @@ def harvest(collection_key: str, limit: int, sleep: float, force: bool) -> dict:
     return {"ok": ok, "skip": skip, "fail": fail}
 
 
+def discover_subdirs() -> list[tuple[str, str]]:
+    """Return (collection_key, subdir) for every collection directory on disk.
+
+    COLLECTIONS is the registry for *Drive-backed* collections, which need a
+    folder id to be downloaded. Playlist-harvested collections have no Drive
+    folder and are imported straight into data/transcripts/<slug>/, so they are
+    discovered from the filesystem instead. Without this, adding a playlist meant
+    also editing this file, and harvest_playlist.sh would silently produce an
+    index that omitted the new collection.
+    """
+    found = []
+    for key, coll in COLLECTIONS.items():
+        found.append((key, coll["subdir"]))
+    claimed = {sub for _, sub in found}
+    if os.path.isdir(OUT_DIR):
+        for name in sorted(os.listdir(OUT_DIR)):
+            path = os.path.join(OUT_DIR, name)
+            if not os.path.isdir(path) or name in claimed:
+                continue
+            found.append((name, name))
+    return found
+
+
 def build_ts():
     """Regenerate the app index + public per-transcript files."""
     public_dir = os.path.join(ROOT_DIR, "public", "transcripts")
     os.makedirs(public_dir, exist_ok=True)
 
     entries = []
-    for collection_key, coll in COLLECTIONS.items():
-        base = os.path.join(OUT_DIR, coll["subdir"]) if coll["subdir"] else OUT_DIR
+    for collection_key, subdir in discover_subdirs():
+        base = os.path.join(OUT_DIR, subdir) if subdir else OUT_DIR
         if not os.path.isdir(base):
             continue
         for name in sorted(os.listdir(base)):
@@ -225,11 +248,18 @@ def build_ts():
             out_name = f"{collection_key}__{data['id']}.json"
             with open(os.path.join(public_dir, out_name), "w", encoding="utf-8") as f:
                 json.dump(data, f, ensure_ascii=False)
+            # collectionSlug is the real source group ("christian-house"); the
+            # record's own collection field is the app-side kind. Prefer the slug
+            # so a playlist keeps its own identity, and carry the per-item author
+            # so one teaching library can hold several speakers.
+            slug = data.get("collectionSlug") or collection_key
             entries.append(
                 {
                     "id": data["id"],
                     "title": data.get("title", ""),
                     "collection": collection_key,
+                    "collectionSlug": slug,
+                    "author": (data.get("author") or data.get("channel") or "").strip(),
                     "channel": data.get("channel", ""),
                     "playlistId": data.get("playlistId") or None,
                     "duration": str(data.get("duration") or ""),
@@ -257,7 +287,12 @@ def build_ts():
         # collections when one video appears in more than one playlist.
         f.write("  key: string;\n")
         f.write(f"  id: string;\n  title: string;\n  collection: {union};\n")
-        f.write("  channel: string;\n  playlistId: string | null;\n  duration: string;\n")
+        f.write("  channel: string;\n")
+        f.write("  /** Real source group, e.g. christian-house. */\n")
+        f.write("  collectionSlug: string;\n")
+        f.write("  /** Who actually spoke, so one library can hold several speakers. */\n")
+        f.write("  author: string;\n")
+        f.write("  playlistId: string | null;\n  duration: string;\n")
         f.write("  wordCount: number;\n  excerpt: string;\n}\n\n")
         f.write("export const LIBRARY_TRANSCRIPTS: Record<string, LibraryTranscript> = {\n")
         for e in sorted(entries, key=lambda x: (x["collection"], x["title"].lower())):
@@ -268,6 +303,8 @@ def build_ts():
             f.write(f"    title: {json.dumps(e['title'], ensure_ascii=False)},\n")
             f.write(f"    collection: {json.dumps(e['collection'])},\n")
             f.write(f"    channel: {json.dumps(e['channel'], ensure_ascii=False)},\n")
+            f.write(f"    collectionSlug: {json.dumps(e['collectionSlug'])},\n")
+            f.write(f"    author: {json.dumps(e['author'], ensure_ascii=False)},\n")
             f.write(f"    playlistId: {json.dumps(e['playlistId'])},\n")
             f.write(f"    duration: {json.dumps(e['duration'])},\n")
             f.write(f"    wordCount: {e['wordCount']},\n")
@@ -282,10 +319,12 @@ def build_ts():
                 f"Object.values(LIBRARY_TRANSCRIPTS).filter((t) => t.collection === "
                 f"{json.dumps(key)}).length;\n"
             )
+    # Report every collection present, not just the two Drive-backed ones, so a
+    # playlist harvest is visible in the output instead of silently unreported.
+    per_collection = ", ".join(f"{len(by_collection[k])} {k}" for k in sorted(by_collection))
     print(
         f"Wrote {len(entries)} transcripts "
-        f"({len(by_collection.get('prayers', []))} prayers, "
-        f"{len(by_collection.get('teachings', []))} teachings) -> {os.path.relpath(target, ROOT_DIR)}"
+        f"({per_collection}) -> {os.path.relpath(target, ROOT_DIR)}"
     )
 
 
