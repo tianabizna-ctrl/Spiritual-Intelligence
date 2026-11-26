@@ -11,6 +11,7 @@ on:
   push:
     paths:
       - '.github/workflows/harvest-youtube.yml'
+      - 'scripts/harvest_youtube_proxy.py'
   workflow_dispatch:
     inputs:
       collection:
